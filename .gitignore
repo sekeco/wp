@@ -1,0 +1,48 @@
+# ---------------------------------------------------------------------------
+# WordPress core is supplied by the Docker image (see compose.yml).
+# Only project code lives in this repository:
+#   wp-content/themes/sekeco/
+#   wp-content/plugins/sekeco/
+# ---------------------------------------------------------------------------
+
+# WordPress core and local config
+/wp-admin/
+/wp-includes/
+/wp-*.php
+/wp-config.php
+/index.php
+/xmlrpc.php
+/license.txt
+/readme.html
+
+# Runtime content
+wp-content/uploads/
+wp-content/upgrade/
+wp-content/cache/
+wp-content/debug.log
+
+# WordPress core stubs (not part of the project)
+wp-content/index.php
+wp-content/plugins/index.php
+wp-content/themes/index.php
+
+# Local database volume
+.db/
+
+# Third-party plugins kept on disk but not part of this project
+wp-content/plugins/ultimate-addons-for-gutenberg/
+
+# Dependencies and build tooling
+node_modules/
+vendor/
+
+# Agent tooling (project rules live in AGENTS.md)
+.agents/
+.claude/
+CLAUDE.md
+skills-lock.json
+
+# OS and logs
+.DS_Store
+Thumbs.db
+*.log
