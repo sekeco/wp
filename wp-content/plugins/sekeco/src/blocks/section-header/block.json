@@ -1,0 +1,60 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "sekeco/section-header",
+	"version": "1.0.0",
+	"title": "Section header",
+	"category": "sekeco-layout",
+	"description": "Large section title with a short lead and an optional link. Italic text is shown dimmed.",
+	"keywords": [
+		"heading",
+		"title",
+		"intro"
+	],
+	"textdomain": "sekeco",
+	"attributes": {
+		"kicker": {
+			"type": "string",
+			"default": ""
+		},
+		"title": {
+			"type": "string",
+			"default": ""
+		},
+		"lead": {
+			"type": "string",
+			"default": ""
+		},
+		"linkLabel": {
+			"type": "string",
+			"default": ""
+		},
+		"linkUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"level": {
+			"type": "number",
+			"default": 2
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		]
+	},
+	"editorScript": "file:./index.js",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"example": {
+		"attributes": {
+			"title": "Selected <em>works.</em>",
+			"lead": "Identity, product and platform projects, shipped.",
+			"linkLabel": "All works",
+			"linkUrl": "#"
+		}
+	}
+}

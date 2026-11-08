@@ -1,0 +1,2 @@
+Solar Icons by 480 Design (https://github.com/480-Design/Solar-Icon-Set), CC BY 4.0.
+Packaged via @iconify-json/solar.

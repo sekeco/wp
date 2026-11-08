@@ -1,0 +1,76 @@
+.sk-hero {
+	--sk-gutter: clamp(16px, 4vw, 48px);
+	position: relative;
+	box-sizing: border-box;
+	padding-top: clamp(120px, 17vh, 168px);
+	padding-bottom: clamp(48px, 7vw, 96px);
+	background: var(--sk-bg);
+	color: var(--sk-fg);
+	overflow: clip;
+}
+
+.sk-hero__stage {
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: clamp(20px, 2.4vw, 32px);
+	width: 100%;
+	max-width: calc(var(--sk-max, 1240px) + var(--sk-gutter) * 2);
+	margin-inline: auto;
+	padding-inline: var(--sk-gutter);
+	text-align: center;
+}
+
+.sk-hero__title {
+	margin: 0;
+	max-width: 17ch;
+	font-family: var(--wp--preset--font-family--display);
+	font-size: clamp(2.5rem, 4.7vw, 4.5rem);
+	font-weight: 500;
+	line-height: 1;
+	letter-spacing: -0.045em;
+	text-wrap: balance;
+	color: var(--sk-fg);
+
+	em,
+	i {
+		font-style: normal;
+		color: var(--sk-muted);
+	}
+}
+
+.sk-hero__foot {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 24px;
+}
+
+.sk-hero__lead {
+	max-width: 52ch;
+	margin: 0;
+	font-size: clamp(1.0625rem, 1.3vw, 1.1875rem);
+	line-height: 1.55;
+	color: var(--sk-muted);
+	text-wrap: pretty;
+}
+
+.sk-hero__actions .wp-block-buttons {
+	justify-content: center;
+	margin: 0;
+}
+
+.sk-hero__reel {
+	box-sizing: border-box;
+	max-width: calc(var(--sk-max, 1240px) + var(--sk-gutter) * 2);
+	margin: clamp(40px, 5.5vw, 72px) auto 0;
+	padding-inline: var(--sk-gutter);
+}
+
+.sk-hero__reel-note {
+	margin: 32px var(--sk-gutter) 0;
+	color: var(--sk-muted);
+	font-size: 0.875rem;
+	text-align: center;
+}

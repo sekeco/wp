@@ -1,0 +1,50 @@
+.sk-cta {
+	box-sizing: border-box;
+	margin-inline: clamp(8px, 1.6vw, 22px);
+	padding-block: clamp(56px, 8vw, 112px);
+	padding-inline: clamp(20px, 5vw, 72px);
+	border-radius: var(--sk-radius-xl, 40px);
+	background: var(--sk-bg);
+	color: var(--sk-fg);
+	position: relative;
+}
+
+.sk-cta__inner {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: clamp(20px, 2.6vw, 32px);
+	max-width: var(--sk-max, 1240px);
+	margin-inline: auto;
+}
+
+.sk-cta__title {
+	margin: 0;
+	max-width: 14ch;
+	font-family: var(--wp--preset--font-family--display);
+	font-size: clamp(2.75rem, 7vw, 5.5rem);
+	font-weight: 500;
+	line-height: 0.98;
+	letter-spacing: -0.045em;
+	text-wrap: balance;
+	color: var(--sk-fg);
+
+	em,
+	i {
+		font-style: normal;
+		color: var(--sk-muted);
+	}
+}
+
+.sk-cta__lead {
+	margin: 0;
+	max-width: 44ch;
+	font-size: clamp(1.0625rem, 1.4vw, 1.25rem);
+	line-height: 1.55;
+	color: var(--sk-muted);
+	text-wrap: pretty;
+}
+
+.sk-cta__actions .wp-block-buttons {
+	margin: 0;
+}

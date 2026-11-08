@@ -1,0 +1,50 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "sekeco/cta",
+  "version": "1.0.0",
+  "title": "Call to action",
+  "category": "sekeco-layout",
+  "description": "A full-width closing band with a large headline, a lead and actions. Italic text is dimmed.",
+  "keywords": [
+    "cta",
+    "call to action",
+    "contact",
+    "banner"
+  ],
+  "textdomain": "sekeco",
+  "attributes": {
+    "kicker": {
+      "type": "string",
+      "default": ""
+    },
+    "heading": {
+      "type": "string",
+      "default": ""
+    },
+    "lead": {
+      "type": "string",
+      "default": ""
+    },
+    "tone": {
+      "type": "string",
+      "default": "accent"
+    }
+  },
+  "supports": {
+    "align": [
+      "full"
+    ],
+    "anchor": true,
+    "html": false
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php",
+  "example": {
+    "attributes": {
+      "heading": "Have a project in mind? <em>Let's talk.</em>",
+      "lead": "Tell us what you are building."
+    }
+  }
+}

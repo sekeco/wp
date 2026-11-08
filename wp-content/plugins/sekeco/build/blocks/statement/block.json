@@ -1,0 +1,46 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "sekeco/statement",
+  "version": "1.0.0",
+  "title": "Statement",
+  "category": "sekeco-content",
+  "description": "One large statement. Words light up as the visitor scrolls; italic text stays dimmed.",
+  "keywords": [
+    "statement",
+    "quote",
+    "mission",
+    "text"
+  ],
+  "textdomain": "sekeco",
+  "attributes": {
+    "text": {
+      "type": "string",
+      "default": ""
+    },
+    "linkLabel": {
+      "type": "string",
+      "default": ""
+    },
+    "linkUrl": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "supports": {
+    "align": [
+      "wide",
+      "full"
+    ],
+    "anchor": true,
+    "html": false
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php",
+  "example": {
+    "attributes": {
+      "text": "One team holds the brand, the interface and the engineering. <em>Specialists join where the work needs them.</em>"
+    }
+  }
+}

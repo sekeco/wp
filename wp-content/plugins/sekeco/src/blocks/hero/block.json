@@ -1,0 +1,59 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "sekeco/hero",
+	"version": "1.0.0",
+	"title": "Hero",
+	"category": "sekeco-layout",
+	"description": "Page opener: a small label, a centred display headline (italic text is dimmed), an optional lead and actions, and a mosaic of the latest Works.",
+	"keywords": [
+		"hero",
+		"intro",
+		"header",
+		"banner"
+	],
+	"textdomain": "sekeco",
+	"attributes": {
+		"kicker": {
+			"type": "string",
+			"default": ""
+		},
+		"heading": {
+			"type": "string",
+			"default": ""
+		},
+		"lead": {
+			"type": "string",
+			"default": ""
+		},
+		"tone": {
+			"type": "string",
+			"default": "auto"
+		},
+		"reel": {
+			"type": "string",
+			"default": "portfolio"
+		},
+		"reelCount": {
+			"type": "number",
+			"default": 5
+		}
+	},
+	"supports": {
+		"align": [
+			"full"
+		],
+		"anchor": true,
+		"html": false
+	},
+	"editorScript": "file:./index.js",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"example": {
+		"attributes": {
+			"kicker": "Eclectic digital agency",
+			"heading": "Brands and the software they run on, <em>built by one team.</em>",
+			"reel": "none"
+		}
+	}
+}

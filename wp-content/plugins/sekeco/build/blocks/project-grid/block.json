@@ -1,0 +1,55 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "sekeco/project-grid",
+  "version": "1.0.0",
+  "title": "Project grid",
+  "category": "sekeco-content",
+  "description": "Latest Works, Portfolio or Team entries as a grid, a wide-and-narrow mosaic, a horizontal reel or an index list. Hides itself when nothing is published.",
+  "keywords": [
+    "works",
+    "portfolio",
+    "projects",
+    "team",
+    "query"
+  ],
+  "textdomain": "sekeco",
+  "attributes": {
+    "postType": {
+      "type": "string",
+      "default": "portfolio"
+    },
+    "layout": {
+      "type": "string",
+      "default": "grid"
+    },
+    "columns": {
+      "type": "number",
+      "default": 3
+    },
+    "perPage": {
+      "type": "number",
+      "default": 6
+    },
+    "category": {
+      "type": "number",
+      "default": 0
+    },
+    "filter": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "supports": {
+    "align": [
+      "wide",
+      "full"
+    ],
+    "anchor": true,
+    "html": false
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style-index.css",
+  "viewScript": "file:./view.js",
+  "render": "file:./render.php"
+}

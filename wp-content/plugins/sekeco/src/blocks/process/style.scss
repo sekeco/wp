@@ -1,0 +1,52 @@
+.sk-process {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+	gap: clamp(12px, 1.4vw, 20px);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	counter-reset: sk-step;
+}
+
+.sk-process-step {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+	min-height: clamp(240px, 22vw, 300px);
+	margin: 0;
+	padding: clamp(20px, 2vw, 28px);
+	border: 1px solid var(--sk-line);
+	border-radius: var(--sk-radius, 20px);
+	counter-increment: sk-step;
+	color: var(--sk-fg);
+
+	// The order is information here, so the numeral earns its place.
+	&::before {
+		content: counter(sk-step, decimal-leading-zero);
+		font-size: 0.875rem;
+		font-weight: 500;
+		letter-spacing: 0.04em;
+		font-variant-numeric: tabular-nums;
+		color: var(--sk-muted);
+	}
+}
+
+.sk-process-step__title {
+	margin: 0;
+	font-family: var(--wp--preset--font-family--display);
+	font-size: clamp(1.625rem, 2.1vw, 2rem);
+	font-weight: 500;
+	line-height: 1.1;
+	letter-spacing: -0.04em;
+	color: var(--sk-fg);
+}
+
+.sk-process-step__desc {
+	margin: auto 0 0;
+	max-width: 36ch;
+	font-size: 1rem;
+	line-height: 1.55;
+	color: var(--sk-muted);
+	text-wrap: pretty;
+}

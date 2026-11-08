@@ -1,0 +1,37 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "sekeco/stat",
+  "version": "1.0.0",
+  "title": "Stat",
+  "category": "sekeco-content",
+  "description": "One counted fact. Counts published Works, Portfolio, Team or Journal entries, or shows a value you type.",
+  "textdomain": "sekeco",
+  "parent": [
+    "sekeco/stats"
+  ],
+  "attributes": {
+    "source": {
+      "type": "string",
+      "default": "portfolio"
+    },
+    "value": {
+      "type": "string",
+      "default": ""
+    },
+    "suffix": {
+      "type": "string",
+      "default": ""
+    },
+    "label": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "supports": {
+    "html": false,
+    "reusable": false
+  },
+  "editorScript": "file:./index.js",
+  "render": "file:./render.php"
+}

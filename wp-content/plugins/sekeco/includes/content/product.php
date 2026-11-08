@@ -42,7 +42,7 @@ function sekeco_register_product() {
 			'show_in_admin_bar'  => true,
 			'show_in_rest'       => true,
 			'menu_position'      => 21,
-			'menu_icon'          => 'dashicons-screenoptions',
+			'menu_icon'          => 'none',
 			'capability_type'    => 'post',
 			'map_meta_cap'       => true,
 			'hierarchical'       => false,

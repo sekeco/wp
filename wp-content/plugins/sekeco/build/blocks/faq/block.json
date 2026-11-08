@@ -1,0 +1,30 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "sekeco/faq",
+  "version": "1.0.0",
+  "title": "FAQ",
+  "category": "sekeco-content",
+  "description": "Accessible accordion of questions. Each item holds any blocks as its answer.",
+  "keywords": [
+    "faq",
+    "accordion",
+    "questions"
+  ],
+  "textdomain": "sekeco",
+  "attributes": {},
+  "allowedBlocks": [
+    "sekeco/faq-item"
+  ],
+  "supports": {
+    "align": [
+      "wide",
+      "full"
+    ],
+    "anchor": true,
+    "html": false
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php"
+}

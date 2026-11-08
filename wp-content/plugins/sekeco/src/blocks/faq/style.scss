@@ -1,0 +1,64 @@
+.sk-faq {
+	border-top: 1px solid var(--sk-line);
+}
+
+.sk-faq-item {
+	border-bottom: 1px solid var(--sk-line);
+	color: var(--sk-fg);
+
+	> summary {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 24px;
+		padding-block: clamp(20px, 2.6vw, 32px);
+		list-style: none;
+		cursor: pointer;
+		font-family: var(--wp--preset--font-family--display);
+		font-size: clamp(1.25rem, 2.4vw, 1.875rem);
+		font-weight: 500;
+		line-height: 1.15;
+		letter-spacing: -0.04em;
+		transition: color 0.3s ease;
+
+		&::-webkit-details-marker {
+			display: none;
+		}
+
+		&:hover {
+			color: var(--sk-accent);
+		}
+	}
+
+	&__icon {
+		display: grid;
+		flex: none;
+		place-items: center;
+		width: 44px;
+		height: 44px;
+		border: 1px solid var(--sk-line);
+		border-radius: 50%;
+		transition: transform 0.5s var(--sk-ease, ease), background-color 0.3s ease;
+	}
+
+	&[open] &__icon {
+		transform: rotate(180deg);
+		background: var(--sk-surface);
+	}
+
+	&__answer {
+		max-width: 62ch;
+		padding-bottom: clamp(20px, 2.6vw, 32px);
+		color: var(--sk-muted);
+		font-size: 1.0625rem;
+		line-height: 1.65;
+
+		> * {
+			margin-block: 0 1em;
+		}
+
+		> :last-child {
+			margin-bottom: 0;
+		}
+	}
+}

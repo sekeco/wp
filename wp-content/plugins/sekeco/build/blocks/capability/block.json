@@ -1,0 +1,41 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "sekeco/capability",
+  "version": "1.0.0",
+  "title": "Capability",
+  "category": "sekeco-content",
+  "description": "One service: title, description, tags and an optional link.",
+  "textdomain": "sekeco",
+  "parent": [
+    "sekeco/capabilities"
+  ],
+  "attributes": {
+    "icon": {
+      "type": "string",
+      "default": "code-square"
+    },
+    "title": {
+      "type": "string",
+      "default": ""
+    },
+    "description": {
+      "type": "string",
+      "default": ""
+    },
+    "tags": {
+      "type": "string",
+      "default": ""
+    },
+    "linkUrl": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "supports": {
+    "html": false,
+    "reusable": false
+  },
+  "editorScript": "file:./index.js",
+  "render": "file:./render.php"
+}

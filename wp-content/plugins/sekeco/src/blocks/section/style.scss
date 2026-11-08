@@ -1,0 +1,58 @@
+.sk-section {
+	position: relative;
+	box-sizing: border-box;
+	background: var(--sk-bg);
+	color: var(--sk-fg);
+	padding-block: var(--sk-section-y, clamp(64px, 8.5vw, 128px));
+	padding-inline: var(--sk-gutter, clamp(16px, 4vw, 48px));
+
+	&.sk-section--space-none {
+		padding-block: 0;
+	}
+
+	&.sk-section--space-sm {
+		padding-block: clamp(32px, 5vw, 72px);
+	}
+
+	&.sk-section--space-lg {
+		padding-block: clamp(88px, 12vw, 184px);
+	}
+}
+
+.sk-section__inner {
+	display: flex;
+	flex-direction: column;
+	gap: var(--sk-stack, clamp(40px, 6vw, 88px));
+	max-width: var(--sk-max, 1320px);
+	margin-inline: auto;
+
+	> * {
+		margin-block: 0;
+		max-width: none;
+	}
+}
+
+.sk-section__inner--narrow {
+	max-width: 880px;
+}
+
+.sk-section__inner--full {
+	max-width: none;
+}
+
+// Two neutral sections in a row share one gap instead of stacking two.
+.sk-section:not([class*="sk-tone--"]):not(.sk-section--space-none) + .sk-section:not([class*="sk-tone--"]):not(.sk-section--stacked):not(.sk-section--space-none) {
+	padding-top: 0;
+}
+
+// Rounded top edge that overlaps the previous section.
+.sk-section--stacked {
+	z-index: 1;
+	margin-top: calc(var(--sk-radius-xl, 32px) * -1);
+	border-radius: var(--sk-radius-xl, 32px) var(--sk-radius-xl, 32px) 0 0;
+}
+
+// Editor: keep the inner column visible.
+.editor-styles-wrapper .sk-section {
+	margin-block: 0;
+}

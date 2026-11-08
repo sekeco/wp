@@ -2,6 +2,7 @@
  * Frontend reveal runtime for the Sekeco motion extension.
  */
 import './style.scss';
+import './runtime';
 
 const reduceMotion = () =>
 	window.matchMedia &&

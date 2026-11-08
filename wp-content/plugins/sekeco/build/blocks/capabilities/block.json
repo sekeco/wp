@@ -1,0 +1,30 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "sekeco/capabilities",
+  "version": "1.0.0",
+  "title": "Capabilities",
+  "category": "sekeco-content",
+  "description": "A ruled list of services. Each Capability is a large title with a short description, tags and an optional link.",
+  "keywords": [
+    "services",
+    "capabilities",
+    "what we do"
+  ],
+  "textdomain": "sekeco",
+  "attributes": {},
+  "allowedBlocks": [
+    "sekeco/capability"
+  ],
+  "supports": {
+    "align": [
+      "wide",
+      "full"
+    ],
+    "anchor": true,
+    "html": false
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php"
+}

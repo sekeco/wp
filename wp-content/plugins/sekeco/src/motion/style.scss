@@ -56,3 +56,47 @@
 		transition: none !important;
 	}
 }
+
+// Pre-reveal states for the GSAP runtime. They exist only while the runtime is
+// expected (html.sekeco-js) and are released by .sekeco-ready, or after 3s by
+// the failsafe animation if the script never starts.
+@media (prefers-reduced-motion: no-preference) {
+
+	html.sekeco-js:not(.sekeco-ready) {
+
+		.sk-hero__title {
+			visibility: hidden;
+			animation: sk-failsafe-visible 0.01s 3s forwards;
+		}
+
+		.sk-section-header,
+		.sk-capability,
+		.sk-process-step,
+		.sk-stat,
+		.sk-faq-item,
+		.sk-projects--grid .sk-projects__item,
+		.sk-projects--list .sk-row,
+		.sk-marquee,
+		.sk-cta__inner > *,
+		.sk-statement .sk-link {
+			opacity: 0;
+			transform: translateY(32px);
+			animation: sk-failsafe-show 0.01s 3s forwards;
+		}
+	}
+}
+
+@keyframes sk-failsafe-visible {
+
+	to {
+		visibility: visible;
+	}
+}
+
+@keyframes sk-failsafe-show {
+
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}

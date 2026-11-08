@@ -1,0 +1,43 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "sekeco/marquee",
+	"version": "1.0.0",
+	"title": "Marquee",
+	"category": "sekeco-layout",
+	"description": "A slow, endless ticker of short words. Pauses on hover and stays still for visitors who prefer reduced motion.",
+	"keywords": [
+		"ticker",
+		"marquee",
+		"words",
+		"scroll"
+	],
+	"textdomain": "sekeco",
+	"attributes": {
+		"items": {
+			"type": "string",
+			"default": ""
+		},
+		"duration": {
+			"type": "number",
+			"default": 40
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"anchor": true,
+		"html": false
+	},
+	"editorScript": "file:./index.js",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"example": {
+		"attributes": {
+			"items": "Identity\nInterface\nWeb\nMobile",
+			"duration": 40
+		}
+	}
+}

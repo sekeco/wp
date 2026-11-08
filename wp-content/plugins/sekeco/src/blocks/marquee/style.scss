@@ -1,0 +1,74 @@
+.sk-marquee {
+	display: flex;
+	overflow: hidden;
+	user-select: none;
+	color: var(--sk-fg);
+	background: color-mix(in srgb, var(--sk-fg) 5%, transparent);
+	padding-block: clamp(32px, 4.4vw, 64px);
+}
+
+.sk-marquee__track {
+	display: flex;
+	flex: 0 0 auto;
+	align-items: center;
+	min-width: 100%;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	animation: sk-marquee var(--sk-marquee-duration, 40s) linear infinite;
+
+	li {
+		display: flex;
+		align-items: center;
+		margin: 0;
+		font-family: var(--wp--preset--font-family--display);
+		font-size: clamp(2rem, 4.4vw, 3.75rem);
+		font-weight: 500;
+		line-height: 1;
+		letter-spacing: -0.04em;
+		white-space: nowrap;
+
+		color: var(--sk-muted);
+
+		// An asterisk separates the words, as in the reference.
+		&::after {
+			content: "*";
+			flex: none;
+			margin-inline: clamp(24px, 3.4vw, 56px);
+			font-size: 0.6em;
+			line-height: 1;
+		}
+	}
+}
+
+.sk-marquee:hover .sk-marquee__track {
+	animation-play-state: paused;
+}
+
+.sk-marquee__track.is-static {
+	animation: none;
+	flex-wrap: wrap;
+}
+
+@keyframes sk-marquee {
+
+	to {
+		transform: translateX(-100%);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+	.sk-marquee {
+		flex-wrap: wrap;
+	}
+
+	.sk-marquee__track {
+		animation: none;
+		flex-wrap: wrap;
+	}
+
+	.sk-marquee__track[aria-hidden="true"] {
+		display: none;
+	}
+}
