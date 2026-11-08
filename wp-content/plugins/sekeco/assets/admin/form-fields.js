@@ -54,12 +54,12 @@
 	};
 
 	const optionRow = ( value ) => {
-		const row = document.createElement( 'div' );
+		const row = document.createElement( 'p' );
 		row.className = 'sekeco-option';
 
 		const input = document.createElement( 'input' );
 		input.type = 'text';
-		input.className = 'sekeco-option-input';
+		input.className = 'regular-text sekeco-option-input';
 		input.value = value;
 		input.placeholder = 'Option';
 
@@ -67,7 +67,7 @@
 		remove.type = 'button';
 		remove.className = 'button-link sekeco-option-remove';
 		remove.setAttribute( 'aria-label', 'Remove option' );
-		remove.textContent = '×';
+		remove.innerHTML = '<span class="dashicons dashicons-trash"></span>';
 
 		row.append( input, remove );
 
@@ -141,6 +141,28 @@
 		const card = event.target.closest( '.sekeco-field' );
 
 		if ( ! card ) {
+			return;
+		}
+
+		const collapse = event.target.closest( '.sekeco-collapse' );
+
+		if ( collapse ) {
+			const collapsed = card.classList.toggle( 'is-collapsed' );
+			const icon = collapse.querySelector( '.dashicons' );
+
+			collapse.setAttribute( 'aria-expanded', String( ! collapsed ) );
+			collapse.title = collapsed ? 'Expand' : 'Collapse';
+			collapse.setAttribute(
+				'aria-label',
+				collapsed ? 'Expand field' : 'Collapse field'
+			);
+
+			if ( icon ) {
+				icon.className = `dashicons ${
+					collapsed ? 'dashicons-arrow-down' : 'dashicons-arrow-up'
+				}`;
+			}
+
 			return;
 		}
 

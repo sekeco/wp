@@ -368,55 +368,67 @@ function sekeco_render_field_row( $index, $field = array() ) {
 	);
 
 	$name = 'sekeco_fields[' . $index . ']';
+	$uid  = 'sekeco-field-' . $index;
 	$has_options = in_array( $field['type'], sekeco_form_option_types(), true );
 	?>
 	<div class="sekeco-field" data-index="<?php echo esc_attr( $index ); ?>">
 		<div class="sekeco-field__head">
-			<span class="sekeco-field__handle" title="<?php esc_attr_e( 'Drag to reorder', 'sekeco' ); ?>" aria-hidden="true">⠿</span>
+			<span class="sekeco-field__handle dashicons dashicons-menu" title="<?php esc_attr_e( 'Drag to reorder', 'sekeco' ); ?>" aria-hidden="true"></span>
 			<input
 				type="text"
 				class="sekeco-field__label"
 				name="<?php echo esc_attr( $name ); ?>[label]"
 				value="<?php echo esc_attr( $field['label'] ); ?>"
 				placeholder="<?php esc_attr_e( 'Question', 'sekeco' ); ?>"
+				aria-label="<?php esc_attr_e( 'Field label', 'sekeco' ); ?>"
 			/>
-			<select name="<?php echo esc_attr( $name ); ?>[type]" class="sekeco-field__type">
-				<?php foreach ( sekeco_form_field_types() as $value => $label ) : ?>
-					<option value="<?php echo esc_attr( $value ); ?>" <?php selected( $field['type'], $value ); ?>><?php echo esc_html( $label ); ?></option>
-				<?php endforeach; ?>
-			</select>
-			<label class="sekeco-field__required">
-				<input type="checkbox" name="<?php echo esc_attr( $name ); ?>[required]" value="1" <?php checked( ! empty( $field['required'] ) ); ?> />
-				<span class="sekeco-field__switch" aria-hidden="true"></span>
-				<span class="sekeco-field__required-label"><?php esc_html_e( 'Required', 'sekeco' ); ?></span>
-			</label>
-			<select name="<?php echo esc_attr( $name ); ?>[width]" class="sekeco-field__width" title="<?php esc_attr_e( 'Field width', 'sekeco' ); ?>">
-				<option value="full" <?php selected( $field['width'], 'full' ); ?>><?php esc_html_e( 'Full width', 'sekeco' ); ?></option>
-				<option value="half" <?php selected( $field['width'], 'half' ); ?>><?php esc_html_e( 'Half width', 'sekeco' ); ?></option>
-			</select>
 			<span class="sekeco-field__actions">
-				<button type="button" class="button-link sekeco-move-up" title="<?php esc_attr_e( 'Move up', 'sekeco' ); ?>" aria-label="<?php esc_attr_e( 'Move up', 'sekeco' ); ?>">↑</button>
-				<button type="button" class="button-link sekeco-move-down" title="<?php esc_attr_e( 'Move down', 'sekeco' ); ?>" aria-label="<?php esc_attr_e( 'Move down', 'sekeco' ); ?>">↓</button>
-				<button type="button" class="button-link sekeco-duplicate" title="<?php esc_attr_e( 'Duplicate', 'sekeco' ); ?>" aria-label="<?php esc_attr_e( 'Duplicate', 'sekeco' ); ?>">⧉</button>
-				<button type="button" class="button-link sekeco-remove-field" title="<?php esc_attr_e( 'Delete', 'sekeco' ); ?>" aria-label="<?php esc_attr_e( 'Delete', 'sekeco' ); ?>">×</button>
+				<button type="button" class="button-link sekeco-collapse" title="<?php esc_attr_e( 'Collapse', 'sekeco' ); ?>" aria-label="<?php esc_attr_e( 'Collapse field', 'sekeco' ); ?>" aria-expanded="true"><span class="dashicons dashicons-arrow-up"></span></button>
+				<button type="button" class="button-link sekeco-move-up" title="<?php esc_attr_e( 'Move up', 'sekeco' ); ?>" aria-label="<?php esc_attr_e( 'Move up', 'sekeco' ); ?>"><span class="dashicons dashicons-arrow-up-alt2"></span></button>
+				<button type="button" class="button-link sekeco-move-down" title="<?php esc_attr_e( 'Move down', 'sekeco' ); ?>" aria-label="<?php esc_attr_e( 'Move down', 'sekeco' ); ?>"><span class="dashicons dashicons-arrow-down-alt2"></span></button>
+				<button type="button" class="button-link sekeco-duplicate" title="<?php esc_attr_e( 'Duplicate', 'sekeco' ); ?>" aria-label="<?php esc_attr_e( 'Duplicate', 'sekeco' ); ?>"><span class="dashicons dashicons-admin-page"></span></button>
+				<button type="button" class="button-link sekeco-remove-field" title="<?php esc_attr_e( 'Delete', 'sekeco' ); ?>" aria-label="<?php esc_attr_e( 'Delete', 'sekeco' ); ?>"><span class="dashicons dashicons-trash"></span></button>
 			</span>
 		</div>
 
 		<div class="sekeco-field__meta">
-			<input
-				type="text"
-				name="<?php echo esc_attr( $name ); ?>[placeholder]"
-				value="<?php echo esc_attr( $field['placeholder'] ); ?>"
-				placeholder="<?php esc_attr_e( 'Placeholder (optional)', 'sekeco' ); ?>"
-			/>
-			<input
-				type="text"
-				name="<?php echo esc_attr( $name ); ?>[help]"
-				value="<?php echo esc_attr( $field['help'] ); ?>"
-				placeholder="<?php esc_attr_e( 'Help text (optional)', 'sekeco' ); ?>"
-			/>
+			<p class="sekeco-field__control">
+				<label class="sekeco-field__control-label" for="<?php echo esc_attr( $uid ); ?>-type"><?php esc_html_e( 'Type', 'sekeco' ); ?></label>
+				<select id="<?php echo esc_attr( $uid ); ?>-type" name="<?php echo esc_attr( $name ); ?>[type]" class="sekeco-field__type">
+					<?php foreach ( sekeco_form_field_types() as $value => $label ) : ?>
+						<option value="<?php echo esc_attr( $value ); ?>" <?php selected( $field['type'], $value ); ?>><?php echo esc_html( $label ); ?></option>
+					<?php endforeach; ?>
+				</select>
+			</p>
 
-			<div class="sekeco-field__options-wrap"<?php echo $has_options ? '' : ' hidden'; ?>>
+			<p class="sekeco-field__control">
+				<span class="sekeco-field__control-label"><?php esc_html_e( 'Required', 'sekeco' ); ?></span>
+				<label class="sekeco-field__check">
+					<input type="checkbox" name="<?php echo esc_attr( $name ); ?>[required]" value="1" <?php checked( ! empty( $field['required'] ) ); ?> />
+					<?php esc_html_e( 'Required field', 'sekeco' ); ?>
+				</label>
+			</p>
+
+			<p class="sekeco-field__control">
+				<label class="sekeco-field__control-label" for="<?php echo esc_attr( $uid ); ?>-width"><?php esc_html_e( 'Width', 'sekeco' ); ?></label>
+				<select id="<?php echo esc_attr( $uid ); ?>-width" name="<?php echo esc_attr( $name ); ?>[width]" class="sekeco-field__width">
+					<option value="full" <?php selected( $field['width'], 'full' ); ?>><?php esc_html_e( 'Full width', 'sekeco' ); ?></option>
+					<option value="half" <?php selected( $field['width'], 'half' ); ?>><?php esc_html_e( 'Half width', 'sekeco' ); ?></option>
+				</select>
+			</p>
+
+			<p class="sekeco-field__control">
+				<label class="sekeco-field__control-label" for="<?php echo esc_attr( $uid ); ?>-placeholder"><?php esc_html_e( 'Placeholder', 'sekeco' ); ?></label>
+				<input type="text" class="regular-text" id="<?php echo esc_attr( $uid ); ?>-placeholder" name="<?php echo esc_attr( $name ); ?>[placeholder]" value="<?php echo esc_attr( $field['placeholder'] ); ?>" />
+			</p>
+
+			<p class="sekeco-field__control">
+				<label class="sekeco-field__control-label" for="<?php echo esc_attr( $uid ); ?>-help"><?php esc_html_e( 'Help text', 'sekeco' ); ?></label>
+				<input type="text" class="regular-text" id="<?php echo esc_attr( $uid ); ?>-help" name="<?php echo esc_attr( $name ); ?>[help]" value="<?php echo esc_attr( $field['help'] ); ?>" />
+			</p>
+
+			<div class="sekeco-field__control sekeco-field__control--wide sekeco-field__options-wrap"<?php echo $has_options ? '' : ' hidden'; ?>>
+				<span class="sekeco-field__control-label"><?php esc_html_e( 'Options', 'sekeco' ); ?></span>
 				<div class="sekeco-options"></div>
 				<button type="button" class="button-link sekeco-option-add"><?php esc_html_e( '+ Add option', 'sekeco' ); ?></button>
 				<textarea
@@ -446,11 +458,11 @@ function sekeco_render_form_fields_box( $post ) {
 
 	wp_nonce_field( 'sekeco_save_form', 'sekeco_form_meta_nonce' );
 	?>
-	<div class="sekeco-form-header">
+	<div class="sekeco-form-description">
 		<label class="screen-reader-text" for="sekeco-form-description"><?php esc_html_e( 'Form description', 'sekeco' ); ?></label>
 		<textarea
 			id="sekeco-form-description"
-			class="sekeco-form-header__description"
+			class="large-text"
 			name="sekeco_form_description"
 			rows="2"
 			placeholder="<?php esc_attr_e( 'Form description (optional)', 'sekeco' ); ?>"

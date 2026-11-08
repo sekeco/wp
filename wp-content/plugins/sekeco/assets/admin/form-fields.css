@@ -1,81 +1,33 @@
 /*
- * Google Forms-style builder for the Sekeco form editor.
+ * Layout only: native WordPress inputs, buttons, and dashicons.
  */
 
-.post-type-sekeco_form #titlediv #title {
-	padding: 10px 14px;
-	border-radius: 6px;
-	font-size: 22px;
-	font-weight: 600;
-	line-height: 1.3;
-}
-
-.sekeco-form-header {
-	margin-bottom: 16px;
-	padding: 16px;
-	border: 1px solid #dcdcde;
-	border-top: 6px solid #2563eb;
-	border-radius: 8px;
-	background: #fff;
-}
-
-.sekeco-form-header__description {
-	width: 100%;
-	min-height: 44px;
-	padding: 0;
-	border: 0;
-	background: transparent;
-	box-shadow: none;
-	font-size: 14px;
-	resize: vertical;
-}
-
-.sekeco-form-header__description:focus {
-	outline: none;
-	box-shadow: none;
-}
-
-.sekeco-fields {
-	display: flex;
-	flex-direction: column;
-	gap: 14px;
-	margin-bottom: 16px;
+.sekeco-form-description {
+	margin: 0 0 12px;
 }
 
 .sekeco-field {
-	border: 1px solid #dcdcde;
-	border-radius: 8px;
+	margin-bottom: 16px;
+	border: 1px solid #c3c4c7;
 	background: #fff;
-	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
-	transition: border-color 0.15s ease, box-shadow 0.15s ease;
-}
-
-.sekeco-field:hover {
-	border-color: #c3c4c7;
-	box-shadow: 0 8px 20px -12px rgba(0, 0, 0, 0.35);
-}
-
-.sekeco-field.is-dragging {
-	opacity: 0.5;
 }
 
 .sekeco-field__head {
 	display: flex;
-	flex-wrap: wrap;
 	align-items: center;
 	gap: 8px;
-	padding: 12px 14px;
-	border-bottom: 1px solid #f0f0f1;
+	padding: 8px 12px;
+	border-bottom: 1px solid #dcdcde;
+	background: #f6f7f7;
+}
+
+.sekeco-field.is-collapsed .sekeco-field__head {
+	border-bottom: 0;
 }
 
 .sekeco-field__handle {
-	cursor: grab;
-	padding: 2px 4px;
-	border-radius: 4px;
 	color: #8c8f94;
-	font-size: 16px;
-	line-height: 1;
-	user-select: none;
+	cursor: grab;
 }
 
 .sekeco-field__handle:active {
@@ -83,187 +35,113 @@
 }
 
 .sekeco-field__label {
-	flex: 1 1 220px;
-	padding: 6px 8px;
-	border: 1px solid transparent;
-	border-bottom-color: #dcdcde;
-	border-radius: 4px 4px 0 0;
-	background: #fbfbfc;
-	font-size: 16px;
+	flex: 1;
+	margin: 0;
+	border-color: #8c8f94;
 	font-weight: 600;
 }
 
-.sekeco-field__label:focus {
-	border-color: #2563eb;
-	background: #fff;
-	box-shadow: 0 0 0 1px #2563eb;
-	outline: none;
-}
-
-.sekeco-field__type {
-	flex: 0 0 165px;
-}
-
-.sekeco-field__width {
-	flex: 0 0 120px;
-}
-
-.sekeco-field__required {
-	display: inline-flex;
-	align-items: center;
-	gap: 6px;
-	color: #50575e;
-	font-size: 12px;
-	user-select: none;
-}
-
-.sekeco-field__required input {
-	position: absolute;
-	width: 1px;
-	height: 1px;
-	opacity: 0;
-}
-
-.sekeco-field__switch {
-	position: relative;
-	flex: 0 0 auto;
-	width: 30px;
-	height: 17px;
-	border-radius: 999px;
-	background: #c3c4c7;
-	transition: background 0.15s ease;
-}
-
-.sekeco-field__switch::after {
-	content: "";
-	position: absolute;
-	top: 2px;
-	left: 2px;
-	width: 13px;
-	height: 13px;
-	border-radius: 50%;
-	background: #fff;
-	transition: transform 0.15s ease;
-}
-
-.sekeco-field__required input:checked + .sekeco-field__switch {
-	background: #2563eb;
-}
-
-.sekeco-field__required input:checked + .sekeco-field__switch::after {
-	transform: translateX(13px);
-}
-
-.sekeco-field__required input:focus-visible + .sekeco-field__switch {
-	outline: 2px solid #2563eb;
-	outline-offset: 2px;
-}
-
 .sekeco-field__actions {
-	display: inline-flex;
+	display: flex;
+	align-items: center;
 	gap: 4px;
-	margin-left: auto;
 }
 
-.sekeco-field__actions .button-link {
-	padding: 4px 6px;
-	border-radius: 4px;
-	color: #50575e;
-	font-size: 16px;
-	line-height: 1;
+.sekeco-field .button-link {
 	text-decoration: none;
 }
 
-.sekeco-field__actions .button-link:hover {
-	background: #f0f0f1;
-	color: #1d2327;
+.sekeco-field .button-link:hover,
+.sekeco-field .button-link:focus {
+	text-decoration: none;
 }
 
-.sekeco-field__actions .sekeco-remove-field:hover {
-	background: #fcf0f1;
-	color: #b32d2e;
+.sekeco-field__actions .button-link {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.sekeco-field__actions .dashicons {
+	width: 18px;
+	height: 18px;
+	font-size: 18px;
 }
 
 .sekeco-field__meta {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: 10px;
-	padding: 12px 14px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px 16px;
+	padding: 12px;
 }
 
-.sekeco-field__meta > input {
-	padding: 6px 8px;
-	border: 1px solid #dcdcde;
-	border-radius: 4px;
+.sekeco-field.is-collapsed .sekeco-field__meta {
+	display: none;
 }
 
-.sekeco-field__options-wrap {
-	grid-column: 1 / -1;
+.sekeco-field__control {
+	display: flex;
+	flex: 1 1 180px;
+	flex-direction: column;
+	gap: 4px;
+	min-width: 0;
+	margin: 0;
+}
+
+.sekeco-field__control--wide {
+	flex: 1 1 100%;
+}
+
+.sekeco-field__control-label {
+	font-size: 12px;
+	font-weight: 600;
+}
+
+.sekeco-field__check {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	padding-top: 4px;
+}
+
+.sekeco-field__control .regular-text {
+	width: 100%;
+	max-width: none;
 }
 
 .sekeco-options {
-	display: flex;
-	flex-direction: column;
-	gap: 6px;
 	margin-bottom: 6px;
 }
 
 .sekeco-option {
 	display: flex;
 	align-items: center;
-	gap: 8px;
+	gap: 6px;
+	margin: 0 0 6px;
 }
 
-.sekeco-option::before {
-	content: "";
-	flex: 0 0 auto;
-	width: 10px;
-	height: 10px;
-	border: 1px solid #c3c4c7;
-	border-radius: 50%;
-}
-
-.sekeco-option-input {
-	flex: 1;
-	padding: 4px 6px;
-	border: 1px solid transparent;
-	border-bottom-color: #dcdcde;
-	border-radius: 0;
-	background: transparent;
-}
-
-.sekeco-option-input:focus {
-	border-bottom-color: #2563eb;
-	box-shadow: none;
-	outline: none;
+.sekeco-option .regular-text {
+	width: 100%;
+	max-width: 520px;
 }
 
 .sekeco-option-remove {
 	color: #b32d2e;
-	font-size: 16px;
-	line-height: 1;
 	text-decoration: none;
+}
+
+.sekeco-option-remove:hover,
+.sekeco-option-remove:focus {
+	text-decoration: none;
+}
+
+.sekeco-field__options-wrap[hidden] {
+	display: none;
 }
 
 .sekeco-builder-bar {
 	display: flex;
 	align-items: center;
 	gap: 8px;
-	padding: 12px 0;
-	border-top: 1px solid #dcdcde;
-}
-
-.sekeco-builder-bar__preview {
-	margin-left: auto;
-}
-
-@media screen and (max-width: 782px) {
-
-	.sekeco-field__meta {
-		grid-template-columns: 1fr;
-	}
-
-	.sekeco-field__label {
-		flex-basis: 100%;
-	}
+	margin-top: 12px;
 }
