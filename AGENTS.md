@@ -8,7 +8,7 @@
 - Yang dilacak git hanya kode proyek:
   - `wp-content/themes/sekeco/`
   - `wp-content/plugins/sekeco/`
-  - `compose.yml`, `.gitignore`, `.gitattributes`, `AGENTS.md`
+  - `compose.yml`, `.gitignore`, `.gitattributes`, `AGENTS.md`, `README.md`
 - WordPress core (`wp-admin/`, `wp-includes/`, `wp-*.php`, `license.txt`,
   `readme.html`) berasal dari image Docker — jangan di-commit.
 - Jangan pernah commit: `wp-content/uploads/`, `wp-content/upgrade/`,
