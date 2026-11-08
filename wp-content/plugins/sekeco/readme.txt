@@ -4,7 +4,7 @@ Tags: blocks, gutenberg, portfolio, product, team, block theme
 Requires at least: 6.7
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 0.11.0
+Stable tag: 0.13.0
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -65,6 +65,20 @@ Phase 4:
 * Theme pattern `sekeco/portfolio-filter-grid` used by the Portfolio archive.
 
 == Changelog ==
+
+= 0.13.0 =
+* Front-end form submissions from a logged-in session no longer fail with
+  "Your session expired". The REST request now sends `X-WP-Nonce` when the
+  visitor is signed in, so WordPress authenticates the cookie before the form
+  nonce is checked.
+* Form builder field cards now lay their controls out in a wrapping row instead
+  of a table, and every field can be collapsed to a single header line.
+* Removed the underlined text decoration from the field action buttons.
+
+= 0.12.0 =
+* The form builder now uses native WordPress admin components: form-table,
+  standard inputs, buttons, and dashicons. The custom Google Forms skin was
+  removed.
 
 = 0.11.0 =
 * Form editing no longer uses the block editor. The classic screen now has a
