@@ -1,0 +1,33 @@
+{
+	"name": "sekeco",
+	"version": "0.5.0",
+	"description": "Native content models and block enhancements for the Sekeco theme.",
+	"private": true,
+	"license": "GPL-2.0-or-later",
+	"packageManager": "bun@1.4.4",
+	"trustedDependencies": [
+		"@parcel/watcher",
+		"core-js",
+		"core-js-pure"
+	],
+	"scripts": {
+		"build": "wp-scripts build --config webpack.config.js",
+		"start": "wp-scripts start --config webpack.config.js",
+		"format": "wp-scripts format",
+		"lint:js": "wp-scripts lint-js",
+		"lint:css": "wp-scripts lint-style"
+	},
+	"devDependencies": {
+		"@wordpress/block-editor": "^20.0.0",
+		"@wordpress/blocks": "^17.1.0",
+		"@wordpress/components": "^44.0.0",
+		"@wordpress/compose": "^9.1.0",
+		"@wordpress/data": "^11.1.0",
+		"@wordpress/editor": "^16.1.0",
+		"@wordpress/hooks": "^5.1.0",
+		"@wordpress/i18n": "^7.1.0",
+		"@wordpress/plugins": "^8.1.0",
+		"@wordpress/scripts": "^37.1.0",
+		"@wordpress/server-side-render": "^7.1.0"
+	}
+}
