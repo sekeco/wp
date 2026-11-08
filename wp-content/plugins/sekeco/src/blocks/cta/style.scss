@@ -9,6 +9,10 @@
 	position: relative;
 }
 
+.sk-cta.sk-tone--accent {
+	background: var(--sk-field-bg, var(--sk-bg));
+}
+
 .sk-cta__inner {
 	display: flex;
 	flex-direction: column;
@@ -23,7 +27,7 @@
 	max-width: 14ch;
 	font-family: var(--wp--preset--font-family--display);
 	font-size: clamp(2.75rem, 7vw, 5.5rem);
-	font-weight: 500;
+	font-weight: 600;
 	line-height: 0.98;
 	letter-spacing: -0.045em;
 	text-wrap: balance;

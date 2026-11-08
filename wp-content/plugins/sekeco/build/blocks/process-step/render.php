@@ -18,7 +18,7 @@ if ( '' === $title ) {
 	return;
 }
 
-$wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'sk-process-step' ) );
+$wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'sk-process-step sk-glow' ) );
 ?>
 <li <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 	<h3 class="sk-process-step__title"><?php echo esc_html( $title ); ?></h3>

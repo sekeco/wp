@@ -4,43 +4,61 @@
   "title": "Design System: Sekeco",
   "extensions": {
     "colorMeta": {
-      "ink": { "role": "neutral", "displayName": "Warm Ink", "canonical": "#111013", "tonalRamp": ["#111013", "#1A191C", "#2C2B2E", "#4A484B", "#767378", "#ADAA9F", "#D8D3C3", "#F2EFE4"] },
-      "cream": { "role": "neutral", "displayName": "Cream", "canonical": "#F2EFE4", "tonalRamp": ["#5E5C54", "#ADAA9F", "#C9C5B6", "#D8D3C3", "#E6E2D4", "#F2EFE4", "#FAF8F2", "#FDFCF9"] },
-      "surface-light": { "role": "neutral", "displayName": "Light Surface", "canonical": "#FAF8F2", "tonalRamp": ["#5E5C54", "#ADAA9F", "#D8D3C3", "#EAE6D9", "#F2EFE4", "#F6F4EC", "#FAF8F2", "#FDFCF9"] },
-      "surface-dark": { "role": "neutral", "displayName": "Dark Surface", "canonical": "#1A191C", "tonalRamp": ["#111013", "#161518", "#1A191C", "#222124", "#2C2B2E", "#4A484B", "#767378", "#ADAA9F"] },
-      "muted-light": { "role": "neutral", "displayName": "Muted (light mode)", "canonical": "#5E5C54", "tonalRamp": ["#2A2925", "#3E3D38", "#5E5C54", "#7B7970", "#99968B", "#B5B2A6", "#D0CDC0", "#E6E3D8"] },
-      "muted-dark": { "role": "neutral", "displayName": "Muted (dark mode)", "canonical": "#ADAA9F", "tonalRamp": ["#4A4944", "#65635C", "#807E75", "#ADAA9F", "#BDBAB0", "#CDCBC1", "#DDDBD3", "#EDECE6"] },
-      "border-light": { "role": "neutral", "displayName": "Light Hairline", "canonical": "#D8D3C3", "tonalRamp": ["#5E5C54", "#908D80", "#B5B1A2", "#D8D3C3", "#E3DFD2", "#ECE9DE", "#F2EFE4", "#F8F6EF"] },
-      "border-dark": { "role": "neutral", "displayName": "Dark Hairline", "canonical": "#2C2B2E", "tonalRamp": ["#111013", "#1A191C", "#232225", "#2C2B2E", "#3A393C", "#4A484B", "#5F5D60", "#767378"] },
-      "sage": { "role": "primary", "displayName": "Sage Field", "canonical": "#4A4F49", "tonalRamp": ["#1E201D", "#2D302C", "#3A3E39", "#4A4F49", "#656B63", "#868C83", "#B9C1B1", "#DDE1D6"] },
-      "sage-lifted": { "role": "primary", "displayName": "Lifted Sage", "canonical": "#B9C1B1", "tonalRamp": ["#4A4F49", "#656B63", "#868C83", "#A0A89A", "#B9C1B1", "#C8CCBD", "#DADED1", "#ECEEE7"] },
-      "sage-light": { "role": "tertiary", "displayName": "Sage Light Cover", "canonical": "#C8CCBD", "tonalRamp": ["#4A4F49", "#6E746A", "#9AA093", "#B3B8A8", "#C8CCBD", "#D6D9CC", "#E4E6DC", "#F1F2EC"] },
-      "salmon": { "role": "tertiary", "displayName": "Salmon Cover", "canonical": "#F4B6A4", "tonalRamp": ["#6B3A2D", "#99573F", "#C57560", "#E89A85", "#F4B6A4", "#F8CBBD", "#FBDED5", "#FDEEE9"] },
-      "signal-red": { "role": "tertiary", "displayName": "Signal Red Cover", "canonical": "#D91842", "tonalRamp": ["#4D0A1A", "#7A1129", "#A81538", "#D91842", "#E4466A", "#EC7791", "#F4A9BA", "#FAD6DF"] }
+      "brand-blue": { "role": "primary", "displayName": "Brand Blue", "canonical": "#4D68E4", "tonalRamp": ["#141C4A", "#1F2D7A", "#2F43B0", "#3F59D6", "#4D68E4", "#7388EC", "#A3B1F3", "#D6DCFA"] },
+      "brand-purple": { "role": "primary", "displayName": "Brand Purple", "canonical": "#A33FBD", "tonalRamp": ["#2E0F36", "#511E5F", "#762C88", "#8C37A5", "#A33FBD", "#B96BCE", "#D09BDE", "#E9CDF0"] },
+      "brand-red": { "role": "primary", "displayName": "Brand Red-Pink", "canonical": "#FD065A", "tonalRamp": ["#4A0119", "#7A0430", "#B00547", "#DB0653", "#FD065A", "#FE4A83", "#FE8CAE", "#FFCADA"] },
+      "brand-cyan": { "role": "secondary", "displayName": "Brand Cyan", "canonical": "#09C4F7", "tonalRamp": ["#032D3A", "#05586F", "#078CB0", "#08ABD9", "#09C4F7", "#4DD5F9", "#8FE4FB", "#CCF4FD"] },
+      "brand-pink": { "role": "secondary", "displayName": "Glow Pink", "canonical": "#FF6FAE", "tonalRamp": ["#4D1030", "#7D1F4F", "#B03370", "#E04C8E", "#FF6FAE", "#FF93C3", "#FFB9D8", "#FFDEEC"] },
+      "accent-on-paper": { "role": "primary", "displayName": "Accent on Paper", "canonical": "#3F59D6", "tonalRamp": ["#141C4A", "#1F2D7A", "#2B3FA8", "#3F59D6", "#5C73E0", "#8091E8", "#AEBAF1", "#DCE1F9"] },
+      "accent-on-ink": { "role": "primary", "displayName": "Accent on Ink", "canonical": "#8FA2FF", "tonalRamp": ["#2A3680", "#3E4EB5", "#5A6EE0", "#7388F5", "#8FA2FF", "#A9B8FF", "#C5D0FF", "#E3E8FF"] },
+      "ink": { "role": "neutral", "displayName": "Deep Ink", "canonical": "#07070D", "tonalRamp": ["#07070D", "#0B0B16", "#10101A", "#18182A", "#23233A", "#3C3C58", "#6A6A88", "#A3A2BA"] },
+      "surface-dark": { "role": "neutral", "displayName": "Ink Surface", "canonical": "#10101A", "tonalRamp": ["#07070D", "#0B0B14", "#10101A", "#171724", "#23233A", "#3C3C58", "#6A6A88", "#A3A2BA"] },
+      "text-dark": { "role": "neutral", "displayName": "Moonlit Text", "canonical": "#F3F2FA", "tonalRamp": ["#6A6A88", "#8A89A4", "#A3A2BA", "#C4C3D6", "#DAD9E8", "#E8E7F2", "#F3F2FA", "#FBFBFE"] },
+      "muted-dark": { "role": "neutral", "displayName": "Dusk Muted", "canonical": "#A3A2BA", "tonalRamp": ["#3C3C58", "#56566F", "#706F8A", "#898AA3", "#A3A2BA", "#B8B7CA", "#CDCCDA", "#E3E2EC"] },
+      "border-dark": { "role": "neutral", "displayName": "Night Border", "canonical": "#23233A", "tonalRamp": ["#07070D", "#10101A", "#18182A", "#23233A", "#2F2F4A", "#3C3C58", "#505070", "#6A6A88"] },
+      "paper": { "role": "neutral", "displayName": "Lavender Paper", "canonical": "#F6F5FB", "tonalRamp": ["#5A5972", "#8D8CA3", "#B9B8CC", "#D3D1E3", "#E1DFEE", "#ECEAF6", "#F6F5FB", "#FDFDFF"] },
+      "surface-light": { "role": "neutral", "displayName": "White Surface", "canonical": "#FFFFFF", "tonalRamp": ["#5A5972", "#9A99B0", "#C8C7D8", "#E1DFEE", "#EDEBF6", "#F6F5FB", "#FBFAFE", "#FFFFFF"] },
+      "text-light": { "role": "neutral", "displayName": "Ink Text", "canonical": "#0B0B16", "tonalRamp": ["#07070D", "#0B0B16", "#1C1C2E", "#32324A", "#4A4A64", "#5A5972", "#7E7D96", "#A3A2BA"] },
+      "muted-light": { "role": "neutral", "displayName": "Slate Muted", "canonical": "#5A5972", "tonalRamp": ["#1C1C2E", "#32324A", "#46455E", "#5A5972", "#76758D", "#9291A8", "#B2B1C4", "#D3D2E0"] },
+      "border-light": { "role": "neutral", "displayName": "Mist Border", "canonical": "#E1DFEE", "tonalRamp": ["#5A5972", "#8D8CA3", "#B9B8CC", "#D3D1E3", "#E1DFEE", "#EBE9F5", "#F2F1F9", "#F9F8FD"] },
+      "brand-field-base": { "role": "neutral", "displayName": "Brand Field Base", "canonical": "#14102E", "tonalRamp": ["#07070D", "#0C0A1C", "#14102E", "#1F1946", "#2C2461", "#403785", "#6A62AD", "#A8A3D2"] }
     },
     "typographyMeta": {
-      "display": { "displayName": "Display", "purpose": "Hero, closing card and menu headlines; DM Sans 500, -0.045em, dimmed secondary words." },
-      "headline": { "displayName": "Headline", "purpose": "Section titles." },
+      "display": { "displayName": "Display", "purpose": "h1, hero, closing field and menu headlines; Bricolage Grotesque 600, -0.04em to -0.045em. Secondary words in hero and CTA titles dim to the muted colour." },
+      "headline": { "displayName": "Headline", "purpose": "h2 and section titles." },
       "title": { "displayName": "Title", "purpose": "Card, capability and process titles." },
-      "body": { "displayName": "Body", "purpose": "Running text at 82% of the text colour; leads are muted." },
-      "label": { "displayName": "Label", "purpose": "Uppercase kicker above sections and the hero label." }
+      "body": { "displayName": "Body", "purpose": "DM Sans running text at 82% of the text colour; leads are muted, 52ch or less." },
+      "label": { "displayName": "Label", "purpose": "Small uppercase section label; carried by the build, not a rule for new surfaces." }
     },
     "shadows": [
-      { "name": "lift", "value": "0 2px 4px rgba(14,16,15,0.06), 0 24px 48px -16px rgba(14,16,15,0.28)", "purpose": "theme.json preset for editor use; not applied by shipped components." },
-      { "name": "card-scrim", "value": "linear-gradient(to top, rgb(17 16 19 / 0.7), rgb(17 16 19 / 0))", "purpose": "Legibility gradient under text on photographic cover cards; not a shadow." }
+      { "name": "button-glow", "value": "0 10px 30px -10px rgb(163 63 189 / 0.75)", "purpose": "Hovered buttons, with a 2px lift." },
+      { "name": "pill-glow", "value": "0 8px 28px -8px rgb(163 63 189 / 0.7)", "purpose": "Hovered and focused pill links." },
+      { "name": "card-glow", "value": "0 0 44px -14px rgb(163 63 189 / 0.55)", "purpose": "Hovered pointer-lit cards." },
+      { "name": "pointer-ring", "value": "radial-gradient(340px circle at var(--mx) var(--my), #09C4F7, #4D68E4 20%, #A33FBD 44%, #FD065A 68%, transparent)", "purpose": "1px masked neon ring following the pointer; hover and focus-within only, hidden on touch." },
+      { "name": "card-scrim", "value": "linear-gradient(to top, rgb(7 7 13 / 0.78), rgb(7 7 13 / 0))", "purpose": "Legibility gradient under overlaid text on photographic cover cards; not a shadow." },
+      { "name": "header-glass", "value": "blur(18px) saturate(140%)", "purpose": "backdrop-filter on the header pseudo-element only." }
+    ],
+    "gradients": [
+      { "name": "brand", "value": "linear-gradient(110deg, #4D68E4 0%, #A33FBD 48%, #FD065A 100%)", "purpose": "Button fills, pill links, kicker dot." },
+      { "name": "brand-soft", "value": "linear-gradient(110deg, #09C4F7 0%, #4D68E4 30%, #A33FBD 62%, #FD065A 100%)", "purpose": "Button hover and the footer wordmark." },
+      { "name": "tone-1", "value": "linear-gradient(135deg, #4D68E4, #7A4FD6)", "purpose": "Cover card, blue to violet." },
+      { "name": "tone-2", "value": "linear-gradient(135deg, #A33FBD, #FD065A)", "purpose": "Cover card, violet to red." },
+      { "name": "tone-3", "value": "linear-gradient(135deg, #C70D55, #EE4A85)", "purpose": "Cover card, red to pink." },
+      { "name": "tone-4", "value": "radial-gradient(90% 70% at 100% 0%, rgb(77 104 228 / 0.45), transparent 60%), radial-gradient(70% 60% at 0% 100%, rgb(163 63 189 / 0.4), transparent 62%), #12122A", "purpose": "Cover card, deep glass." },
+      { "name": "field-mesh", "value": "radial-gradient(70% 90% at 12% 0%, rgb(77 104 228 / 0.7), transparent 60%), radial-gradient(60% 80% at 100% 20%, rgb(253 6 90 / 0.55), transparent 62%), radial-gradient(70% 90% at 55% 110%, rgb(163 63 189 / 0.7), transparent 60%), #14102E", "purpose": "Closing field background (--sk-field-bg)." }
     ],
     "motion": [
-      { "name": "ease-expo", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Single ease-out for reveals, hovers, card swell, header hide and view transitions." },
-      { "name": "view-transition", "value": "0.28s out / 0.5s in, translateY -8px / 12px", "purpose": "Cross-document page transitions." },
-      { "name": "marquee", "value": "linear 40s infinite", "purpose": "Ticker loop; pauses on hover; static and wrapped under reduced motion." },
-      { "name": "hover-fill", "value": "0.3s to 0.5s", "purpose": "Capability card sage fill, button flip, pill link gap." },
-      { "name": "reduced-motion", "value": "durations 0.01ms, scroll-behavior auto", "purpose": "Global fallback; GSAP reveals have a 3s CSS failsafe." }
+      { "name": "ease-out-expo", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Default easing (--sk-ease): sliding gradients, card image scale, menu indent, view transitions." },
+      { "name": "gradient-slide", "value": "0.6s background-position", "purpose": "Button and pill link hover." },
+      { "name": "image-zoom", "value": "0.9s scale 1.1 to 1.18", "purpose": "Cover photograph on hover." },
+      { "name": "marquee", "value": "linear infinite, 40s default", "purpose": "Marquee track; pauses on hover, static under reduced motion." },
+      { "name": "reduced-motion", "value": "animation and transition durations 0.01ms", "purpose": "Global fallback; GSAP reveal states exist only under html.sekeco-js with a 3s CSS failsafe." }
     ],
     "breakpoints": [
-      { "name": "cards-2", "value": "640px" },
-      { "name": "section-header-split", "value": "900px" },
-      { "name": "header-inline-menu", "value": "1000px" },
-      { "name": "rail-and-4-up", "value": "1100px" }
+      { "name": "mobile-cta", "value": "600px" },
+      { "name": "sm", "value": "640px" },
+      { "name": "nav", "value": "1000px" },
+      { "name": "rail", "value": "1100px" }
     ]
   },
   "components": [
@@ -48,105 +66,98 @@
       "name": "Primary Button",
       "kind": "button",
       "refersTo": "button-primary",
-      "description": "Sage pill; flips to the contrast colour with a 2px lift.",
-      "html": "<a class=\"ds-btn\" href=\"#\">Start a project</a>",
-      "css": ".ds-btn { display: inline-block; background: #4A4F49; color: #F2EFE4; padding: 0.9rem 1.5rem; border-radius: 999px; font: 500 1rem 'DM Sans', system-ui, sans-serif; text-decoration: none; transition: background-color 0.3s ease, color 0.3s ease, transform 0.5s cubic-bezier(0.16,1,0.3,1); } .ds-btn:hover { background: #F2EFE4; color: #111013; transform: translateY(-2px); } .ds-btn:focus-visible { outline: 2px solid #B9C1B1; outline-offset: 3px; }"
+      "description": "Brand gradient pill; the gradient slides and a purple glow lifts it on hover.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">Start a project</a>",
+      "css": ".ds-btn-primary { display: inline-block; background: linear-gradient(110deg, #4D68E4 0%, #A33FBD 48%, #FD065A 100%); background-size: 160% 100%; background-position: 0 0; color: #fff; padding: 0.9rem 1.5rem; border-radius: 999px; font: 500 1rem 'DM Sans', system-ui, sans-serif; text-decoration: none; transition: background-position 0.6s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s ease, transform 0.5s cubic-bezier(0.16,1,0.3,1); } .ds-btn-primary:hover { background-position: 100% 0; box-shadow: 0 10px 30px -10px rgb(163 63 189 / 0.75); transform: translateY(-2px); } .ds-btn-primary:focus-visible { outline: 2px solid #8FA2FF; outline-offset: 3px; }"
     },
     {
       "name": "Outline Button",
       "kind": "button",
-      "refersTo": "button-primary",
-      "description": "Transparent pill with a 1px border that fills on hover.",
+      "refersTo": "button-outline",
+      "description": "Secondary pill with a hairline; inverts to the contrast fill on hover.",
       "html": "<a class=\"ds-btn-outline\" href=\"#\">See works</a>",
-      "css": ".ds-btn-outline { display: inline-block; border: 1px solid currentColor; background: transparent; color: #F2EFE4; padding: 0.9rem 1.5rem; border-radius: 999px; font: 500 1rem 'DM Sans', system-ui, sans-serif; text-decoration: none; transition: background-color 0.3s ease, color 0.3s ease; } .ds-btn-outline:hover { background: #F2EFE4; color: #111013; } .ds-btn-outline:focus-visible { outline: 2px solid #B9C1B1; outline-offset: 3px; }"
+      "css": ".ds-btn-outline { display: inline-block; border: 1px solid currentColor; background: transparent; color: #F3F2FA; padding: 0.9rem 1.5rem; border-radius: 999px; font: 500 1rem 'DM Sans', system-ui, sans-serif; text-decoration: none; transition: background-color 0.3s ease, color 0.3s ease; } .ds-btn-outline:hover { background: #F3F2FA; color: #07070D; } .ds-btn-outline:focus-visible { outline: 2px solid #8FA2FF; outline-offset: 3px; }"
     },
     {
       "name": "Pill Link",
-      "kind": "button",
+      "kind": "custom",
       "refersTo": "pill-link",
-      "description": "Sage pill with a circled arrow at the leading edge.",
-      "html": "<a class=\"ds-pill\" href=\"#\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M7 17 17 7M9 7h8v8\"/></svg>View all work</a>",
-      "css": ".ds-pill { display: inline-flex; align-items: center; gap: 12px; min-height: 52px; padding: 0 24px 0 10px; border-radius: 999px; background: #4A4F49; color: #F2EFE4; font: 500 1rem 'DM Sans', system-ui, sans-serif; text-decoration: none; transition: background-color 0.3s ease, gap 0.5s cubic-bezier(0.16,1,0.3,1); } .ds-pill svg { box-sizing: content-box; padding: 7px; border: 1px solid rgba(242,239,228,0.5); border-radius: 50%; order: -1; } .ds-pill:hover, .ds-pill:focus-visible { background: color-mix(in srgb, #4A4F49 70%, #F2EFE4); gap: 16px; }"
+      "description": "Gradient pill with a circled arrow leading; gap widens on hover.",
+      "html": "<a class=\"ds-pill-link\" href=\"#\"><span class=\"ds-pill-icon\"><svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></span>View all work</a>",
+      "css": ".ds-pill-link { display: inline-flex; align-items: center; gap: 12px; min-height: 52px; padding: 0 24px 0 10px; border-radius: 999px; background: linear-gradient(110deg, #4D68E4 0%, #A33FBD 48%, #FD065A 100%); background-size: 160% 100%; color: #fff; font: 500 1rem 'DM Sans', system-ui, sans-serif; text-decoration: none; transition: background-position 0.6s cubic-bezier(0.16,1,0.3,1), gap 0.5s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s ease; } .ds-pill-icon { display: inline-flex; padding: 7px; border: 1px solid rgb(255 255 255 / 0.55); border-radius: 50%; } .ds-pill-link:hover, .ds-pill-link:focus-visible { background-position: 100% 0; gap: 16px; box-shadow: 0 8px 28px -8px rgb(163 63 189 / 0.7); } .ds-pill-link:focus-visible { outline: 2px solid #8FA2FF; outline-offset: 3px; }"
     },
     {
-      "name": "Header Pill",
+      "name": "Floating Pill Header",
       "kind": "nav",
       "refersTo": "header-pill",
-      "description": "Floating full-width blurred pill: brand, centred inline menu, action.",
-      "html": "<nav class=\"ds-header\"><strong class=\"ds-brand\">Sekeco</strong><ul class=\"ds-menu\"><li><a class=\"is-current\" href=\"#\">Works</a></li><li><a href=\"#\">Services</a></li><li><a href=\"#\">Team</a></li></ul><a class=\"ds-act\" href=\"#\">Contact</a></nav>",
-      "css": ".ds-header { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 12px; min-height: 72px; padding: 8px 8px 8px 24px; border-radius: 999px; background: #1A191C; color: #F2EFE4; font-family: 'DM Sans', system-ui, sans-serif; } .ds-brand { font-weight: 700; font-size: 1.25rem; letter-spacing: -0.04em; } .ds-menu { display: flex; justify-content: center; gap: 36px; margin: 0; padding: 0; list-style: none; } .ds-menu a { color: #F2EFE4; text-decoration: none; opacity: 0.86; transition: opacity 0.25s ease; } .ds-menu a:hover, .ds-menu a:focus-visible, .ds-menu a.is-current { opacity: 1; } .ds-act { padding: 0.95rem 1.5rem; border-radius: 999px; background: #4A4F49; color: #F2EFE4; text-decoration: none; font-weight: 500; }"
+      "description": "Glass pill with mark, centred links and a gradient action.",
+      "html": "<header class=\"ds-nav\"><span class=\"ds-nav-brand\">sekeco</span><nav class=\"ds-nav-links\"><a href=\"#\">Works</a><a href=\"#\" class=\"is-current\">Portfolio</a><a href=\"#\">Team</a></nav><a class=\"ds-nav-cta\" href=\"#\">Contact</a></header>",
+      "css": ".ds-nav { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 12px; min-height: 72px; padding: 8px 8px 8px 24px; border-radius: 999px; background: rgb(16 16 26 / 0.82); box-shadow: inset 0 0 0 1px rgb(243 242 250 / 0.09); color: #F3F2FA; font-family: 'DM Sans', system-ui, sans-serif; } .ds-nav-brand { font: 700 1.25rem 'Bricolage Grotesque', 'DM Sans', sans-serif; letter-spacing: -0.04em; } .ds-nav-links { display: flex; justify-content: center; gap: 32px; } .ds-nav-links a { color: inherit; text-decoration: none; opacity: 0.86; transition: opacity 0.25s ease; } .ds-nav-links a:hover, .ds-nav-links a:focus-visible, .ds-nav-links a.is-current { opacity: 1; } .ds-nav-links a:focus-visible { outline: 2px solid #8FA2FF; outline-offset: 3px; } .ds-nav-cta { padding: 0.95rem 1.5rem; border-radius: 999px; background: linear-gradient(110deg, #4D68E4, #A33FBD 48%, #FD065A); color: #fff; text-decoration: none; font-weight: 500; }"
     },
     {
       "name": "Cover Card",
       "kind": "card",
-      "refersTo": "cover-card",
-      "description": "Flat cover tone with the name large at the top and tags at the foot; arrow appears on hover.",
-      "html": "<a class=\"ds-cover\" href=\"#\"><span class=\"ds-cover-title\">Northwind</span><span class=\"ds-cover-tags\">Brand, Web</span><span class=\"ds-cover-go\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M7 17 17 7M9 7h8v8\"/></svg></span></a>",
-      "css": ".ds-cover { position: relative; display: flex; flex-direction: column; justify-content: space-between; box-sizing: border-box; min-height: 340px; padding: 28px; border-radius: 20px; background: #F4B6A4; color: #111013; text-decoration: none; font-family: 'DM Sans', system-ui, sans-serif; } .ds-cover-title { font-size: 3.5rem; font-weight: 500; line-height: 0.96; letter-spacing: -0.045em; transition: transform 0.6s cubic-bezier(0.16,1,0.3,1); } .ds-cover-tags { font-size: 1rem; color: rgba(17,16,19,0.72); } .ds-cover-go { position: absolute; top: 20px; right: 20px; display: grid; place-items: center; width: 48px; height: 48px; border-radius: 999px; background: #F2EFE4; color: #111013; opacity: 0; transform: translate(-6px,6px) scale(0.85); transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.16,1,0.3,1); } .ds-cover:hover .ds-cover-title { transform: translateY(-4px); } .ds-cover:hover .ds-cover-go, .ds-cover:focus-visible .ds-cover-go { opacity: 1; transform: none; }"
+      "refersTo": "card-cover",
+      "description": "Tone-gradient project card with title bottom-left; a white arrow appears on hover, and a neon ring follows the pointer.",
+      "html": "<a class=\"ds-cover\" href=\"#\"><span class=\"ds-cover-go\"><svg viewBox=\"0 0 24 24\" width=\"22\" height=\"22\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M7 17L17 7M9 7h8v8\"/></svg></span><span class=\"ds-cover-body\"><span class=\"ds-cover-title\">Northwind</span><span class=\"ds-cover-tags\">Brand, Web</span></span></a>",
+      "css": ".ds-cover { position: relative; display: grid; min-height: 320px; overflow: hidden; border-radius: 20px; background: linear-gradient(135deg, #A33FBD, #FD065A); color: #fff; text-decoration: none; font-family: 'DM Sans', system-ui, sans-serif; transition: box-shadow 0.4s ease; } .ds-cover > * { grid-area: 1 / 1; } .ds-cover-body { display: flex; flex-direction: column; justify-content: flex-end; gap: 6px; padding: 28px; } .ds-cover-title { font: 600 1.875rem/1.1 'Bricolage Grotesque', 'DM Sans', sans-serif; letter-spacing: -0.035em; transition: transform 0.6s cubic-bezier(0.16,1,0.3,1); } .ds-cover-tags { order: 2; color: rgb(255 255 255 / 0.86); } .ds-cover-go { z-index: 1; align-self: start; justify-self: end; display: grid; place-items: center; width: 48px; height: 48px; margin: 18px; border-radius: 999px; background: #fff; color: #0B0B16; opacity: 0; transform: translate(-6px, 6px) scale(0.85); transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.16,1,0.3,1); } .ds-cover:hover, .ds-cover:focus-visible { box-shadow: 0 0 44px -14px rgb(163 63 189 / 0.55); } .ds-cover:hover .ds-cover-title { transform: translateY(-4px); } .ds-cover:hover .ds-cover-go, .ds-cover:focus-visible .ds-cover-go { opacity: 1; transform: none; } .ds-cover:focus-visible { outline: 2px solid #8FA2FF; outline-offset: 4px; }"
     },
     {
       "name": "Capability Card",
       "kind": "card",
-      "refersTo": "capability-card",
-      "description": "Outlined 20px card with a circled icon; fills sage on hover.",
-      "html": "<div class=\"ds-cap\"><span class=\"ds-cap-icon\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"8\"/><path d=\"M12 8v8M8 12h8\"/></svg></span><h3 class=\"ds-cap-title\">Brand identity</h3><p class=\"ds-cap-desc\">Naming, marks and systems.</p></div>",
-      "css": ".ds-cap { display: flex; flex-direction: column; gap: 18px; min-height: 320px; padding: 28px; border: 1px solid rgba(242,239,228,0.14); border-radius: 20px; background: transparent; color: #F2EFE4; font-family: 'DM Sans', system-ui, sans-serif; transition: background-color 0.5s cubic-bezier(0.16,1,0.3,1), border-color 0.5s ease, color 0.4s ease; } .ds-cap-icon { display: grid; place-items: center; width: 48px; height: 48px; border: 1px solid rgba(242,239,228,0.14); border-radius: 50%; color: #B9C1B1; transition: border-color 0.4s ease, color 0.4s ease; } .ds-cap-title { margin: 0; font-size: 1.75rem; font-weight: 500; line-height: 1.1; letter-spacing: -0.04em; } .ds-cap-desc { margin: auto 0 0; color: #ADAA9F; transition: color 0.4s ease; } .ds-cap:hover { background: #4A4F49; border-color: #4A4F49; } .ds-cap:hover .ds-cap-desc { color: rgba(242,239,228,0.82); } .ds-cap:hover .ds-cap-icon { border-color: rgba(242,239,228,0.4); color: #F2EFE4; }"
+      "refersTo": "card-capability",
+      "description": "Outlined surface card with a circular icon, display title and muted description.",
+      "html": "<article class=\"ds-cap\"><span class=\"ds-cap-icon\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"8\"/><path d=\"M12 8v8M8 12h8\"/></svg></span><div><h3 class=\"ds-cap-title\">Brand identity</h3><p class=\"ds-cap-desc\">Names, marks and systems that hold across every surface.</p></div></article>",
+      "css": ".ds-cap { display: flex; flex-direction: column; justify-content: space-between; gap: 18px; min-height: 300px; padding: 28px; border: 1px solid #23233A; border-radius: 20px; background: #10101A; color: #F3F2FA; font-family: 'DM Sans', system-ui, sans-serif; transition: border-color 0.5s ease; } .ds-cap:hover { border-color: #4D68E4; } .ds-cap-icon { display: grid; place-items: center; width: 48px; height: 48px; border: 1px solid #23233A; border-radius: 50%; color: #8FA2FF; } .ds-cap-title { margin: 0 0 14px; font: 600 1.75rem/1.1 'Bricolage Grotesque', 'DM Sans', sans-serif; letter-spacing: -0.04em; } .ds-cap-desc { margin: 0; line-height: 1.55; color: #A3A2BA; }"
     },
     {
-      "name": "Kicker",
-      "kind": "chip",
-      "description": "Small uppercase label above a section title.",
-      "html": "<p class=\"ds-kicker\">Services</p>",
-      "css": ".ds-kicker { margin: 0; font: 400 0.8125rem 'DM Sans', system-ui, sans-serif; letter-spacing: 0.04em; text-transform: uppercase; color: #ADAA9F; }"
-    },
-    {
-      "name": "Theme Switch (rail)",
-      "kind": "custom",
-      "description": "Dark/Light switch; active option is a filled pill.",
-      "html": "<div class=\"ds-switch\"><button class=\"ds-opt is-on\">Dark</button><button class=\"ds-opt\">Light</button></div>",
-      "css": ".ds-switch { display: inline-flex; gap: 4px; padding: 4px; border-radius: 999px; background: rgba(242,239,228,0.1); } .ds-opt { min-height: 40px; padding: 0 14px; border: 0; border-radius: 999px; background: transparent; color: #ADAA9F; font: 500 0.875rem 'DM Sans', system-ui, sans-serif; cursor: pointer; transition: background-color 0.3s ease, color 0.3s ease; } .ds-opt.is-on { background: #F2EFE4; color: #111013; } .ds-opt:focus-visible { outline: 2px solid #B9C1B1; outline-offset: 3px; }"
-    },
-    {
-      "name": "Closing Card",
+      "name": "Process Step",
       "kind": "card",
-      "refersTo": "closing-card",
-      "description": "40px sage card with a display title, muted lead and actions.",
-      "html": "<section class=\"ds-close\"><h2 class=\"ds-close-title\">Let's make something worth keeping.</h2><p class=\"ds-close-lead\">Tell us what you are building.</p><a class=\"ds-close-btn\" href=\"#\">Start a project</a></section>",
-      "css": ".ds-close { display: flex; flex-direction: column; align-items: flex-start; gap: 24px; padding: 72px 56px; border-radius: 40px; background: #4A4F49; color: #F2EFE4; font-family: 'DM Sans', system-ui, sans-serif; } .ds-close-title { margin: 0; max-width: 14ch; font-size: 4rem; font-weight: 500; line-height: 0.98; letter-spacing: -0.045em; } .ds-close-lead { margin: 0; max-width: 44ch; color: rgba(242,239,228,0.78); line-height: 1.55; } .ds-close-btn { padding: 0.9rem 1.5rem; border-radius: 999px; background: #F2EFE4; color: #111013; font-weight: 500; text-decoration: none; transition: transform 0.5s cubic-bezier(0.16,1,0.3,1); } .ds-close-btn:hover { transform: translateY(-2px); }"
+      "refersTo": "card-capability",
+      "description": "Outlined card with a two-digit step counter; order is information.",
+      "html": "<li class=\"ds-step\"><h3 class=\"ds-step-title\">Discover</h3><p class=\"ds-step-desc\">We listen, audit and set the direction together.</p></li>",
+      "css": ".ds-step { counter-increment: ds-step; display: flex; flex-direction: column; gap: 14px; min-height: 240px; margin: 0; padding: 28px; border: 1px solid #23233A; border-radius: 20px; background: #10101A; color: #F3F2FA; list-style: none; font-family: 'DM Sans', system-ui, sans-serif; } .ds-step::before { content: '01'; font-size: 0.875rem; font-weight: 600; letter-spacing: 0.04em; font-variant-numeric: tabular-nums; color: #A3A2BA; } .ds-step-title { margin: 0; font: 600 1.75rem/1.1 'Bricolage Grotesque', 'DM Sans', sans-serif; letter-spacing: -0.04em; } .ds-step-desc { margin: auto 0 0; max-width: 36ch; line-height: 1.55; color: #A3A2BA; }"
+    },
+    {
+      "name": "Closing Field",
+      "kind": "custom",
+      "refersTo": "cta-field",
+      "description": "The mesh of brand light over deep violet ink; the one large colour field on a page.",
+      "html": "<section class=\"ds-field\"><h2 class=\"ds-field-title\">Let us build something strange and good.</h2><a class=\"ds-field-btn\" href=\"#\">Start a project</a></section>",
+      "css": ".ds-field { display: flex; flex-direction: column; align-items: flex-start; gap: 28px; padding: 96px 56px; border-radius: 40px; color: #fff; background: radial-gradient(70% 90% at 12% 0%, rgb(77 104 228 / 0.7), transparent 60%), radial-gradient(60% 80% at 100% 20%, rgb(253 6 90 / 0.55), transparent 62%), radial-gradient(70% 90% at 55% 110%, rgb(163 63 189 / 0.7), transparent 60%), #14102E; font-family: 'DM Sans', system-ui, sans-serif; } .ds-field-title { margin: 0; max-width: 14ch; font: 600 3.5rem/0.98 'Bricolage Grotesque', 'DM Sans', sans-serif; letter-spacing: -0.045em; text-wrap: balance; } .ds-field-btn { padding: 0.9rem 1.5rem; border-radius: 999px; background: linear-gradient(110deg, #4D68E4, #A33FBD 48%, #FD065A); color: #fff; font-weight: 500; text-decoration: none; transition: box-shadow 0.4s ease; } .ds-field-btn:hover { box-shadow: 0 10px 30px -10px rgb(163 63 189 / 0.75); } .ds-field-btn:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }"
     }
   ],
   "narrative": {
-    "northStar": "The Warm Studio Wall",
-    "overview": "Sekeco reads like a studio wall in lamplight: a warm near-black ground (or cream, by toggle), big tightly-tracked type, and a handful of flat coloured covers pinned to it. Dark is the default; light is a switch. Everything is one typeface at one weight, so hierarchy comes from size, tracking and dimming, not from a second voice.\n\nColour is rationed. Sage is the single working colour (buttons, pills, hover fills, the closing card). Salmon, signal red, sage light and sage appear together only as cover tones for Works, where flat colour stands in for imagery. Surfaces are flat and tonal; depth comes from overlap (rounded stacked sections, a floating header) rather than shadow.",
+    "northStar": "The Logo, Lit",
+    "overview": "The whole system is the Sekeco logo's gradient (blue, purple, red-pink, with cyan as a spark) treated as light on a quiet ground. The ground is deep ink by default and lavender paper in light mode; the colour lives in the brand gradient, in cover cards, in the hero's blurred ambient light and in one closing field. Everything else is neutral and typographic: tightly tracked Bricolage Grotesque headings over DM Sans text, outlined cards, generous space.\n\nThe feel is techy and eclectic rather than corporate. The page is a calm dark surface that wakes up under the pointer: cards grow a neon ring and inner glow that follow the cursor, pill buttons slide their gradient, and the hero breathes with blurred brand light. Structure is stable: a floating pill header, a side rail, a mosaic of projects, outlined capability and process cards, a marquee. Motion is GSAP reveal and scroll work with a reduced-motion fallback; hidden pre-reveal states exist only when JavaScript is running.",
     "keyCharacteristics": [
-      "Dark default, cream light mode, both warm; never pure black or white.",
-      "One face, DM Sans 500, headline tracking -0.045em, secondary words dimmed not italicised.",
-      "20px cards, 40px closing and stacked-section corners, 999px pills and buttons.",
-      "Outlined cards that fill sage on hover; flat cover tones; no shadows in shipped components.",
-      "Small uppercase kicker labels name each section.",
-      "Motion is GSAP reveals plus one expo ease; reduced motion collapses everything."
+      "Dark default, light mode swaps grounds only; the brand colours stay put.",
+      "Gradient is a fill and a light source, never a text colour (one logo-derived exception).",
+      "Headings 600 weight, -0.035em to -0.045em tracking; text DM Sans at 1.6 line height.",
+      "Large radii (20px cards, 40px closing field, full pills) and 1px hairlines.",
+      "Photographs on Works and Portfolio cards sit under a dark scrim; Solar Line Duotone is the only icon set."
     ],
     "rules": [
-      { "name": "The One Field Rule", "body": "Sage is the only colour that acts. Salmon, red and sage light are cover tones for Works and never fill buttons, links or section grounds.", "section": "colors" },
-      { "name": "The Tone Scope Rule", "body": "A section fixes its own ground through a tone (ink, paper, accent, surface) and remaps the preset colours inside it. Do not hard-code colours inside a tone; read the scope variables.", "section": "colors" },
-      { "name": "The Dimmed Word Rule", "body": "Emphasis inside a headline is em/i rendered upright in the muted colour, never italic or a second colour.", "section": "typography" },
-      { "name": "The Single Weight Rule", "body": "Headings are 500 everywhere; only the footer wordmark (600) and site title (700) differ.", "section": "typography" },
-      { "name": "The Flat Rule", "body": "Surfaces never cast shadows; separate with tone, outline or overlap.", "section": "elevation" }
+      { "name": "The Light, Not Paint Rule", "body": "The brand gradient fills buttons, pill links, cover cards, the closing field and ambient hero light. Body copy, headings and icons never take it. The single exception is the footer wordmark, set in brand-soft like the logo itself; it is not a pattern for other type.", "section": "colors" },
+      { "name": "The Tone Scope Rule", "body": "A section fixes its own ground through a tone class (ink, paper, accent field, surface) that remaps text, muted, line and surface together. Never hand-colour text inside a section; read the scope variables.", "section": "colors" },
+      { "name": "The Text Accent Rule", "body": "Brand blue is a fill. Where blue must read as text or a focus ring, use the mode's accent (#3F59D6 on paper, #8FA2FF on ink).", "section": "colors" },
+      { "name": "The Tight Display Rule", "body": "Every Bricolage heading carries negative tracking from -0.035em down to -0.045em; larger means tighter. Body and labels are never tracked negatively.", "section": "typography" },
+      { "name": "The Hover-Only Light Rule", "body": "The neon ring and inner glow exist on hover and focus-within, follow the pointer through --mx and --my, and are hidden entirely on touch devices. Nothing depends on them.", "section": "elevation" },
+      { "name": "The Blur Boundary Rule", "body": "Never put transform, filter or backdrop-filter on an ancestor of the fixed menu overlay; blur lives on a pseudo-element.", "section": "elevation" }
     ],
     "dos": [
-      "Do use sage #4A4F49 as the only action fill, with cream text.",
-      "Do set headlines at 500, tracking -0.045em, and dim secondary words instead of italicising.",
-      "Do use 20px for cards, 40px for closing and stacked edges, 999px for anything pressable.",
-      "Do use small uppercase kicker labels (0.8125rem, +0.04em, muted) to name sections.",
-      "Do use Solar Line Duotone icons only (generated set), inside outlined circles.",
-      "Do honour reduced motion: reveals, marquee and transitions collapse."
+      "Do use the brand gradient (110deg, #4D68E4, #A33FBD, #FD065A) for fills and brand-soft (adds #09C4F7 at the start) for hover states.",
+      "Do read colours from tone-scope variables so a section works in both modes.",
+      "Do use Solar Line Duotone icons from the generated set only.",
+      "Do keep hover-only effects meaningful without them, and keep reduced-motion collapsing animations to near zero.",
+      "Do run photographs under the ink scrim so overlaid white text keeps contrast."
     ],
     "donts": [
-      "Don't use salmon, red or sage light as button, link or section ground; they are cover tones.",
-      "Don't add box-shadows to components; the system is flat.",
-      "Don't introduce a second typeface or weights other than 500 for headings.",
-      "Don't use pure black, pure white or cool greys.",
-      "Don't wrap fixed descendants (header menu overlay) in transform, filter or backdrop-filter."
+      "Don't set body text, headings or icons in the gradient; the footer wordmark is the lone logo-derived exception.",
+      "Don't add hard offset shadows, glyph icons, dashicons or glyph arrows.",
+      "Don't use backdrop-filter, filter or transform on ancestors of the fixed menu overlay.",
+      "Don't track Bricolage headings looser than -0.035em, or use it for body text.",
+      "Don't introduce colours outside the logo palette and the paired neutrals."
     ]
   }
 }

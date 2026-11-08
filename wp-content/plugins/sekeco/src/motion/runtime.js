@@ -219,12 +219,41 @@ function header() {
 	update();
 }
 
+/**
+ * Pointer-lit cards: .sk-glow elements get --mx and --my so the CSS can draw a
+ * neon ring and a soft glow under the pointer. User-driven, so it also runs
+ * for visitors who prefer reduced motion.
+ */
+function glow() {
+	document.addEventListener(
+		'pointermove',
+		( event ) => {
+			if ( 'touch' === event.pointerType || ! event.target.closest ) {
+				return;
+			}
+
+			const card = event.target.closest( '.sk-glow' );
+
+			if ( ! card ) {
+				return;
+			}
+
+			const box = card.getBoundingClientRect();
+
+			card.style.setProperty( '--mx', `${ event.clientX - box.left }px` );
+			card.style.setProperty( '--my', `${ event.clientY - box.top }px` );
+		},
+		{ passive: true }
+	);
+}
+
 function init() {
 	if ( ! root.classList.contains( 'sekeco-js' ) ) {
 		root.classList.add( 'sekeco-js' );
 	}
 
 	header();
+	glow();
 
 	if ( reduced() ) {
 		release();

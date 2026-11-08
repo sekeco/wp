@@ -1,39 +1,44 @@
 ---
 name: Sekeco
-description: A warm, type-led agency system. Ink and cream grounds, one sage field colour, four cover tones, DM Sans set tight.
+description: A techy agency system in the logo's gradient. Deep ink or lavender paper grounds, blue to purple to red light, Bricolage Grotesque set tight, pointer-lit cards.
 colors:
-  ink: "#111013"
-  cream: "#F2EFE4"
-  surface-light: "#FAF8F2"
-  surface-dark: "#1A191C"
-  muted-light: "#5E5C54"
-  muted-dark: "#ADAA9F"
-  border-light: "#D8D3C3"
-  border-dark: "#2C2B2E"
-  sage: "#4A4F49"
-  sage-lifted: "#B9C1B1"
-  sage-light: "#C8CCBD"
-  salmon: "#F4B6A4"
-  signal-red: "#D91842"
+  brand-blue: "#4D68E4"
+  brand-purple: "#A33FBD"
+  brand-red: "#FD065A"
+  brand-cyan: "#09C4F7"
+  brand-pink: "#FF6FAE"
+  accent-on-paper: "#3F59D6"
+  accent-on-ink: "#8FA2FF"
+  ink: "#07070D"
+  surface-dark: "#10101A"
+  text-dark: "#F3F2FA"
+  muted-dark: "#A3A2BA"
+  border-dark: "#23233A"
+  paper: "#F6F5FB"
+  surface-light: "#FFFFFF"
+  text-light: "#0B0B16"
+  muted-light: "#5A5972"
+  border-light: "#E1DFEE"
+  brand-field-base: "#14102E"
 typography:
   display:
-    fontFamily: "DM Sans, system-ui, -apple-system, Segoe UI, sans-serif"
+    fontFamily: "Bricolage Grotesque, DM Sans, system-ui, -apple-system, Segoe UI, sans-serif"
     fontSize: "4.5rem"
-    fontWeight: 500
+    fontWeight: 600
     lineHeight: 1
     letterSpacing: "-0.045em"
   headline:
-    fontFamily: "DM Sans, system-ui, -apple-system, Segoe UI, sans-serif"
-    fontSize: "4rem"
-    fontWeight: 500
-    lineHeight: 1.02
-    letterSpacing: "-0.045em"
-  title:
-    fontFamily: "DM Sans, system-ui, -apple-system, Segoe UI, sans-serif"
-    fontSize: "2rem"
-    fontWeight: 500
-    lineHeight: 1.1
+    fontFamily: "Bricolage Grotesque, DM Sans, system-ui, -apple-system, Segoe UI, sans-serif"
+    fontSize: "2.75rem"
+    fontWeight: 600
+    lineHeight: 1.05
     letterSpacing: "-0.04em"
+  title:
+    fontFamily: "Bricolage Grotesque, DM Sans, system-ui, -apple-system, Segoe UI, sans-serif"
+    fontSize: "1.875rem"
+    fontWeight: 600
+    lineHeight: 1.1
+    letterSpacing: "-0.035em"
   body:
     fontFamily: "DM Sans, system-ui, -apple-system, Segoe UI, sans-serif"
     fontSize: "1rem"
@@ -58,41 +63,41 @@ spacing:
   regular: "48px"
   large: "88px"
   x-large: "152px"
-  gutter: "48px"
+  xx-large: "216px"
 components:
   button-primary:
-    backgroundColor: "{colors.sage}"
-    textColor: "{colors.cream}"
+    backgroundColor: "{colors.brand-blue}"
+    textColor: "#FFFFFF"
     rounded: "{rounded.full}"
-    padding: "0.9rem 1.5rem"
-  button-primary-hover:
-    backgroundColor: "{colors.ink}"
-    textColor: "{colors.cream}"
+    padding: "14px 24px"
+  button-outline:
+    backgroundColor: "transparent"
+    textColor: "{colors.text-dark}"
+    rounded: "{rounded.full}"
+    padding: "14px 24px"
   pill-link:
-    backgroundColor: "{colors.sage}"
-    textColor: "{colors.cream}"
+    backgroundColor: "{colors.brand-purple}"
+    textColor: "#FFFFFF"
     rounded: "{rounded.full}"
     height: "52px"
     padding: "0 24px 0 10px"
-  capability-card:
-    textColor: "{colors.ink}"
+  card-capability:
+    backgroundColor: "{colors.surface-dark}"
+    textColor: "{colors.text-dark}"
     rounded: "{rounded.md}"
     padding: "28px"
-  capability-card-hover:
-    backgroundColor: "{colors.sage}"
-    textColor: "{colors.cream}"
-  cover-card:
-    backgroundColor: "{colors.salmon}"
-    textColor: "{colors.ink}"
+  card-cover:
+    backgroundColor: "{colors.brand-blue}"
+    textColor: "#FFFFFF"
     rounded: "{rounded.md}"
-  closing-card:
-    backgroundColor: "{colors.sage}"
-    textColor: "{colors.cream}"
+    padding: "32px"
+  cta-field:
+    backgroundColor: "{colors.brand-field-base}"
+    textColor: "#FFFFFF"
     rounded: "{rounded.lg}"
     padding: "112px 72px"
   header-pill:
     backgroundColor: "{colors.surface-dark}"
-    textColor: "{colors.cream}"
     rounded: "{rounded.full}"
     height: "72px"
 ---
@@ -101,127 +106,130 @@ components:
 
 ## Overview
 
-**Creative North Star: "The Warm Studio Wall"**
+**Creative North Star: "The Logo, Lit"**
 
-Sekeco reads like a studio wall in lamplight: a warm near-black ground (or cream, by toggle), big tightly-tracked type, and a handful of flat coloured covers pinned to it. Dark is the default; light is a switch. Everything is one typeface at one weight, so hierarchy comes from size, tracking and dimming, not from a second voice.
+The whole system is the Sekeco logo's gradient (blue, purple, red-pink, with cyan as a spark) treated as light on a quiet ground. The ground is deep ink by default and lavender paper in light mode; the colour lives in the brand gradient, in cover cards, in the hero's blurred ambient light and in one closing field. Everything else is neutral and typographic: tightly tracked Bricolage Grotesque headings over DM Sans text, outlined cards, generous space.
 
-Colour is rationed. Sage is the single working colour (buttons, pills, hover fills, the closing card). Salmon, signal red, sage light and sage appear together only as cover tones for Works, where flat colour stands in for imagery. Surfaces are flat and tonal; depth comes from overlap (rounded stacked sections, a floating header) rather than shadow.
+The feel is techy and eclectic rather than corporate. The page is a calm dark surface that wakes up under the pointer: cards grow a neon ring and inner glow that follow the cursor, pill buttons slide their gradient, and the hero breathes with blurred brand light. Structure is stable: a floating pill header, a side rail, a mosaic of projects, outlined capability and process cards, a marquee. Motion is GSAP reveal and scroll work with a reduced-motion fallback; hidden pre-reveal states exist only when JavaScript is running.
 
 **Key Characteristics:**
-- Dark default, cream light mode, both warm; never pure black or white.
-- One face, DM Sans 500, headline tracking -0.045em, secondary words dimmed not italicised.
-- 20px cards, 40px closing and stacked-section corners, 999px pills and buttons.
-- Outlined cards that fill sage on hover; flat cover tones; no shadows in shipped components.
-- Small uppercase kicker labels name each section.
-- Motion is GSAP reveals plus one expo ease; reduced motion collapses everything.
+- Dark default, light mode swaps grounds only; the brand colours stay put.
+- Gradient is a fill and a light source, never a text colour (one logo-derived exception).
+- Headings 600 weight, -0.035em to -0.045em tracking; text DM Sans at 1.6 line height.
+- Large radii (20px cards, 40px closing field, full pills) and 1px hairlines.
+- Photographs on Works and Portfolio cards sit under a dark scrim; Solar Line Duotone is the only icon set.
 
 ## Colors
 
-Warm ink and cream grounds, one muted sage field colour, four cover tones that appear on Works covers.
+A four-colour logo gradient over two paired neutral grounds: deep ink and lavender paper.
 
 ### Primary
-- **Sage Field** (`{colors.sage}`): the single action colour: buttons, pill links, capability hover fill, closing card, selection, form accent. Text on it is cream.
-- **Lifted Sage** (`{colors.sage-lifted}`): sage's dark-mode stand-in for text-weight uses (focus ring, caret, menu link hover, footer link hover) where #4A4F49 would vanish on ink.
+- **Brand Blue** (#4D68E4): start of the gradient, the button and the first cover tone. Also the theme's `accent` preset and the browser accent colour.
+- **Brand Purple** (#A33FBD): the middle of the gradient, link selection background, the glow shadow under hovered buttons.
+- **Brand Red-Pink** (#FD065A): the end of the gradient and of the cover tones 2 and 3 (pink tint #FF6FAE appears in glows).
 
-### Secondary (cover tones)
-- **Salmon** (`{colors.salmon}`): cover tone 1, ink text.
-- **Signal Red** (`{colors.signal-red}`): cover tone 2, cream text.
-- **Sage Light** (`{colors.sage-light}`): cover tone 3, ink text.
-- **Sage** (`{colors.sage}`): cover tone 4, cream text.
+### Secondary
+- **Brand Cyan** (#09C4F7): the spark. Only at the head of the `brand-soft` gradient (button hover, footer wordmark) and the pointer ring.
 
 ### Neutral
-- **Ink** (`{colors.ink}`): dark ground, light-mode text, footer, menu overlay, ink tone.
-- **Cream** (`{colors.cream}`): light ground, dark-mode text, text on sage.
-- **Surface Light / Dark** (`{colors.surface-light}`, `{colors.surface-dark}`): header pill, surface group style, floating search button.
-- **Muted Light / Dark** (`{colors.muted-light}`, `{colors.muted-dark}`): leads, descriptions, tags, dimmed headline words.
-- **Border Light / Dark** (`{colors.border-light}`, `{colors.border-dark}`): hairlines; card outlines use a 14% text-colour line.
+- **Deep Ink** (#07070D): dark page ground, footer, menu overlay.
+- **Ink Surface** (#10101A): dark cards, header pill and surface blocks.
+- **Moonlit Text** (#F3F2FA), **Dusk Muted** (#A3A2BA), **Night Border** (#23233A): dark text, secondary text, hairlines.
+- **Lavender Paper** (#F6F5FB): light ground. **White** (#FFFFFF) surface; **Ink Text** (#0B0B16); **Slate Muted** (#5A5972); **Mist Border** (#E1DFEE).
+- **Accent on Paper** (#3F59D6) and **Accent on Ink** (#8FA2FF): the legible text-and-focus accent in each mode (icons, focus rings, marquee separators, hover links).
+- **Brand Field Base** (#14102E): the deep violet under the closing field mesh.
 
 ### Named Rules
-**The One Field Rule.** Sage is the only colour that acts. Salmon, red and sage light are cover tones for Works and never fill buttons, links or section grounds.
+**The Light, Not Paint Rule.** The brand gradient fills buttons, pill links, cover cards, the closing field and ambient hero light. Body copy, headings and icons never take it. The single exception is the footer wordmark, set in `brand-soft` like the logo itself; it is not a pattern for other type.
 
-**The Tone Scope Rule.** A section fixes its own ground through a tone (ink, paper, accent, surface) and remaps the preset colours inside it. Do not hard-code colours inside a tone; read the scope variables.
+**The Tone Scope Rule.** A section fixes its own ground through a tone class (ink, paper, accent field, surface) that remaps text, muted, line and surface together. Never hand-colour text inside a section; read the scope variables.
+
+**The Text Accent Rule.** Brand blue is a fill. Where blue must read as text or a focus ring, use the mode's accent (#3F59D6 on paper, #8FA2FF on ink).
 
 ## Typography
 
-**Display Font:** DM Sans (variable 100-1000, with system-ui fallbacks)
-**Body Font:** DM Sans
-**Label Font:** DM Sans
+**Display Font:** Bricolage Grotesque (with DM Sans, system-ui)
+**Body Font:** DM Sans (with system-ui, Segoe UI)
 
-**Character:** One geometric sans, medium weight, squeezed tight at large sizes. Body copy sits at 82% of the text colour so headings read forward.
+**Character:** Bricolage brings a slightly quirky, tight headline voice; DM Sans stays neutral and readable underneath. Both are bundled variable woff2 files.
 
 ### Hierarchy
-- **Display** (500, clamp 2.5rem to 4.5rem, 1.0): hero title, centred, max 17ch; closing card title runs larger (to 5.5rem, 0.98); menu links to 5.5rem.
-- **Headline** (500, clamp 2.25rem to 4rem, 1.02, -0.045em): section titles.
-- **Title** (500, clamp 1.625rem to 2rem, 1.1, -0.04em): capability, process step and card titles.
-- **Body** (400, 1rem fluid to 1.0625rem, 1.6): running text; leads 1.0625rem to 1.25rem, 1.55, muted, max 44-52ch.
-- **Label** (400, 0.8125rem, +0.04em, uppercase): the kicker above section titles and the hero label; process numerals use 500 at 0.875rem tabular.
+- **Display** (600, clamp 2.5rem to 4.75rem, 1.02, -0.04em): h1 and hero title. Hero title tops out at 4.5rem in a 17ch measure; CTA titles reach 5.5rem at 0.98.
+- **Headline** (600, clamp 2rem to 3.25rem, 1.05, -0.04em): h2 and section titles.
+- **Title** (600, clamp 1.5rem to 2.25rem, 1.1, -0.035em to -0.04em): h3, card, capability and process titles.
+- **Body** (400, 1rem to 1.0625rem fluid, 1.6): text sits at 82% of the heading colour. Lead paragraphs 52ch or less.
+- **Label** (400, 0.8125rem, 0.04em, uppercase): small section labels; see Don'ts.
+- **Menu** (500, clamp 2.5rem to 5.5rem, 1.06, -0.04em): overlay navigation in Bricolage.
 
 ### Named Rules
-**The Dimmed Word Rule.** Emphasis inside a headline is `em`/`i` rendered upright in the muted colour, never italic or a second colour.
-
-**The Single Weight Rule.** Headings are 500 everywhere; only the footer wordmark (600) and site title (700) differ.
+**The Tight Display Rule.** Every Bricolage heading carries negative tracking from -0.035em down to -0.045em; larger means tighter. Body and labels are never tracked negatively.
 
 ## Layout
 
-Content column 720px, wide 1320px; components cap at 1240px inside a fluid gutter `clamp(16px, 4vw, 48px)`. Sections pad `clamp(64px, 8.5vw, 128px)` vertically; neutral sections in a row share one gap. The hero is a centred stack (label, title, lead, action) above a Works mosaic. The project mosaic is a 12-column grid, rows alternating 8/4 then 4/4/4; it collapses to 2 columns then 1. Capabilities run 4/2/1 columns and process steps auto-fit from 240px, both with a 12-20px gap. Section headers split 7/4 with the kicker spanning above. Stacked sections overlap the previous by 40px with rounded top corners.
+Content width 720px, wide 1320px, component max 1240px with a fluid gutter of clamp(16px, 4vw, 48px). The spacing scale is 8, 16, then fluid clamps up to 216px; components own their internal rhythm and sections stack seamlessly (stacked sections overlap by the 40px radius). The home page reads as a floating pill header over a hero, then a project mosaic (repeating one 8-column card and 4-column cards on a 12-column grid at 1000px and above), capabilities in four columns at 1100px, process cards in auto-fit columns of at least 240px, a marquee, and a closing field. Two-column project lists become a 7/5 rhythm. On narrow screens everything is a single column, the header CTA hides under 600px, and the side rail only exists from 1100px.
 
-A left side rail (from 1100px) holds the vertical Dark/Light switch and a "Scroll to top" link; a round floating search sits bottom-left. Below 1100px the rail disappears and the menu overlay carries navigation. Spacing scale is fluid (8, 16, 24-ish, 48-ish, 88-ish, 152-ish).
+A fixed side rail (theme switch, vertical scroll-to-top, search button) sits at the left from 1100px.
 
 ## Elevation & Depth
 
-Flat and tonal. No shipped component carries a box-shadow. Depth comes from the floating header (blurred surface pill on a pseudo-element), rounded stacked sections overlapping their predecessor, and fills that appear on hover. A `lift` shadow preset exists in theme.json for editor use only. Photographic cards use a bottom scrim gradient (ink 70% to transparent) for text legibility only.
+Flat by default; depth comes from tonal surfaces, hairlines and light. Shadows are glows that appear only on interaction, tinted with brand purple. The header floats with a blurred translucent pseudo-element rather than a shadow.
+
+### Shadow Vocabulary
+- **Button glow** (`box-shadow: 0 10px 30px -10px rgb(163 63 189 / 0.75)`): hovered buttons, with a 2px lift.
+- **Pill glow** (`box-shadow: 0 8px 28px -8px rgb(163 63 189 / 0.7)`): hovered pill links.
+- **Card glow** (`box-shadow: 0 0 44px -14px rgb(163 63 189 / 0.55)`): hovered pointer-lit cards.
+- **Header glass** (`backdrop-filter: blur(18px) saturate(140%)` on a surface at 82% opacity): the pill header only.
 
 ### Named Rules
-**The Flat Rule.** Surfaces never cast shadows; separate with tone, outline or overlap.
+**The Hover-Only Light Rule.** The neon ring and inner glow exist on hover and focus-within, follow the pointer through `--mx` and `--my`, and are hidden entirely on touch devices. Nothing depends on them.
+
+**The Blur Boundary Rule.** Never put `transform`, `filter` or `backdrop-filter` on an ancestor of the fixed menu overlay; blur lives on a pseudo-element.
 
 ## Shapes
 
-Soft and round, in three steps. 20px (`{rounded.md}`) for cards, images, covers and surface groups; 40px (`{rounded.lg}`) for the closing card and the top corners of stacked sections; 999px for buttons, pill links, header, switches and round icon buttons (48-56px circles). 10px is available for small elements. Icons sit in 1px-outlined circles. Outlines are 1px in the scope line colour.
+Soft and round. Cards and surfaces 20px, the closing field and stacked sections 40px, small elements 10px, buttons, pills and the header fully rounded (999px), icon buttons and bullets circular. Hairline 1px borders define outlined cards; cover cards have no border and clip their photographs. Photographs scale slowly (1.1 to 1.18) on hover inside the clip.
 
 ## Components
 
 ### Buttons
-- **Shape:** full pill (999px).
-- **Primary:** sage fill, cream text, 500 weight, padding 0.9rem 1.5rem.
-- **Hover / Focus:** fill flips to the contrast colour with a 2px lift (0.5s expo); focus is a 2px lifted-sage outline offset 3px.
-- **Outline style:** 1px currentcolor border, transparent; fills with the contrast colour on hover.
+- **Shape:** full pill (999px), 14px 24px padding (header 0.95rem 1.5rem), weight 500.
+- **Primary:** `brand` gradient fill, white text, 160% background size.
+- **Hover / Focus:** gradient slides to the far end, lift 2px, purple glow; outline button inverts to contrast fill.
+- **Outline:** 1px currentcolor border, transparent, inverts on hover.
 
-### Pill link
-Sage pill, 52px high, with a circled Solar arrow at the leading edge (1px cream-50% ring); gap widens 12px to 16px and the fill lightens on hover.
+### Pill Link
+`brand` gradient, 52px tall, circled outline icon on the leading side; on hover the gradient slides and the gap widens from 12px to 16px.
 
-### Cover cards (Works)
-Flat tone fill (salmon, red, sage light, sage) or a photograph with scrim, 20px, min 320-440px tall. Title bottom-left; typographic covers set the name large (to 4.5rem) at top with tags at the foot. On hover the image scales 1.1 to 1.18, the title rises 4px and a cream round arrow button appears top-right. Team cards show a grayscale 4:5 portrait that colours on hover.
-
-### Capability and process cards
-Outlined, 20px, 28px padding. Capability cards fill sage on hover or focus-within with cream text, and the circled icon (48px) and 56px go-button shift; whole card is the link. Process steps are outlined only, with a tabular two-digit numeral.
-
-### Marquee
-Tinted band (text colour at 5%), words in display 500 up to 3.75rem, muted, separated by a small asterisk; pauses on hover, becomes a wrapped static list under reduced motion.
+### Cards / Containers
+- **Capability and process cards:** outlined, 20px radius, 1px line border, surface fill, 28px padding. Capabilities hold a 48px circular icon and a 56px circular go button; process cards carry a two-digit counter because order is information.
+- **Cover cards (Works, Portfolio):** 20px radius, clipped, 320 to 440px tall. Tones: blue to violet, violet to red, red to pink, deep glass. Photographs sit under a bottom scrim (ink 78% to transparent) with title bottom-left and a white circular arrow appearing on hover. Typographic covers set the name large at the top.
+- **Team cards:** portrait 4/5, greyscale until hover, name below, no overlay.
+- **Pointer-lit:** cards may add the glow treatment described in Elevation.
 
 ### Navigation
-Floating full-width pill header (72px, blurred surface, 14px from top, hides on scroll down) with brand left, centred inline menu at 1000px+ (1rem, 86% opacity rising to 100% on hover/current), action right. A round 56px menu button opens an ink overlay with display-size links that indent and lift to sage on hover.
+Floating pill header (72px, glass, mark plus lowercase site title, centred links at 1000px and above, actions on the right). Hides on scroll down. The menu overlay is a full-screen ink panel with Bricolage links at display size that indent and turn #8FA2FF on hover.
 
-### Closing card
-40px sage card with cream text, 14ch display title, muted lead, actions below; inset by the viewport margin and stackable over the previous section. The footer is ink with an oversized wordmark (600, -0.045em).
+### Marquee
+Full-width band tinted 5% of the foreground, Bricolage words at up to 3.75rem in muted text, separated by an accent asterisk; pauses on hover, static when reduced motion is requested.
 
-### Theme switch
-Vertical Dark/Light in the side rail; the active option is a filled pill. An icon variant swaps sun and moon.
+### Closing Field
+The CTA block: 40px radius, the `--sk-field-bg` mesh of blue, red and purple radial light over #14102E, white text, left aligned, title up to 5.5rem. The footer below is deep ink with the oversized lowercase gradient wordmark.
+
+### Hero
+Centred title and lead over blurred brand light (three radial blobs at 30px blur, half strength in light mode), with a horizontal reel of cards below.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** use sage `#4A4F49` as the only action fill, with cream text.
-- **Do** set headlines at 500, tracking -0.045em, and dim secondary words instead of italicising.
-- **Do** use 20px for cards, 40px for closing and stacked edges, 999px for anything pressable.
-- **Do** use small uppercase kicker labels (0.8125rem, +0.04em, muted) to name sections.
-- **Do** use Solar Line Duotone icons only (generated set), inside outlined circles.
-- **Do** honour reduced motion: reveals, marquee and transitions collapse.
+- **Do** use the `brand` gradient (110deg, #4D68E4, #A33FBD, #FD065A) for fills and `brand-soft` (adds #09C4F7 at the start) for hover states.
+- **Do** read colours from tone-scope variables so a section works in both modes.
+- **Do** use Solar Line Duotone icons from the generated set only.
+- **Do** keep hover-only effects meaningful without them, and keep reduced-motion collapsing animations to near zero.
+- **Do** run photographs under the ink scrim so overlaid white text keeps contrast.
 
 ### Don't:
-- **Don't** use salmon, red or sage light as button, link or section ground; they are cover tones.
-- **Don't** add box-shadows to components; the system is flat.
-- **Don't** introduce a second typeface or weights other than 500 for headings.
-- **Don't** use pure black, pure white or cool greys.
-- **Don't** wrap fixed descendants (header menu overlay) in transform, filter or backdrop-filter.
-
-*Not canonized, carried by the build:* none beyond the kicker, which the user explicitly adopted into the system.
+- **Don't** set body text, headings or icons in the gradient; the footer wordmark is the lone logo-derived exception.
+- **Don't** add hard offset shadows, glyph icons, dashicons or glyph arrows.
+- **Don't** use backdrop-filter, filter or transform on ancestors of the fixed menu overlay.
+- **Don't** track Bricolage headings looser than -0.035em, or use it for body text.
+- **Don't** introduce colours outside the logo palette and the paired neutrals.

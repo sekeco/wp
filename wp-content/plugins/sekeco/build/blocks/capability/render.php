@@ -21,7 +21,7 @@ if ( '' === $title ) {
 	return;
 }
 
-$wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'sk-capability' ) );
+$wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'sk-capability sk-glow' ) );
 ?>
 <article <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> role="listitem">
 	<span class="sk-capability__icon"><?php echo sekeco_icon( $icon, array( 'size' => 24 ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>

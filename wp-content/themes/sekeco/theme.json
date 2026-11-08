@@ -12,67 +12,88 @@
 			"defaultDuotone": false,
 			"defaultGradients": false,
 			"defaultPalette": false,
-			"gradients": [],
+			"gradients": [
+				{
+					"name": "Sekeco",
+					"slug": "brand",
+					"gradient": "linear-gradient(110deg, #4D68E4 0%, #A33FBD 48%, #FD065A 100%)"
+				},
+				{
+					"name": "Sekeco glow",
+					"slug": "brand-soft",
+					"gradient": "linear-gradient(110deg, #09C4F7 0%, #4D68E4 30%, #A33FBD 62%, #FD065A 100%)"
+				},
+				{
+					"name": "Blue to purple",
+					"slug": "blue-purple",
+					"gradient": "linear-gradient(135deg, #4D68E4 0%, #A33FBD 100%)"
+				},
+				{
+					"name": "Purple to red",
+					"slug": "purple-red",
+					"gradient": "linear-gradient(135deg, #A33FBD 0%, #FD065A 100%)"
+				}
+			],
 			"palette": [
 				{
-					"color": "#F2EFE4",
+					"color": "#F6F5FB",
 					"name": "Base",
 					"slug": "base"
 				},
 				{
-					"color": "#111013",
+					"color": "#0B0B16",
 					"name": "Contrast",
 					"slug": "contrast"
 				},
 				{
-					"color": "#FAF8F2",
+					"color": "#FFFFFF",
 					"name": "Surface",
 					"slug": "surface"
 				},
 				{
-					"color": "#5E5C54",
+					"color": "#5A5972",
 					"name": "Muted",
 					"slug": "muted"
 				},
 				{
-					"color": "#D8D3C3",
+					"color": "#E1DFEE",
 					"name": "Border",
 					"slug": "border"
 				},
 				{
-					"color": "#4A4F49",
-					"name": "Accent (sage)",
+					"color": "#4D68E4",
+					"name": "Brand blue",
 					"slug": "accent"
 				},
 				{
-					"color": "#F2EFE4",
+					"color": "#FFFFFF",
 					"name": "Accent contrast",
 					"slug": "accent-contrast"
 				},
 				{
-					"color": "#111013",
+					"color": "#07070D",
 					"name": "Ink",
 					"slug": "ink"
 				},
 				{
-					"color": "#F2EFE4",
+					"color": "#F6F5FB",
 					"name": "Paper",
 					"slug": "paper"
 				},
 				{
-					"color": "#F4B6A4",
-					"name": "Salmon",
-					"slug": "salmon"
+					"color": "#A33FBD",
+					"name": "Brand purple",
+					"slug": "violet"
 				},
 				{
-					"color": "#D91842",
-					"name": "Signal red",
+					"color": "#FD065A",
+					"name": "Brand red",
 					"slug": "red"
 				},
 				{
-					"color": "#C8CCBD",
-					"name": "Sage light",
-					"slug": "sage-light"
+					"color": "#09C4F7",
+					"name": "Brand cyan",
+					"slug": "cyan"
 				}
 			]
 		},
@@ -145,9 +166,20 @@
 					]
 				},
 				{
-					"name": "DM Sans (display)",
+					"name": "Bricolage Grotesque",
 					"slug": "display",
-					"fontFamily": "\"DM Sans\", system-ui, -apple-system, \"Segoe UI\", sans-serif"
+					"fontFamily": "\"Bricolage Grotesque\", \"DM Sans\", system-ui, -apple-system, \"Segoe UI\", sans-serif",
+					"fontFace": [
+						{
+							"fontFamily": "Bricolage Grotesque",
+							"fontStyle": "normal",
+							"fontWeight": "200 800",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/bricolage-grotesque-latin-wght-normal.woff2"
+							]
+						}
+					]
 				}
 			],
 			"fontSizes": [
@@ -274,8 +306,8 @@
 			"heading": {
 				"typography": {
 					"fontFamily": "var:preset|font-family|display",
-					"fontWeight": "500",
-					"letterSpacing": "-0.04em",
+					"fontWeight": "600",
+					"letterSpacing": "-0.035em",
 					"lineHeight": "1.04"
 				}
 			},
@@ -321,7 +353,7 @@
 					"radius": "var:preset|border-radius|full"
 				},
 				"color": {
-					"background": "var:preset|color|accent",
+					"gradient": "var:preset|gradient|brand",
 					"text": "var:preset|color|accent-contrast"
 				},
 				"spacing": {
@@ -340,8 +372,8 @@
 				},
 				":hover": {
 					"color": {
-						"background": "var:preset|color|contrast",
-						"text": "var:preset|color|base"
+						"gradient": "var:preset|gradient|brand-soft",
+						"text": "var:preset|color|accent-contrast"
 					}
 				}
 			},
@@ -360,7 +392,8 @@
 					"fontFamily": "var:preset|font-family|display",
 					"fontSize": "var:preset|font-size|large",
 					"fontWeight": "700",
-					"letterSpacing": "-0.04em"
+					"letterSpacing": "-0.04em",
+					"textTransform": "lowercase"
 				},
 				"elements": {
 					"link": {

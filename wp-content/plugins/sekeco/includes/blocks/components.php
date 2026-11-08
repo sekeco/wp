@@ -198,9 +198,7 @@ function sekeco_render_project_card( $post, $args = array() ) {
 
 	$type                  = $post->post_type;
 	list( $name, $detail ) = sekeco_split_title( get_the_title( $post ) );
-	// Product images are repository previews, so products always use the typographic cover.
-	$thumb_html            = 'product' !== $type
-		? get_the_post_thumbnail(
+	$thumb_html            = get_the_post_thumbnail(
 			$post,
 			$args['size'],
 			array(
@@ -209,8 +207,7 @@ function sekeco_render_project_card( $post, $args = array() ) {
 				'loading'  => $args['eager'] ? 'eager' : 'lazy',
 				'decoding' => 'async',
 			)
-		)
-		: '';
+		);
 	// A thumbnail whose file is gone from local uploads is not an image: fall back to the cover.
 	$has_image = '' !== $thumb_html && sekeco_thumbnail_file_exists( $post );
 	$tone                  = sekeco_card_tone( $post->ID );
@@ -250,7 +247,7 @@ function sekeco_render_project_card( $post, $args = array() ) {
 	ob_start();
 	?>
 	<article class="<?php echo esc_attr( implode( ' ', $classes ) ); ?>">
-		<a class="sk-card__link" href="<?php echo esc_url( get_permalink( $post ) ); ?>">
+		<a class="sk-card__link sk-glow" href="<?php echo esc_url( get_permalink( $post ) ); ?>">
 			<span class="sk-card__media"<?php echo 'portfolio' === $type ? ' data-sk-parallax="0.1"' : ''; ?>>
 				<?php if ( $has_image ) : ?>
 					<?php echo $thumb_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>

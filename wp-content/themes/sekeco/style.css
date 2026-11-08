@@ -3,11 +3,11 @@ Theme Name: Sekeco
 Theme URI: https://sekeco.github.io
 Author: Sekeco
 Author URI: https://sekeco.github.io
-Description: A warm, type-led block theme for Sekeco, an eclectic digital agency. Floating pill header, mosaic of project cards, side rail, and a light and dark mode. Pair it with the Sekeco plugin, which provides the component blocks.
+Description: A modern, techy block theme for Sekeco, an eclectic digital agency, in the brand gradient of blue, purple, red and pink. Floating pill header, pointer-lit cards, mosaic of projects, side rail, and a light and dark mode. Pair it with the Sekeco plugin, which provides the component blocks.
 Requires at least: 6.7
 Tested up to: 7.1
 Requires PHP: 7.4
-Version: 2.1.0
+Version: 2.2.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: sekeco
@@ -23,9 +23,16 @@ Tags: one-column, custom-colors, custom-menu, custom-logo, editor-style, feature
 /* ---------- Scope tokens ---------- */
 
 :root {
-	--sk-ink: #111013;
-	--sk-paper: #f2efe4;
-	--sk-field: #4a4f49;
+	--sk-ink: #07070d;
+	--sk-paper: #f6f5fb;
+	--sk-blue: #4d68e4;
+	--sk-cyan: #09c4f7;
+	--sk-violet: #a33fbd;
+	--sk-red: #fd065a;
+	--sk-pink: #ff6fae;
+	--sk-grad: linear-gradient(110deg, #4d68e4 0%, #a33fbd 48%, #fd065a 100%);
+	--sk-grad-soft: linear-gradient(110deg, #09c4f7 0%, #4d68e4 30%, #a33fbd 62%, #fd065a 100%);
+	--sk-field-bg: radial-gradient(70% 90% at 12% 0%, rgb(77 104 228 / 0.7), transparent 60%), radial-gradient(60% 80% at 100% 20%, rgb(253 6 90 / 0.55), transparent 62%), radial-gradient(70% 90% at 55% 110%, rgb(163 63 189 / 0.7), transparent 60%), #14102e;
 	--sk-radius: 20px;
 	--sk-radius-xl: 40px;
 	--sk-ease: cubic-bezier(0.16, 1, 0.3, 1);
@@ -37,33 +44,29 @@ Tags: one-column, custom-colors, custom-menu, custom-logo, editor-style, feature
 	--sk-muted: var(--wp--preset--color--muted);
 	--sk-line: var(--wp--preset--color--border);
 	--sk-surface: var(--wp--preset--color--surface);
-	--sk-accent: #4a4f49;
-	--sk-accent-ink: #f2efe4;
+	--sk-accent: #3f59d6;
+	--sk-accent-ink: #fff;
+	--sk-glow-a: rgb(77 104 228 / 0.14);
+	--sk-glow-b: rgb(163 63 189 / 0.1);
+	--sk-ambient: 0.5;
 
 	color-scheme: light;
-	accent-color: #4a4f49;
+	accent-color: #4d68e4;
 	scroll-behavior: smooth;
 }
 
 /* Dark mode (the default): redefine the preset variables so every block follows. */
-html[data-theme="dark"] {
-	--wp--preset--color--base: #111013;
-	--wp--preset--color--contrast: #f2efe4;
-	--wp--preset--color--surface: #1a191c;
-	--wp--preset--color--muted: #adaa9f;
-	--wp--preset--color--border: #2c2b2e;
-	--sk-accent: #b9c1b1;
-	color-scheme: dark;
-}
-
-/* Without the mode script (or in the editor) the default is the same dark mode. */
+html[data-theme="dark"],
 html:not([data-theme]) {
-	--wp--preset--color--base: #111013;
-	--wp--preset--color--contrast: #f2efe4;
-	--wp--preset--color--surface: #1a191c;
-	--wp--preset--color--muted: #adaa9f;
-	--wp--preset--color--border: #2c2b2e;
-	--sk-accent: #b9c1b1;
+	--wp--preset--color--base: #07070d;
+	--wp--preset--color--contrast: #f3f2fa;
+	--wp--preset--color--surface: #10101a;
+	--wp--preset--color--muted: #a3a2ba;
+	--wp--preset--color--border: #23233a;
+	--sk-accent: #8fa2ff;
+	--sk-glow-a: rgb(77 104 228 / 0.3);
+	--sk-glow-b: rgb(253 6 90 / 0.16);
+	--sk-ambient: 1;
 	color-scheme: dark;
 }
 
@@ -73,46 +76,55 @@ html:not([data-theme]) {
  */
 .sk-tone--ink {
 	--sk-bg: var(--sk-ink);
-	--sk-fg: var(--sk-paper);
-	--sk-muted: #adaa9f;
-	--sk-line: rgb(242 239 228 / 0.14);
-	--sk-surface: #1a191c;
-	--sk-accent: #b9c1b1;
-	--wp--preset--color--base: #111013;
-	--wp--preset--color--contrast: #f2efe4;
-	--wp--preset--color--surface: #1a191c;
-	--wp--preset--color--muted: #adaa9f;
-	--wp--preset--color--border: #2c2b2e;
+	--sk-fg: #f3f2fa;
+	--sk-muted: #a3a2ba;
+	--sk-line: rgb(243 242 250 / 0.12);
+	--sk-surface: #10101a;
+	--sk-accent: #8fa2ff;
+	--sk-glow-a: rgb(77 104 228 / 0.22);
+	--sk-glow-b: rgb(253 6 90 / 0.12);
+	--sk-ambient: 1;
+	--wp--preset--color--base: #07070d;
+	--wp--preset--color--contrast: #f3f2fa;
+	--wp--preset--color--surface: #10101a;
+	--wp--preset--color--muted: #a3a2ba;
+	--wp--preset--color--border: #23233a;
 	color-scheme: dark;
 }
 
 .sk-tone--paper {
 	--sk-bg: var(--sk-paper);
-	--sk-fg: var(--sk-ink);
-	--sk-muted: #5e5c54;
-	--sk-line: rgb(17 16 19 / 0.14);
-	--sk-surface: #faf8f2;
-	--sk-accent: #4a4f49;
-	--wp--preset--color--base: #f2efe4;
-	--wp--preset--color--contrast: #111013;
-	--wp--preset--color--surface: #faf8f2;
-	--wp--preset--color--muted: #5e5c54;
-	--wp--preset--color--border: #d8d3c3;
+	--sk-fg: #0b0b16;
+	--sk-muted: #5a5972;
+	--sk-line: rgb(11 11 22 / 0.12);
+	--sk-surface: #fff;
+	--sk-accent: #3f59d6;
+	--sk-glow-a: rgb(77 104 228 / 0.14);
+	--sk-glow-b: rgb(163 63 189 / 0.1);
+	--sk-ambient: 0.5;
+	--wp--preset--color--base: #f6f5fb;
+	--wp--preset--color--contrast: #0b0b16;
+	--wp--preset--color--surface: #fff;
+	--wp--preset--color--muted: #5a5972;
+	--wp--preset--color--border: #e1dfee;
 	color-scheme: light;
 }
 
+/* Brand field: a deep ink with the logo's blue, purple and red glowing through. */
 .sk-tone--accent {
-	--sk-bg: var(--sk-field);
-	--sk-fg: #f2efe4;
-	--sk-muted: rgb(242 239 228 / 0.78);
-	--sk-line: rgb(242 239 228 / 0.28);
-	--sk-surface: rgb(242 239 228 / 0.1);
-	--sk-accent: #f2efe4;
-	--wp--preset--color--base: #f2efe4;
-	--wp--preset--color--contrast: #111013;
-	--wp--preset--color--surface: rgb(242 239 228 / 0.1);
-	--wp--preset--color--muted: rgb(242 239 228 / 0.78);
-	--wp--preset--color--border: rgb(242 239 228 / 0.28);
+	--sk-bg: #14102e;
+	--sk-fg: #fff;
+	--sk-muted: rgb(255 255 255 / 0.8);
+	--sk-line: rgb(255 255 255 / 0.22);
+	--sk-surface: rgb(255 255 255 / 0.1);
+	--sk-accent: #fff;
+	--sk-glow-a: rgb(255 255 255 / 0.14);
+	--sk-glow-b: rgb(255 111 174 / 0.2);
+	--wp--preset--color--base: #fff;
+	--wp--preset--color--contrast: #0b0b16;
+	--wp--preset--color--surface: rgb(255 255 255 / 0.1);
+	--wp--preset--color--muted: rgb(255 255 255 / 0.8);
+	--wp--preset--color--border: rgb(255 255 255 / 0.22);
 	color-scheme: dark;
 }
 
@@ -207,8 +219,8 @@ h6,
 /* ---------- Browser surfaces ---------- */
 
 ::selection {
-	background: #4a4f49;
-	color: #f2efe4;
+	background: #a33fbd;
+	color: #fff;
 }
 
 html {
@@ -260,23 +272,26 @@ select {
 	min-height: 52px;
 	padding: 0 24px 0 10px;
 	border-radius: 999px;
-	background: var(--sk-field);
-	color: #f2efe4;
+	background: var(--sk-grad);
+	background-size: 160% 100%;
+	background-position: 0 0;
+	color: #fff;
 	font-size: 1rem;
 	font-weight: 500;
 	text-decoration: none;
-	transition: background-color 0.3s ease, gap 0.5s var(--sk-ease);
+	transition: background-position 0.6s var(--sk-ease), gap 0.5s var(--sk-ease), box-shadow 0.4s ease;
 
 	&:hover,
 	&:focus-visible {
-		background: color-mix(in srgb, var(--sk-field) 70%, #f2efe4);
+		background-position: 100% 0;
+		box-shadow: 0 8px 28px -8px rgb(163 63 189 / 0.7);
 		gap: 16px;
 	}
 
 	.sekeco-icon-svg {
 		box-sizing: content-box;
 		padding: 7px;
-		border: 1px solid rgb(242 239 228 / 0.5);
+		border: 1px solid rgb(255 255 255 / 0.55);
 		border-radius: 50%;
 		width: 20px;
 		height: 20px;
@@ -285,10 +300,14 @@ select {
 }
 
 .wp-block-button__link {
-	transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.5s var(--sk-ease);
+	background-size: 160% 100%;
+	background-position: 0 0;
+	transition: background-position 0.6s var(--sk-ease), box-shadow 0.4s ease, background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.5s var(--sk-ease);
 }
 
 .wp-block-button__link:hover {
+	background-position: 100% 0;
+	box-shadow: 0 10px 30px -10px rgb(163 63 189 / 0.75);
 	transform: translateY(-2px);
 }
 
@@ -334,7 +353,8 @@ select {
 	inset: 0;
 	z-index: -1;
 	border-radius: inherit;
-	background: color-mix(in srgb, var(--wp--preset--color--surface) 88%, transparent);
+	background: color-mix(in srgb, var(--wp--preset--color--surface) 82%, transparent);
+	box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--wp--preset--color--contrast) 9%, transparent);
 	-webkit-backdrop-filter: blur(18px) saturate(140%);
 	backdrop-filter: blur(18px) saturate(140%);
 }
@@ -558,7 +578,7 @@ select {
 .sk-menu .wp-block-navigation-item__content:hover,
 .sk-menu .wp-block-navigation-item__content:focus-visible {
 	padding-inline-start: 0.25em;
-	color: #b9c1b1;
+	color: #8fa2ff;
 }
 
 .sk-menu__foot {
@@ -567,7 +587,7 @@ select {
 	align-items: center;
 	justify-content: space-between;
 	gap: 16px 32px;
-	color: #adaa9f;
+	color: #a3a2ba;
 	font-size: 0.9375rem;
 }
 
@@ -583,7 +603,7 @@ select {
 	padding: 0 20px 0 14px;
 	border: 0;
 	border-radius: 999px;
-	background: rgb(242 239 228 / 0.1);
+	background: rgb(243 242 250 / 0.1);
 	color: var(--sk-paper);
 	font: inherit;
 	font-size: 0.9375rem;
@@ -593,7 +613,7 @@ select {
 }
 
 .sk-menu .wp-block-navigation-overlay-close:hover {
-	background: rgb(242 239 228 / 0.2);
+	background: rgb(243 242 250 / 0.2);
 }
 
 /* ---------- Footer ---------- */
@@ -611,7 +631,7 @@ select {
 
 .sekeco-footer a:not(.wp-block-button__link):hover,
 .sekeco-footer a:not(.wp-block-button__link):focus-visible {
-	color: #b9c1b1;
+	color: #8fa2ff;
 	text-decoration: underline;
 }
 
@@ -619,11 +639,18 @@ select {
 	margin: 0;
 	font-family: var(--wp--preset--font-family--display);
 	font-size: clamp(4rem, 28vw, 24rem);
-	font-weight: 600;
-	line-height: 0.8;
+	font-weight: 700;
+	line-height: 0.86;
 	letter-spacing: -0.045em;
-	color: var(--sk-paper);
+	text-transform: lowercase;
 	user-select: none;
+	/* The one place the brand gradient is set as type, like the logo. */
+	background: var(--sk-grad-soft);
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+	-webkit-text-fill-color: transparent;
+	padding-bottom: 0.08em;
 }
 
 /* ---------- Page headers (templates) ---------- */
@@ -679,12 +706,109 @@ select {
 	}
 }
 
-/* Small uppercase label used above section titles. */
+/* Small uppercase label used above section titles, led by a brand-gradient dot. */
 .sk-kicker {
+	display: flex;
+	align-items: center;
+	gap: 10px;
 	margin: 0;
 	font-size: 0.8125rem;
 	font-weight: 400;
 	letter-spacing: 0.04em;
 	text-transform: uppercase;
 	color: var(--sk-muted);
+}
+
+.sk-kicker::before {
+	content: "";
+	flex: none;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: var(--sk-grad);
+}
+
+.sk-hero__kicker,
+.sk-cta__kicker {
+	justify-content: center;
+}
+
+.sk-cta__kicker {
+	justify-content: flex-start;
+}
+
+
+/* ---------- Brand mark ---------- */
+
+.sekeco-header .wp-block-site-title a,
+.sk-menu .wp-block-site-title a {
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.sekeco-header .wp-block-site-title a::before,
+.sk-menu .wp-block-site-title a::before {
+	content: "";
+	width: 1.75em;
+	height: 1.75em;
+	background: url("assets/images/sekeco-mark.svg") center / contain no-repeat;
+}
+
+/* ---------- Pointer-lit cards ---------- */
+
+/*
+ * Cards marked .sk-glow get a neon ring and a soft inner glow that follow the
+ * pointer. The runtime sets --mx and --my; without it the glow simply stays
+ * centred and only shows on hover, so nothing depends on JavaScript.
+ */
+.sk-glow {
+	--mx: 50%;
+	--my: 50%;
+	position: relative;
+	isolation: isolate;
+}
+
+.sk-glow::before,
+.sk-glow::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	border-radius: inherit;
+	pointer-events: none;
+	opacity: 0;
+	transition: opacity 0.45s ease;
+}
+
+.sk-glow::before {
+	z-index: 0;
+	background: radial-gradient(420px circle at var(--mx) var(--my), var(--sk-glow-a), var(--sk-glow-b) 42%, transparent 72%);
+}
+
+.sk-glow::after {
+	z-index: 3;
+	padding: 1px;
+	background: radial-gradient(340px circle at var(--mx) var(--my), #09c4f7, #4d68e4 20%, #a33fbd 44%, #fd065a 68%, rgb(253 6 90 / 0) 100%);
+	-webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+	-webkit-mask-composite: xor;
+	mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+}
+
+.sk-glow:hover {
+	box-shadow: 0 0 44px -14px rgb(163 63 189 / 0.55);
+}
+
+.sk-glow:hover::before,
+.sk-glow:hover::after,
+.sk-glow:focus-within::before,
+.sk-glow:focus-within::after {
+	opacity: 1;
+}
+
+@media (hover: none) {
+
+	.sk-glow::before,
+	.sk-glow::after {
+		display: none;
+	}
 }

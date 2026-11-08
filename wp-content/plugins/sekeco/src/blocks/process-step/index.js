@@ -11,7 +11,9 @@ import { saveNull } from '../../shared/register';
 
 function Edit( { attributes, setAttributes } ) {
 	const { title, description } = attributes;
-	const blockProps = useBlockProps( { className: 'sk-process-step' } );
+	const blockProps = useBlockProps( {
+		className: 'sk-process-step sk-glow',
+	} );
 
 	return (
 		<li { ...blockProps }>

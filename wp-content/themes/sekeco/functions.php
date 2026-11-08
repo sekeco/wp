@@ -55,6 +55,23 @@ function sekeco_print_mode_script() {
 add_action( 'wp_head', 'sekeco_print_mode_script', 0 );
 
 /**
+ * Use the brand mark as the favicon until a site icon is set.
+ *
+ * @return void
+ */
+function sekeco_brand_favicon() {
+	if ( has_site_icon() ) {
+		return;
+	}
+
+	printf(
+		'<link rel="icon" href="%s" type="image/svg+xml">' . "\n",
+		esc_url( get_parent_theme_file_uri( 'assets/images/sekeco-mark.svg' ) )
+	);
+}
+add_action( 'wp_head', 'sekeco_brand_favicon', 2 );
+
+/**
  * Preload the variable fonts declared in theme.json.
  *
  * @return void
@@ -62,6 +79,7 @@ add_action( 'wp_head', 'sekeco_print_mode_script', 0 );
 function sekeco_preload_fonts() {
 	$fonts = array(
 		'assets/fonts/dm-sans-latin-wght-normal.woff2',
+		'assets/fonts/bricolage-grotesque-latin-wght-normal.woff2',
 	);
 
 	foreach ( $fonts as $font ) {

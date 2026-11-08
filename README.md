@@ -6,8 +6,8 @@ Gutenberg — tanpa page builder pihak ketiga.
 
 | Bagian | Lokasi | Versi |
 | --- | --- | --- |
-| Tema | `wp-content/themes/sekeco/` | 2.1.0 |
-| Plugin | `wp-content/plugins/sekeco/` | 0.15.0 |
+| Tema | `wp-content/themes/sekeco/` | 2.2.0 |
+| Plugin | `wp-content/plugins/sekeco/` | 0.16.0 |
 | WordPress | image Docker `wordpress:latest` (diuji 7.1.4) | — |
 | PHP | container | 8.3 |
 | Bun | `packageManager` di plugin | 1.4.4 |
@@ -94,7 +94,8 @@ wp-content/
     templates/            template block (front-page, archive-*, single-*, …)
     parts/                header, footer, sekeco-menu (navigation overlay)
     patterns/             section beranda (home-*), cta, contact, post-grid
-    assets/fonts/         DM Sans (woff2, variabel)
+    assets/fonts/         DM Sans (teks) + Bricolage Grotesque (judul), woff2 variabel
+    assets/images/        sekeco-mark.svg (logo gradasi, favicon bawaan)
     assets/css/           solar-icons.css (dihasilkan, jangan diedit)
   plugins/sekeco/
     sekeco.php            header plugin + module loader
@@ -107,9 +108,11 @@ wp-content/
 
 ## 5. Tema
 
-- **theme.json v3** — palette `base`, `contrast`, `surface`, `muted`, `border`,
-  `accent` (sage), `accent-contrast`, `ink`, `paper` plus tiga warna cover
-  (`salmon`, `red`, `sage-light`); spacing `20`–`80`; radius; font DM Sans.
+- **theme.json v3** — palette brand dari logo: `accent` (biru `#4D68E4`), `violet`
+  (`#A33FBD`), `red` (`#FD065A`), `cyan` (`#09C4F7`), plus `base`, `contrast`,
+  `surface`, `muted`, `border`, `ink`, `paper`; gradient preset `brand` dan
+  `brand-soft` (dipakai tombol); spacing `20`–`80`; judul Bricolage Grotesque,
+  teks DM Sans.
 - **Mode terang/gelap** — `html[data-theme]` diatur skrip di `<head>` (pilihan
   tersimpan; kunjungan pertama selalu gelap, seperti referensi). Mode gelap menimpa variabel preset
   `--wp--preset--color--*`, jadi semua blok ikut. Scope `.sk-tone--ink|paper|accent`
@@ -125,6 +128,9 @@ wp-content/
   bawaan WordPress agar bisa dipilih user: `page-no-title`, `page-wide`,
   `page-landing`, `page-canvas` (page) dan `form-canvas` (`sekeco_form`). Template
   hierarki (`front-page`, `single-portfolio`, `archive-team`, …) otomatis terdaftar.
+- **Kartu bercahaya** — class `.sk-glow` (kartu proyek, capability, process step)
+  menampilkan ring neon + cahaya lembut yang mengikuti kursor; runtime GSAP hanya
+  menulis `--mx`/`--my`, tanpa JavaScript efeknya tetap muncul saat hover.
 - **Rail & header** — header pill dengan menu inline (core Navigation) + hamburger
   yang membuka overlay `sekeco-menu`; rail kiri (toggle Dark/Light vertikal,
   *Scroll to top*, tombol cari) ada di part `footer`.

@@ -1,35 +1,28 @@
 // Cards ---------------------------------------------------------------
 
 .sk-card {
-	--card-bg: #f4b6a4;
-	--card-fg: #111013;
-	--card-muted: rgb(17 16 19 / 0.72);
+	--card-bg: linear-gradient(135deg, #4d68e4, #7a4fd6);
+	--card-fg: #fff;
+	--card-muted: rgb(255 255 255 / 0.86);
 	position: relative;
 	height: 100%;
 	color: var(--card-fg);
 
+	// The four cover tones walk the logo: blue, purple, red, then a deep glass.
 	&--tone-1 {
-		--card-bg: #f4b6a4;
-		--card-fg: #111013;
-		--card-muted: rgb(17 16 19 / 0.72);
+		--card-bg: linear-gradient(135deg, #4d68e4, #7a4fd6);
 	}
 
 	&--tone-2 {
-		--card-bg: #d91842;
-		--card-fg: #f2efe4;
-		--card-muted: rgb(242 239 228 / 0.84);
+		--card-bg: linear-gradient(135deg, #a33fbd, #fd065a);
 	}
 
 	&--tone-3 {
-		--card-bg: #c8ccbd;
-		--card-fg: #111013;
-		--card-muted: rgb(17 16 19 / 0.72);
+		--card-bg: linear-gradient(135deg, #c70d55, #ee4a85);
 	}
 
 	&--tone-4 {
-		--card-bg: #4a4f49;
-		--card-fg: #f2efe4;
-		--card-muted: rgb(242 239 228 / 0.8);
+		--card-bg: radial-gradient(90% 70% at 100% 0%, rgb(77 104 228 / 0.45), transparent 60%), radial-gradient(70% 60% at 0% 100%, rgb(163 63 189 / 0.4), transparent 62%), #12122a;
 	}
 }
 
@@ -71,13 +64,13 @@
 	content: "";
 	position: absolute;
 	inset: 50% 0 0;
-	background: linear-gradient(to top, rgb(17 16 19 / 0.7), rgb(17 16 19 / 0));
+	background: linear-gradient(to top, rgb(7 7 13 / 0.78), rgb(7 7 13 / 0));
 	pointer-events: none;
 }
 
 .sk-card--has-image {
-	--card-fg: #f2efe4;
-	--card-muted: rgb(242 239 228 / 0.86);
+	--card-fg: #fff;
+	--card-muted: rgb(255 255 255 / 0.88);
 }
 
 .sk-card__mark {
@@ -87,7 +80,7 @@
 	height: 100%;
 	font-family: var(--wp--preset--font-family--display);
 	font-size: clamp(3rem, 8vw, 6rem);
-	font-weight: 500;
+	font-weight: 600;
 	letter-spacing: -0.04em;
 }
 
@@ -105,7 +98,7 @@
 	display: block;
 	font-family: var(--wp--preset--font-family--display);
 	font-size: clamp(1.5rem, 2.2vw, 2rem);
-	font-weight: 500;
+	font-weight: 600;
 	line-height: 1.1;
 	letter-spacing: -0.035em;
 	text-wrap: balance;
@@ -170,8 +163,8 @@
 	height: 48px;
 	margin: clamp(14px, 1.6vw, 22px);
 	border-radius: 999px;
-	background: #f2efe4;
-	color: #111013;
+	background: #fff;
+	color: #0b0b16;
 	opacity: 0;
 	transform: translate(-6px, 6px) scale(0.85);
 	transition: opacity 0.4s var(--sk-ease, ease), transform 0.5s var(--sk-ease, ease);
@@ -407,7 +400,7 @@
 .sk-row__name {
 	font-family: var(--wp--preset--font-family--display);
 	font-size: clamp(1.5rem, 3.4vw, 2.75rem);
-	font-weight: 500;
+	font-weight: 600;
 	line-height: 1.05;
 	letter-spacing: -0.03em;
 }

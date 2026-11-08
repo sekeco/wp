@@ -16,7 +16,7 @@ import { saveNull } from '../../shared/register';
 
 function Edit( { attributes, setAttributes } ) {
 	const { icon, title, description, tags, linkUrl } = attributes;
-	const blockProps = useBlockProps( { className: 'sk-capability' } );
+	const blockProps = useBlockProps( { className: 'sk-capability sk-glow' } );
 	const tagList = tags
 		.split( ',' )
 		.map( ( tag ) => tag.trim() )

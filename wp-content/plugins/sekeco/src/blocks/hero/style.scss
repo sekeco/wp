@@ -9,6 +9,24 @@
 	overflow: clip;
 }
 
+// Brand light behind the headline: the logo's blue, purple and red, blurred.
+.sk-hero::before {
+	content: "";
+	position: absolute;
+	inset: -15% -10% auto;
+	z-index: 0;
+	height: 80%;
+	background: radial-gradient(38% 55% at 18% 25%, rgb(77 104 228 / 0.5), transparent 70%), radial-gradient(34% 50% at 82% 12%, rgb(253 6 90 / 0.34), transparent 70%), radial-gradient(42% 60% at 50% 0%, rgb(163 63 189 / 0.44), transparent 70%);
+	opacity: var(--sk-ambient, 1);
+	filter: blur(30px);
+	pointer-events: none;
+}
+
+.sk-hero > * {
+	position: relative;
+	z-index: 1;
+}
+
 .sk-hero__stage {
 	box-sizing: border-box;
 	display: flex;
@@ -27,7 +45,7 @@
 	max-width: 17ch;
 	font-family: var(--wp--preset--font-family--display);
 	font-size: clamp(2.5rem, 4.7vw, 4.5rem);
-	font-weight: 500;
+	font-weight: 600;
 	line-height: 1;
 	letter-spacing: -0.045em;
 	text-wrap: balance;
