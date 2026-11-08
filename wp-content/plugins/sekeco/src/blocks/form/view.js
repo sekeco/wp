@@ -298,10 +298,18 @@ const enhance = ( form ) => {
 		form.classList.add( 'is-busy' );
 
 		try {
+			const headers = { Accept: 'application/json' };
+
+			// REST reads cookie auth only when the request proves it is not CSRF.
+			if ( form.dataset.sekecoRestNonce ) {
+				headers[ 'X-WP-Nonce' ] = form.dataset.sekecoRestNonce;
+			}
+
 			const response = await fetch( rest, {
 				method: 'POST',
 				body: new FormData( form ),
-				headers: { Accept: 'application/json' },
+				headers,
+				credentials: 'same-origin',
 			} );
 
 			const payload = await response.json().catch( () => ( {} ) );

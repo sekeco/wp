@@ -221,6 +221,9 @@ function sekeco_render_form( $form_id ) {
 		data-rest="<?php echo esc_url( $rest_url ); ?>"
 		data-success="<?php echo esc_attr( $settings['success'] ); ?>"
 		data-redirect="<?php echo esc_url( $settings['redirect'] ); ?>"
+		<?php if ( is_user_logged_in() ) : ?>
+			data-sekeco-rest-nonce="<?php echo esc_attr( wp_create_nonce( 'wp_rest' ) ); ?>"
+		<?php endif; ?>
 		<?php echo $is_survey ? 'data-sekeco-survey' : ''; ?>
 		novalidate
 	>
