@@ -1,0 +1,59 @@
+{
+	"$schema": "https://schemas.wp.org/wp/6.7/theme.json",
+	"version": 3,
+	"title": "Sunrise",
+	"description": "A warm, paper-toned palette with ember accents.",
+	"settings": {
+		"color": {
+			"palette": [
+				{
+					"color": "#FFFDF9",
+					"name": "Base",
+					"slug": "base"
+				},
+				{
+					"color": "#1C1917",
+					"name": "Contrast",
+					"slug": "contrast"
+				},
+				{
+					"color": "#F5F0E8",
+					"name": "Surface",
+					"slug": "surface"
+				},
+				{
+					"color": "#EA580C",
+					"name": "Accent",
+					"slug": "accent"
+				},
+				{
+					"color": "#DB2777",
+					"name": "Accent 2",
+					"slug": "accent-2"
+				},
+				{
+					"color": "#78716C",
+					"name": "Muted",
+					"slug": "muted"
+				},
+				{
+					"color": "#E7E0D6",
+					"name": "Border",
+					"slug": "border"
+				}
+			],
+			"gradients": [
+				{
+					"gradient": "linear-gradient(135deg, #EA580C 0%, #DB2777 100%)",
+					"name": "Accent",
+					"slug": "accent"
+				},
+				{
+					"gradient": "linear-gradient(180deg, #FFFDF9 0%, #F5F0E8 100%)",
+					"name": "Fade",
+					"slug": "fade"
+				}
+			]
+		}
+	}
+}
