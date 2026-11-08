@@ -20,7 +20,7 @@ const TEMPLATE = [
 	[
 		'core/buttons',
 		{},
-		[ [ 'core/button', { text: 'Start a project', url: '/contact/' } ] ],
+		[ [ 'core/button', { text: "Let's Collaborate", url: '/contact/' } ] ],
 	],
 ];
 

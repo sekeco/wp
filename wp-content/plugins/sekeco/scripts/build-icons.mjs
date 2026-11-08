@@ -24,6 +24,7 @@ const ICONS = [
 	'arrow-right-up',
 	'arrow-left',
 	'arrow-down',
+	'arrow-up',
 	'alt-arrow-down',
 	'alt-arrow-up',
 	'alt-arrow-left',
@@ -134,12 +135,18 @@ const BINDINGS = [
 		icon: 'close-circle',
 	},
 	{
-		selector: '.sk-float-search .wp-block-search__button',
-		icon: 'magnifer',
+		// Row arrow in the drawer menu: drawn after the link text, not replacing a glyph.
+		selector: '.sk-drawer .wp-block-navigation-item__content',
+		icon: 'arrow-right-up',
+		pseudo: '::after',
+		size: 22,
 	},
 ];
-for ( const { selector, icon } of BINDINGS ) {
-	themeCss += `${ selector } svg {\n\tdisplay: none;\n}\n${ selector }::before {\n\tcontent: "";\n\tdisplay: block;\n\tflex: none;\n\twidth: 24px;\n\theight: 24px;\n\tbackground-color: currentColor;\n\t-webkit-mask: ${ dataUri( out[ icon ] ) } center / contain no-repeat;\n\tmask: ${ dataUri( out[ icon ] ) } center / contain no-repeat;\n}\n`;
+for ( const { selector, icon, pseudo = '::before', size = 24 } of BINDINGS ) {
+	if ( pseudo === '::before' ) {
+		themeCss += `${ selector } svg {\n\tdisplay: none;\n}\n`;
+	}
+	themeCss += `${ selector }${ pseudo } {\n\tcontent: "";\n\tdisplay: block;\n\tflex: none;\n\twidth: ${ size }px;\n\theight: ${ size }px;\n\tbackground-color: currentColor;\n\t-webkit-mask: ${ dataUri( out[ icon ] ) } center / contain no-repeat;\n\tmask: ${ dataUri( out[ icon ] ) } center / contain no-repeat;\n}\n`;
 }
 
 const themeDir = resolve( root, '../../themes/sekeco/assets/css' );

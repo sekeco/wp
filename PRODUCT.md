@@ -35,7 +35,7 @@ Content is edited by non-developers in the WordPress block editor and Site Edito
 
 - Name: Sekeco (lowercase wordmark acceptable).
 - The owner wants the site to look and read brand new. The previous site (sekeco.github.io) is an anti-reference for look and copy; do not reuse its text, numbers, or testimonials.
-- Brand colour is the logo's gradient: blue `#4D68E4`, purple `#A33FBD`, red-pink `#FD065A` with a cyan `#09C4F7` glint (from the ring mark, saved as `assets/images/sekeco-mark.svg`). The site should feel modern, techy and AI-capable, with some cards lit by a neon glow that follows the pointer, while keeping the layout and structure consistent.
+- Brand colour is the logo's gradient: blue `#4D68E4`, purple `#A33FBD`, red-pink `#FD065A` with a cyan `#09C4F7` glint (from the ring mark, saved as `assets/images/sekeco-mark.svg`). The site should feel modern, techy and AI-capable, with cards that respond to the pointer (a soft spotlight, glare, tilt) taken from React Bits and Magic UI rather than a coloured neon glow, while keeping the layout and structure consistent.
 - Headings are set in Bricolage Grotesque.
 - Reference for the design system (not to be copied wholesale): Ohio Theme demo 8, https://ohio.clbthemes.com/demo8/homedemo8-elementor/. Binding traits to carry: modern, warm dark and light modes with a visible switcher, rounded cards, large type-led sections, project cards with overlaid titles, GSAP-driven motion and parallax, light transitions.
 

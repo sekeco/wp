@@ -1,0 +1,107 @@
+// Registered so the ring can be driven by the scroll timeline below and
+// interpolated; view.js sets the same value as a fallback.
+@property --sk-progress {
+	syntax: "<number>";
+	inherits: true;
+	initial-value: 0;
+}
+
+@keyframes sk-progress-drive {
+
+	from {
+		--sk-progress: 0;
+	}
+
+	to {
+		--sk-progress: 1;
+	}
+}
+
+// Right-edge button; a brand-gradient ring fills as you scroll.
+.sk-scrolltop {
+	--sk-progress: 0;
+	position: fixed;
+	right: 22px;
+	bottom: 18px;
+	z-index: 40;
+	display: grid;
+	place-items: center;
+	box-sizing: border-box;
+	width: 56px;
+	height: 56px;
+	padding: 0;
+	border: 0;
+	border-radius: 50%;
+	background: color-mix(in srgb, var(--wp--preset--color--surface) 78%, transparent);
+	color: var(--wp--preset--color--contrast);
+	cursor: pointer;
+	opacity: 0;
+	pointer-events: none;
+	transform: translateY(16px) scale(0.9);
+	transition: opacity 0.4s ease, transform 0.6s var(--sk-ease, ease);
+	-webkit-backdrop-filter: blur(14px) saturate(140%);
+	backdrop-filter: blur(14px) saturate(140%);
+
+	// The ring: a conic gradient cut to a 3px band. Every colour stop scales
+	// with the progress so the stops stay in order at any value (fixed stops at
+	// 25% and 55% were clamped below 55% and froze the ring there).
+	&::before {
+		content: "";
+		position: absolute;
+		inset: 0;
+		border-radius: inherit;
+		padding: 3px;
+		background: conic-gradient(from 0deg, #09c4f7 0%, #4d68e4 calc(var(--sk-progress) * 25%), #a33fbd calc(var(--sk-progress) * 55%), #fd065a calc(var(--sk-progress) * 100%), color-mix(in srgb, var(--wp--preset--color--contrast) 14%, transparent) calc(var(--sk-progress) * 100%));
+		-webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+		-webkit-mask-composite: xor;
+		mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+	}
+
+	&[hidden] {
+		display: none;
+	}
+
+	&.is-visible {
+		opacity: 1;
+		pointer-events: auto;
+		transform: none;
+	}
+
+	.sekeco-icon-svg {
+		transition: transform 0.6s cubic-bezier(0.34, 1.4, 0.64, 1);
+	}
+
+	&:hover .sekeco-icon-svg,
+	&:focus-visible .sekeco-icon-svg {
+		transform: translateY(-3px);
+	}
+
+	@media (max-width: 599px) {
+		right: 12px;
+		bottom: 12px;
+		width: 52px;
+		height: 52px;
+	}
+}
+
+// Where the browser supports scroll timelines the ring follows the page with
+// no script at all.
+@supports (animation-timeline: scroll()) {
+
+	.sk-scrolltop {
+		animation: sk-progress-drive linear both;
+		animation-timeline: scroll(root block);
+	}
+}
+
+.sk-scrolltop--static {
+	position: static;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+	.sk-scrolltop,
+	.sk-scrolltop .sekeco-icon-svg {
+		transition: none;
+	}
+}

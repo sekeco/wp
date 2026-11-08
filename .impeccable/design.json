@@ -1,64 +1,430 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-08T12:00:00Z",
+  "generatedAt": "2026-11-08T18:00:00Z",
   "title": "Design System: Sekeco",
   "extensions": {
     "colorMeta": {
-      "brand-blue": { "role": "primary", "displayName": "Brand Blue", "canonical": "#4D68E4", "tonalRamp": ["#141C4A", "#1F2D7A", "#2F43B0", "#3F59D6", "#4D68E4", "#7388EC", "#A3B1F3", "#D6DCFA"] },
-      "brand-purple": { "role": "primary", "displayName": "Brand Purple", "canonical": "#A33FBD", "tonalRamp": ["#2E0F36", "#511E5F", "#762C88", "#8C37A5", "#A33FBD", "#B96BCE", "#D09BDE", "#E9CDF0"] },
-      "brand-red": { "role": "primary", "displayName": "Brand Red-Pink", "canonical": "#FD065A", "tonalRamp": ["#4A0119", "#7A0430", "#B00547", "#DB0653", "#FD065A", "#FE4A83", "#FE8CAE", "#FFCADA"] },
-      "brand-cyan": { "role": "secondary", "displayName": "Brand Cyan", "canonical": "#09C4F7", "tonalRamp": ["#032D3A", "#05586F", "#078CB0", "#08ABD9", "#09C4F7", "#4DD5F9", "#8FE4FB", "#CCF4FD"] },
-      "brand-pink": { "role": "secondary", "displayName": "Glow Pink", "canonical": "#FF6FAE", "tonalRamp": ["#4D1030", "#7D1F4F", "#B03370", "#E04C8E", "#FF6FAE", "#FF93C3", "#FFB9D8", "#FFDEEC"] },
-      "accent-on-paper": { "role": "primary", "displayName": "Accent on Paper", "canonical": "#3F59D6", "tonalRamp": ["#141C4A", "#1F2D7A", "#2B3FA8", "#3F59D6", "#5C73E0", "#8091E8", "#AEBAF1", "#DCE1F9"] },
-      "accent-on-ink": { "role": "primary", "displayName": "Accent on Ink", "canonical": "#8FA2FF", "tonalRamp": ["#2A3680", "#3E4EB5", "#5A6EE0", "#7388F5", "#8FA2FF", "#A9B8FF", "#C5D0FF", "#E3E8FF"] },
-      "ink": { "role": "neutral", "displayName": "Deep Ink", "canonical": "#07070D", "tonalRamp": ["#07070D", "#0B0B16", "#10101A", "#18182A", "#23233A", "#3C3C58", "#6A6A88", "#A3A2BA"] },
-      "surface-dark": { "role": "neutral", "displayName": "Ink Surface", "canonical": "#10101A", "tonalRamp": ["#07070D", "#0B0B14", "#10101A", "#171724", "#23233A", "#3C3C58", "#6A6A88", "#A3A2BA"] },
-      "text-dark": { "role": "neutral", "displayName": "Moonlit Text", "canonical": "#F3F2FA", "tonalRamp": ["#6A6A88", "#8A89A4", "#A3A2BA", "#C4C3D6", "#DAD9E8", "#E8E7F2", "#F3F2FA", "#FBFBFE"] },
-      "muted-dark": { "role": "neutral", "displayName": "Dusk Muted", "canonical": "#A3A2BA", "tonalRamp": ["#3C3C58", "#56566F", "#706F8A", "#898AA3", "#A3A2BA", "#B8B7CA", "#CDCCDA", "#E3E2EC"] },
-      "border-dark": { "role": "neutral", "displayName": "Night Border", "canonical": "#23233A", "tonalRamp": ["#07070D", "#10101A", "#18182A", "#23233A", "#2F2F4A", "#3C3C58", "#505070", "#6A6A88"] },
-      "paper": { "role": "neutral", "displayName": "Lavender Paper", "canonical": "#F6F5FB", "tonalRamp": ["#5A5972", "#8D8CA3", "#B9B8CC", "#D3D1E3", "#E1DFEE", "#ECEAF6", "#F6F5FB", "#FDFDFF"] },
-      "surface-light": { "role": "neutral", "displayName": "White Surface", "canonical": "#FFFFFF", "tonalRamp": ["#5A5972", "#9A99B0", "#C8C7D8", "#E1DFEE", "#EDEBF6", "#F6F5FB", "#FBFAFE", "#FFFFFF"] },
-      "text-light": { "role": "neutral", "displayName": "Ink Text", "canonical": "#0B0B16", "tonalRamp": ["#07070D", "#0B0B16", "#1C1C2E", "#32324A", "#4A4A64", "#5A5972", "#7E7D96", "#A3A2BA"] },
-      "muted-light": { "role": "neutral", "displayName": "Slate Muted", "canonical": "#5A5972", "tonalRamp": ["#1C1C2E", "#32324A", "#46455E", "#5A5972", "#76758D", "#9291A8", "#B2B1C4", "#D3D2E0"] },
-      "border-light": { "role": "neutral", "displayName": "Mist Border", "canonical": "#E1DFEE", "tonalRamp": ["#5A5972", "#8D8CA3", "#B9B8CC", "#D3D1E3", "#E1DFEE", "#EBE9F5", "#F2F1F9", "#F9F8FD"] },
-      "brand-field-base": { "role": "neutral", "displayName": "Brand Field Base", "canonical": "#14102E", "tonalRamp": ["#07070D", "#0C0A1C", "#14102E", "#1F1946", "#2C2461", "#403785", "#6A62AD", "#A8A3D2"] }
+      "brand-blue": {
+        "role": "primary",
+        "displayName": "Brand Blue",
+        "canonical": "#4D68E4",
+        "tonalRamp": [
+          "#141C4A",
+          "#1F2D7A",
+          "#2F43B0",
+          "#3F59D6",
+          "#4D68E4",
+          "#7388EC",
+          "#A3B1F3",
+          "#D6DCFA"
+        ]
+      },
+      "brand-purple": {
+        "role": "primary",
+        "displayName": "Brand Purple",
+        "canonical": "#A33FBD",
+        "tonalRamp": [
+          "#2E0F36",
+          "#511E5F",
+          "#762C88",
+          "#8C37A5",
+          "#A33FBD",
+          "#B96BCE",
+          "#D09BDE",
+          "#E9CDF0"
+        ]
+      },
+      "brand-red": {
+        "role": "primary",
+        "displayName": "Brand Red-Pink",
+        "canonical": "#FD065A",
+        "tonalRamp": [
+          "#4A0119",
+          "#7A0430",
+          "#B00547",
+          "#DB0653",
+          "#FD065A",
+          "#FE4A83",
+          "#FE8CAE",
+          "#FFCADA"
+        ]
+      },
+      "brand-cyan": {
+        "role": "secondary",
+        "displayName": "Brand Cyan",
+        "canonical": "#09C4F7",
+        "tonalRamp": [
+          "#032D3A",
+          "#05586F",
+          "#078CB0",
+          "#08ABD9",
+          "#09C4F7",
+          "#4DD5F9",
+          "#8FE4FB",
+          "#CCF4FD"
+        ]
+      },
+      "brand-pink": {
+        "role": "secondary",
+        "displayName": "Glow Pink",
+        "canonical": "#FF6FAE",
+        "tonalRamp": [
+          "#4D1030",
+          "#7D1F4F",
+          "#B03370",
+          "#E04C8E",
+          "#FF6FAE",
+          "#FF93C3",
+          "#FFB9D8",
+          "#FFDEEC"
+        ]
+      },
+      "accent-on-paper": {
+        "role": "primary",
+        "displayName": "Accent on Paper",
+        "canonical": "#3F59D6",
+        "tonalRamp": [
+          "#141C4A",
+          "#1F2D7A",
+          "#2B3FA8",
+          "#3F59D6",
+          "#5C73E0",
+          "#8091E8",
+          "#AEBAF1",
+          "#DCE1F9"
+        ]
+      },
+      "accent-on-ink": {
+        "role": "primary",
+        "displayName": "Accent on Ink",
+        "canonical": "#8FA2FF",
+        "tonalRamp": [
+          "#2A3680",
+          "#3E4EB5",
+          "#5A6EE0",
+          "#7388F5",
+          "#8FA2FF",
+          "#A9B8FF",
+          "#C5D0FF",
+          "#E3E8FF"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Deep Ink",
+        "canonical": "#07070D",
+        "tonalRamp": [
+          "#07070D",
+          "#0B0B16",
+          "#10101A",
+          "#18182A",
+          "#23233A",
+          "#3C3C58",
+          "#6A6A88",
+          "#A3A2BA"
+        ]
+      },
+      "surface-dark": {
+        "role": "neutral",
+        "displayName": "Ink Surface",
+        "canonical": "#10101A",
+        "tonalRamp": [
+          "#07070D",
+          "#0B0B14",
+          "#10101A",
+          "#171724",
+          "#23233A",
+          "#3C3C58",
+          "#6A6A88",
+          "#A3A2BA"
+        ]
+      },
+      "text-dark": {
+        "role": "neutral",
+        "displayName": "Moonlit Text",
+        "canonical": "#F3F2FA",
+        "tonalRamp": [
+          "#6A6A88",
+          "#8A89A4",
+          "#A3A2BA",
+          "#C4C3D6",
+          "#DAD9E8",
+          "#E8E7F2",
+          "#F3F2FA",
+          "#FBFBFE"
+        ]
+      },
+      "muted-dark": {
+        "role": "neutral",
+        "displayName": "Dusk Muted",
+        "canonical": "#A3A2BA",
+        "tonalRamp": [
+          "#3C3C58",
+          "#56566F",
+          "#706F8A",
+          "#898AA3",
+          "#A3A2BA",
+          "#B8B7CA",
+          "#CDCCDA",
+          "#E3E2EC"
+        ]
+      },
+      "border-dark": {
+        "role": "neutral",
+        "displayName": "Night Border",
+        "canonical": "#23233A",
+        "tonalRamp": [
+          "#07070D",
+          "#10101A",
+          "#18182A",
+          "#23233A",
+          "#2F2F4A",
+          "#3C3C58",
+          "#505070",
+          "#6A6A88"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Lavender Paper",
+        "canonical": "#F6F5FB",
+        "tonalRamp": [
+          "#5A5972",
+          "#8D8CA3",
+          "#B9B8CC",
+          "#D3D1E3",
+          "#E1DFEE",
+          "#ECEAF6",
+          "#F6F5FB",
+          "#FDFDFF"
+        ]
+      },
+      "surface-light": {
+        "role": "neutral",
+        "displayName": "White Surface",
+        "canonical": "#FFFFFF",
+        "tonalRamp": [
+          "#5A5972",
+          "#9A99B0",
+          "#C8C7D8",
+          "#E1DFEE",
+          "#EDEBF6",
+          "#F6F5FB",
+          "#FBFAFE",
+          "#FFFFFF"
+        ]
+      },
+      "text-light": {
+        "role": "neutral",
+        "displayName": "Ink Text",
+        "canonical": "#0B0B16",
+        "tonalRamp": [
+          "#07070D",
+          "#0B0B16",
+          "#1C1C2E",
+          "#32324A",
+          "#4A4A64",
+          "#5A5972",
+          "#7E7D96",
+          "#A3A2BA"
+        ]
+      },
+      "muted-light": {
+        "role": "neutral",
+        "displayName": "Slate Muted",
+        "canonical": "#5A5972",
+        "tonalRamp": [
+          "#1C1C2E",
+          "#32324A",
+          "#46455E",
+          "#5A5972",
+          "#76758D",
+          "#9291A8",
+          "#B2B1C4",
+          "#D3D2E0"
+        ]
+      },
+      "border-light": {
+        "role": "neutral",
+        "displayName": "Mist Border",
+        "canonical": "#E1DFEE",
+        "tonalRamp": [
+          "#5A5972",
+          "#8D8CA3",
+          "#B9B8CC",
+          "#D3D1E3",
+          "#E1DFEE",
+          "#EBE9F5",
+          "#F2F1F9",
+          "#F9F8FD"
+        ]
+      },
+      "brand-field-base": {
+        "role": "neutral",
+        "displayName": "Brand Field Base",
+        "canonical": "#14102E",
+        "tonalRamp": [
+          "#07070D",
+          "#0C0A1C",
+          "#14102E",
+          "#1F1946",
+          "#2C2461",
+          "#403785",
+          "#6A62AD",
+          "#A8A3D2"
+        ]
+      }
     },
     "typographyMeta": {
-      "display": { "displayName": "Display", "purpose": "h1, hero, closing field and menu headlines; Bricolage Grotesque 600, -0.04em to -0.045em. Secondary words in hero and CTA titles dim to the muted colour." },
-      "headline": { "displayName": "Headline", "purpose": "h2 and section titles." },
-      "title": { "displayName": "Title", "purpose": "Card, capability and process titles." },
-      "body": { "displayName": "Body", "purpose": "DM Sans running text at 82% of the text colour; leads are muted, 52ch or less." },
-      "label": { "displayName": "Label", "purpose": "Small uppercase section label; carried by the build, not a rule for new surfaces." }
+      "display": {
+        "displayName": "Display",
+        "purpose": "h1, hero, closing field and menu headlines; Bricolage Grotesque 600, -0.04em to -0.045em. Secondary words in hero and CTA titles dim to the muted colour."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "h2 and section titles."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Card, capability and process titles."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "DM Sans running text at 82% of the text colour; leads are muted, 52ch or less."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Small uppercase section label; carried by the build, not a rule for new surfaces."
+      }
     },
     "shadows": [
-      { "name": "button-glow", "value": "0 10px 30px -10px rgb(163 63 189 / 0.75)", "purpose": "Hovered buttons, with a 2px lift." },
-      { "name": "pill-glow", "value": "0 8px 28px -8px rgb(163 63 189 / 0.7)", "purpose": "Hovered and focused pill links." },
-      { "name": "card-glow", "value": "0 0 44px -14px rgb(163 63 189 / 0.55)", "purpose": "Hovered pointer-lit cards." },
-      { "name": "pointer-ring", "value": "radial-gradient(340px circle at var(--mx) var(--my), #09C4F7, #4D68E4 20%, #A33FBD 44%, #FD065A 68%, transparent)", "purpose": "1px masked neon ring following the pointer; hover and focus-within only, hidden on touch." },
-      { "name": "card-scrim", "value": "linear-gradient(to top, rgb(7 7 13 / 0.78), rgb(7 7 13 / 0))", "purpose": "Legibility gradient under overlaid text on photographic cover cards; not a shadow." },
-      { "name": "header-glass", "value": "blur(18px) saturate(140%)", "purpose": "backdrop-filter on the header pseudo-element only." }
+      {
+        "name": "button-glow",
+        "value": "0 10px 30px -10px rgb(163 63 189 / 0.75)",
+        "purpose": "Hovered buttons, with a 2px lift."
+      },
+      {
+        "name": "pill-glow",
+        "value": "0 8px 28px -8px rgb(163 63 189 / 0.7)",
+        "purpose": "Hovered and focused pill links."
+      },
+      {
+        "name": "spotlight",
+        "value": "radial-gradient(240px circle at var(--sl-x) var(--sl-y), neutral light, transparent) fill plus 144px 1px masked edge",
+        "purpose": "Neutral pointer spotlight on .sk-glow cards (white on ink, ink on paper); presence --sl-p fades within 80px, --sl-flare on press; hidden on touch."
+      },
+      {
+        "name": "glare-band",
+        "value": "linear-gradient(90deg, transparent, rgb(255 255 255 / 0.1) 30%, rgb(255 255 255 / 0.42) 50%, rgb(255 255 255 / 0.1) 70%, transparent), rotate(25deg), mix-blend-mode screen",
+        "purpose": "Sweep across photo cards on hover."
+      },
+      {
+        "name": "card-scrim",
+        "value": "linear-gradient(to top, rgb(7 7 13 / 0.78), rgb(7 7 13 / 0))",
+        "purpose": "Legibility gradient under overlaid text on photographic cover cards; not a shadow."
+      },
+      {
+        "name": "header-glass",
+        "value": "blur(18px) saturate(140%)",
+        "purpose": "backdrop-filter on the header pseudo-element only."
+      }
     ],
     "gradients": [
-      { "name": "brand", "value": "linear-gradient(110deg, #4D68E4 0%, #A33FBD 48%, #FD065A 100%)", "purpose": "Button fills, pill links, kicker dot." },
-      { "name": "brand-soft", "value": "linear-gradient(110deg, #09C4F7 0%, #4D68E4 30%, #A33FBD 62%, #FD065A 100%)", "purpose": "Button hover and the footer wordmark." },
-      { "name": "tone-1", "value": "linear-gradient(135deg, #4D68E4, #7A4FD6)", "purpose": "Cover card, blue to violet." },
-      { "name": "tone-2", "value": "linear-gradient(135deg, #A33FBD, #FD065A)", "purpose": "Cover card, violet to red." },
-      { "name": "tone-3", "value": "linear-gradient(135deg, #C70D55, #EE4A85)", "purpose": "Cover card, red to pink." },
-      { "name": "tone-4", "value": "radial-gradient(90% 70% at 100% 0%, rgb(77 104 228 / 0.45), transparent 60%), radial-gradient(70% 60% at 0% 100%, rgb(163 63 189 / 0.4), transparent 62%), #12122A", "purpose": "Cover card, deep glass." },
-      { "name": "field-mesh", "value": "radial-gradient(70% 90% at 12% 0%, rgb(77 104 228 / 0.7), transparent 60%), radial-gradient(60% 80% at 100% 20%, rgb(253 6 90 / 0.55), transparent 62%), radial-gradient(70% 90% at 55% 110%, rgb(163 63 189 / 0.7), transparent 60%), #14102E", "purpose": "Closing field background (--sk-field-bg)." }
+      {
+        "name": "brand",
+        "value": "linear-gradient(110deg, #4D68E4 0%, #A33FBD 48%, #FD065A 100%)",
+        "purpose": "Button fills, pill links, kicker dot."
+      },
+      {
+        "name": "brand-soft",
+        "value": "linear-gradient(110deg, #09C4F7 0%, #4D68E4 30%, #A33FBD 62%, #FD065A 100%)",
+        "purpose": "Button hover and the footer wordmark."
+      },
+      {
+        "name": "tone-1",
+        "value": "linear-gradient(135deg, #4D68E4, #7A4FD6)",
+        "purpose": "Cover card, blue to violet."
+      },
+      {
+        "name": "tone-2",
+        "value": "linear-gradient(135deg, #A33FBD, #FD065A)",
+        "purpose": "Cover card, violet to red."
+      },
+      {
+        "name": "tone-3",
+        "value": "linear-gradient(135deg, #C70D55, #EE4A85)",
+        "purpose": "Cover card, red to pink."
+      },
+      {
+        "name": "tone-4",
+        "value": "radial-gradient(90% 70% at 100% 0%, rgb(77 104 228 / 0.45), transparent 60%), radial-gradient(70% 60% at 0% 100%, rgb(163 63 189 / 0.4), transparent 62%), #12122A",
+        "purpose": "Cover card, deep glass."
+      },
+      {
+        "name": "field-mesh",
+        "value": "radial-gradient(70% 90% at 12% 0%, rgb(77 104 228 / 0.7), transparent 60%), radial-gradient(60% 80% at 100% 20%, rgb(253 6 90 / 0.55), transparent 62%), radial-gradient(70% 90% at 55% 110%, rgb(163 63 189 / 0.7), transparent 60%), #14102E",
+        "purpose": "Closing field background (--sk-field-bg)."
+      },
+      {
+        "name": "border-beam",
+        "value": "linear-gradient(to left, #09C4F7, #A33FBD 45%, transparent)",
+        "purpose": "220px beam travelling the closing card outline (offset-path, 9s linear)."
+      }
     ],
     "motion": [
-      { "name": "ease-out-expo", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Default easing (--sk-ease): sliding gradients, card image scale, menu indent, view transitions." },
-      { "name": "gradient-slide", "value": "0.6s background-position", "purpose": "Button and pill link hover." },
-      { "name": "image-zoom", "value": "0.9s scale 1.1 to 1.18", "purpose": "Cover photograph on hover." },
-      { "name": "marquee", "value": "linear infinite, 40s default", "purpose": "Marquee track; pauses on hover, static under reduced motion." },
-      { "name": "reduced-motion", "value": "animation and transition durations 0.01ms", "purpose": "Global fallback; GSAP reveal states exist only under html.sekeco-js with a 3s CSS failsafe." }
+      {
+        "name": "ease-out-expo",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Default easing (--sk-ease): sliding gradients, card image scale, menu indent, view transitions."
+      },
+      {
+        "name": "gradient-slide",
+        "value": "0.6s background-position",
+        "purpose": "Button and pill link hover."
+      },
+      {
+        "name": "image-zoom",
+        "value": "0.9s scale 1.1 to 1.18",
+        "purpose": "Cover photograph on hover."
+      },
+      {
+        "name": "marquee",
+        "value": "linear infinite, 40s default",
+        "purpose": "Marquee track; pauses on hover, static under reduced motion."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "animation and transition durations 0.01ms",
+        "purpose": "Global fallback; GSAP reveal states exist only under html.sekeco-js with a 3s CSS failsafe."
+      },
+      {
+        "name": "tilt",
+        "value": "about 5deg, perspective 1000px, quickTo 0.5s power3.out",
+        "purpose": "Project cards toward the pointer."
+      },
+      {
+        "name": "border-beam",
+        "value": "9s linear infinite offset-distance 0 to 100%",
+        "purpose": "Closing card; parked at 12% under reduced motion."
+      }
     ],
     "breakpoints": [
-      { "name": "mobile-cta", "value": "600px" },
-      { "name": "sm", "value": "640px" },
-      { "name": "nav", "value": "1000px" },
-      { "name": "rail", "value": "1100px" }
+      {
+        "name": "mobile-cta",
+        "value": "600px"
+      },
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "nav",
+        "value": "1000px"
+      },
+      {
+        "name": "rail",
+        "value": "1100px"
+      }
     ]
   },
   "components": [
@@ -98,9 +464,9 @@
       "name": "Cover Card",
       "kind": "card",
       "refersTo": "card-cover",
-      "description": "Tone-gradient project card with title bottom-left; a white arrow appears on hover, and a neon ring follows the pointer.",
+      "description": "Tone-gradient project card with title bottom-left; a white arrow appears on hover, a neutral spotlight follows the pointer and the card tilts about 5deg.",
       "html": "<a class=\"ds-cover\" href=\"#\"><span class=\"ds-cover-go\"><svg viewBox=\"0 0 24 24\" width=\"22\" height=\"22\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M7 17L17 7M9 7h8v8\"/></svg></span><span class=\"ds-cover-body\"><span class=\"ds-cover-title\">Northwind</span><span class=\"ds-cover-tags\">Brand, Web</span></span></a>",
-      "css": ".ds-cover { position: relative; display: grid; min-height: 320px; overflow: hidden; border-radius: 20px; background: linear-gradient(135deg, #A33FBD, #FD065A); color: #fff; text-decoration: none; font-family: 'DM Sans', system-ui, sans-serif; transition: box-shadow 0.4s ease; } .ds-cover > * { grid-area: 1 / 1; } .ds-cover-body { display: flex; flex-direction: column; justify-content: flex-end; gap: 6px; padding: 28px; } .ds-cover-title { font: 600 1.875rem/1.1 'Bricolage Grotesque', 'DM Sans', sans-serif; letter-spacing: -0.035em; transition: transform 0.6s cubic-bezier(0.16,1,0.3,1); } .ds-cover-tags { order: 2; color: rgb(255 255 255 / 0.86); } .ds-cover-go { z-index: 1; align-self: start; justify-self: end; display: grid; place-items: center; width: 48px; height: 48px; margin: 18px; border-radius: 999px; background: #fff; color: #0B0B16; opacity: 0; transform: translate(-6px, 6px) scale(0.85); transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.16,1,0.3,1); } .ds-cover:hover, .ds-cover:focus-visible { box-shadow: 0 0 44px -14px rgb(163 63 189 / 0.55); } .ds-cover:hover .ds-cover-title { transform: translateY(-4px); } .ds-cover:hover .ds-cover-go, .ds-cover:focus-visible .ds-cover-go { opacity: 1; transform: none; } .ds-cover:focus-visible { outline: 2px solid #8FA2FF; outline-offset: 4px; }"
+      "css": ".ds-cover { position: relative; display: grid; min-height: 320px; overflow: hidden; border-radius: 20px; background: linear-gradient(135deg, #A33FBD, #FD065A); color: #fff; text-decoration: none; font-family: 'DM Sans', system-ui, sans-serif; transition: transform 0.5s cubic-bezier(0.16,1,0.3,1); } .ds-cover > * { grid-area: 1 / 1; } .ds-cover-body { display: flex; flex-direction: column; justify-content: flex-end; gap: 6px; padding: 28px; } .ds-cover-title { font: 600 1.875rem/1.1 'Bricolage Grotesque', 'DM Sans', sans-serif; letter-spacing: -0.035em; transition: transform 0.6s cubic-bezier(0.16,1,0.3,1); } .ds-cover-tags { order: 2; color: rgb(255 255 255 / 0.86); } .ds-cover-go { z-index: 1; align-self: start; justify-self: end; display: grid; place-items: center; width: 48px; height: 48px; margin: 18px; border-radius: 999px; background: #fff; color: #0B0B16; opacity: 0; transform: translate(-6px, 6px) scale(0.85); transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.16,1,0.3,1); } .ds-cover:hover { transform: perspective(1000px) rotateX(2deg) rotateY(-3deg); } .ds-cover:hover .ds-cover-title { transform: translateY(-4px); } .ds-cover:hover .ds-cover-go, .ds-cover:focus-visible .ds-cover-go { opacity: 1; transform: none; } .ds-cover:focus-visible { outline: 2px solid #8FA2FF; outline-offset: 4px; }"
     },
     {
       "name": "Capability Card",
@@ -108,7 +474,7 @@
       "refersTo": "card-capability",
       "description": "Outlined surface card with a circular icon, display title and muted description.",
       "html": "<article class=\"ds-cap\"><span class=\"ds-cap-icon\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"8\"/><path d=\"M12 8v8M8 12h8\"/></svg></span><div><h3 class=\"ds-cap-title\">Brand identity</h3><p class=\"ds-cap-desc\">Names, marks and systems that hold across every surface.</p></div></article>",
-      "css": ".ds-cap { display: flex; flex-direction: column; justify-content: space-between; gap: 18px; min-height: 300px; padding: 28px; border: 1px solid #23233A; border-radius: 20px; background: #10101A; color: #F3F2FA; font-family: 'DM Sans', system-ui, sans-serif; transition: border-color 0.5s ease; } .ds-cap:hover { border-color: #4D68E4; } .ds-cap-icon { display: grid; place-items: center; width: 48px; height: 48px; border: 1px solid #23233A; border-radius: 50%; color: #8FA2FF; } .ds-cap-title { margin: 0 0 14px; font: 600 1.75rem/1.1 'Bricolage Grotesque', 'DM Sans', sans-serif; letter-spacing: -0.04em; } .ds-cap-desc { margin: 0; line-height: 1.55; color: #A3A2BA; }"
+      "css": ".ds-cap { display: flex; flex-direction: column; justify-content: space-between; gap: 18px; min-height: 300px; padding: 28px; border: 1px solid #23233A; border-radius: 20px; background: #10101A; color: #F3F2FA; font-family: 'DM Sans', system-ui, sans-serif; position: relative; overflow: hidden; background-image: radial-gradient(240px circle at 70% 20%, rgb(243 242 250 / 0.06), transparent); } .ds-cap-icon { display: grid; place-items: center; width: 48px; height: 48px; border: 1px solid #23233A; border-radius: 50%; color: #8FA2FF; } .ds-cap-title { margin: 0 0 14px; font: 600 1.75rem/1.1 'Bricolage Grotesque', 'DM Sans', sans-serif; letter-spacing: -0.04em; } .ds-cap-desc { margin: 0; line-height: 1.55; color: #A3A2BA; }"
     },
     {
       "name": "Process Step",
@@ -122,14 +488,14 @@
       "name": "Closing Field",
       "kind": "custom",
       "refersTo": "cta-field",
-      "description": "The mesh of brand light over deep violet ink; the one large colour field on a page.",
-      "html": "<section class=\"ds-field\"><h2 class=\"ds-field-title\">Let us build something strange and good.</h2><a class=\"ds-field-btn\" href=\"#\">Start a project</a></section>",
-      "css": ".ds-field { display: flex; flex-direction: column; align-items: flex-start; gap: 28px; padding: 96px 56px; border-radius: 40px; color: #fff; background: radial-gradient(70% 90% at 12% 0%, rgb(77 104 228 / 0.7), transparent 60%), radial-gradient(60% 80% at 100% 20%, rgb(253 6 90 / 0.55), transparent 62%), radial-gradient(70% 90% at 55% 110%, rgb(163 63 189 / 0.7), transparent 60%), #14102E; font-family: 'DM Sans', system-ui, sans-serif; } .ds-field-title { margin: 0; max-width: 14ch; font: 600 3.5rem/0.98 'Bricolage Grotesque', 'DM Sans', sans-serif; letter-spacing: -0.045em; text-wrap: balance; } .ds-field-btn { padding: 0.9rem 1.5rem; border-radius: 999px; background: linear-gradient(110deg, #4D68E4, #A33FBD 48%, #FD065A); color: #fff; font-weight: 500; text-decoration: none; transition: box-shadow 0.4s ease; } .ds-field-btn:hover { box-shadow: 0 10px 30px -10px rgb(163 63 189 / 0.75); } .ds-field-btn:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }"
+      "description": "The mesh of brand light over deep violet ink with a border beam circling its edge; the one large colour field on a page.",
+      "html": "<section class=\"ds-field\"><span class=\"ds-beam\"><span class=\"ds-beam-dot\"></span></span><h2 class=\"ds-field-title\">Let us build something strange and good.</h2><a class=\"ds-field-btn\" href=\"#\">Start a project</a></section>",
+      "css": ".ds-field { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 28px; padding: 96px 56px; border-radius: 40px; color: #fff; background: radial-gradient(70% 90% at 12% 0%, rgb(77 104 228 / 0.7), transparent 60%), radial-gradient(60% 80% at 100% 20%, rgb(253 6 90 / 0.55), transparent 62%), radial-gradient(70% 90% at 55% 110%, rgb(163 63 189 / 0.7), transparent 60%), #14102E; font-family: 'DM Sans', system-ui, sans-serif; } .ds-field-title { margin: 0; max-width: 14ch; font: 600 3.5rem/0.98 'Bricolage Grotesque', 'DM Sans', sans-serif; letter-spacing: -0.045em; text-wrap: balance; } .ds-field-btn { padding: 0.9rem 1.5rem; border-radius: 999px; background: linear-gradient(110deg, #4D68E4, #A33FBD 48%, #FD065A); color: #fff; font-weight: 500; text-decoration: none; transition: box-shadow 0.4s ease; } .ds-field-btn:hover { box-shadow: 0 10px 30px -10px rgb(163 63 189 / 0.75); } .ds-field-btn:focus-visible { outline: 2px solid #fff; outline-offset: 3px; } .ds-beam { position: absolute; inset: 0; border: 1.5px solid transparent; border-radius: inherit; pointer-events: none; -webkit-mask: linear-gradient(transparent, transparent), linear-gradient(#000, #000); -webkit-mask-clip: padding-box, border-box; -webkit-mask-composite: xor; mask: linear-gradient(transparent, transparent), linear-gradient(#000, #000); mask-clip: padding-box, border-box; mask-composite: intersect; } .ds-beam-dot { position: absolute; width: 220px; aspect-ratio: 1; background: linear-gradient(to left, #09C4F7, #A33FBD 45%, transparent); offset-path: rect(0 auto auto 0 round 40px); animation: ds-beam 9s linear infinite; } @keyframes ds-beam { to { offset-distance: 100%; } }"
     }
   ],
   "narrative": {
     "northStar": "The Logo, Lit",
-    "overview": "The whole system is the Sekeco logo's gradient (blue, purple, red-pink, with cyan as a spark) treated as light on a quiet ground. The ground is deep ink by default and lavender paper in light mode; the colour lives in the brand gradient, in cover cards, in the hero's blurred ambient light and in one closing field. Everything else is neutral and typographic: tightly tracked Bricolage Grotesque headings over DM Sans text, outlined cards, generous space.\n\nThe feel is techy and eclectic rather than corporate. The page is a calm dark surface that wakes up under the pointer: cards grow a neon ring and inner glow that follow the cursor, pill buttons slide their gradient, and the hero breathes with blurred brand light. Structure is stable: a floating pill header, a side rail, a mosaic of projects, outlined capability and process cards, a marquee. Motion is GSAP reveal and scroll work with a reduced-motion fallback; hidden pre-reveal states exist only when JavaScript is running.",
+    "overview": "The whole system is the Sekeco logo's gradient (blue, purple, red-pink, with cyan as a spark) treated as light on a quiet ground. The ground is deep ink by default and lavender paper in light mode; the colour lives in the brand gradient, in cover cards, in the hero's blurred ambient light and in one closing field. Everything else is neutral and typographic: tightly tracked Bricolage Grotesque headings over DM Sans text, outlined cards, generous space.\n\nThe feel is techy and eclectic rather than corporate. The page is a calm dark surface that wakes up under the pointer: cards catch a soft neutral spotlight that follows the cursor, project cards tilt and glint, buttons lean toward the pointer and slide their gradient, and the hero breathes with blurred brand light. Structure is stable: a floating pill header, a side rail, a mosaic of projects, outlined capability and process cards, a marquee. Motion is GSAP reveal and scroll work with a reduced-motion fallback; hidden pre-reveal states exist only when JavaScript is running.",
     "keyCharacteristics": [
       "Dark default, light mode swaps grounds only; the brand colours stay put.",
       "Gradient is a fill and a light source, never a text colour (one logo-derived exception).",
@@ -138,22 +504,48 @@
       "Photographs on Works and Portfolio cards sit under a dark scrim; Solar Line Duotone is the only icon set."
     ],
     "rules": [
-      { "name": "The Light, Not Paint Rule", "body": "The brand gradient fills buttons, pill links, cover cards, the closing field and ambient hero light. Body copy, headings and icons never take it. The single exception is the footer wordmark, set in brand-soft like the logo itself; it is not a pattern for other type.", "section": "colors" },
-      { "name": "The Tone Scope Rule", "body": "A section fixes its own ground through a tone class (ink, paper, accent field, surface) that remaps text, muted, line and surface together. Never hand-colour text inside a section; read the scope variables.", "section": "colors" },
-      { "name": "The Text Accent Rule", "body": "Brand blue is a fill. Where blue must read as text or a focus ring, use the mode's accent (#3F59D6 on paper, #8FA2FF on ink).", "section": "colors" },
-      { "name": "The Tight Display Rule", "body": "Every Bricolage heading carries negative tracking from -0.035em down to -0.045em; larger means tighter. Body and labels are never tracked negatively.", "section": "typography" },
-      { "name": "The Hover-Only Light Rule", "body": "The neon ring and inner glow exist on hover and focus-within, follow the pointer through --mx and --my, and are hidden entirely on touch devices. Nothing depends on them.", "section": "elevation" },
-      { "name": "The Blur Boundary Rule", "body": "Never put transform, filter or backdrop-filter on an ancestor of the fixed menu overlay; blur lives on a pseudo-element.", "section": "elevation" }
+      {
+        "name": "The Light, Not Paint Rule",
+        "body": "The brand gradient fills buttons, pill links, cover cards, the closing field and ambient hero light. Body copy, headings and icons never take it. The single exception is the footer wordmark, set in brand-soft like the logo itself; it is not a pattern for other type.",
+        "section": "colors"
+      },
+      {
+        "name": "The Tone Scope Rule",
+        "body": "A section fixes its own ground through a tone class (ink, paper, accent field, surface) that remaps text, muted, line and surface together. Never hand-colour text inside a section; read the scope variables.",
+        "section": "colors"
+      },
+      {
+        "name": "The Text Accent Rule",
+        "body": "Brand blue is a fill. Where blue must read as text or a focus ring, use the mode's accent (#3F59D6 on paper, #8FA2FF on ink).",
+        "section": "colors"
+      },
+      {
+        "name": "The Tight Display Rule",
+        "body": "Every Bricolage heading carries negative tracking from -0.035em down to -0.045em; larger means tighter. Body and labels are never tracked negatively.",
+        "section": "typography"
+      },
+      {
+        "name": "The Neutral Spotlight Rule",
+        "body": "Card light is neutral, never brand-coloured. The runtime smooths the pointer into --sl-x, --sl-y, fades presence --sl-p within 80px of the card, and raises --sl-flare on press. Spotlight, glare, tilt and magnet are pointer-only: hidden or skipped on touch and under reduced motion, and nothing depends on them.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Blur Boundary Rule",
+        "body": "Never put transform, filter or backdrop-filter on an ancestor of the fixed menu overlay; blur lives on a pseudo-element.",
+        "section": "elevation"
+      }
     ],
     "dos": [
       "Do use the brand gradient (110deg, #4D68E4, #A33FBD, #FD065A) for fills and brand-soft (adds #09C4F7 at the start) for hover states.",
       "Do read colours from tone-scope variables so a section works in both modes.",
       "Do use Solar Line Duotone icons from the generated set only.",
+      "Do keep card light neutral (spotlight white on ink, ink on paper) and drive it through --sl-*.",
       "Do keep hover-only effects meaningful without them, and keep reduced-motion collapsing animations to near zero.",
       "Do run photographs under the ink scrim so overlaid white text keeps contrast."
     ],
     "donts": [
       "Don't set body text, headings or icons in the gradient; the footer wordmark is the lone logo-derived exception.",
+      "Don't add box-shadows or coloured rings to cards; the spotlight is the only card response.",
       "Don't add hard offset shadows, glyph icons, dashicons or glyph arrows.",
       "Don't use backdrop-filter, filter or transform on ancestors of the fixed menu overlay.",
       "Don't track Bricolage headings looser than -0.035em, or use it for body text.",

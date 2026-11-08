@@ -63,8 +63,8 @@
 .sk-card--has-image .sk-card__media::after {
 	content: "";
 	position: absolute;
-	inset: 50% 0 0;
-	background: linear-gradient(to top, rgb(7 7 13 / 0.78), rgb(7 7 13 / 0));
+	inset: 28% 0 0;
+	background: linear-gradient(to top, rgb(7 7 13 / 0.88) 0%, rgb(7 7 13 / 0.62) 45%, rgb(7 7 13 / 0));
 	pointer-events: none;
 }
 
@@ -187,16 +187,20 @@
 	}
 }
 
-// Team: portrait with the name below, no overlay.
-.sk-card--team {
+// Team: portrait with the name below, no overlay. The whole card is one
+// rounded container so the pointer light, edge light, glare and tilt (all
+// applied to the link) follow its corners; the portrait sits inside it. The
+// lead card of the crew layout stays on the overlay cover card instead.
+.sk-card--team:not(.sk-card--cover) {
 
 	.sk-card__link {
 		min-height: 0;
 		grid-template-rows: auto auto;
-		background: transparent;
+		padding: 6px;
+		background: var(--sk-surface);
+		box-shadow: 0 0 0 1px var(--sk-line);
 		color: var(--sk-fg);
-		border-radius: 0;
-		overflow: visible;
+		overflow: clip;
 
 		> * {
 			grid-area: auto;
@@ -207,7 +211,7 @@
 		position: relative;
 		display: grid;
 		aspect-ratio: 4 / 5;
-		border-radius: var(--sk-radius, 20px);
+		border-radius: calc(var(--sk-radius, 20px) - 2px);
 		background: var(--card-bg);
 		color: var(--card-fg);
 	}
@@ -230,12 +234,15 @@
 
 	.sk-card__body {
 		justify-content: flex-start;
-		padding: 18px 0 0;
+		padding: 16px 8px 8px;
 		color: var(--sk-fg);
 	}
 
+	// The name sits on the page, not on the photo: follow the page colour so it
+	// is dark in light mode (the base title colour is the overlay white).
 	.sk-card__title {
 		font-size: clamp(1.25rem, 1.8vw, 1.625rem);
+		color: var(--sk-fg);
 	}
 
 	.sk-card__detail {
@@ -244,6 +251,127 @@
 
 	.sk-card__go {
 		display: none;
+	}
+}
+
+// Lead and crew (Team) ------------------------------------------------
+
+// The first member as a cover card, the rest as compact cards beside it.
+.sk-crew {
+	display: grid;
+	gap: 14px;
+
+	@media (min-width: 900px) {
+		grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+		gap: 18px;
+	}
+}
+
+.sk-crew__lead {
+	--sk-card-h: clamp(420px, 42vw, 540px);
+	min-width: 0;
+}
+
+.sk-crew__list {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	grid-auto-rows: 1fr;
+	gap: 12px;
+
+	@media (max-width: 560px) {
+		grid-template-columns: minmax(0, 1fr);
+	}
+}
+
+.sk-crew__item {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	min-width: 0;
+	padding: 12px 14px 12px 12px;
+	border: 1px solid var(--sk-line);
+	border-radius: 16px;
+	background: var(--sk-surface);
+	color: var(--sk-fg);
+	text-decoration: none;
+	translate: 0 0;
+	transition: border-color 0.3s ease, translate 0.5s cubic-bezier(0.34, 1.4, 0.64, 1);
+
+	&:hover,
+	&:focus-visible {
+		border-color: color-mix(in srgb, var(--sk-fg) 40%, transparent);
+		translate: 0 -3px;
+	}
+}
+
+.sk-crew__img,
+.sk-crew__mark {
+	flex: none;
+	width: 56px;
+	height: 56px;
+	border-radius: 50%;
+}
+
+.sk-crew__img {
+	object-fit: cover;
+	filter: grayscale(1);
+	transition: filter 0.4s ease;
+}
+
+.sk-crew__item:hover .sk-crew__img,
+.sk-crew__item:focus-visible .sk-crew__img {
+	filter: none;
+}
+
+.sk-crew__mark {
+	display: grid;
+	place-items: center;
+	background: linear-gradient(135deg, #4d68e4, #7a4fd6);
+	color: #fff;
+	font-family: var(--wp--preset--font-family--display);
+	font-size: 1.125rem;
+	font-weight: 600;
+}
+
+.sk-crew__text {
+	display: grid;
+	min-width: 0;
+}
+
+.sk-crew__name {
+	font-family: var(--wp--preset--font-family--display);
+	font-size: 1.0625rem;
+	font-weight: 600;
+	line-height: 1.2;
+	letter-spacing: -0.025em;
+}
+
+.sk-crew__role {
+	font-size: 0.875rem;
+	line-height: 1.3;
+	color: var(--sk-muted);
+}
+
+.sk-crew__note {
+	display: grid;
+	align-content: center;
+	margin: 0;
+	padding: 18px 20px;
+	border-radius: 16px;
+	background: var(--sk-field-bg, #14102e);
+	color: #fff;
+	font-family: var(--wp--preset--font-family--display);
+	font-size: 1.0625rem;
+	font-weight: 600;
+	line-height: 1.25;
+	letter-spacing: -0.025em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+	.sk-crew__item,
+	.sk-crew__img {
+		transition: none;
 	}
 }
 

@@ -8,6 +8,7 @@ import {
 	RangeControl,
 	SelectControl,
 	Placeholder,
+	TextControl,
 	ToggleControl,
 } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
@@ -40,7 +41,8 @@ function Empty() {
 }
 
 function Edit( { attributes, setAttributes } ) {
-	const { postType, layout, columns, perPage, category, filter } = attributes;
+	const { postType, layout, columns, perPage, category, filter, crewNote } =
+		attributes;
 	const blockProps = useBlockProps();
 	const categories = useSelect(
 		( select ) =>
@@ -116,12 +118,38 @@ function Edit( { attributes, setAttributes } ) {
 								label: __( 'Index list', 'sekeco' ),
 								value: 'list',
 							},
+							...( 'team' === postType
+								? [
+										{
+											label: __(
+												'Lead and crew (Team)',
+												'sekeco'
+											),
+											value: 'crew',
+										},
+								  ]
+								: [] ),
 						] }
 						onChange={ ( value ) =>
 							setAttributes( { layout: value } )
 						}
 					/>
-					{ 'list' !== layout && (
+					{ 'crew' === layout && (
+						<TextControl
+							__next40pxDefaultSize
+							__nextHasNoMarginBottom
+							label={ __( 'Closing note', 'sekeco' ) }
+							help={ __(
+								'Shown as the last tile beside the lead card. Leave empty to hide it.',
+								'sekeco'
+							) }
+							value={ crewNote }
+							onChange={ ( value ) =>
+								setAttributes( { crewNote: value } )
+							}
+						/>
+					) }
+					{ ! [ 'list', 'crew' ].includes( layout ) && (
 						<ToggleControl
 							__nextHasNoMarginBottom
 							label={ __( 'Category filter', 'sekeco' ) }

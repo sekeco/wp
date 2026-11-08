@@ -7,7 +7,7 @@ Description: A modern, techy block theme for Sekeco, an eclectic digital agency,
 Requires at least: 6.7
 Tested up to: 7.1
 Requires PHP: 7.4
-Version: 2.2.0
+Version: 2.5.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: sekeco
@@ -46,9 +46,11 @@ Tags: one-column, custom-colors, custom-menu, custom-logo, editor-style, feature
 	--sk-surface: var(--wp--preset--color--surface);
 	--sk-accent: #3f59d6;
 	--sk-accent-ink: #fff;
-	--sk-glow-a: rgb(77 104 228 / 0.14);
-	--sk-glow-b: rgb(163 63 189 / 0.1);
+	--sl-light: #0b0b16;
+	--sl-fill: 0.05;
+	--sl-edge: 0.4;
 	--sk-ambient: 0.5;
+	--sk-error: #c4123f;
 
 	color-scheme: light;
 	accent-color: #4d68e4;
@@ -64,9 +66,11 @@ html:not([data-theme]) {
 	--wp--preset--color--muted: #a3a2ba;
 	--wp--preset--color--border: #23233a;
 	--sk-accent: #8fa2ff;
-	--sk-glow-a: rgb(77 104 228 / 0.3);
-	--sk-glow-b: rgb(253 6 90 / 0.16);
+	--sl-light: #fff;
+	--sl-fill: 0.15;
+	--sl-edge: 0.6;
 	--sk-ambient: 1;
+	--sk-error: #ff7a9c;
 	color-scheme: dark;
 }
 
@@ -81,8 +85,9 @@ html:not([data-theme]) {
 	--sk-line: rgb(243 242 250 / 0.12);
 	--sk-surface: #10101a;
 	--sk-accent: #8fa2ff;
-	--sk-glow-a: rgb(77 104 228 / 0.22);
-	--sk-glow-b: rgb(253 6 90 / 0.12);
+	--sl-light: #fff;
+	--sl-fill: 0.15;
+	--sl-edge: 0.6;
 	--sk-ambient: 1;
 	--wp--preset--color--base: #07070d;
 	--wp--preset--color--contrast: #f3f2fa;
@@ -99,8 +104,9 @@ html:not([data-theme]) {
 	--sk-line: rgb(11 11 22 / 0.12);
 	--sk-surface: #fff;
 	--sk-accent: #3f59d6;
-	--sk-glow-a: rgb(77 104 228 / 0.14);
-	--sk-glow-b: rgb(163 63 189 / 0.1);
+	--sl-light: #0b0b16;
+	--sl-fill: 0.05;
+	--sl-edge: 0.4;
 	--sk-ambient: 0.5;
 	--wp--preset--color--base: #f6f5fb;
 	--wp--preset--color--contrast: #0b0b16;
@@ -118,8 +124,9 @@ html:not([data-theme]) {
 	--sk-line: rgb(255 255 255 / 0.22);
 	--sk-surface: rgb(255 255 255 / 0.1);
 	--sk-accent: #fff;
-	--sk-glow-a: rgb(255 255 255 / 0.14);
-	--sk-glow-b: rgb(255 111 174 / 0.2);
+	--sl-light: #fff;
+	--sl-fill: 0.2;
+	--sl-edge: 0.7;
 	--wp--preset--color--base: #fff;
 	--wp--preset--color--contrast: #0b0b16;
 	--wp--preset--color--surface: rgb(255 255 255 / 0.1);
@@ -263,7 +270,7 @@ select {
 
 /* ---------- Shared component parts ---------- */
 
-/* Pill link with a circled arrow, as the reference's "View All Work". */
+/* Pill link with a circled arrow: solid, the arrow takes the brand gradient on hover. */
 .sk-link {
 	display: inline-flex;
 	align-items: center;
@@ -272,55 +279,123 @@ select {
 	min-height: 52px;
 	padding: 0 24px 0 10px;
 	border-radius: 999px;
-	background: var(--sk-grad);
-	background-size: 160% 100%;
-	background-position: 0 0;
-	color: #fff;
+	background: var(--sk-fg);
+	color: var(--sk-bg);
 	font-size: 1rem;
 	font-weight: 500;
 	text-decoration: none;
-	transition: background-position 0.6s var(--sk-ease), gap 0.5s var(--sk-ease), box-shadow 0.4s ease;
+	transition: gap 0.5s var(--sk-ease);
 
 	&:hover,
 	&:focus-visible {
-		background-position: 100% 0;
-		box-shadow: 0 8px 28px -8px rgb(163 63 189 / 0.7);
 		gap: 16px;
 	}
 
 	.sekeco-icon-svg {
 		box-sizing: content-box;
 		padding: 7px;
-		border: 1px solid rgb(255 255 255 / 0.55);
+		border: 1px solid color-mix(in srgb, currentcolor 45%, transparent);
 		border-radius: 50%;
 		width: 20px;
 		height: 20px;
 		order: -1;
+		transition: background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease;
+	}
+
+	&:hover .sekeco-icon-svg,
+	&:focus-visible .sekeco-icon-svg {
+		border-color: transparent;
+		background: var(--sk-grad);
+		color: #fff;
 	}
 }
 
-.wp-block-button__link {
-	background-size: 160% 100%;
-	background-position: 0 0;
-	transition: background-position 0.6s var(--sk-ease), box-shadow 0.4s ease, background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.5s var(--sk-ease);
+/*
+ * Primary button: a solid pill in the page's foreground colour with a small
+ * brand-gradient dot. A neutral light follows the pointer across the pill and
+ * lights its edge, and the pill leans a few pixels toward the pointer (the
+ * runtime in interactions.js writes --bx, --by, --bp and the lean). The dot
+ * stays put. Without JavaScript, or on touch, the pill is simply solid.
+ */
+@property --bp {
+	syntax: "<number>";
+	inherits: true;
+	initial-value: 0;
 }
 
-.wp-block-button__link:hover {
-	background-position: 100% 0;
-	box-shadow: 0 10px 30px -10px rgb(163 63 189 / 0.75);
-	transform: translateY(-2px);
+.wp-block-button:not(.is-style-outline) > .wp-block-button__link,
+.sekeco-form__submit,
+.sekeco-form__next {
+	--bx: 50%;
+	--by: 50%;
+	position: relative;
+	isolation: isolate;
+	overflow: hidden;
+	padding: 0.9rem 1.6rem 0.9rem 2.2rem;
+	background: radial-gradient(120px circle at var(--bx) var(--by), color-mix(in srgb, var(--sk-bg) calc(var(--bp) * 22%), transparent), transparent 72%), var(--sk-fg);
+	color: var(--sk-bg);
+	transition: --bp 0.4s ease;
+}
+
+.wp-block-button:not(.is-style-outline) > .wp-block-button__link::before,
+.sekeco-form__submit::before,
+.sekeco-form__next::before {
+	content: "";
+	position: absolute;
+	z-index: -1;
+	top: calc(50% - 4px);
+	left: 1.05rem;
+	width: 8px;
+	height: 8px;
+	border-radius: 999px;
+	background: var(--sk-grad);
+}
+
+/* One-pixel edge light near the pointer. */
+.wp-block-button:not(.is-style-outline) > .wp-block-button__link::after,
+.sekeco-form__submit::after,
+.sekeco-form__next::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	border-radius: inherit;
+	padding: 1px;
+	background: radial-gradient(90px circle at var(--bx) var(--by), color-mix(in srgb, var(--sk-bg) calc(var(--bp) * 75%), transparent), transparent 72%);
+	-webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+	-webkit-mask-composite: xor;
+	mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+	pointer-events: none;
+}
+
+.wp-block-button:not(.is-style-outline) > .wp-block-button__link:hover,
+.wp-block-button:not(.is-style-outline) > .wp-block-button__link:focus-visible,
+.sekeco-form__submit:hover:not(:disabled),
+.sekeco-form__submit:focus-visible,
+.sekeco-form__next:hover,
+.sekeco-form__next:focus-visible {
+	--bp: 1;
+}
+
+.wp-block-button__link {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
+	min-height: 3.5rem;
+	transition: color 0.4s ease, background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .wp-block-button.is-style-outline > .wp-block-button__link {
-	border: 1px solid currentcolor;
+	border: 1px solid color-mix(in srgb, var(--sk-fg) 40%, transparent);
 	background: transparent;
-	color: var(--wp--preset--color--contrast);
+	color: var(--sk-fg);
 }
 
-.wp-block-button.is-style-outline > .wp-block-button__link:hover {
-	background: var(--wp--preset--color--contrast);
-	color: var(--wp--preset--color--base);
-	border-color: var(--wp--preset--color--contrast);
+.wp-block-button.is-style-outline > .wp-block-button__link:hover,
+.wp-block-button.is-style-outline > .wp-block-button__link:focus-visible {
+	background: var(--sk-fg);
+	color: var(--sk-bg);
+	border-color: var(--sk-fg);
 }
 
 /* ---------- Floating header ---------- */
@@ -421,10 +496,6 @@ select {
 	margin: 0;
 }
 
-.sekeco-header .wp-block-button__link {
-	padding: 0.95rem 1.5rem;
-}
-
 /* Menu button (core Navigation, overlay = always). */
 .sekeco-header .wp-block-navigation__responsive-container-open {
 	display: grid;
@@ -465,73 +536,16 @@ select {
 		flex-direction: column;
 		align-items: center;
 		gap: 18px;
+		padding: 5px;
+		border-radius: 999px;
 		transform: translateY(-50%);
+		/* A backing keeps the rail legible over any ground: ink hero, paper page, brand field. */
+		background: color-mix(in srgb, var(--wp--preset--color--surface) 78%, transparent);
+		box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--wp--preset--color--contrast) 9%, transparent);
+		-webkit-backdrop-filter: blur(14px) saturate(140%);
+		backdrop-filter: blur(14px) saturate(140%);
 	}
 
-	.sk-rail__top {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 14px;
-		margin: 0;
-		writing-mode: vertical-rl;
-		transform: rotate(180deg);
-		font-size: 0.875rem;
-		letter-spacing: 0.01em;
-	}
-
-	.sk-rail__top a {
-		color: var(--sk-muted);
-		text-decoration: none;
-		transition: color 0.25s ease;
-	}
-
-	.sk-rail__top a:hover {
-		color: var(--wp--preset--color--contrast);
-	}
-
-	.sk-rail__top::before {
-		content: "";
-		width: 1px;
-		height: 56px;
-		background: var(--wp--preset--color--contrast);
-		opacity: 0.6;
-	}
-}
-
-.sk-float-search {
-	position: fixed;
-	bottom: 18px;
-	left: 22px;
-	z-index: 40;
-	display: none;
-}
-
-@media (min-width: 1100px) {
-
-	.sk-float-search {
-		display: block;
-	}
-}
-
-.sk-float-search .wp-block-search__inside-wrapper {
-	min-width: 0;
-	border: 0;
-	padding: 0;
-}
-
-.sk-float-search .wp-block-search__button {
-	display: grid;
-	place-items: center;
-	width: 56px;
-	height: 56px;
-	margin: 0;
-	padding: 0;
-	border: 0;
-	border-radius: 50%;
-	background: var(--wp--preset--color--surface);
-	color: var(--wp--preset--color--contrast);
-	cursor: pointer;
 }
 
 /* ---------- Menu overlay ---------- */
@@ -616,41 +630,321 @@ select {
 	background: rgb(243 242 250 / 0.2);
 }
 
+/* ---------- Menu drawer (side panel, the default overlay) ---------- */
+
+/* A scrim behind the panel; the panel itself is a rounded card in the page's own colours. */
+.wp-block-navigation__responsive-container.is-menu-open:has(.sk-drawer) {
+	background: rgb(7 7 13 / 0.55);
+}
+
+.sk-drawer {
+	--sk-bg: var(--wp--preset--color--surface);
+	--sk-fg: var(--wp--preset--color--contrast);
+	--sk-muted: var(--wp--preset--color--muted);
+	--sk-line: var(--wp--preset--color--border);
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	width: min(460px, calc(100% - 24px));
+	min-height: calc(100dvh - 24px);
+	margin: 12px;
+	padding: 14px 24px 24px;
+	border: 1px solid var(--sk-line);
+	border-radius: 28px;
+	background: var(--sk-bg);
+	color: var(--sk-fg);
+	animation: sk-drawer-in 0.7s var(--sk-ease) both;
+}
+
+@keyframes sk-drawer-in {
+
+	from {
+		opacity: 0;
+		transform: translateX(-28px);
+	}
+}
+
+.sk-drawer__top {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+}
+
+.sk-drawer .wp-block-site-title {
+	margin: 0;
+	font-size: 1.375rem;
+	line-height: 1;
+}
+
+.sk-drawer .wp-block-site-title a {
+	color: var(--sk-fg);
+}
+
+.sk-drawer .wp-block-navigation-overlay-close {
+	display: inline-grid;
+	place-items: center;
+	width: 48px;
+	height: 48px;
+	padding: 0;
+	border: 0;
+	border-radius: 50%;
+	background: color-mix(in srgb, var(--sk-fg) 8%, transparent);
+	color: var(--sk-fg);
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.sk-drawer .wp-block-navigation-overlay-close:hover {
+	background: color-mix(in srgb, var(--sk-fg) 16%, transparent);
+}
+
+.sk-drawer__nav {
+	flex: 1;
+	width: 100%;
+}
+
+.sk-drawer .wp-block-navigation__container {
+	width: 100%;
+	gap: 0;
+	align-items: stretch;
+}
+
+.sk-drawer .wp-block-navigation-item {
+	width: 100%;
+	border-bottom: 1px solid var(--sk-line);
+}
+
+.sk-drawer .wp-block-navigation-item__content {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+	width: 100%;
+	padding: 14px 2px;
+	font-family: var(--wp--preset--font-family--display);
+	font-size: clamp(1.75rem, 6vw, 2.25rem);
+	font-weight: 500;
+	line-height: 1.1;
+	letter-spacing: -0.03em;
+	color: var(--sk-fg);
+	text-decoration: none;
+	transition: color 0.25s ease, padding 0.5s var(--sk-ease);
+}
+
+.sk-drawer .wp-block-navigation-item__content::after {
+	opacity: 0.45;
+	transition: opacity 0.25s ease, transform 0.5s var(--sk-ease);
+}
+
+.sk-drawer .wp-block-navigation-item__content:hover,
+.sk-drawer .wp-block-navigation-item__content:focus-visible,
+.sk-drawer .current-menu-item > .wp-block-navigation-item__content {
+	padding-inline-start: 10px;
+	color: var(--sk-accent);
+}
+
+.sk-drawer .wp-block-navigation-item__content:hover::after,
+.sk-drawer .wp-block-navigation-item__content:focus-visible::after {
+	opacity: 1;
+	transform: translate(3px, -3px);
+}
+
+.sk-drawer__foot {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	margin-block-start: 8px;
+}
+
+.sk-drawer__foot > p {
+	margin: 0;
+}
+
+.sk-drawer__actions {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px 16px;
+}
+
+.sk-drawer__actions .wp-block-buttons {
+	margin: 0;
+}
+
 /* ---------- Footer ---------- */
 
+/*
+ * The footer is an inset card on the page ground and follows the site mode:
+ * surface on paper in light, surface on ink in dark. Its menu is the core
+ * Navigation block, so the links are edited under Appearance > Editor >
+ * Navigation (or by choosing another menu in the block).
+ */
 .sekeco-footer {
-	--sk-bg: var(--sk-ink);
-	background: var(--sk-ink);
-	color: var(--sk-paper);
+	background: var(--sk-bg);
+	color: var(--sk-fg);
+}
+
+.sekeco-footer.sekeco-footer {
+	margin-top: clamp(24px, 3.2vw, 44px);
+	padding: 0 clamp(16px, 4vw, 48px);
+}
+
+/* Floating controls sit in the bottom corners; the footer leaves room for them. */
+.sekeco-footer.sekeco-footer {
+	padding-bottom: calc(var(--wp--preset--spacing--40) + 56px);
+}
+
+@media (min-width: 1100px) {
+
+	/* The side rail sits at the left edge; footer content starts clear of it. */
+	.sekeco-footer.sekeco-footer {
+		padding-right: max(96px, var(--wp--style--root--padding-right, 0px));
+		padding-left: max(96px, var(--wp--style--root--padding-left, 0px));
+	}
+}
+
+.sekeco-footer__card {
+	position: relative;
+	box-sizing: border-box;
+	max-width: var(--sk-max, 1240px);
+	margin-inline: auto;
+	padding: clamp(28px, 4vw, 56px);
+	border: 1px solid var(--sk-line);
+	border-radius: 40px;
+	background: var(--sk-surface);
+	overflow: hidden;
+}
+
+/* A hairline of the brand gradient along the top edge. */
+.sekeco-footer__card::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	right: clamp(24px, 6vw, 96px);
+	left: clamp(24px, 6vw, 96px);
+	height: 1px;
+	background: linear-gradient(90deg, transparent, var(--sk-blue), var(--sk-violet), var(--sk-red), transparent);
+}
+
+.sekeco-footer__grid {
+	display: grid;
+	gap: 36px 28px;
+}
+
+.sekeco-footer__grid > *,
+.sekeco-footer__nav > *,
+.sekeco-footer__brand > *,
+.sekeco-footer__cta > * {
+	margin: 0;
+}
+
+@media (min-width: 620px) {
+
+	.sekeco-footer__grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+@media (min-width: 1020px) {
+
+	.sekeco-footer__grid {
+		grid-template-columns: minmax(0, 5fr) minmax(0, 4fr) minmax(0, 3fr);
+		gap: 36px 48px;
+	}
+}
+
+.sekeco-footer__logo {
+	font-family: var(--wp--preset--font-family--display);
+	font-size: 1.75rem;
+	font-weight: 700;
+	line-height: 1;
+	letter-spacing: -0.045em;
+	text-transform: lowercase;
+}
+
+.sekeco-footer__logo a {
+	display: inline-flex;
+	align-items: center;
+	gap: 12px;
+}
+
+.sekeco-footer__logo a::before {
+	content: "";
+	width: 1.6em;
+	height: 1.6em;
+	background: url("assets/images/sekeco-mark.svg") center / contain no-repeat;
+}
+
+.sekeco-footer__text {
+	max-width: 36ch;
+	color: var(--sk-muted);
+}
+
+.sekeco-footer__brand .sekeco-footer__text {
+	margin-top: 18px;
+}
+
+.sekeco-footer__label {
+	margin-bottom: 14px;
+	font-size: 0.8125rem;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	color: var(--sk-muted);
+}
+
+/* One menu, set in two columns of three; more links add columns. */
+.sekeco-footer__menu .wp-block-navigation__container {
+	display: grid;
+	grid-auto-flow: column;
+	grid-template-rows: repeat(3, auto);
+	justify-content: start;
+	gap: 0 clamp(28px, 4vw, 56px);
+}
+
+.sekeco-footer__menu .wp-block-navigation-item__content {
+	display: inline-block;
+	padding-block: 4px;
+}
+
+.sekeco-footer__cta-title {
+	margin-bottom: 8px;
+	font-family: var(--wp--preset--font-family--display);
+	font-size: 1.375rem;
+	font-weight: 600;
+	line-height: 1.15;
+	letter-spacing: -0.03em;
+	color: var(--sk-fg);
+}
+
+.sekeco-footer__cta .sekeco-footer__text {
+	margin-bottom: 18px;
+	max-width: 26ch;
+}
+
+.sekeco-footer__base {
+	margin-top: clamp(32px, 5vw, 64px);
+	padding-top: 20px;
+	border-top: 1px solid var(--sk-line);
+	font-size: 0.875rem;
+	color: var(--sk-muted);
+}
+
+.sekeco-footer__base > p {
+	margin: 0;
 }
 
 .sekeco-footer a:not(.wp-block-button__link) {
-	color: var(--sk-paper);
+	color: var(--sk-fg);
 	text-decoration: none;
+	transition: color 0.3s ease;
 }
 
 .sekeco-footer a:not(.wp-block-button__link):hover,
 .sekeco-footer a:not(.wp-block-button__link):focus-visible {
-	color: #8fa2ff;
-	text-decoration: underline;
-}
-
-.sekeco-footer__word {
-	margin: 0;
-	font-family: var(--wp--preset--font-family--display);
-	font-size: clamp(4rem, 28vw, 24rem);
-	font-weight: 700;
-	line-height: 0.86;
-	letter-spacing: -0.045em;
-	text-transform: lowercase;
-	user-select: none;
-	/* The one place the brand gradient is set as type, like the logo. */
-	background: var(--sk-grad-soft);
-	-webkit-background-clip: text;
-	background-clip: text;
-	color: transparent;
-	-webkit-text-fill-color: transparent;
-	padding-bottom: 0.08em;
+	color: var(--sk-accent);
 }
 
 /* ---------- Page headers (templates) ---------- */
@@ -748,23 +1042,30 @@ select {
 }
 
 .sekeco-header .wp-block-site-title a::before,
-.sk-menu .wp-block-site-title a::before {
+.sk-menu .wp-block-site-title a::before,
+.sk-drawer .wp-block-site-title a::before {
 	content: "";
 	width: 1.75em;
 	height: 1.75em;
 	background: url("assets/images/sekeco-mark.svg") center / contain no-repeat;
 }
 
-/* ---------- Pointer-lit cards ---------- */
+/* ---------- Spotlight cards ---------- */
 
 /*
- * Cards marked .sk-glow get a neon ring and a soft inner glow that follow the
- * pointer. The runtime sets --mx and --my; without it the glow simply stays
- * centred and only shows on hover, so nothing depends on JavaScript.
+ * Ported from React Bits "Spotlight Card": a soft, neutral spotlight follows
+ * the pointer (smoothed, with a proximity fade) and lights the card's edge.
+ * The runtime writes --sl-x, --sl-y, --sl-p (presence) and --sl-flare; the
+ * gradients below are the component's own falloff curve. Without JavaScript,
+ * presence stays 0 and nothing is drawn.
  */
 .sk-glow {
-	--mx: 50%;
-	--my: 50%;
+	--sl-x: 50%;
+	--sl-y: 50%;
+	--sl-p: 0;
+	--sl-flare: 0;
+	--sl-fill-stops: color-mix(in srgb, var(--sl-light) 100.00%, transparent) 0.00%, color-mix(in srgb, var(--sl-light) 100.00%, transparent) 13.97%, color-mix(in srgb, var(--sl-light) 97.94%, transparent) 20.11%, color-mix(in srgb, var(--sl-light) 92.07%, transparent) 26.26%, color-mix(in srgb, var(--sl-light) 83.12%, transparent) 32.40%, color-mix(in srgb, var(--sl-light) 72.11%, transparent) 38.55%, color-mix(in srgb, var(--sl-light) 60.10%, transparent) 44.69%, color-mix(in srgb, var(--sl-light) 48.08%, transparent) 50.84%, color-mix(in srgb, var(--sl-light) 36.82%, transparent) 56.98%, color-mix(in srgb, var(--sl-light) 26.85%, transparent) 63.13%, color-mix(in srgb, var(--sl-light) 18.47%, transparent) 69.27%, color-mix(in srgb, var(--sl-light) 11.75%, transparent) 75.42%, color-mix(in srgb, var(--sl-light) 6.67%, transparent) 81.56%, color-mix(in srgb, var(--sl-light) 3.10%, transparent) 87.71%, color-mix(in srgb, var(--sl-light) 0.91%, transparent) 93.85%, color-mix(in srgb, var(--sl-light) 0.00%, transparent) 100.00%;
+	--sl-edge-stops: color-mix(in srgb, var(--sl-light) 100.00%, transparent) 0.00%, color-mix(in srgb, var(--sl-light) 100.00%, transparent) 0.00%, color-mix(in srgb, var(--sl-light) 97.68%, transparent) 7.14%, color-mix(in srgb, var(--sl-light) 91.04%, transparent) 14.29%, color-mix(in srgb, var(--sl-light) 80.95%, transparent) 21.43%, color-mix(in srgb, var(--sl-light) 68.66%, transparent) 28.57%, color-mix(in srgb, var(--sl-light) 55.50%, transparent) 35.71%, color-mix(in srgb, var(--sl-light) 42.69%, transparent) 42.86%, color-mix(in srgb, var(--sl-light) 31.17%, transparent) 50.00%, color-mix(in srgb, var(--sl-light) 21.49%, transparent) 57.14%, color-mix(in srgb, var(--sl-light) 13.89%, transparent) 64.29%, color-mix(in srgb, var(--sl-light) 8.30%, transparent) 71.43%, color-mix(in srgb, var(--sl-light) 4.47%, transparent) 78.57%, color-mix(in srgb, var(--sl-light) 2.06%, transparent) 85.71%, color-mix(in srgb, var(--sl-light) 0.68%, transparent) 92.86%, color-mix(in srgb, var(--sl-light) 0.00%, transparent) 100.00%;
 	position: relative;
 	isolation: isolate;
 }
@@ -776,33 +1077,24 @@ select {
 	inset: 0;
 	border-radius: inherit;
 	pointer-events: none;
-	opacity: 0;
-	transition: opacity 0.45s ease;
 }
 
+/* Soft light, behind the content but above the card's own background. */
 .sk-glow::before {
-	z-index: 0;
-	background: radial-gradient(420px circle at var(--mx) var(--my), var(--sk-glow-a), var(--sk-glow-b) 42%, transparent 72%);
+	z-index: -1;
+	background: radial-gradient(circle calc(240px * (1 + 0.2 * var(--sl-flare))) at var(--sl-x) var(--sl-y), var(--sl-fill-stops));
+	opacity: min(1, calc(var(--sl-p) * var(--sl-fill) * (1 + 0.7 * var(--sl-flare))));
 }
 
+/* One-pixel edge light near the pointer. */
 .sk-glow::after {
-	z-index: 3;
+	z-index: 1;
 	padding: 1px;
-	background: radial-gradient(340px circle at var(--mx) var(--my), #09c4f7, #4d68e4 20%, #a33fbd 44%, #fd065a 68%, rgb(253 6 90 / 0) 100%);
+	background: radial-gradient(circle calc(144px * (1 + 0.2 * var(--sl-flare))) at var(--sl-x) var(--sl-y), var(--sl-edge-stops));
 	-webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
 	-webkit-mask-composite: xor;
 	mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
-}
-
-.sk-glow:hover {
-	box-shadow: 0 0 44px -14px rgb(163 63 189 / 0.55);
-}
-
-.sk-glow:hover::before,
-.sk-glow:hover::after,
-.sk-glow:focus-within::before,
-.sk-glow:focus-within::after {
-	opacity: 1;
+	opacity: min(1, calc(var(--sl-p) * var(--sl-edge) * (1 + 0.7 * var(--sl-flare))));
 }
 
 @media (hover: none) {
@@ -811,4 +1103,30 @@ select {
 	.sk-glow::after {
 		display: none;
 	}
+}
+
+/* Glare sweep (React Bits "Glare Hover"): a band the runtime adds to photo cards. */
+.sk-glare {
+	position: absolute;
+	inset: 0;
+	z-index: 2;
+	overflow: hidden;
+	border-radius: inherit;
+	pointer-events: none;
+}
+
+.sk-glare__band {
+	position: absolute;
+	top: -50%;
+	left: -60%;
+	width: 55%;
+	height: 200%;
+	background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.1) 30%, rgb(255 255 255 / 0.42) 50%, rgb(255 255 255 / 0.1) 70%, transparent);
+	mix-blend-mode: screen;
+	opacity: 0;
+	transform: translateX(0) rotate(25deg);
+}
+
+.sk-projects__item {
+	perspective: 1000px;
 }

@@ -44,7 +44,10 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => $classes )
 <section <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 	<div class="sk-hero__stage">
 		<?php if ( '' !== $kicker ) : ?>
-			<p class="sk-kicker sk-hero__kicker"><?php echo esc_html( $kicker ); ?></p>
+			<p class="sk-hero__badge">
+				<span class="sk-hero__badge-mark"><?php echo sekeco_icon( 'layers', array( 'size' => 14 ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+				<?php echo esc_html( $kicker ); ?>
+			</p>
 		<?php endif; ?>
 		<?php if ( '' !== $heading ) : ?>
 			<h1 class="sk-hero__title" data-sk-lines><?php echo $heading; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></h1>

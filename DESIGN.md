@@ -1,6 +1,6 @@
 ---
 name: Sekeco
-description: A techy agency system in the logo's gradient. Deep ink or lavender paper grounds, blue to purple to red light, Bricolage Grotesque set tight, pointer-lit cards.
+description: A techy agency system in the logo's gradient. Deep ink or lavender paper grounds, blue to purple to red light, Bricolage Grotesque set tight, cards that answer the pointer with a soft spotlight.
 colors:
   brand-blue: "#4D68E4"
   brand-purple: "#A33FBD"
@@ -66,8 +66,8 @@ spacing:
   xx-large: "216px"
 components:
   button-primary:
-    backgroundColor: "{colors.brand-blue}"
-    textColor: "#FFFFFF"
+    backgroundColor: "{colors.text-dark}"
+    textColor: "{colors.background-light}"
     rounded: "{rounded.full}"
     padding: "14px 24px"
   button-outline:
@@ -110,7 +110,7 @@ components:
 
 The whole system is the Sekeco logo's gradient (blue, purple, red-pink, with cyan as a spark) treated as light on a quiet ground. The ground is deep ink by default and lavender paper in light mode; the colour lives in the brand gradient, in cover cards, in the hero's blurred ambient light and in one closing field. Everything else is neutral and typographic: tightly tracked Bricolage Grotesque headings over DM Sans text, outlined cards, generous space.
 
-The feel is techy and eclectic rather than corporate. The page is a calm dark surface that wakes up under the pointer: cards grow a neon ring and inner glow that follow the cursor, pill buttons slide their gradient, and the hero breathes with blurred brand light. Structure is stable: a floating pill header, a side rail, a mosaic of projects, outlined capability and process cards, a marquee. Motion is GSAP reveal and scroll work with a reduced-motion fallback; hidden pre-reveal states exist only when JavaScript is running.
+The feel is techy and eclectic rather than corporate. The page is a calm dark surface that wakes up under the pointer: cards catch a soft neutral spotlight that follows the cursor, project cards tilt and glint, buttons fill with a brand dot on hover, and the hero breathes with blurred brand light. Structure is stable: a floating pill header, a side rail, a mosaic of projects, outlined capability and process cards, a marquee. Motion is GSAP reveal and scroll work with a reduced-motion fallback; hidden pre-reveal states exist only when JavaScript is running.
 
 **Key Characteristics:**
 - Dark default, light mode swaps grounds only; the brand colours stay put.
@@ -124,12 +124,12 @@ The feel is techy and eclectic rather than corporate. The page is a calm dark su
 A four-colour logo gradient over two paired neutral grounds: deep ink and lavender paper.
 
 ### Primary
-- **Brand Blue** (#4D68E4): start of the gradient, the button and the first cover tone. Also the theme's `accent` preset and the browser accent colour.
-- **Brand Purple** (#A33FBD): the middle of the gradient, link selection background, the glow shadow under hovered buttons.
-- **Brand Red-Pink** (#FD065A): the end of the gradient and of the cover tones 2 and 3 (pink tint #FF6FAE appears in glows).
+- **Brand Blue** (#4D68E4): start of the gradient, the button dot and the first cover tone. Also the theme's `accent` preset and the browser accent colour.
+- **Brand Purple** (#A33FBD): the middle of the gradient, link selection background, the middle of the button dot.
+- **Brand Red-Pink** (#FD065A): the end of the gradient and of the cover tones 2 and 3 (pink tint #FF6FAE is a spare tone).
 
 ### Secondary
-- **Brand Cyan** (#09C4F7): the spark. Only at the head of the `brand-soft` gradient (button hover, footer wordmark) and the pointer ring.
+- **Brand Cyan** (#09C4F7): the spark. Only at the head of the `brand-soft` gradient (button hover, footer wordmark) and the head of the closing card's border beam.
 
 ### Neutral
 - **Deep Ink** (#07070D): dark page ground, footer, menu overlay.
@@ -140,7 +140,7 @@ A four-colour logo gradient over two paired neutral grounds: deep ink and lavend
 - **Brand Field Base** (#14102E): the deep violet under the closing field mesh.
 
 ### Named Rules
-**The Light, Not Paint Rule.** The brand gradient fills buttons, pill links, cover cards, the closing field and ambient hero light. Body copy, headings and icons never take it. The single exception is the footer wordmark, set in `brand-soft` like the logo itself; it is not a pattern for other type.
+**The Light, Not Paint Rule.** The brand gradient fills the button dot, pill-link arrow circles, cover cards, the closing field and ambient hero light. Body copy, headings and icons never take it. The single exception is the footer wordmark, set in `brand-soft` like the logo itself; it is not a pattern for other type.
 
 **The Tone Scope Rule.** A section fixes its own ground through a tone class (ink, paper, accent field, surface) that remaps text, muted, line and surface together. Never hand-colour text inside a section; read the scope variables.
 
@@ -172,16 +172,14 @@ A fixed side rail (theme switch, vertical scroll-to-top, search button) sits at 
 
 ## Elevation & Depth
 
-Flat by default; depth comes from tonal surfaces, hairlines and light. Shadows are glows that appear only on interaction, tinted with brand purple. The header floats with a blurred translucent pseudo-element rather than a shadow.
+Flat by default; depth comes from tonal surfaces, hairlines and light. Cards carry no box-shadow at all; their only response is light (spotlight, glare) and tilt. There are no shadows on buttons. The header floats with a blurred translucent pseudo-element rather than a shadow.
 
 ### Shadow Vocabulary
-- **Button glow** (`box-shadow: 0 10px 30px -10px rgb(163 63 189 / 0.75)`): hovered buttons, with a 2px lift.
-- **Pill glow** (`box-shadow: 0 8px 28px -8px rgb(163 63 189 / 0.7)`): hovered pill links.
-- **Card glow** (`box-shadow: 0 0 44px -14px rgb(163 63 189 / 0.55)`): hovered pointer-lit cards.
+- **Spotlight** (radial gradient at `--sl-x`/`--sl-y`, 240px fill and 144px 1px edge light, neutral `--sl-light`: white on ink, ink on paper; fill 5-20% and edge 40-70% by tone): `.sk-glow` cards only. Not a shadow and never coloured.
 - **Header glass** (`backdrop-filter: blur(18px) saturate(140%)` on a surface at 82% opacity): the pill header only.
 
 ### Named Rules
-**The Hover-Only Light Rule.** The neon ring and inner glow exist on hover and focus-within, follow the pointer through `--mx` and `--my`, and are hidden entirely on touch devices. Nothing depends on them.
+**The Neutral Spotlight Rule.** Card light is neutral, never brand-coloured. The runtime smooths the pointer into `--sl-x`, `--sl-y`, fades presence `--sl-p` within 80px of the card, and raises `--sl-flare` on press. Spotlight, glare, tilt and magnet are pointer-only: hidden or skipped on touch and under reduced motion, and nothing depends on them.
 
 **The Blur Boundary Rule.** Never put `transform`, `filter` or `backdrop-filter` on an ancestor of the fixed menu overlay; blur lives on a pseudo-element.
 
@@ -193,27 +191,27 @@ Soft and round. Cards and surfaces 20px, the closing field and stacked sections 
 
 ### Buttons
 - **Shape:** full pill (999px), 14px 24px padding (header 0.95rem 1.5rem), weight 500.
-- **Primary:** `brand` gradient fill, white text, 160% background size.
-- **Hover / Focus:** gradient slides to the far end, lift 2px, purple glow; outline button inverts to contrast fill.
+- **Primary:** solid pill in the page's foreground colour (ink in light, paper in dark, white on the brand field) with the page ground as text, and an 8px brand-gradient dot on the leading side. Minimum height 56px.
+- **Hover / Focus:** the dot grows to fill the pill (0.55s exponential ease-out) and the text turns white. No glow, no lift; outline button inverts to the foreground fill.
 - **Outline:** 1px currentcolor border, transparent, inverts on hover.
 
 ### Pill Link
-`brand` gradient, 52px tall, circled outline icon on the leading side; on hover the gradient slides and the gap widens from 12px to 16px.
+Solid foreground pill, 52px tall, circled outline icon on the leading side; on hover the circle fills with the brand gradient and the gap widens from 12px to 16px.
 
 ### Cards / Containers
 - **Capability and process cards:** outlined, 20px radius, 1px line border, surface fill, 28px padding. Capabilities hold a 48px circular icon and a 56px circular go button; process cards carry a two-digit counter because order is information.
 - **Cover cards (Works, Portfolio):** 20px radius, clipped, 320 to 440px tall. Tones: blue to violet, violet to red, red to pink, deep glass. Photographs sit under a bottom scrim (ink 78% to transparent) with title bottom-left and a white circular arrow appearing on hover. Typographic covers set the name large at the top.
 - **Team cards:** portrait 4/5, greyscale until hover, name below, no overlay.
-- **Pointer-lit:** cards may add the glow treatment described in Elevation.
+- **Pointer response:** project cards, capability cards and process steps (`.sk-glow`) take the neutral spotlight. Photo cards add a Glare Hover sweep (a white 10-42% band at 25deg crossing on hover). Project cards also tilt toward the pointer (about 5deg, 1000px perspective, GSAP quickTo 0.5s).
 
 ### Navigation
-Floating pill header (72px, glass, mark plus lowercase site title, centred links at 1000px and above, actions on the right). Hides on scroll down. The menu overlay is a full-screen ink panel with Bricolage links at display size that indent and turn #8FA2FF on hover.
+Floating pill header (72px, glass, mark plus lowercase site title, centred links at 1000px and above, actions on the right). Hides on scroll down. The default menu is a side drawer: a rounded surface card (28px radius, 460px wide) over a 55% ink scrim, sliding in from the left, with Bricolage rows (about 2rem) separated by hairlines, an arrow at the row end, and the action plus theme switch at the foot; clicking the scrim closes it. A full-screen ink overlay (`sekeco-menu`) remains as an alternative.
 
 ### Marquee
 Full-width band tinted 5% of the foreground, Bricolage words at up to 3.75rem in muted text, separated by an accent asterisk; pauses on hover, static when reduced motion is requested.
 
 ### Closing Field
-The CTA block: 40px radius, the `--sk-field-bg` mesh of blue, red and purple radial light over #14102E, white text, left aligned, title up to 5.5rem. The footer below is deep ink with the oversized lowercase gradient wordmark.
+The CTA block: 40px radius, a Border Beam (cyan to purple, 220px, travelling the outline on a CSS offset-path in 9s, linear, parked at 12% under reduced motion), the `--sk-field-bg` mesh of blue, red and purple radial light over #14102E, white text, left aligned, title up to 5.5rem. The footer below is deep ink with the oversized lowercase gradient wordmark.
 
 ### Hero
 Centred title and lead over blurred brand light (three radial blobs at 30px blur, half strength in light mode), with a horizontal reel of cards below.
@@ -224,11 +222,13 @@ Centred title and lead over blurred brand light (three radial blobs at 30px blur
 - **Do** use the `brand` gradient (110deg, #4D68E4, #A33FBD, #FD065A) for fills and `brand-soft` (adds #09C4F7 at the start) for hover states.
 - **Do** read colours from tone-scope variables so a section works in both modes.
 - **Do** use Solar Line Duotone icons from the generated set only.
+- **Do** keep card light neutral (spotlight white on ink, ink on paper) and drive it through `--sl-*`.
 - **Do** keep hover-only effects meaningful without them, and keep reduced-motion collapsing animations to near zero.
 - **Do** run photographs under the ink scrim so overlaid white text keeps contrast.
 
 ### Don't:
 - **Don't** set body text, headings or icons in the gradient; the footer wordmark is the lone logo-derived exception.
+- **Don't** add box-shadows or coloured rings to cards; the spotlight is the only card response.
 - **Don't** add hard offset shadows, glyph icons, dashicons or glyph arrows.
 - **Don't** use backdrop-filter, filter or transform on ancestors of the fixed menu overlay.
 - **Don't** track Bricolage headings looser than -0.035em, or use it for body text.

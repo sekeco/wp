@@ -10,6 +10,7 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
+import { initInteractions } from './interactions';
 
 const root = document.documentElement;
 const EASE = 'expo.out';
@@ -220,31 +221,89 @@ function header() {
 }
 
 /**
- * Pointer-lit cards: .sk-glow elements get --mx and --my so the CSS can draw a
- * neon ring and a soft glow under the pointer. User-driven, so it also runs
- * for visitors who prefer reduced motion.
+ * Floating controls (side rail, search, scroll to top) take the dark tone while
+ * they sit over a dark ground, so they stay legible over the footer, the hero
+ * and the brand field in light mode.
  */
-function glow() {
-	document.addEventListener(
-		'pointermove',
-		( event ) => {
-			if ( 'touch' === event.pointerType || ! event.target.closest ) {
-				return;
-			}
-
-			const card = event.target.closest( '.sk-glow' );
-
-			if ( ! card ) {
-				return;
-			}
-
-			const box = card.getBoundingClientRect();
-
-			card.style.setProperty( '--mx', `${ event.clientX - box.left }px` );
-			card.style.setProperty( '--my', `${ event.clientY - box.top }px` );
-		},
-		{ passive: true }
+function floaters() {
+	const items = Array.from(
+		document.querySelectorAll(
+			'.sk-rail, .sk-search__trigger--float, .sk-scrolltop'
+		)
 	);
+
+	if ( ! items.length ) {
+		return;
+	}
+
+	let queued = false;
+
+	const check = () => {
+		queued = false;
+
+		items.forEach( ( item ) => {
+			const box = item.getBoundingClientRect();
+
+			if ( ! box.width ) {
+				return;
+			}
+
+			const under = document
+				.elementsFromPoint(
+					box.left + box.width / 2,
+					box.top + box.height / 2
+				)
+				.find(
+					( node ) =>
+						! items.some( ( other ) => other.contains( node ) )
+				);
+			const tone = under
+				? under.closest(
+						'.sk-tone--ink, .sk-tone--accent, .sk-tone--paper'
+					)
+				: null;
+			const dark =
+				!! tone && ! tone.classList.contains( 'sk-tone--paper' );
+
+			item.classList.toggle( 'sk-tone--ink', dark );
+		} );
+	};
+
+	const schedule = () => {
+		if ( ! queued ) {
+			queued = true;
+			window.requestAnimationFrame( check );
+		}
+	};
+
+	window.addEventListener( 'scroll', schedule, { passive: true } );
+	window.addEventListener( 'resize', schedule );
+	check();
+}
+
+// The drawer menu leaves the page visible beside it; a click there closes it.
+function drawerScrim() {
+	document.addEventListener( 'click', ( event ) => {
+		const target = event.target;
+
+		if (
+			! ( target instanceof window.Element ) ||
+			target.closest( '.sk-drawer' )
+		) {
+			return;
+		}
+
+		const open = target.closest(
+			'.wp-block-navigation__responsive-container.is-menu-open'
+		);
+		const close = open
+			? open.querySelector( '.wp-block-navigation-overlay-close' )
+			: null;
+
+		if ( close && open.querySelector( '.sk-drawer' ) ) {
+			close.click();
+		}
+	} );
 }
 
 function init() {
@@ -253,7 +312,9 @@ function init() {
 	}
 
 	header();
-	glow();
+	floaters();
+	drawerScrim();
+	initInteractions();
 
 	if ( reduced() ) {
 		release();

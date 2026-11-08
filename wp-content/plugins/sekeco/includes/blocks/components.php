@@ -36,6 +36,8 @@ function sekeco_component_blocks() {
 			'cta',
 			'project-grid',
 			'theme-toggle',
+			'search',
+			'scroll-top',
 		)
 	);
 }
@@ -178,7 +180,7 @@ function sekeco_thumbnail_file_exists( $post ) {
  * on one of four palette fields, so a grid never shows empty boxes.
  *
  * @param WP_Post|int $post Post object or ID.
- * @param array       $args Optional: eager (bool), size (string).
+ * @param array       $args Optional: eager (bool), size (string), variant ('cover' keeps a team member on the overlay cover card instead of the portrait card).
  * @return string
  */
 function sekeco_render_project_card( $post, $args = array() ) {
@@ -191,8 +193,9 @@ function sekeco_render_project_card( $post, $args = array() ) {
 	$args = wp_parse_args(
 		$args,
 		array(
-			'eager' => false,
-			'size'  => 'large',
+			'eager'   => false,
+			'size'    => 'large',
+			'variant' => '',
 		)
 	);
 
@@ -244,6 +247,10 @@ function sekeco_render_project_card( $post, $args = array() ) {
 		$has_image ? 'sk-card--has-image' : 'sk-card--typographic',
 	);
 
+	if ( 'cover' === $args['variant'] ) {
+		$classes[] = 'sk-card--cover';
+	}
+
 	ob_start();
 	?>
 	<article class="<?php echo esc_attr( implode( ' ', $classes ) ); ?>">
@@ -272,6 +279,52 @@ function sekeco_render_project_card( $post, $args = array() ) {
 			</span>
 		</a>
 	</article>
+	<?php
+	return (string) ob_get_clean();
+}
+
+/**
+ * Compact team entry used beside the lead card: round portrait, name, role.
+ *
+ * @param WP_Post|int $post Post object or ID.
+ * @return string
+ */
+function sekeco_render_crew_item( $post ) {
+	$post = get_post( $post );
+
+	if ( ! $post ) {
+		return '';
+	}
+
+	list( $name ) = sekeco_split_title( get_the_title( $post ) );
+	$role         = (string) get_post_meta( $post->ID, 'sekeco_team_role', true );
+	$thumb        = get_the_post_thumbnail(
+		$post,
+		'thumbnail',
+		array(
+			'class'    => 'sk-crew__img',
+			'alt'      => '',
+			'loading'  => 'lazy',
+			'decoding' => 'async',
+		)
+	);
+	$has_image    = '' !== $thumb && sekeco_thumbnail_file_exists( $post );
+
+	ob_start();
+	?>
+	<a class="sk-crew__item sk-glow" href="<?php echo esc_url( get_permalink( $post ) ); ?>">
+		<?php if ( $has_image ) : ?>
+			<?php echo $thumb; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+		<?php else : ?>
+			<span class="sk-crew__mark" aria-hidden="true"><?php echo esc_html( sekeco_initials( $name ) ); ?></span>
+		<?php endif; ?>
+		<span class="sk-crew__text">
+			<span class="sk-crew__name"><?php echo esc_html( $name ); ?></span>
+			<?php if ( '' !== $role ) : ?>
+				<span class="sk-crew__role"><?php echo esc_html( $role ); ?></span>
+			<?php endif; ?>
+		</span>
+	</a>
 	<?php
 	return (string) ob_get_clean();
 }

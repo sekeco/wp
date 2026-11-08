@@ -14,11 +14,13 @@ defined( 'ABSPATH' ) || exit;
 $post_type = isset( $attributes['postType'] ) ? sanitize_key( $attributes['postType'] ) : 'portfolio';
 $post_type = in_array( $post_type, sekeco_project_post_types(), true ) ? $post_type : 'portfolio';
 $layout    = isset( $attributes['layout'] ) ? $attributes['layout'] : 'grid';
-$layout    = in_array( $layout, array( 'grid', 'mosaic', 'reel', 'list' ), true ) ? $layout : 'grid';
+$layout    = in_array( $layout, array( 'grid', 'mosaic', 'reel', 'list', 'crew' ), true ) ? $layout : 'grid';
+$layout    = ( 'crew' === $layout && 'team' !== $post_type ) ? 'grid' : $layout;
+$crew_note = isset( $attributes['crewNote'] ) ? wp_strip_all_tags( $attributes['crewNote'] ) : '';
 $columns   = isset( $attributes['columns'] ) ? max( 2, min( 4, (int) $attributes['columns'] ) ) : 3;
 $per_page  = isset( $attributes['perPage'] ) ? (int) $attributes['perPage'] : 6;
 $term_id   = isset( $attributes['category'] ) ? (int) $attributes['category'] : 0;
-$filter    = ! empty( $attributes['filter'] ) && 'list' !== $layout;
+$filter    = ! empty( $attributes['filter'] ) && ! in_array( $layout, array( 'list', 'crew' ), true );
 
 $posts = sekeco_query_projects( $post_type, $per_page, $term_id );
 
@@ -61,6 +63,30 @@ if ( 'list' === $layout ) :
 				<span class="sk-row__go"><?php echo sekeco_icon( 'arrow-right-up', array( 'size' => 22 ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
 			</a>
 		<?php endforeach; ?>
+	</div>
+	<?php
+	return;
+endif;
+
+if ( 'crew' === $layout ) :
+	$lead = array_shift( $posts );
+	?>
+	<div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+		<div class="sk-crew">
+			<div class="sk-crew__lead">
+				<?php echo sekeco_render_project_card( $lead, array( 'eager' => true, 'variant' => 'cover' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+			</div>
+			<?php if ( $posts || '' !== $crew_note ) : ?>
+				<div class="sk-crew__list">
+					<?php foreach ( $posts as $item ) : ?>
+						<?php echo sekeco_render_crew_item( $item ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					<?php endforeach; ?>
+					<?php if ( '' !== $crew_note ) : ?>
+						<p class="sk-crew__note"><?php echo esc_html( $crew_note ); ?></p>
+					<?php endif; ?>
+				</div>
+			<?php endif; ?>
+		</div>
 	</div>
 	<?php
 	return;

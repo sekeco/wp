@@ -6,8 +6,8 @@ Gutenberg — tanpa page builder pihak ketiga.
 
 | Bagian | Lokasi | Versi |
 | --- | --- | --- |
-| Tema | `wp-content/themes/sekeco/` | 2.2.0 |
-| Plugin | `wp-content/plugins/sekeco/` | 0.16.0 |
+| Tema | `wp-content/themes/sekeco/` | 2.5.0 |
+| Plugin | `wp-content/plugins/sekeco/` | 0.19.0 |
 | WordPress | image Docker `wordpress:latest` (diuji 7.1.4) | — |
 | PHP | container | 8.3 |
 | Bun | `packageManager` di plugin | 1.4.4 |
@@ -92,7 +92,7 @@ wp-content/
     style.css             mode gelap, scope tone, header pill, rail kiri, menu overlay
     functions.php         skrip mode (terang/gelap), font preload, hook tema
     templates/            template block (front-page, archive-*, single-*, …)
-    parts/                header, footer, sekeco-menu (navigation overlay)
+    parts/                header, footer, sekeco-drawer + sekeco-menu (navigation overlay)
     patterns/             section beranda (home-*), cta, contact, post-grid
     assets/fonts/         DM Sans (teks) + Bricolage Grotesque (judul), woff2 variabel
     assets/images/        sekeco-mark.svg (logo gradasi, favicon bawaan)
@@ -122,17 +122,33 @@ wp-content/
   `archive-portfolio`, `archive-product`, `archive-team`, `search`, `404`.
 - **Pattern** — namespace `sekeco/*`, disusun dari blok komponen plugin, jadi
   tema dan plugin saling bergantung dan harus kompatibel (commit terpisah).
-- **Menu** — core Navigation dengan overlay `sekeco-menu` (template part area
-  *navigation-overlay*); menu tetap dikelola editor, tidak ada link hardcode.
+- **Menu** — core Navigation dengan overlay `sekeco-drawer` (panel samping, bawaan header)
+  atau `sekeco-menu` (layar penuh); keduanya template part area *navigation-overlay*
+  dan bisa dipilih di pengaturan blok Navigation. Menu tetap dikelola editor, tidak
+  ada link hardcode. Klik area di luar panel menutup drawer.
 - `customTemplates` di `theme.json` mendaftarkan semua template di luar hierarki
   bawaan WordPress agar bisa dipilih user: `page-no-title`, `page-wide`,
   `page-landing`, `page-canvas` (page) dan `form-canvas` (`sekeco_form`). Template
   hierarki (`front-page`, `single-portfolio`, `archive-team`, …) otomatis terdaftar.
-- **Kartu bercahaya** — class `.sk-glow` (kartu proyek, capability, process step)
-  menampilkan ring neon + cahaya lembut yang mengikuti kursor; runtime GSAP hanya
-  menulis `--mx`/`--my`, tanpa JavaScript efeknya tetap muncul saat hover.
+- **Interaksi pointer** — diport dari React Bits dan Magic UI, ditulis ulang dengan
+  JS murni + GSAP (`src/motion/interactions.js`): *Spotlight Card* (cahaya lembut
+  netral + cahaya tepi yang mengikuti kursor, class `.sk-glow` pada kartu proyek,
+  capability, process step), *Glare Hover* (kilau menyapu kartu foto), *Tilted Card*
+  (miring 3D), dan *Border Beam*
+  (cahaya mengitari tepi kartu CTA, CSS murni). Hanya untuk pointer halus;
+  reduced-motion hanya menyisakan spotlight.
+- **Pencarian layar penuh** — blok `sekeco/search` (tombol melayang kiri bawah, juga `/`
+  atau Ctrl/Cmd+K): `<dialog>` native dengan hasil live dari REST `sekeco/v1/search`,
+  rekomendasi acak di bawah input, dan masonry Works/Portfolio/Journal acak di sisi
+  kanan (desktop) dari `sekeco/v1/suggest`.
+- **Scroll to top** — blok `sekeco/scroll-top` di kanan bawah dengan cincin progres
+  gradasi brand; rail dan tombol melayang otomatis berganti ke tone gelap di atas
+  footer, hero, dan kartu CTA.
+- **Tombol primary** — pil solid (warna foreground halaman) dengan titik gradasi brand
+  yang membesar mengisi pil saat hover (ide *Interactive Hover Button* Magic UI, CSS
+  murni). Tidak ada glow maupun gerak mengikuti kursor.
 - **Rail & header** — header pill dengan menu inline (core Navigation) + hamburger
-  yang membuka overlay `sekeco-menu`; rail kiri (toggle Dark/Light vertikal,
+  yang membuka drawer `sekeco-drawer`; rail kiri (toggle Dark/Light vertikal,
   *Scroll to top*, tombol cari) ada di part `footer`.
 
 ## 6. Plugin
@@ -144,7 +160,7 @@ wp-content/
 | Team | CPT `team`, archive `/team/` |
 | Kategori | core `category` dipakai bersama ketiga CPT |
 | Binding | `sekeco/meta` untuk field kustom di template |
-| Komponen | 15 blok dinamis dalam tiga kategori inserter: *Sekeco: Layout* (`section`, `section-header`, `hero`, `cta`, `marquee`), *Sekeco: Content* (`statement`, `capabilities`, `process`, `faq`, `stats`, `project-grid`), *Sekeco: Utility* (`form`, `theme-toggle`) |
+| Komponen | 17 blok dinamis dalam tiga kategori inserter: *Sekeco: Layout* (`section`, `section-header`, `hero`, `cta`, `marquee`), *Sekeco: Content* (`statement`, `capabilities`, `process`, `faq`, `stats`, `project-grid`), *Sekeco: Utility* (`form`, `theme-toggle`, `search`, `scroll-top`) |
 | Animasi | runtime GSAP (`src/motion/runtime.js`): hero, statement, parallax, counter, reveal; panel Motion untuk `core/group` & `core/cover` |
 | Ikon | Solar Line Duotone via `bun run icons`; PHP `sekeco_icon()` |
 | Filter | `sekeco/project-grid` dengan opsi *Category filter* |

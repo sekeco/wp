@@ -1,16 +1,22 @@
+// Kicker on top, heading below it with the link on the same row at the far
+// edge, lead underneath. The aside wrapper is flattened so the lead and the
+// link are grid items; dense flow lets the link back-fill beside the heading.
 .sk-section-header {
 	display: grid;
 	grid-template-columns: minmax(0, 1fr);
-	gap: 20px 64px;
-	align-items: end;
+	grid-auto-flow: row dense;
+	gap: 14px 48px;
+	align-items: start;
 
 	@media (min-width: 900px) {
-		grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
+		grid-template-columns: minmax(0, 1fr) auto;
+		align-items: end;
 	}
 }
 
 .sk-section-header__kicker {
 	grid-column: 1 / -1;
+	margin-bottom: 4px;
 }
 
 .sk-section-header__title {
@@ -31,15 +37,26 @@
 }
 
 .sk-section-header__aside {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	gap: 22px;
+	display: contents;
+}
+
+.sk-section-header .sk-link {
+	grid-column: 1;
+	align-self: start;
+	justify-self: start;
+	margin-top: 10px;
+
+	@media (min-width: 900px) {
+		grid-column: 2;
+		align-self: end;
+		margin-top: 0;
+	}
 }
 
 .sk-section-header__lead {
+	grid-column: 1 / -1;
 	margin: 0;
-	max-width: 44ch;
+	max-width: 52ch;
 	font-size: 1.0625rem;
 	line-height: 1.6;
 	color: var(--sk-muted);

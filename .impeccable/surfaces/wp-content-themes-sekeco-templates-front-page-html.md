@@ -13,7 +13,7 @@ Mode: Persuade (home, services, contact) with Experience passes on Works and Por
 
 THESIS: The work is the page. Oversized type and rounded project surfaces carry the site; the visitor sees real Works within the first scroll. Refuses the category default: centered headline, two buttons, a row of equal icon cards, glow gradients on near-black.
 
-OWN-WORLD: Deep blue-black ink #07070D and lavender paper #F6F5FB (dark first), the logo gradient (blue #4D68E4, purple #A33FBD, red-pink #FD065A, cyan glint #09C4F7) on buttons, pills, cover cards and the closing field, Bricolage Grotesque headings with DM Sans text, 20px surfaces, pointer-lit neon cards (ring plus soft glow under the cursor), a vertical side rail with the Dark/Light switch.
+OWN-WORLD: Deep blue-black ink #07070D and lavender paper #F6F5FB (dark first), the logo gradient (blue #4D68E4, purple #A33FBD, red-pink #FD065A, cyan glint #09C4F7) on buttons, pills, cover cards and the closing field, Bricolage Grotesque headings with DM Sans text, 20px surfaces, pointer-responsive cards ported from React Bits (soft neutral spotlight with edge light, glare sweep, 3D tilt, magnetic buttons) and a Magic UI border beam on the closing card, a vertical side rail with the Dark/Light switch.
 
 STORY: Sekeco takes a brand or an operational system from identity to running software with one team. The visitor sees real works, understands the four capability lines, and starts an enquiry through the form.
 

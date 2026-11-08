@@ -26,14 +26,17 @@ $classes = 'sk-cta' . ( 'auto' === $tone ? '' : ' sk-tone--' . $tone );
 $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => $classes ) );
 ?>
 <section <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+	<span class="sk-beam" aria-hidden="true"><span class="sk-beam__dot"></span></span>
 	<div class="sk-cta__inner">
-		<?php if ( '' !== $kicker ) : ?>
-			<p class="sk-kicker sk-cta__kicker"><?php echo esc_html( $kicker ); ?></p>
-		<?php endif; ?>
-		<h2 class="sk-cta__title"><?php echo $heading; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></h2>
-		<?php if ( '' !== $lead ) : ?>
-			<p class="sk-cta__lead"><?php echo esc_html( $lead ); ?></p>
-		<?php endif; ?>
+		<div class="sk-cta__copy">
+			<?php if ( '' !== $kicker ) : ?>
+				<p class="sk-kicker sk-cta__kicker"><?php echo esc_html( $kicker ); ?></p>
+			<?php endif; ?>
+			<h2 class="sk-cta__title"><?php echo $heading; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></h2>
+			<?php if ( '' !== $lead ) : ?>
+				<p class="sk-cta__lead"><?php echo esc_html( $lead ); ?></p>
+			<?php endif; ?>
+		</div>
 		<?php if ( '' !== trim( $content ) ) : ?>
 			<div class="sk-cta__actions"><?php echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>
 		<?php endif; ?>

@@ -1,9 +1,14 @@
+// A field strip at the content width: the same 1240px column as the sections
+// around it, not the full bleed of the page.
 .sk-cta {
+	--sk-cta-radius: 28px;
+	--sk-gutter: clamp(16px, 4vw, 48px);
 	box-sizing: border-box;
-	margin-inline: clamp(8px, 1.6vw, 22px);
-	padding-block: clamp(56px, 8vw, 112px);
-	padding-inline: clamp(20px, 5vw, 72px);
-	border-radius: var(--sk-radius-xl, 40px);
+	width: min(calc(100% - 2 * var(--sk-gutter)), var(--sk-max, 1240px));
+	margin-inline: auto;
+	padding-block: clamp(22px, 3vw, 36px);
+	padding-inline: clamp(22px, 3.4vw, 44px);
+	border-radius: var(--sk-cta-radius);
 	background: var(--sk-bg);
 	color: var(--sk-fg);
 	position: relative;
@@ -13,23 +18,35 @@
 	background: var(--sk-field-bg, var(--sk-bg));
 }
 
+// Copy on the left, the action on the right; stacked on narrow screens.
 .sk-cta__inner {
+	display: grid;
+	align-items: center;
+	gap: 20px 32px;
+}
+
+@media (min-width: 760px) {
+
+	.sk-cta__inner {
+		grid-template-columns: minmax(0, 1fr) auto;
+	}
+}
+
+.sk-cta__copy {
 	display: flex;
 	flex-direction: column;
-	align-items: flex-start;
-	gap: clamp(20px, 2.6vw, 32px);
-	max-width: var(--sk-max, 1240px);
-	margin-inline: auto;
+	gap: 8px;
+	min-width: 0;
 }
 
 .sk-cta__title {
 	margin: 0;
-	max-width: 14ch;
+	max-width: 22ch;
 	font-family: var(--wp--preset--font-family--display);
-	font-size: clamp(2.75rem, 7vw, 5.5rem);
+	font-size: clamp(1.625rem, 3.2vw, 2.5rem);
 	font-weight: 600;
-	line-height: 0.98;
-	letter-spacing: -0.045em;
+	line-height: 1.05;
+	letter-spacing: -0.04em;
 	text-wrap: balance;
 	color: var(--sk-fg);
 
@@ -42,13 +59,53 @@
 
 .sk-cta__lead {
 	margin: 0;
-	max-width: 44ch;
-	font-size: clamp(1.0625rem, 1.4vw, 1.25rem);
-	line-height: 1.55;
+	max-width: 46ch;
+	font-size: 1rem;
+	line-height: 1.5;
 	color: var(--sk-muted);
 	text-wrap: pretty;
 }
 
 .sk-cta__actions .wp-block-buttons {
 	margin: 0;
+}
+
+// Border beam (Magic UI "Border Beam"): a light travels the card's outline.
+.sk-beam {
+	position: absolute;
+	inset: 0;
+	border: 1.5px solid transparent;
+	border-radius: inherit;
+	pointer-events: none;
+	-webkit-mask: linear-gradient(transparent, transparent), linear-gradient(#000, #000);
+	-webkit-mask-clip: padding-box, border-box;
+	-webkit-mask-composite: xor;
+	mask: linear-gradient(transparent, transparent), linear-gradient(#000, #000);
+	mask-clip: padding-box, border-box;
+	mask-composite: intersect;
+}
+
+.sk-beam__dot {
+	position: absolute;
+	width: 200px;
+	aspect-ratio: 1;
+	background: linear-gradient(to left, #09c4f7, #a33fbd 45%, transparent);
+	offset-path: rect(0 auto auto 0 round 28px);
+	offset-distance: 0%;
+	animation: sk-beam 9s linear infinite;
+}
+
+@keyframes sk-beam {
+
+	to {
+		offset-distance: 100%;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+	.sk-beam__dot {
+		animation: none;
+		offset-distance: 12%;
+	}
 }

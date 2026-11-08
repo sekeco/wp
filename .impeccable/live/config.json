@@ -1,0 +1,6 @@
+{
+  "files": ["wp-content/mu-plugins/impeccable-live.php"],
+  "insertBefore": "<!-- impeccable-live-anchor -->",
+  "commentSyntax": "html",
+  "cspChecked": true
+}

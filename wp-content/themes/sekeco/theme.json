@@ -353,8 +353,8 @@
 					"radius": "var:preset|border-radius|full"
 				},
 				"color": {
-					"gradient": "var:preset|gradient|brand",
-					"text": "var:preset|color|accent-contrast"
+					"background": "var:preset|color|contrast",
+					"text": "var:preset|color|base"
 				},
 				"spacing": {
 					"padding": {
@@ -372,8 +372,8 @@
 				},
 				":hover": {
 					"color": {
-						"gradient": "var:preset|gradient|brand-soft",
-						"text": "var:preset|color|accent-contrast"
+						"background": "var:preset|color|contrast",
+						"text": "var:preset|color|base"
 					}
 				}
 			},
@@ -468,6 +468,11 @@
 				"border": {
 					"radius": "var:preset|border-radius|md"
 				}
+			},
+			"core/post-featured-image": {
+				"border": {
+					"radius": "var:preset|border-radius|md"
+				}
 			}
 		}
 	},
@@ -484,7 +489,12 @@
 		},
 		{
 			"name": "sekeco-menu",
-			"title": "Menu overlay",
+			"title": "Menu overlay (full screen)",
+			"area": "navigation-overlay"
+		},
+		{
+			"name": "sekeco-drawer",
+			"title": "Menu drawer",
 			"area": "navigation-overlay"
 		}
 	],

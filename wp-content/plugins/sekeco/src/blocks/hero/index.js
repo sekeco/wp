@@ -13,7 +13,7 @@ import { __ } from '@wordpress/i18n';
 
 import './style.scss';
 import metadata from './block.json';
-import { blockIcon } from '../../shared/icon';
+import { blockIcon, Icon } from '../../shared/icon';
 import { saveInner, DISPLAY_FORMATS } from '../../shared/register';
 
 const TEMPLATE = [
@@ -21,7 +21,7 @@ const TEMPLATE = [
 		'core/buttons',
 		{},
 		[
-			[ 'core/button', { text: 'Start a project', url: '/contact/' } ],
+			[ 'core/button', { text: "Let's Collaborate", url: '/contact/' } ],
 			[
 				'core/button',
 				{
@@ -119,16 +119,20 @@ function Edit( { attributes, setAttributes } ) {
 			</InspectorControls>
 			<section { ...blockProps }>
 				<div className="sk-hero__stage">
-					<RichText
-						tagName="p"
-						className="sk-kicker sk-hero__kicker"
-						value={ kicker }
-						allowedFormats={ [] }
-						placeholder={ __( 'SMALL LABEL', 'sekeco' ) }
-						onChange={ ( value ) =>
-							setAttributes( { kicker: value } )
-						}
-					/>
+					<p className="sk-hero__badge">
+						<span className="sk-hero__badge-mark">
+							<Icon name="layers" size={ 14 } />
+						</span>
+						<RichText
+							tagName="span"
+							value={ kicker }
+							allowedFormats={ [] }
+							placeholder={ __( 'Badge text', 'sekeco' ) }
+							onChange={ ( value ) =>
+								setAttributes( { kicker: value } )
+							}
+						/>
+					</p>
 					<RichText
 						tagName="h1"
 						className="sk-hero__title"

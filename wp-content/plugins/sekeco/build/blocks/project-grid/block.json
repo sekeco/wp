@@ -38,6 +38,10 @@
     "filter": {
       "type": "boolean",
       "default": false
+    },
+    "crewNote": {
+      "type": "string",
+      "default": ""
     }
   },
   "supports": {
