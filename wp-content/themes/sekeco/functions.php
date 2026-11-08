@@ -15,24 +15,44 @@ defined( 'ABSPATH' ) || exit;
 function sekeco_setup() {
 	add_theme_support( 'post-formats', array( 'aside', 'gallery', 'link', 'quote', 'video' ) );
 	add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption', 'style', 'script' ) );
+	add_theme_support( 'responsive-embeds' );
+
+	// Same tokens and component parts inside the editor.
+	add_editor_style( array( 'style.css', 'assets/css/solar-icons.css' ) );
 }
 add_action( 'after_setup_theme', 'sekeco_setup' );
 
 /**
- * Enqueue the theme stylesheet on the frontend.
+ * Enqueue the theme stylesheets on the frontend.
  *
  * @return void
  */
 function sekeco_enqueue_styles() {
-	wp_enqueue_style(
-		'sekeco-style',
-		get_parent_theme_file_uri( 'style.css' ),
-		array(),
-		wp_get_theme()->get( 'Version' )
-	);
+	$version = wp_get_theme()->get( 'Version' );
+
+	wp_enqueue_style( 'sekeco-style', get_parent_theme_file_uri( 'style.css' ), array(), $version );
 	wp_style_add_data( 'sekeco-style', 'path', get_parent_theme_file_path( 'style.css' ) );
+
+	wp_enqueue_style( 'sekeco-icons', get_parent_theme_file_uri( 'assets/css/solar-icons.css' ), array( 'sekeco-style' ), $version );
 }
 add_action( 'wp_enqueue_scripts', 'sekeco_enqueue_styles' );
+
+/**
+ * Set the colour mode and the motion flag before first paint.
+ *
+ * The stored choice wins; first-time visitors get the dark mode, as in the reference.
+ * The theme toggle block keeps data-theme and localStorage in sync.
+ *
+ * @return void
+ */
+function sekeco_print_mode_script() {
+	?>
+	<script>
+	(function(){var d=document.documentElement;d.classList.add('sekeco-js');try{var t=localStorage.getItem('sekeco-theme');if(t!=='light'&&t!=='dark'){t='dark';}d.setAttribute('data-theme',t);d.style.colorScheme=t;}catch(e){}})();
+	</script>
+	<?php
+}
+add_action( 'wp_head', 'sekeco_print_mode_script', 0 );
 
 /**
  * Preload the variable fonts declared in theme.json.
@@ -41,8 +61,7 @@ add_action( 'wp_enqueue_scripts', 'sekeco_enqueue_styles' );
  */
 function sekeco_preload_fonts() {
 	$fonts = array(
-		'assets/fonts/geist-latin-wght-normal.woff2',
-		'assets/fonts/bricolage-grotesque-latin-wght-normal.woff2',
+		'assets/fonts/dm-sans-latin-wght-normal.woff2',
 	);
 
 	foreach ( $fonts as $font ) {
@@ -53,54 +72,6 @@ function sekeco_preload_fonts() {
 	}
 }
 add_action( 'wp_head', 'sekeco_preload_fonts', 1 );
-
-/**
- * Check whether a post type has at least one published entry.
- *
- * @param string $post_type Post type slug.
- * @return bool
- */
-function sekeco_post_type_has_content( $post_type ) {
-	static $cache = array();
-
-	if ( isset( $cache[ $post_type ] ) ) {
-		return $cache[ $post_type ];
-	}
-
-	$counts = wp_count_posts( $post_type );
-
-	$cache[ $post_type ] = isset( $counts->publish ) && (int) $counts->publish > 0;
-
-	return $cache[ $post_type ];
-}
-
-/**
- * Hide homepage sections that depend on content which does not exist yet.
- *
- * Keeps the front page clean on a fresh install while still filling in
- * automatically once projects or products are published.
- *
- * @param string $block_content Rendered pattern markup.
- * @param array  $block         Parsed block.
- * @return string
- */
-function sekeco_filter_empty_home_sections( $block_content, $block ) {
-	$slug = isset( $block['attrs']['slug'] ) ? (string) $block['attrs']['slug'] : '';
-
-	$requirements = array(
-		'sekeco/home-work'     => 'portfolio',
-		'sekeco/home-products' => 'product',
-	);
-
-	if ( ! isset( $requirements[ $slug ] ) ) {
-		return $block_content;
-	}
-
-	return sekeco_post_type_has_content( $requirements[ $slug ] )
-		? $block_content
-		: '';
-}
-add_filter( 'render_block_core/pattern', 'sekeco_filter_empty_home_sections', 10, 2 );
 
 /**
  * Hide buttons whose bound URL is empty.
@@ -127,7 +98,7 @@ function sekeco_hide_empty_bound_buttons( $block_content, $block ) {
 add_filter( 'render_block_core/button', 'sekeco_hide_empty_bound_buttons', 10, 2 );
 
 /**
- * Register the theme pattern category and custom block styles.
+ * Register the pattern category and block styles.
  *
  * @return void
  */
@@ -136,39 +107,15 @@ function sekeco_register_theme_extras() {
 		'sekeco',
 		array(
 			'label'       => __( 'Sekeco', 'sekeco' ),
-			'description' => __( 'Patterns designed for the Sekeco theme.', 'sekeco' ),
+			'description' => __( 'Sections designed for the Sekeco theme.', 'sekeco' ),
 		)
 	);
 
 	register_block_style(
 		'core/group',
 		array(
-			'name'  => 'sekeco-card',
-			'label' => __( 'Sekeco card', 'sekeco' ),
-		)
-	);
-
-	register_block_style(
-		'core/paragraph',
-		array(
-			'name'  => 'sekeco-eyebrow',
-			'label' => __( 'Sekeco eyebrow', 'sekeco' ),
-		)
-	);
-
-	register_block_style(
-		'core/button',
-		array(
-			'name'  => 'sekeco-pill',
-			'label' => __( 'Pill', 'sekeco' ),
-		)
-	);
-
-	register_block_style(
-		'core/button',
-		array(
-			'name'  => 'sekeco-ghost',
-			'label' => __( 'Ghost', 'sekeco' ),
+			'name'  => 'sekeco-surface',
+			'label' => __( 'Surface', 'sekeco' ),
 		)
 	);
 }

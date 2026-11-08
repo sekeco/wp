@@ -1,44 +1,50 @@
 <!-- wp:template-part {"slug":"header"} /-->
 
-<!-- wp:group {"tagName":"main","anchor":"main-content","align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|70"}}},"layout":{"type":"constrained"}} -->
-<main id="main-content" class="wp-block-group alignfull" style="padding-top:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--70)">
-	<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|40"}},"layout":{"type":"flex","flexWrap":"wrap","verticalAlignment":"center"}} -->
-	<div class="wp-block-group">
-		<!-- wp:post-featured-image {"aspectRatio":"1","width":"160px","style":{"border":{"radius":"999px"}}} /-->
+<!-- wp:group {"tagName":"main","anchor":"main-content","align":"full","layout":{"type":"default"}} -->
+<main id="main-content" class="wp-block-group alignfull">
+<!-- wp:sekeco/section {"tone":"auto","spacing":"md","className":"sk-page-head"} -->
+<!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap","verticalAlignment":"center"},"style":{"spacing":{"blockGap":"var:preset|spacing|50"}}} -->
+<div class="wp-block-group">
+<!-- wp:post-featured-image {"aspectRatio":"4/5","width":"220px","style":{"border":{"radius":"16px"}}} /-->
 
-		<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"layout":{"type":"default"}} -->
-		<div class="wp-block-group">
-			<!-- wp:post-title {"level":1,"fontSize":"x-large"} /-->
+<!-- wp:group {"layout":{"type":"default"},"style":{"spacing":{"blockGap":"var:preset|spacing|30"}}} -->
+<div class="wp-block-group">
+<!-- wp:post-title {"level":1} /-->
 
-			<!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"sekeco/meta","args":{"key":"sekeco_team_role"}}}},"fontSize":"medium","textColor":"muted"} -->
-			<p class="has-muted-color has-text-color has-medium-font-size">Role</p>
-			<!-- /wp:paragraph -->
+<!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"sekeco/meta","args":{"key":"sekeco_team_role"}}}},"fontSize":"large","textColor":"muted"} -->
+<p class="has-muted-color has-text-color has-large-font-size">Role</p>
+<!-- /wp:paragraph -->
 
-			<!-- wp:buttons {"style":{"spacing":{"margin":{"top":"var:preset|spacing|20"}}}} -->
-			<div class="wp-block-buttons" style="margin-top:var(--wp--preset--spacing--20)">
-				<!-- wp:button {"className":"is-style-sekeco-ghost","fontSize":"small","metadata":{"bindings":{"url":{"source":"sekeco/meta","args":{"key":"sekeco_team_github"}}}}} -->
-				<div class="wp-block-button has-custom-font-size is-style-sekeco-ghost has-small-font-size"><a class="wp-block-button__link wp-element-button" href="#">GitHub</a></div>
-				<!-- /wp:button -->
+<!-- wp:buttons -->
+<div class="wp-block-buttons"><!-- wp:button {"className":"is-style-outline","metadata":{"bindings":{"url":{"source":"sekeco/meta","args":{"key":"sekeco_team_github"}}}},"fontSize":"small"} -->
+<div class="wp-block-button has-custom-font-size is-style-outline has-small-font-size"><a class="wp-block-button__link wp-element-button" href="#">GitHub</a></div>
+<!-- /wp:button -->
 
-				<!-- wp:button {"className":"is-style-sekeco-ghost","fontSize":"small","metadata":{"bindings":{"url":{"source":"sekeco/meta","args":{"key":"sekeco_team_linkedin"}}}}} -->
-				<div class="wp-block-button has-custom-font-size is-style-sekeco-ghost has-small-font-size"><a class="wp-block-button__link wp-element-button" href="#">LinkedIn</a></div>
-				<!-- /wp:button -->
+<!-- wp:button {"className":"is-style-outline","metadata":{"bindings":{"url":{"source":"sekeco/meta","args":{"key":"sekeco_team_linkedin"}}}},"fontSize":"small"} -->
+<div class="wp-block-button has-custom-font-size is-style-outline has-small-font-size"><a class="wp-block-button__link wp-element-button" href="#">LinkedIn</a></div>
+<!-- /wp:button -->
 
-				<!-- wp:button {"className":"is-style-sekeco-ghost","fontSize":"small","metadata":{"bindings":{"url":{"source":"sekeco/meta","args":{"key":"sekeco_team_instagram"}}}}} -->
-				<div class="wp-block-button has-custom-font-size is-style-sekeco-ghost has-small-font-size"><a class="wp-block-button__link wp-element-button" href="#">Instagram</a></div>
-				<!-- /wp:button -->
-			</div>
-			<!-- /wp:buttons -->
-		</div>
-		<!-- /wp:group -->
-	</div>
-	<!-- /wp:group -->
+<!-- wp:button {"className":"is-style-outline","metadata":{"bindings":{"url":{"source":"sekeco/meta","args":{"key":"sekeco_team_instagram"}}}},"fontSize":"small"} -->
+<div class="wp-block-button has-custom-font-size is-style-outline has-small-font-size"><a class="wp-block-button__link wp-element-button" href="#">Instagram</a></div>
+<!-- /wp:button --></div>
+<!-- /wp:buttons -->
+</div>
+<!-- /wp:group -->
+</div>
+<!-- /wp:group -->
+<!-- /wp:sekeco/section -->
 
-	<!-- wp:separator {"style":{"spacing":{"margin":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|50"}}}} -->
-	<hr class="wp-block-separator has-alpha-channel-opacity" style="margin-top:var(--wp--preset--spacing--60);margin-bottom:var(--wp--preset--spacing--50)" />
-	<!-- /wp:separator -->
+<!-- wp:sekeco/section {"tone":"auto","spacing":"md","width":"narrow"} -->
+<!-- wp:post-content {"layout":{"type":"constrained"}} /-->
+<!-- /wp:sekeco/section -->
 
-	<!-- wp:post-content {"layout":{"type":"constrained"}} /-->
+<!-- wp:sekeco/section {"tone":"surface","spacing":"md","stacked":true,"requires":"team"} -->
+<!-- wp:sekeco/section-header {"title":"The rest of <em>the team.</em>"} /-->
+
+<!-- wp:sekeco/project-grid {"postType":"team","layout":"grid","columns":4,"perPage":4} /-->
+<!-- /wp:sekeco/section -->
+
+<!-- wp:pattern {"slug":"sekeco/cta"} /-->
 </main>
 <!-- /wp:group -->
 
