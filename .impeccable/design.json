@@ -1,0 +1,152 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-08T12:00:00Z",
+  "title": "Design System: Sekeco",
+  "extensions": {
+    "colorMeta": {
+      "ink": { "role": "neutral", "displayName": "Warm Ink", "canonical": "#111013", "tonalRamp": ["#111013", "#1A191C", "#2C2B2E", "#4A484B", "#767378", "#ADAA9F", "#D8D3C3", "#F2EFE4"] },
+      "cream": { "role": "neutral", "displayName": "Cream", "canonical": "#F2EFE4", "tonalRamp": ["#5E5C54", "#ADAA9F", "#C9C5B6", "#D8D3C3", "#E6E2D4", "#F2EFE4", "#FAF8F2", "#FDFCF9"] },
+      "surface-light": { "role": "neutral", "displayName": "Light Surface", "canonical": "#FAF8F2", "tonalRamp": ["#5E5C54", "#ADAA9F", "#D8D3C3", "#EAE6D9", "#F2EFE4", "#F6F4EC", "#FAF8F2", "#FDFCF9"] },
+      "surface-dark": { "role": "neutral", "displayName": "Dark Surface", "canonical": "#1A191C", "tonalRamp": ["#111013", "#161518", "#1A191C", "#222124", "#2C2B2E", "#4A484B", "#767378", "#ADAA9F"] },
+      "muted-light": { "role": "neutral", "displayName": "Muted (light mode)", "canonical": "#5E5C54", "tonalRamp": ["#2A2925", "#3E3D38", "#5E5C54", "#7B7970", "#99968B", "#B5B2A6", "#D0CDC0", "#E6E3D8"] },
+      "muted-dark": { "role": "neutral", "displayName": "Muted (dark mode)", "canonical": "#ADAA9F", "tonalRamp": ["#4A4944", "#65635C", "#807E75", "#ADAA9F", "#BDBAB0", "#CDCBC1", "#DDDBD3", "#EDECE6"] },
+      "border-light": { "role": "neutral", "displayName": "Light Hairline", "canonical": "#D8D3C3", "tonalRamp": ["#5E5C54", "#908D80", "#B5B1A2", "#D8D3C3", "#E3DFD2", "#ECE9DE", "#F2EFE4", "#F8F6EF"] },
+      "border-dark": { "role": "neutral", "displayName": "Dark Hairline", "canonical": "#2C2B2E", "tonalRamp": ["#111013", "#1A191C", "#232225", "#2C2B2E", "#3A393C", "#4A484B", "#5F5D60", "#767378"] },
+      "sage": { "role": "primary", "displayName": "Sage Field", "canonical": "#4A4F49", "tonalRamp": ["#1E201D", "#2D302C", "#3A3E39", "#4A4F49", "#656B63", "#868C83", "#B9C1B1", "#DDE1D6"] },
+      "sage-lifted": { "role": "primary", "displayName": "Lifted Sage", "canonical": "#B9C1B1", "tonalRamp": ["#4A4F49", "#656B63", "#868C83", "#A0A89A", "#B9C1B1", "#C8CCBD", "#DADED1", "#ECEEE7"] },
+      "sage-light": { "role": "tertiary", "displayName": "Sage Light Cover", "canonical": "#C8CCBD", "tonalRamp": ["#4A4F49", "#6E746A", "#9AA093", "#B3B8A8", "#C8CCBD", "#D6D9CC", "#E4E6DC", "#F1F2EC"] },
+      "salmon": { "role": "tertiary", "displayName": "Salmon Cover", "canonical": "#F4B6A4", "tonalRamp": ["#6B3A2D", "#99573F", "#C57560", "#E89A85", "#F4B6A4", "#F8CBBD", "#FBDED5", "#FDEEE9"] },
+      "signal-red": { "role": "tertiary", "displayName": "Signal Red Cover", "canonical": "#D91842", "tonalRamp": ["#4D0A1A", "#7A1129", "#A81538", "#D91842", "#E4466A", "#EC7791", "#F4A9BA", "#FAD6DF"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero, closing card and menu headlines; DM Sans 500, -0.045em, dimmed secondary words." },
+      "headline": { "displayName": "Headline", "purpose": "Section titles." },
+      "title": { "displayName": "Title", "purpose": "Card, capability and process titles." },
+      "body": { "displayName": "Body", "purpose": "Running text at 82% of the text colour; leads are muted." },
+      "label": { "displayName": "Label", "purpose": "Uppercase kicker above sections and the hero label." }
+    },
+    "shadows": [
+      { "name": "lift", "value": "0 2px 4px rgba(14,16,15,0.06), 0 24px 48px -16px rgba(14,16,15,0.28)", "purpose": "theme.json preset for editor use; not applied by shipped components." },
+      { "name": "card-scrim", "value": "linear-gradient(to top, rgb(17 16 19 / 0.7), rgb(17 16 19 / 0))", "purpose": "Legibility gradient under text on photographic cover cards; not a shadow." }
+    ],
+    "motion": [
+      { "name": "ease-expo", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Single ease-out for reveals, hovers, card swell, header hide and view transitions." },
+      { "name": "view-transition", "value": "0.28s out / 0.5s in, translateY -8px / 12px", "purpose": "Cross-document page transitions." },
+      { "name": "marquee", "value": "linear 40s infinite", "purpose": "Ticker loop; pauses on hover; static and wrapped under reduced motion." },
+      { "name": "hover-fill", "value": "0.3s to 0.5s", "purpose": "Capability card sage fill, button flip, pill link gap." },
+      { "name": "reduced-motion", "value": "durations 0.01ms, scroll-behavior auto", "purpose": "Global fallback; GSAP reveals have a 3s CSS failsafe." }
+    ],
+    "breakpoints": [
+      { "name": "cards-2", "value": "640px" },
+      { "name": "section-header-split", "value": "900px" },
+      { "name": "header-inline-menu", "value": "1000px" },
+      { "name": "rail-and-4-up", "value": "1100px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Sage pill; flips to the contrast colour with a 2px lift.",
+      "html": "<a class=\"ds-btn\" href=\"#\">Start a project</a>",
+      "css": ".ds-btn { display: inline-block; background: #4A4F49; color: #F2EFE4; padding: 0.9rem 1.5rem; border-radius: 999px; font: 500 1rem 'DM Sans', system-ui, sans-serif; text-decoration: none; transition: background-color 0.3s ease, color 0.3s ease, transform 0.5s cubic-bezier(0.16,1,0.3,1); } .ds-btn:hover { background: #F2EFE4; color: #111013; transform: translateY(-2px); } .ds-btn:focus-visible { outline: 2px solid #B9C1B1; outline-offset: 3px; }"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Transparent pill with a 1px border that fills on hover.",
+      "html": "<a class=\"ds-btn-outline\" href=\"#\">See works</a>",
+      "css": ".ds-btn-outline { display: inline-block; border: 1px solid currentColor; background: transparent; color: #F2EFE4; padding: 0.9rem 1.5rem; border-radius: 999px; font: 500 1rem 'DM Sans', system-ui, sans-serif; text-decoration: none; transition: background-color 0.3s ease, color 0.3s ease; } .ds-btn-outline:hover { background: #F2EFE4; color: #111013; } .ds-btn-outline:focus-visible { outline: 2px solid #B9C1B1; outline-offset: 3px; }"
+    },
+    {
+      "name": "Pill Link",
+      "kind": "button",
+      "refersTo": "pill-link",
+      "description": "Sage pill with a circled arrow at the leading edge.",
+      "html": "<a class=\"ds-pill\" href=\"#\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M7 17 17 7M9 7h8v8\"/></svg>View all work</a>",
+      "css": ".ds-pill { display: inline-flex; align-items: center; gap: 12px; min-height: 52px; padding: 0 24px 0 10px; border-radius: 999px; background: #4A4F49; color: #F2EFE4; font: 500 1rem 'DM Sans', system-ui, sans-serif; text-decoration: none; transition: background-color 0.3s ease, gap 0.5s cubic-bezier(0.16,1,0.3,1); } .ds-pill svg { box-sizing: content-box; padding: 7px; border: 1px solid rgba(242,239,228,0.5); border-radius: 50%; order: -1; } .ds-pill:hover, .ds-pill:focus-visible { background: color-mix(in srgb, #4A4F49 70%, #F2EFE4); gap: 16px; }"
+    },
+    {
+      "name": "Header Pill",
+      "kind": "nav",
+      "refersTo": "header-pill",
+      "description": "Floating full-width blurred pill: brand, centred inline menu, action.",
+      "html": "<nav class=\"ds-header\"><strong class=\"ds-brand\">Sekeco</strong><ul class=\"ds-menu\"><li><a class=\"is-current\" href=\"#\">Works</a></li><li><a href=\"#\">Services</a></li><li><a href=\"#\">Team</a></li></ul><a class=\"ds-act\" href=\"#\">Contact</a></nav>",
+      "css": ".ds-header { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 12px; min-height: 72px; padding: 8px 8px 8px 24px; border-radius: 999px; background: #1A191C; color: #F2EFE4; font-family: 'DM Sans', system-ui, sans-serif; } .ds-brand { font-weight: 700; font-size: 1.25rem; letter-spacing: -0.04em; } .ds-menu { display: flex; justify-content: center; gap: 36px; margin: 0; padding: 0; list-style: none; } .ds-menu a { color: #F2EFE4; text-decoration: none; opacity: 0.86; transition: opacity 0.25s ease; } .ds-menu a:hover, .ds-menu a:focus-visible, .ds-menu a.is-current { opacity: 1; } .ds-act { padding: 0.95rem 1.5rem; border-radius: 999px; background: #4A4F49; color: #F2EFE4; text-decoration: none; font-weight: 500; }"
+    },
+    {
+      "name": "Cover Card",
+      "kind": "card",
+      "refersTo": "cover-card",
+      "description": "Flat cover tone with the name large at the top and tags at the foot; arrow appears on hover.",
+      "html": "<a class=\"ds-cover\" href=\"#\"><span class=\"ds-cover-title\">Northwind</span><span class=\"ds-cover-tags\">Brand, Web</span><span class=\"ds-cover-go\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M7 17 17 7M9 7h8v8\"/></svg></span></a>",
+      "css": ".ds-cover { position: relative; display: flex; flex-direction: column; justify-content: space-between; box-sizing: border-box; min-height: 340px; padding: 28px; border-radius: 20px; background: #F4B6A4; color: #111013; text-decoration: none; font-family: 'DM Sans', system-ui, sans-serif; } .ds-cover-title { font-size: 3.5rem; font-weight: 500; line-height: 0.96; letter-spacing: -0.045em; transition: transform 0.6s cubic-bezier(0.16,1,0.3,1); } .ds-cover-tags { font-size: 1rem; color: rgba(17,16,19,0.72); } .ds-cover-go { position: absolute; top: 20px; right: 20px; display: grid; place-items: center; width: 48px; height: 48px; border-radius: 999px; background: #F2EFE4; color: #111013; opacity: 0; transform: translate(-6px,6px) scale(0.85); transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.16,1,0.3,1); } .ds-cover:hover .ds-cover-title { transform: translateY(-4px); } .ds-cover:hover .ds-cover-go, .ds-cover:focus-visible .ds-cover-go { opacity: 1; transform: none; }"
+    },
+    {
+      "name": "Capability Card",
+      "kind": "card",
+      "refersTo": "capability-card",
+      "description": "Outlined 20px card with a circled icon; fills sage on hover.",
+      "html": "<div class=\"ds-cap\"><span class=\"ds-cap-icon\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"8\"/><path d=\"M12 8v8M8 12h8\"/></svg></span><h3 class=\"ds-cap-title\">Brand identity</h3><p class=\"ds-cap-desc\">Naming, marks and systems.</p></div>",
+      "css": ".ds-cap { display: flex; flex-direction: column; gap: 18px; min-height: 320px; padding: 28px; border: 1px solid rgba(242,239,228,0.14); border-radius: 20px; background: transparent; color: #F2EFE4; font-family: 'DM Sans', system-ui, sans-serif; transition: background-color 0.5s cubic-bezier(0.16,1,0.3,1), border-color 0.5s ease, color 0.4s ease; } .ds-cap-icon { display: grid; place-items: center; width: 48px; height: 48px; border: 1px solid rgba(242,239,228,0.14); border-radius: 50%; color: #B9C1B1; transition: border-color 0.4s ease, color 0.4s ease; } .ds-cap-title { margin: 0; font-size: 1.75rem; font-weight: 500; line-height: 1.1; letter-spacing: -0.04em; } .ds-cap-desc { margin: auto 0 0; color: #ADAA9F; transition: color 0.4s ease; } .ds-cap:hover { background: #4A4F49; border-color: #4A4F49; } .ds-cap:hover .ds-cap-desc { color: rgba(242,239,228,0.82); } .ds-cap:hover .ds-cap-icon { border-color: rgba(242,239,228,0.4); color: #F2EFE4; }"
+    },
+    {
+      "name": "Kicker",
+      "kind": "chip",
+      "description": "Small uppercase label above a section title.",
+      "html": "<p class=\"ds-kicker\">Services</p>",
+      "css": ".ds-kicker { margin: 0; font: 400 0.8125rem 'DM Sans', system-ui, sans-serif; letter-spacing: 0.04em; text-transform: uppercase; color: #ADAA9F; }"
+    },
+    {
+      "name": "Theme Switch (rail)",
+      "kind": "custom",
+      "description": "Dark/Light switch; active option is a filled pill.",
+      "html": "<div class=\"ds-switch\"><button class=\"ds-opt is-on\">Dark</button><button class=\"ds-opt\">Light</button></div>",
+      "css": ".ds-switch { display: inline-flex; gap: 4px; padding: 4px; border-radius: 999px; background: rgba(242,239,228,0.1); } .ds-opt { min-height: 40px; padding: 0 14px; border: 0; border-radius: 999px; background: transparent; color: #ADAA9F; font: 500 0.875rem 'DM Sans', system-ui, sans-serif; cursor: pointer; transition: background-color 0.3s ease, color 0.3s ease; } .ds-opt.is-on { background: #F2EFE4; color: #111013; } .ds-opt:focus-visible { outline: 2px solid #B9C1B1; outline-offset: 3px; }"
+    },
+    {
+      "name": "Closing Card",
+      "kind": "card",
+      "refersTo": "closing-card",
+      "description": "40px sage card with a display title, muted lead and actions.",
+      "html": "<section class=\"ds-close\"><h2 class=\"ds-close-title\">Let's make something worth keeping.</h2><p class=\"ds-close-lead\">Tell us what you are building.</p><a class=\"ds-close-btn\" href=\"#\">Start a project</a></section>",
+      "css": ".ds-close { display: flex; flex-direction: column; align-items: flex-start; gap: 24px; padding: 72px 56px; border-radius: 40px; background: #4A4F49; color: #F2EFE4; font-family: 'DM Sans', system-ui, sans-serif; } .ds-close-title { margin: 0; max-width: 14ch; font-size: 4rem; font-weight: 500; line-height: 0.98; letter-spacing: -0.045em; } .ds-close-lead { margin: 0; max-width: 44ch; color: rgba(242,239,228,0.78); line-height: 1.55; } .ds-close-btn { padding: 0.9rem 1.5rem; border-radius: 999px; background: #F2EFE4; color: #111013; font-weight: 500; text-decoration: none; transition: transform 0.5s cubic-bezier(0.16,1,0.3,1); } .ds-close-btn:hover { transform: translateY(-2px); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Warm Studio Wall",
+    "overview": "Sekeco reads like a studio wall in lamplight: a warm near-black ground (or cream, by toggle), big tightly-tracked type, and a handful of flat coloured covers pinned to it. Dark is the default; light is a switch. Everything is one typeface at one weight, so hierarchy comes from size, tracking and dimming, not from a second voice.\n\nColour is rationed. Sage is the single working colour (buttons, pills, hover fills, the closing card). Salmon, signal red, sage light and sage appear together only as cover tones for Works, where flat colour stands in for imagery. Surfaces are flat and tonal; depth comes from overlap (rounded stacked sections, a floating header) rather than shadow.",
+    "keyCharacteristics": [
+      "Dark default, cream light mode, both warm; never pure black or white.",
+      "One face, DM Sans 500, headline tracking -0.045em, secondary words dimmed not italicised.",
+      "20px cards, 40px closing and stacked-section corners, 999px pills and buttons.",
+      "Outlined cards that fill sage on hover; flat cover tones; no shadows in shipped components.",
+      "Small uppercase kicker labels name each section.",
+      "Motion is GSAP reveals plus one expo ease; reduced motion collapses everything."
+    ],
+    "rules": [
+      { "name": "The One Field Rule", "body": "Sage is the only colour that acts. Salmon, red and sage light are cover tones for Works and never fill buttons, links or section grounds.", "section": "colors" },
+      { "name": "The Tone Scope Rule", "body": "A section fixes its own ground through a tone (ink, paper, accent, surface) and remaps the preset colours inside it. Do not hard-code colours inside a tone; read the scope variables.", "section": "colors" },
+      { "name": "The Dimmed Word Rule", "body": "Emphasis inside a headline is em/i rendered upright in the muted colour, never italic or a second colour.", "section": "typography" },
+      { "name": "The Single Weight Rule", "body": "Headings are 500 everywhere; only the footer wordmark (600) and site title (700) differ.", "section": "typography" },
+      { "name": "The Flat Rule", "body": "Surfaces never cast shadows; separate with tone, outline or overlap.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do use sage #4A4F49 as the only action fill, with cream text.",
+      "Do set headlines at 500, tracking -0.045em, and dim secondary words instead of italicising.",
+      "Do use 20px for cards, 40px for closing and stacked edges, 999px for anything pressable.",
+      "Do use small uppercase kicker labels (0.8125rem, +0.04em, muted) to name sections.",
+      "Do use Solar Line Duotone icons only (generated set), inside outlined circles.",
+      "Do honour reduced motion: reveals, marquee and transitions collapse."
+    ],
+    "donts": [
+      "Don't use salmon, red or sage light as button, link or section ground; they are cover tones.",
+      "Don't add box-shadows to components; the system is flat.",
+      "Don't introduce a second typeface or weights other than 500 for headings.",
+      "Don't use pure black, pure white or cool greys.",
+      "Don't wrap fixed descendants (header menu overlay) in transform, filter or backdrop-filter."
+    ]
+  }
+}

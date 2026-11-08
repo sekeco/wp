@@ -6,8 +6,8 @@ Gutenberg — tanpa page builder pihak ketiga.
 
 | Bagian | Lokasi | Versi |
 | --- | --- | --- |
-| Tema | `wp-content/themes/sekeco/` | 1.6.1 |
-| Plugin | `wp-content/plugins/sekeco/` | 0.13.0 |
+| Tema | `wp-content/themes/sekeco/` | 2.1.0 |
+| Plugin | `wp-content/plugins/sekeco/` | 0.15.0 |
 | WordPress | image Docker `wordpress:latest` (diuji 7.1.4) | — |
 | PHP | container | 8.3 |
 | Bun | `packageManager` di plugin | 1.4.4 |
@@ -66,6 +66,7 @@ bun run build      # build produksi -> build/
 bun run format     # format JS/CSS/JSON
 bun run lint:js
 bun run lint:css
+bun run icons       # hasilkan ikon Solar (JSON, CSS admin, CSS tema)
 ```
 
 `build/` **di-commit** karena image produksi tidak menjalankan Bun. Setelah
@@ -87,36 +88,46 @@ AGENTS.md                 aturan kerja, format commit, larangan
 README.md                 dokumen ini
 wp-content/
   themes/sekeco/
-    theme.json            design token: warna, tipografi, spacing, shadow
-    style.css             header tema + CSS progressive enhancement
-    functions.php         hook tema (section kosong, tombol tanpa URL)
+    theme.json            design token: warna, tipografi, spacing, radius
+    style.css             mode gelap, scope tone, header pill, rail kiri, menu overlay
+    functions.php         skrip mode (terang/gelap), font preload, hook tema
     templates/            template block (front-page, archive-*, single-*, …)
-    parts/                header, footer
-    patterns/             pola siap pakai (hero, stats, grid, cta, …)
-    styles/               style variation: midnight, sunrise
-    assets/fonts/         Geist + Bricolage Grotesque (woff2)
+    parts/                header, footer, sekeco-menu (navigation overlay)
+    patterns/             section beranda (home-*), cta, contact, post-grid
+    assets/fonts/         DM Sans (woff2, variabel)
+    assets/css/           solar-icons.css (dihasilkan, jangan diedit)
   plugins/sekeco/
     sekeco.php            header plugin + module loader
-    includes/             PHP: content, meta, bindings, motion, blocks, forms
-    src/                  sumber blok & panel editor
+    includes/             PHP: content, meta, bindings, motion, blocks, forms, icons
+    scripts/              build-icons.mjs (ikon Solar Line Duotone)
+    src/                  sumber blok, runtime GSAP & panel editor
     build/                hasil build (di-commit)
     assets/admin/         CSS/JS form builder klasik
 ```
 
 ## 5. Tema
 
-- **theme.json v3** — palette (`base`, `contrast`, `surface`, `accent`,
-  `accent-2`, `muted`, `border`), gradient, spacing `20`–`80`, radius, shadow
-  `soft`/`glow`, font family `sans`/`display`/`mono`.
-- **Template** — `front-page`, `home`, `index`, `page`, `page-no-title`,
-  `page-canvas`, `single`, `single-portfolio`, `single-product`,
+- **theme.json v3** — palette `base`, `contrast`, `surface`, `muted`, `border`,
+  `accent` (sage), `accent-contrast`, `ink`, `paper` plus tiga warna cover
+  (`salmon`, `red`, `sage-light`); spacing `20`–`80`; radius; font DM Sans.
+- **Mode terang/gelap** — `html[data-theme]` diatur skrip di `<head>` (pilihan
+  tersimpan; kunjungan pertama selalu gelap, seperti referensi). Mode gelap menimpa variabel preset
+  `--wp--preset--color--*`, jadi semua blok ikut. Scope `.sk-tone--ink|paper|accent`
+  memaksa satu ground tertentu untuk section/hero/CTA.
+- **Template** — `front-page`, `home`, `index`, `page`, `single`, `single-portfolio`, `single-product`,
   `single-team`, `single-sekeco_form`, `form-canvas`, `archive`,
   `archive-portfolio`, `archive-product`, `archive-team`, `search`, `404`.
-- **Pattern** — semua memakai namespace `sekeco/*`, jadi tema dan plugin saling
-  bergantung dan harus di-commit bersama.
-- `customTemplates` di `theme.json` hanya mendaftarkan template yang boleh
-  dipilih user (`page-no-title`, `page-canvas`, `form-canvas`). File di
-  `templates/` otomatis terdaftar.
+- **Pattern** — namespace `sekeco/*`, disusun dari blok komponen plugin, jadi
+  tema dan plugin saling bergantung dan harus kompatibel (commit terpisah).
+- **Menu** — core Navigation dengan overlay `sekeco-menu` (template part area
+  *navigation-overlay*); menu tetap dikelola editor, tidak ada link hardcode.
+- `customTemplates` di `theme.json` mendaftarkan semua template di luar hierarki
+  bawaan WordPress agar bisa dipilih user: `page-no-title`, `page-wide`,
+  `page-landing`, `page-canvas` (page) dan `form-canvas` (`sekeco_form`). Template
+  hierarki (`front-page`, `single-portfolio`, `archive-team`, …) otomatis terdaftar.
+- **Rail & header** — header pill dengan menu inline (core Navigation) + hamburger
+  yang membuka overlay `sekeco-menu`; rail kiri (toggle Dark/Light vertikal,
+  *Scroll to top*, tombol cari) ada di part `footer`.
 
 ## 6. Plugin
 
@@ -127,9 +138,10 @@ wp-content/
 | Team | CPT `team`, archive `/team/` |
 | Kategori | core `category` dipakai bersama ketiga CPT |
 | Binding | `sekeco/meta` untuk field kustom di template |
-| Animasi | motion (transisi + delay) pada `core/group` & `core/cover` |
-| Slider | blok `sekeco/slider` (manual & query mode) |
-| Filter | blok `sekeco/filterable-query` (membungkus Query Loop) |
+| Komponen | 15 blok dinamis dalam tiga kategori inserter: *Sekeco: Layout* (`section`, `section-header`, `hero`, `cta`, `marquee`), *Sekeco: Content* (`statement`, `capabilities`, `process`, `faq`, `stats`, `project-grid`), *Sekeco: Utility* (`form`, `theme-toggle`) |
+| Animasi | runtime GSAP (`src/motion/runtime.js`): hero, statement, parallax, counter, reveal; panel Motion untuk `core/group` & `core/cover` |
+| Ikon | Solar Line Duotone via `bun run icons`; PHP `sekeco_icon()` |
+| Filter | `sekeco/project-grid` dengan opsi *Category filter* |
 | Form | CPT `sekeco_form` + `sekeco_submission` |
 
 Modul dimuat oleh `sekeco_load_modules()`; file modul yang belum ada dilewati,
