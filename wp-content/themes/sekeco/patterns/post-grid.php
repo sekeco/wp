@@ -2,10 +2,13 @@
 /**
  * Title: Journal grid
  * Slug: sekeco/post-grid
- * Categories: sekeco
+ * Categories: sekeco-content, posts
  * Description: Posts as a three-column grid with pagination, for the Journal, archives and search.
+ * Keywords: journal, posts, blog, archive
+ * Template Types: home, archive, search, category
  * Viewport Width: 1400
  * Inserter: no
+ * Text Domain: sekeco
  */
 ?>
 <!-- wp:query {"queryId":1,"query":{"perPage":9,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":true},"layout":{"type":"default"}} -->
@@ -34,11 +37,11 @@
 		<!-- wp:group {"className":"is-style-sekeco-surface","layout":{"type":"constrained"}} -->
 		<div class="wp-block-group is-style-sekeco-surface">
 			<!-- wp:heading {"level":3} -->
-			<h3 class="wp-block-heading">Nothing here yet.</h3>
+			<h3 class="wp-block-heading"><?php esc_html_e( 'Nothing here yet.', 'sekeco' ); ?></h3>
 			<!-- /wp:heading -->
 
 			<!-- wp:paragraph {"textColor":"muted"} -->
-			<p class="has-muted-color has-text-color">Try a different search or head back to the homepage.</p>
+			<p class="has-muted-color has-text-color"><?php esc_html_e( 'Try a different search or head back to the homepage.', 'sekeco' ); ?></p>
 			<!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:group -->

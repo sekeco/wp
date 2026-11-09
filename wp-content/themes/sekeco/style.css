@@ -7,7 +7,7 @@ Description: A modern, techy block theme for Sekeco, an eclectic digital agency,
 Requires at least: 6.7
 Tested up to: 7.1
 Requires PHP: 7.4
-Version: 2.6.0
+Version: 2.7.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: sekeco
@@ -38,7 +38,7 @@ Tags: one-column, custom-colors, custom-menu, custom-logo, editor-style, feature
 	--sk-ease: cubic-bezier(0.16, 1, 0.3, 1);
 	--sk-gutter: clamp(16px, 4vw, 48px);
 	/* Three widths, set in theme.json (settings.layout): contained, wide, full. */
-	--sk-max: 1240px;
+	--sk-max: var(--wp--custom--layout--container, 1240px);
 	--sk-narrow: var(--wp--style--global--content-size, 760px);
 	--sk-wide: var(--wp--style--global--wide-size, 1320px);
 
@@ -445,35 +445,6 @@ select {
 	.sekeco-header .sekeco-header__cta {
 		display: none;
 	}
-}
-
-/* ---------- Side rail (theme switch, scroll to top, search) ---------- */
-
-.sk-rail {
-	display: none;
-}
-
-@media (min-width: 1100px) {
-
-	.sk-rail {
-		position: fixed;
-		top: 50%;
-		left: 14px;
-		z-index: 40;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 18px;
-		padding: 5px;
-		border-radius: 999px;
-		transform: translateY(-50%);
-		/* A backing keeps the rail legible over any ground: ink hero, paper page, brand field. */
-		background: color-mix(in srgb, var(--wp--preset--color--surface) 78%, transparent);
-		box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--wp--preset--color--contrast) 9%, transparent);
-		-webkit-backdrop-filter: blur(14px) saturate(140%);
-		backdrop-filter: blur(14px) saturate(140%);
-	}
-
 }
 
 /* ---------- Menu overlay ---------- */

@@ -127,13 +127,23 @@ add_filter( 'render_block_core/button', 'sekeco_hide_empty_bound_buttons', 10, 2
  * @return void
  */
 function sekeco_register_theme_extras() {
-	register_block_pattern_category(
-		'sekeco',
-		array(
-			'label'       => __( 'Sekeco', 'sekeco' ),
-			'description' => __( 'Sections designed for the Sekeco theme.', 'sekeco' ),
-		)
+	$pattern_categories = array(
+		'sekeco'         => array( __( 'Sekeco', 'sekeco' ), __( 'Sections designed for the Sekeco theme.', 'sekeco' ) ),
+		'sekeco-hero'    => array( __( 'Sekeco: Hero', 'sekeco' ), __( 'Page openers.', 'sekeco' ) ),
+		'sekeco-cta'     => array( __( 'Sekeco: Calls to action', 'sekeco' ), __( 'Closing bands that lead to the enquiry form.', 'sekeco' ) ),
+		'sekeco-content' => array( __( 'Sekeco: Content', 'sekeco' ), __( 'Statements, services, process, questions and forms.', 'sekeco' ) ),
+		'sekeco-work'    => array( __( 'Sekeco: Work and team', 'sekeco' ), __( 'Works, portfolio products and the team, from published content.', 'sekeco' ) ),
 	);
+
+	foreach ( $pattern_categories as $slug => $category ) {
+		register_block_pattern_category(
+			$slug,
+			array(
+				'label'       => $category[0],
+				'description' => $category[1],
+			)
+		);
+	}
 
 	// Button styles: Fill and Outline come from core; these add six gradient looks.
 	// Sizes are a separate Size control (a class), added by the Sekeco plugin.

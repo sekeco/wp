@@ -4,6 +4,11 @@
 	"settings": {
 		"appearanceTools": true,
 		"useRootPaddingAwareAlignments": true,
+		"custom": {
+			"layout": {
+				"container": "1240px"
+			}
+		},
 		"layout": {
 			"contentSize": "760px",
 			"wideSize": "1440px"
@@ -511,6 +516,41 @@
 			"name": "page-canvas",
 			"title": "Canvas (no header or footer)",
 			"postTypes": ["page"]
+		},
+		{
+			"name": "archive-portfolio",
+			"title": "Works archive",
+			"postTypes": []
+		},
+		{
+			"name": "archive-product",
+			"title": "Portfolio archive",
+			"postTypes": []
+		},
+		{
+			"name": "archive-team",
+			"title": "Team archive",
+			"postTypes": []
+		},
+		{
+			"name": "single-portfolio",
+			"title": "Work (single)",
+			"postTypes": []
+		},
+		{
+			"name": "single-product",
+			"title": "Portfolio item (single)",
+			"postTypes": []
+		},
+		{
+			"name": "single-team",
+			"title": "Team member (single)",
+			"postTypes": []
+		},
+		{
+			"name": "single-sekeco_form",
+			"title": "Form (single)",
+			"postTypes": []
 		},
 		{
 			"name": "form-canvas",
