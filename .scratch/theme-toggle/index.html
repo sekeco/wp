@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Theme toggle concepts</title>
+<script>try{document.documentElement.dataset.theme=localStorage.getItem('sekeco-theme')||'dark'}catch(e){document.documentElement.dataset.theme='dark'}</script>
+<link rel="stylesheet" href="base.css">
+<style>
+.idx{padding:clamp(48px,8vw,110px) 0}
+.idx h1{font-family:"Bricolage Grotesque",sans-serif;font-weight:600;font-size:clamp(2.2rem,5vw,4rem);letter-spacing:-.04em;line-height:1.04;max-width:16ch}
+.idx p.lead{margin-top:18px;color:var(--muted);max-width:56ch}
+.idx h3{margin:56px 0 0;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:16px}
+.pick{display:flex;flex-direction:column;gap:12px;padding:26px;border-radius:24px;background:var(--surface);box-shadow:inset 0 0 0 1px var(--line);transition:transform .5s var(--ease),box-shadow .3s}
+.pick:hover{transform:translateY(-4px);box-shadow:inset 0 0 0 1px var(--accent)}
+.pick b{font-family:"Bricolage Grotesque",sans-serif;font-size:2.4rem;letter-spacing:-.04em;color:var(--accent);line-height:1}
+.pick h2{font-family:"Bricolage Grotesque",sans-serif;font-weight:600;font-size:1.5rem;letter-spacing:-.03em}
+.pick p{color:var(--muted);font-size:.95rem}
+.pick small{color:var(--muted);font-size:.82rem;padding-top:12px;border-top:1px solid var(--line)}
+@media(max-width:700px){.grid{grid-template-columns:1fr}}
+</style></head><body>
+<main class="wrap idx">
+<h1>Eight ways to switch the theme</h1>
+<p class="lead">Each page is the same Sekeco landing with a working toggle and a GSAP transition. Open one, try it in both directions, and pick. Sizes and positions are sketches; the idea is what counts.</p>
+<h3>Round one</h3>
+<div class="grid">
+<a class="pick" href="a-horizon.html"><b>A</b><h2>Horizon</h2><p>A sunrise-to-night track in the header. The orb is draggable and its position is the theme: drag it and the whole page cross-fades with it, release and it snaps to the nearest side.</p><small>Toggle lives in the header. Scrubbable, no jump cut. Slightly wider than an icon.</small></a>
+<a class="pick" href="b-cord.html"><b>B</b><h2>Pull cord</h2><p>A beaded cord hangs from the top edge. Pull it and let go: the cord recoils on an elastic, the room flickers and the lights switch.</p><small>Most playful. Desktop first; tap works on touch. Needs the top-right free.</small></a>
+<a class="pick" href="c-blinds.html"><b>C</b><h2>Blinds</h2><p>An icon on the left edge. Nine shutters close across the page in a stagger, the word Day or Night passes, and the shutters open on the new theme.</p><small>Strongest moment. Hides the swap completely, so it is robust. Longest animation.</small></a>
+<a class="pick" href="d-lens.html"><b>D</b><h2>Lens</h2><p>The icon above search. Hold it and a lens of the other theme opens; drag it around to peek, drop it back on the button to cancel, release elsewhere to switch for good.</p><small>Most novel. A tap still switches. Needs a hint the first time.</small></a>
+</div>
+<h3>Round two</h3>
+<div class="grid">
+<a class="pick" href="e-sunrise.html"><b>E</b><h2>Sunrise</h2><p>An icon in the header. The new theme rises from the bottom as a curved horizon with a warm glow on its edge when going to light, and a cool one going to dark.</p><small>Cinematic and readable. Icon-only, so it keeps the header calm. Glow is the heavy part.</small></a>
+<a class="pick" href="f-divider.html"><b>F</b><h2>Divider</h2><p>A grip peeks from the left edge. Drag it across the page like a before and after slider: the new theme sits behind the line. Past a third it commits, otherwise it springs back.</p><small>Lets you preview without committing. Not icon-only: the grip is a visible tab.</small></a>
+<a class="pick" href="g-dial.html"><b>G</b><h2>Dial</h2><p>A rotary knob above search with three detents: Light, Auto, Dark. Turn it and the page dims continuously; release and it clicks to the nearest detent. A tap cycles.</p><small>The only one that offers Auto (follow the system). Best if you want a real preference.</small></a>
+<a class="pick" href="h-cascade.html"><b>H</b><h2>Cascade</h2><p>An icon at the lower right. Each section re-themes in turn from the one on screen down the page, as a wave, each with a small lift.</p><small>Gentle and layout-aware. No snapshot trick, so nothing can go stale. Slower to finish on long pages.</small></a>
+</div></main></body></html>

@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>G · Dial — theme toggle concept</title>
+<script>try{document.documentElement.dataset.theme=localStorage.getItem('sekeco-theme')||'dark'}catch(e){document.documentElement.dataset.theme='dark'}</script>
+<link rel="stylesheet" href="base.css">
+<style>
+
+.dial { position: fixed; z-index: 40; left: 2px; bottom: 66px; width: 96px; height: 96px; pointer-events: none; }
+.dial__knob { position: absolute; left: 20px; top: 20px; pointer-events: auto; touch-action: none; cursor: grab; user-select: none; }
+.dial__knob:active { cursor: grabbing; }
+.dial__ind { position: absolute; inset: 0; border-radius: 50%; }
+.dial__ind::before {
+	content: "";
+	position: absolute;
+	left: 50%;
+	top: 7px;
+	width: 3px;
+	height: 13px;
+	margin-left: -1.5px;
+	border-radius: 2px;
+	background: var(--accent);
+}
+.dial__knob::after {
+	content: "";
+	position: absolute;
+	inset: 13px;
+	border-radius: 50%;
+	box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--fg) 14%, transparent), inset 0 6px 12px color-mix(in oklab, var(--fg) 8%, transparent);
+	pointer-events: none;
+}
+.dial__dot {
+	position: absolute;
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background: color-mix(in oklab, var(--fg) 30%, transparent);
+	transition: background-color 0.3s, transform 0.4s var(--ease);
+}
+.dial__dot.is-on { background: var(--accent); transform: scale(1.6); }
+.dial__label {
+	position: absolute;
+	left: 92px;
+	top: 38px;
+	padding: 8px 14px;
+	border-radius: 999px;
+	background: var(--fg);
+	color: var(--bg);
+	font-size: 0.8rem;
+	white-space: nowrap;
+	opacity: 0;
+	pointer-events: none;
+}
+
+</style>
+</head>
+<body>
+<div class="stage">
+	<header class="hdr">
+		<a class="brand" href="#"><i></i>sekeco</a>
+		<nav class="nav"><a href="#">Home</a><a href="#">Works</a><a href="#">Portfolio</a><a href="#">Team</a><a href="#">Journal</a><a href="#">Contact</a></nav>
+		<div class="hdr__actions">
+			
+			<a class="btn btn--sm" href="#">Let’s Collaborate</a>
+		</div>
+	</header>
+
+	<main>
+		<section class="hero wrap">
+			<span class="chip"><b></b>One team, from identity to running system</span>
+			<h1>Making a well furnished branding <span>solely for what you’re hoping</span></h1>
+			<p>Engaged in identity design, business development and IT consultancy. We build your foundation with swiftness and care.</p>
+			<div class="hero__cta"><a class="btn" href="#">Let’s Collaborate</a><a class="btn btn--ghost" href="#">See Our Portfolio</a></div>
+		</section>
+
+		<section class="work wrap">
+			<article class="card"><div class="card__art"></div><h3>Nusa Coffee Roasters</h3><p>Identity, packaging and a storefront built on one system.</p></article>
+			<article class="card"><div class="card__art"></div><h3>Kopi Kirana</h3><p>Brand refresh and a booking platform for twelve outlets.</p></article>
+			<article class="card"><div class="card__art"></div><h3>Atlas Logistics</h3><p>Operations dashboard replacing five spreadsheets.</p></article>
+		</section>
+
+		<section class="statement wrap">
+			<h2>We design the brand, then build the system <span>that carries it everywhere.</span></h2>
+		</section>
+
+		<section class="wrap">
+			<div class="cta"><h2>Have a project in mind? Let’s talk.</h2><a class="btn" href="#">Let’s Collaborate</a></div>
+		</section>
+	</main>
+
+	<footer class="ftr wrap">© Sekeco — Digital studio in Yogyakarta</footer>
+</div>
+
+<button class="fab fab--search" aria-label="Search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-3.9-3.9"/></svg></button>
+<div class="dial">
+	<i class="dial__dot" data-p="light" style="left:10.4px;top:25px"></i>
+	<i class="dial__dot" data-p="auto" style="left:45px;top:5px"></i>
+	<i class="dial__dot" data-p="dark" style="left:79.6px;top:25px"></i>
+	<button class="fab dial__knob" type="button" aria-label="Theme: auto. Drag the dial or press to change."><span class="dial__ind"></span></button>
+	<span class="dial__label"></span>
+</div>
+<div class="tag"><span>G · Dial</span><a href="index.html">All concepts</a></div>
+
+<script src="../../wp-content/plugins/sekeco/node_modules/gsap/dist/gsap.min.js"></script>
+<script>
+const root = document.documentElement;
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const cur = () => root.dataset.theme === 'light' ? 'light' : 'dark';
+const commit = (theme) => {
+	root.dataset.theme = theme;
+	root.style.removeProperty('--t');
+	try { localStorage.setItem('sekeco-theme', theme); } catch (e) {}
+};
+
+const knob = document.querySelector('.dial__knob');
+const ind = knob.querySelector('.dial__ind');
+const label = document.querySelector('.dial__label');
+const dots = [...document.querySelectorAll('.dial__dot')];
+const ORDER = ['light', 'auto', 'dark'];
+const ANG = { light: -60, auto: 0, dark: 60 };
+const NAME = { light: 'Light', auto: 'Auto', dark: 'Dark' };
+const sys = matchMedia('(prefers-color-scheme: dark)');
+const resolve = (p) => (p === 'auto' ? (sys.matches ? 'dark' : 'light') : p);
+let pref = 'auto';
+try { pref = localStorage.getItem('sekeco-pref') || 'auto'; } catch (e) {}
+const st = { a: ANG[pref], t: resolve(pref) === 'dark' ? 1 : 0 };
+
+const paint = () => { ind.style.transform = `rotate(${st.a}deg)`; root.style.setProperty('--t', st.t); };
+const mark = () => dots.forEach((d) => d.classList.toggle('is-on', d.dataset.p === pref));
+const say = () => {
+	label.textContent = pref === 'auto' ? `Auto (${resolve('auto')})` : NAME[pref];
+	knob.setAttribute('aria-label', `Theme: ${label.textContent}. Drag the dial or press to change.`);
+	gsap.killTweensOf(label);
+	gsap.fromTo(label, { opacity: 0, x: -8 }, { opacity: 1, x: 0, duration: 0.35, ease: 'power3.out' });
+	gsap.to(label, { opacity: 0, delay: 1.6, duration: 0.4 });
+};
+const setPref = (p) => {
+	pref = p;
+	try { localStorage.setItem('sekeco-pref', p); } catch (e) {}
+	mark(); say();
+	const target = resolve(p);
+	if (reduced) { st.a = ANG[p]; commit(target); ind.style.transform = `rotate(${st.a}deg)`; return; }
+	gsap.killTweensOf(st);
+	gsap.to(st, {
+		a: ANG[p],
+		t: target === 'dark' ? 1 : 0,
+		duration: 0.9,
+		ease: 'power3.inOut',
+		onUpdate: paint,
+		onComplete: () => { commit(target); ind.style.transform = `rotate(${st.a}deg)`; },
+	});
+};
+commit(resolve(pref)); ind.style.transform = `rotate(${st.a}deg)`; mark();
+sys.addEventListener('change', () => { if (pref === 'auto') setPref('auto'); });
+
+let down = false, moved = false, a0 = 0;
+const angleOf = (e) => {
+	const r = knob.getBoundingClientRect();
+	return (Math.atan2(e.clientX - (r.left + r.width / 2), -(e.clientY - (r.top + r.height / 2))) * 180) / Math.PI;
+};
+knob.addEventListener('pointerdown', (e) => {
+	gsap.killTweensOf(st);
+	down = true; moved = false; a0 = angleOf(e);
+	knob.setPointerCapture(e.pointerId);
+});
+knob.addEventListener('pointermove', (e) => {
+	if (!down) return;
+	const a = angleOf(e);
+	if (!moved && Math.abs(a - a0) > 4) moved = true;
+	if (!moved) return;
+	st.a = Math.max(-75, Math.min(75, a));
+	st.t = Math.max(0, Math.min(1, (st.a + 60) / 120));
+	paint();
+});
+knob.addEventListener('pointerup', () => {
+	if (!down) return;
+	down = false;
+	if (!moved) { setPref(ORDER[(ORDER.indexOf(pref) + 1) % 3]); return; }
+	const near = ORDER.reduce((b, p) => (Math.abs(ANG[p] - st.a) < Math.abs(ANG[b] - st.a) ? p : b), 'auto');
+	setPref(near);
+});
+knob.addEventListener('keydown', (e) => {
+	const i = ORDER.indexOf(pref);
+	if (e.key === 'ArrowRight' || e.key === 'ArrowUp') setPref(ORDER[Math.min(2, i + 1)]);
+	if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') setPref(ORDER[Math.max(0, i - 1)]);
+	if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setPref(ORDER[(i + 1) % 3]); }
+});
+
+</script>
+</body>
+</html>

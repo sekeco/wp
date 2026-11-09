@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>F · Divider — theme toggle concept</title>
+<script>try{document.documentElement.dataset.theme=localStorage.getItem('sekeco-theme')||'dark'}catch(e){document.documentElement.dataset.theme='dark'}</script>
+<link rel="stylesheet" href="base.css">
+<style>
+
+.lens { position: fixed; z-index: 30; inset: 0; overflow: hidden; pointer-events: none; background: var(--bg); }
+.lens__page { position: absolute; top: 0; left: 0; }
+
+.bar {
+	position: fixed;
+	z-index: 46;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	width: 2px;
+	margin-left: -1px;
+	background: var(--accent);
+	box-shadow: 0 0 28px 2px var(--accent);
+	opacity: 0;
+	pointer-events: none;
+}
+.grip {
+	position: fixed;
+	z-index: 47;
+	top: 50%;
+	left: 0;
+	display: grid;
+	place-items: center;
+	width: 52px;
+	height: 52px;
+	margin-left: -26px;
+	padding: 0;
+	border: 0;
+	border-radius: 50%;
+	background: var(--fg);
+	color: var(--bg);
+	box-shadow: 0 10px 30px rgb(0 0 0 / 0.3);
+	cursor: ew-resize;
+	touch-action: none;
+	transform: translateY(-50%);
+}
+.grip svg { width: 22px; height: 22px; fill: none; stroke: currentcolor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.grip svg:first-child { margin-right: -8px; opacity: 0.35; }
+.grip { grid-auto-flow: column; }
+.grip svg { grid-row: 1; }
+
+</style>
+</head>
+<body>
+<div class="stage">
+	<header class="hdr">
+		<a class="brand" href="#"><i></i>sekeco</a>
+		<nav class="nav"><a href="#">Home</a><a href="#">Works</a><a href="#">Portfolio</a><a href="#">Team</a><a href="#">Journal</a><a href="#">Contact</a></nav>
+		<div class="hdr__actions">
+			
+			<a class="btn btn--sm" href="#">Let’s Collaborate</a>
+		</div>
+	</header>
+
+	<main>
+		<section class="hero wrap">
+			<span class="chip"><b></b>One team, from identity to running system</span>
+			<h1>Making a well furnished branding <span>solely for what you’re hoping</span></h1>
+			<p>Engaged in identity design, business development and IT consultancy. We build your foundation with swiftness and care.</p>
+			<div class="hero__cta"><a class="btn" href="#">Let’s Collaborate</a><a class="btn btn--ghost" href="#">See Our Portfolio</a></div>
+		</section>
+
+		<section class="work wrap">
+			<article class="card"><div class="card__art"></div><h3>Nusa Coffee Roasters</h3><p>Identity, packaging and a storefront built on one system.</p></article>
+			<article class="card"><div class="card__art"></div><h3>Kopi Kirana</h3><p>Brand refresh and a booking platform for twelve outlets.</p></article>
+			<article class="card"><div class="card__art"></div><h3>Atlas Logistics</h3><p>Operations dashboard replacing five spreadsheets.</p></article>
+		</section>
+
+		<section class="statement wrap">
+			<h2>We design the brand, then build the system <span>that carries it everywhere.</span></h2>
+		</section>
+
+		<section class="wrap">
+			<div class="cta"><h2>Have a project in mind? Let’s talk.</h2><a class="btn" href="#">Let’s Collaborate</a></div>
+		</section>
+	</main>
+
+	<footer class="ftr wrap">© Sekeco — Digital studio in Yogyakarta</footer>
+</div>
+
+<button class="fab fab--search" aria-label="Search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-3.9-3.9"/></svg></button>
+<div class="bar"></div><button class="grip" type="button" aria-label="Drag to switch between light and dark"><svg viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></svg><svg viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></svg></button>
+<div class="tag"><span>F · Divider</span><a href="index.html">All concepts</a></div>
+
+<script src="../../wp-content/plugins/sekeco/node_modules/gsap/dist/gsap.min.js"></script>
+<script>
+const root = document.documentElement;
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const cur = () => root.dataset.theme === 'light' ? 'light' : 'dark';
+const commit = (theme) => {
+	root.dataset.theme = theme;
+	root.style.removeProperty('--t');
+	try { localStorage.setItem('sekeco-theme', theme); } catch (e) {}
+};
+
+const stage = document.querySelector('.stage');
+function makeLayer(next) {
+	const layer = document.createElement('div');
+	layer.className = 'lens';
+	layer.dataset.theme = next;
+	layer.setAttribute('aria-hidden', 'true');
+	layer.inert = true;
+	const inner = stage.cloneNode(true);
+	inner.classList.add('lens__page');
+	inner.style.width = `${stage.offsetWidth}px`;
+	layer.append(inner);
+	document.body.append(layer);
+	return { layer, sync: () => { inner.style.transform = `translateY(${-scrollY}px)`; } };
+}
+
+const grip = document.querySelector('.grip');
+const bar = document.querySelector('.bar');
+const st = { x: 0 };
+let L = null, next, down = false, moved = false, x0 = 0, busy = false;
+
+const draw = () => {
+	if (L) L.layer.style.clipPath = `inset(0 ${Math.max(0, innerWidth - st.x)}px 0 0)`;
+	bar.style.transform = `translateX(${st.x}px)`;
+	bar.style.opacity = st.x > 2 ? 1 : 0;
+	grip.style.transform = `translate(${st.x}px, -50%)`;
+	if (L) L.sync();
+};
+const begin = () => {
+	next = cur() === 'dark' ? 'light' : 'dark';
+	L = makeLayer(next);
+	gsap.ticker.add(draw);
+};
+const end = () => {
+	gsap.ticker.remove(draw);
+	if (L) L.layer.remove();
+	L = null; st.x = 0; draw(); busy = false;
+};
+const sweep = () => {
+	busy = true;
+	gsap.to(st, { x: innerWidth + 4, duration: 1.1, ease: 'power3.inOut', overwrite: true, onComplete: () => { commit(next); end(); } });
+};
+const retract = () => {
+	gsap.to(st, { x: 0, duration: 0.6, ease: 'power3.out', overwrite: true, onComplete: end });
+};
+
+grip.addEventListener('pointerdown', (e) => {
+	if (busy) return;
+	if (reduced) { commit(cur() === 'dark' ? 'light' : 'dark'); return; }
+	grip.setPointerCapture(e.pointerId);
+	down = true; moved = false; x0 = e.clientX;
+	if (!L) begin();
+});
+grip.addEventListener('pointermove', (e) => {
+	if (!down) return;
+	if (Math.abs(e.clientX - x0) > 5) moved = true;
+	if (moved) gsap.to(st, { x: Math.min(innerWidth, Math.max(0, e.clientX)), duration: 0.14, ease: 'power2.out', overwrite: true });
+});
+grip.addEventListener('pointerup', (e) => {
+	if (!down) return;
+	down = false;
+	if (!moved || Math.max(st.x, e.clientX) > innerWidth * 0.3) sweep(); else retract();
+});
+grip.addEventListener('pointercancel', () => { if (down) { down = false; retract(); } });
+grip.addEventListener('keydown', (e) => {
+	if ((e.key === 'Enter' || e.key === ' ') && !busy) { e.preventDefault(); if (reduced) { commit(cur() === 'dark' ? 'light' : 'dark'); return; } begin(); sweep(); }
+});
+
+</script>
+</body>
+</html>

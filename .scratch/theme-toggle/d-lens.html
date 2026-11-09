@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>D · Lens — theme toggle concept</title>
+<script>try{document.documentElement.dataset.theme=localStorage.getItem('sekeco-theme')||'dark'}catch(e){document.documentElement.dataset.theme='dark'}</script>
+<link rel="stylesheet" href="base.css">
+<style>
+
+.fab--lens { left: 22px; bottom: 86px; }
+.fab--lens .ring2 { stroke-width: 1.5; opacity: 0.55; }
+.fab--lens::after {
+	content: "Hold, drag, release";
+	position: absolute;
+	left: 68px;
+	padding: 8px 14px;
+	border-radius: 999px;
+	background: var(--fg);
+	color: var(--bg);
+	font-size: 0.78rem;
+	white-space: nowrap;
+	opacity: 0;
+	transform: translateX(-6px);
+	transition: opacity 0.25s, transform 0.4s var(--ease);
+	pointer-events: none;
+}
+.fab--lens:hover::after { opacity: 1; transform: none; }
+.fab--lens { touch-action: none; user-select: none; }
+.lens {
+	position: fixed;
+	z-index: 30;
+	inset: 0;
+	overflow: hidden;
+	pointer-events: none;
+	background: var(--bg);
+}
+.lens__page { position: absolute; top: 0; left: 0; }
+.lens__ring {
+	position: fixed;
+	z-index: 31;
+	border-radius: 50%;
+	pointer-events: none;
+	box-shadow: 0 0 0 1.5px color-mix(in oklab, var(--fg) 45%, transparent), 0 18px 60px rgb(0 0 0 / 0.28);
+}
+
+</style>
+</head>
+<body>
+<div class="stage">
+	<header class="hdr">
+		<a class="brand" href="#"><i></i>sekeco</a>
+		<nav class="nav"><a href="#">Home</a><a href="#">Works</a><a href="#">Portfolio</a><a href="#">Team</a><a href="#">Journal</a><a href="#">Contact</a></nav>
+		<div class="hdr__actions">
+			
+			<a class="btn btn--sm" href="#">Let’s Collaborate</a>
+		</div>
+	</header>
+
+	<main>
+		<section class="hero wrap">
+			<span class="chip"><b></b>One team, from identity to running system</span>
+			<h1>Making a well furnished branding <span>solely for what you’re hoping</span></h1>
+			<p>Engaged in identity design, business development and IT consultancy. We build your foundation with swiftness and care.</p>
+			<div class="hero__cta"><a class="btn" href="#">Let’s Collaborate</a><a class="btn btn--ghost" href="#">See Our Portfolio</a></div>
+		</section>
+
+		<section class="work wrap">
+			<article class="card"><div class="card__art"></div><h3>Nusa Coffee Roasters</h3><p>Identity, packaging and a storefront built on one system.</p></article>
+			<article class="card"><div class="card__art"></div><h3>Kopi Kirana</h3><p>Brand refresh and a booking platform for twelve outlets.</p></article>
+			<article class="card"><div class="card__art"></div><h3>Atlas Logistics</h3><p>Operations dashboard replacing five spreadsheets.</p></article>
+		</section>
+
+		<section class="statement wrap">
+			<h2>We design the brand, then build the system <span>that carries it everywhere.</span></h2>
+		</section>
+
+		<section class="wrap">
+			<div class="cta"><h2>Have a project in mind? Let’s talk.</h2><a class="btn" href="#">Let’s Collaborate</a></div>
+		</section>
+	</main>
+
+	<footer class="ftr wrap">© Sekeco — Digital studio in Yogyakarta</footer>
+</div>
+
+<button class="fab fab--search" aria-label="Search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-3.9-3.9"/></svg></button>
+<button class="fab fab--lens" type="button" aria-label="Switch between light and dark. Hold and drag to peek."><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle class="ring2" cx="12" cy="12" r="4.2"/><path d="M12 3.5v3M12 17.5v3M3.5 12h3M17.5 12h3"/></svg></button>
+<div class="tag"><span>D · Lens</span><a href="index.html">All concepts</a></div>
+
+<script src="../../wp-content/plugins/sekeco/node_modules/gsap/dist/gsap.min.js"></script>
+<script>
+const root = document.documentElement;
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const cur = () => root.dataset.theme === 'light' ? 'light' : 'dark';
+const commit = (theme) => {
+	root.dataset.theme = theme;
+	root.style.removeProperty('--t');
+	try { localStorage.setItem('sekeco-theme', theme); } catch (e) {}
+};
+
+const stage = document.querySelector('.stage');
+const btn = document.querySelector('.fab--lens');
+const st = { x: 0, y: 0, r: 0 };
+let layer, inner, ring, next, down = false, moved = false, px = 0, py = 0, sx = 0, sy = 0, live = false;
+
+const sync = () => {
+	inner.style.transform = `translateY(${-scrollY}px)`;
+	layer.style.clipPath = `circle(${st.r}px at ${st.x}px ${st.y}px)`;
+	Object.assign(ring.style, { width: `${st.r * 2}px`, height: `${st.r * 2}px`, left: `${st.x - st.r}px`, top: `${st.y - st.r}px` });
+};
+const open = (cx, cy) => {
+	next = cur() === 'dark' ? 'light' : 'dark';
+	layer = document.createElement('div');
+	layer.className = 'lens';
+	layer.dataset.theme = next;
+	layer.setAttribute('aria-hidden', 'true');
+	layer.inert = true;
+	inner = stage.cloneNode(true);
+	inner.classList.add('lens__page');
+	inner.style.width = `${stage.offsetWidth}px`;
+	layer.append(inner);
+	ring = document.createElement('div');
+	ring.className = 'lens__ring';
+	document.body.append(layer, ring);
+	Object.assign(st, { x: cx, y: cy, r: 0 });
+	live = true;
+	gsap.ticker.add(sync);
+	sync();
+};
+const close = () => {
+	gsap.ticker.remove(sync);
+	layer.remove(); ring.remove();
+	live = false;
+};
+const commitLens = () => {
+	const far = Math.hypot(Math.max(st.x, innerWidth - st.x), Math.max(st.y, innerHeight - st.y));
+	gsap.killTweensOf(st);
+	gsap.to(st, { r: far + 40, duration: 1, ease: 'power2.inOut', onComplete: () => { commit(next); close(); } });
+};
+const cancelLens = (cx, cy) => {
+	gsap.killTweensOf(st);
+	gsap.to(st, { r: 0, x: cx, y: cy, duration: 0.5, ease: 'power3.in', onComplete: close });
+};
+const centre = () => { const b = btn.getBoundingClientRect(); return [b.left + b.width / 2, b.top + b.height / 2]; };
+
+btn.addEventListener('pointerdown', (e) => {
+	if (live) return;
+	if (reduced) { commit(cur() === 'dark' ? 'light' : 'dark'); return; }
+	e.preventDefault();
+	btn.setPointerCapture(e.pointerId);
+	const [cx, cy] = centre();
+	down = true; moved = false; sx = e.clientX; sy = e.clientY;
+	open(cx, cy);
+	gsap.to(st, { r: 78, duration: 0.6, ease: 'back.out(1.8)' });
+});
+btn.addEventListener('pointermove', (e) => {
+	if (!down) return;
+	if (!moved && Math.hypot(e.clientX - sx, e.clientY - sy) > 6) moved = true;
+	if (moved) gsap.to(st, { x: e.clientX, y: e.clientY, duration: 0.4, ease: 'power3.out', overwrite: 'auto' });
+});
+btn.addEventListener('pointerup', (e) => {
+	if (!down) return;
+	down = false;
+	const [cx, cy] = centre();
+	const back = moved && Math.hypot(e.clientX - cx, e.clientY - cy) < 44;
+	if (back) cancelLens(cx, cy); else commitLens();
+});
+btn.addEventListener('pointercancel', () => { if (down) { down = false; const [cx, cy] = centre(); cancelLens(cx, cy); } });
+btn.addEventListener('keydown', (e) => {
+	if ((e.key === 'Enter' || e.key === ' ') && !live) {
+		e.preventDefault();
+		if (reduced) { commit(cur() === 'dark' ? 'light' : 'dark'); return; }
+		const [cx, cy] = centre();
+		open(cx, cy);
+		commitLens();
+	}
+});
+
+</script>
+</body>
+</html>

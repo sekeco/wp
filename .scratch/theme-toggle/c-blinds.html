@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>C · Blinds — theme toggle concept</title>
+<script>try{document.documentElement.dataset.theme=localStorage.getItem('sekeco-theme')||'dark'}catch(e){document.documentElement.dataset.theme='dark'}</script>
+<link rel="stylesheet" href="base.css">
+<style>
+
+.fab--rail { left: 14px; top: 50%; margin-top: -28px; }
+.fab--rail .icon { width: 24px; height: 24px; }
+.fab--rail .half { fill: currentcolor; stroke: none; }
+.blinds {
+	position: fixed;
+	z-index: 100;
+	inset: 0;
+	visibility: hidden;
+	pointer-events: none;
+}
+.blinds__cols { display: flex; height: 100%; }
+.blinds__col {
+	flex: 1;
+	margin-right: -1px;
+	padding-right: 1px;
+	background: var(--next-bg, #000);
+	transform: scaleY(0);
+}
+.blinds__word {
+	position: absolute;
+	inset: 0;
+	display: grid;
+	place-items: center;
+	color: var(--next-fg, #fff);
+	font-family: "Bricolage Grotesque", sans-serif;
+	font-weight: 600;
+	font-size: clamp(4rem, 15vw, 13rem);
+	letter-spacing: -0.06em;
+	opacity: 0;
+}
+
+</style>
+</head>
+<body>
+<div class="stage">
+	<header class="hdr">
+		<a class="brand" href="#"><i></i>sekeco</a>
+		<nav class="nav"><a href="#">Home</a><a href="#">Works</a><a href="#">Portfolio</a><a href="#">Team</a><a href="#">Journal</a><a href="#">Contact</a></nav>
+		<div class="hdr__actions">
+			
+			<a class="btn btn--sm" href="#">Let’s Collaborate</a>
+		</div>
+	</header>
+
+	<main>
+		<section class="hero wrap">
+			<span class="chip"><b></b>One team, from identity to running system</span>
+			<h1>Making a well furnished branding <span>solely for what you’re hoping</span></h1>
+			<p>Engaged in identity design, business development and IT consultancy. We build your foundation with swiftness and care.</p>
+			<div class="hero__cta"><a class="btn" href="#">Let’s Collaborate</a><a class="btn btn--ghost" href="#">See Our Portfolio</a></div>
+		</section>
+
+		<section class="work wrap">
+			<article class="card"><div class="card__art"></div><h3>Nusa Coffee Roasters</h3><p>Identity, packaging and a storefront built on one system.</p></article>
+			<article class="card"><div class="card__art"></div><h3>Kopi Kirana</h3><p>Brand refresh and a booking platform for twelve outlets.</p></article>
+			<article class="card"><div class="card__art"></div><h3>Atlas Logistics</h3><p>Operations dashboard replacing five spreadsheets.</p></article>
+		</section>
+
+		<section class="statement wrap">
+			<h2>We design the brand, then build the system <span>that carries it everywhere.</span></h2>
+		</section>
+
+		<section class="wrap">
+			<div class="cta"><h2>Have a project in mind? Let’s talk.</h2><a class="btn" href="#">Let’s Collaborate</a></div>
+		</section>
+	</main>
+
+	<footer class="ftr wrap">© Sekeco — Digital studio in Yogyakarta</footer>
+</div>
+
+<button class="fab fab--search" aria-label="Search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-3.9-3.9"/></svg></button>
+<button class="fab fab--rail" type="button" aria-label="Switch between light and dark"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path class="half" d="M12 3.5a8.5 8.5 0 0 1 0 17Z"/></svg></button>
+<div class="blinds" aria-hidden="true"><div class="blinds__cols"></div><div class="blinds__word"></div></div>
+<div class="tag"><span>C · Blinds</span><a href="index.html">All concepts</a></div>
+
+<script src="../../wp-content/plugins/sekeco/node_modules/gsap/dist/gsap.min.js"></script>
+<script>
+const root = document.documentElement;
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const cur = () => root.dataset.theme === 'light' ? 'light' : 'dark';
+const commit = (theme) => {
+	root.dataset.theme = theme;
+	root.style.removeProperty('--t');
+	try { localStorage.setItem('sekeco-theme', theme); } catch (e) {}
+};
+
+const btn = document.querySelector('.fab--rail');
+const icon = btn.querySelector('.icon');
+const blinds = document.querySelector('.blinds');
+const wrapCols = blinds.querySelector('.blinds__cols');
+const word = blinds.querySelector('.blinds__word');
+const N = 9;
+for (let i = 0; i < N; i++) wrapCols.append(Object.assign(document.createElement('div'), { className: 'blinds__col' }));
+const cols = wrapCols.querySelectorAll('.blinds__col');
+let busy = false;
+
+btn.addEventListener('click', () => {
+	if (busy) return;
+	const next = cur() === 'dark' ? 'light' : 'dark';
+	if (reduced) { commit(next); return; }
+	busy = true;
+	blinds.style.setProperty('--next-bg', next === 'dark' ? '#07070d' : '#f6f5fb');
+	blinds.style.setProperty('--next-fg', next === 'dark' ? '#f3f2fa' : '#0b0b16');
+	word.textContent = next === 'dark' ? 'Night' : 'Day';
+	const e = 'power3.inOut';
+	gsap.timeline({ onComplete: () => { busy = false; } })
+		.set(blinds, { visibility: 'visible' })
+		.set(cols, { transformOrigin: '50% 0%', scaleY: 0 })
+		.to(icon, { rotate: '+=180', duration: 1.1, ease: e }, 0)
+		.to(cols, { scaleY: 1, duration: 0.55, ease: e, stagger: { each: 0.05, from: 'start' } }, 0)
+		.add(() => commit(next))
+		.fromTo(word, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: 'power3.out' }, '-=0.15')
+		.to(word, { y: -40, opacity: 0, duration: 0.3, ease: 'power2.in' }, '+=0.12')
+		.set(cols, { transformOrigin: '50% 100%' })
+		.to(cols, { scaleY: 0, duration: 0.6, ease: e, stagger: { each: 0.05, from: 'start' } }, '-=0.15')
+		.set(blinds, { visibility: 'hidden' });
+});
+
+</script>
+</body>
+</html>
