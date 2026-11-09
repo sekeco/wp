@@ -89,7 +89,7 @@ README.md                 dokumen ini
 wp-content/
   themes/sekeco/
     theme.json            design token: warna, tipografi, spacing, radius
-    style.css             mode gelap, scope tone, header pill, rail kiri, menu overlay
+    style.css             mode gelap, scope tone, header pill, menu overlay
     functions.php         skrip mode (terang/gelap), font preload, hook tema
     templates/            template block (front-page, archive-*, single-*, …)
     parts/                header, footer, sekeco-drawer + sekeco-menu (navigation overlay)
@@ -129,6 +129,9 @@ wp-content/
 - `customTemplates` di `theme.json` mendaftarkan semua template di luar hierarki
   bawaan WordPress agar bisa dipilih user: `page-no-title`, `page-wide`,
   `page-landing`, `page-canvas` (page) dan `form-canvas` (`sekeco_form`). Template
+  arsip dan single CPT (`archive-portfolio`, `archive-product`, `archive-team`,
+  `single-*`) juga didaftarkan dengan `"postTypes": []` supaya judulnya rapi di Site
+  Editor tanpa muncul di dropdown template halaman. Template
   hierarki (`front-page`, `single-portfolio`, `archive-team`, …) otomatis terdaftar.
 - **Interaksi pointer** — diport dari React Bits dan Magic UI, ditulis ulang dengan
   JS murni + GSAP (`src/motion/interactions.js`): *Spotlight Card* (cahaya lembut
@@ -142,14 +145,18 @@ wp-content/
   rekomendasi acak di bawah input, dan masonry Works/Portfolio/Journal acak di sisi
   kanan (desktop) dari `sekeco/v1/suggest`.
 - **Scroll to top** — blok `sekeco/scroll-top` di kanan bawah dengan cincin progres
-  gradasi brand; rail dan tombol melayang otomatis berganti ke tone gelap di atas
+  gradasi brand; tombol melayang otomatis berganti ke tone gelap di atas
   footer, hero, dan kartu CTA.
 - **Tombol primary** — pil solid (warna foreground halaman) dengan titik gradasi brand
   yang membesar mengisi pil saat hover (ide *Interactive Hover Button* Magic UI, CSS
   murni). Tidak ada glow maupun gerak mengikuti kursor.
-- **Rail & header** — header pill dengan menu inline (core Navigation) + hamburger
-  yang membuka drawer `sekeco-drawer`; rail kiri (toggle Dark/Light vertikal,
-  *Scroll to top*, tombol cari) ada di part `footer`.
+- **Header & tombol melayang** — header pill dengan menu inline (core Navigation) +
+  hamburger yang membuka drawer `sekeco-drawer`. Di desktop, part `footer` memuat
+  toggle Dark/Light berupa ikon saja (`theme-toggle` dengan `floating`) di atas
+  tombol cari kiri bawah, serta *Scroll to top* di kanan bawah. Pergantian tema
+  memakai View Transitions: GSAP menumbuhkan lingkaran dari tombol (`src/motion/theme-switch.js`);
+  tanpa View Transitions atau dengan reduced motion, tema berganti langsung. Di
+  layar kecil toggle ada di drawer.
 
 ## 6. Plugin
 
