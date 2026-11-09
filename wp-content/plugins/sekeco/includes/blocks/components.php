@@ -33,6 +33,8 @@ function sekeco_component_blocks() {
 			'process-step',
 			'faq',
 			'faq-item',
+			'testimonials',
+			'testimonial',
 			'cta',
 			'project-grid',
 			'theme-toggle',
@@ -59,6 +61,27 @@ function sekeco_register_component_blocks() {
 add_action( 'init', 'sekeco_register_component_blocks' );
 
 /**
+ * Version a block's assets by its build time instead of the fixed block.json
+ * version, so a rebuilt stylesheet is never hidden by a cached copy.
+ *
+ * @param array $metadata Block metadata.
+ * @return array
+ */
+function sekeco_block_asset_version( $metadata ) {
+	if ( isset( $metadata['name'], $metadata['file'] ) && 0 === strpos( $metadata['name'], 'sekeco/' ) ) {
+		$dir   = dirname( $metadata['file'] );
+		$built = max( (int) @filemtime( $metadata['file'] ), (int) @filemtime( $dir . '/style-index.css' ), (int) @filemtime( $dir . '/index.js' ) ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
+
+		if ( $built ) {
+			$metadata['version'] = SEKECO_VERSION . '.' . $built;
+		}
+	}
+
+	return $metadata;
+}
+add_filter( 'block_type_metadata', 'sekeco_block_asset_version' );
+
+/**
  * Post types the project grid can list.
  *
  * @return string[]
@@ -82,6 +105,39 @@ function sekeco_split_title( $title ) {
 	}
 
 	return array( trim( substr( $title, 0, $pos ) ), trim( substr( $title, $pos + 1 ) ) );
+}
+
+/**
+ * Width class for a block's Content width: narrow (theme contentSize), default,
+ * wide (theme wideSize) or full (the whole screen). Default adds no class.
+ *
+ * @param array $attributes Block attributes.
+ * @return string Class name with a leading space, or an empty string.
+ */
+function sekeco_width_class( $attributes ) {
+	$width = isset( $attributes['width'] ) ? $attributes['width'] : 'default';
+
+	return in_array( $width, array( 'narrow', 'wide', 'full' ), true ) ? ' sk-w--' . $width : '';
+}
+
+/**
+ * Background picture of a Hero or CTA: the class that marks it and the canvas
+ * the front-end script paints on. Only the pictures the editor offers are used.
+ *
+ * @param array $attributes Block attributes.
+ * @return array{0:string,1:string} Class name with a leading space, canvas markup.
+ */
+function sekeco_background( $attributes ) {
+	$bg = isset( $attributes['bg'] ) ? $attributes['bg'] : 'none';
+
+	if ( ! in_array( $bg, array( 'satin', 'dusk', 'aurora', 'nebula' ), true ) ) {
+		return array( '', '' );
+	}
+
+	return array(
+		' sk-bg-on sk-bg--' . $bg,
+		'<canvas class="sk-bg" data-sk-bg="' . esc_attr( $bg ) . '" aria-hidden="true"></canvas>',
+	);
 }
 
 /**

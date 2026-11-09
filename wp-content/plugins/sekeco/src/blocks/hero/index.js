@@ -15,6 +15,12 @@ import './style.scss';
 import metadata from './block.json';
 import { blockIcon, Icon } from '../../shared/icon';
 import { saveInner, DISPLAY_FORMATS } from '../../shared/register';
+import { WidthControl, widthClass } from '../../shared/width';
+import {
+	BackgroundCanvas,
+	BackgroundControl,
+	backgroundClass,
+} from '../../shared/backgrounds/control';
 
 const TEMPLATE = [
 	[
@@ -35,9 +41,12 @@ const TEMPLATE = [
 ];
 
 function Edit( { attributes, setAttributes } ) {
-	const { kicker, heading, lead, tone, reel, reelCount } = attributes;
+	const { kicker, heading, lead, tone, width, bg, reel, reelCount } =
+		attributes;
 	const blockProps = useBlockProps( {
-		className: `sk-hero${ 'auto' === tone ? '' : ` sk-tone--${ tone }` }`,
+		className: `sk-hero${
+			'auto' === tone ? '' : ` sk-tone--${ tone }`
+		}${ widthClass( width ) }${ backgroundClass( bg ) }`,
 	} );
 	const innerProps = useInnerBlocksProps(
 		{ className: 'sk-hero__actions' },
@@ -79,6 +88,16 @@ function Edit( { attributes, setAttributes } ) {
 							setAttributes( { tone: value } )
 						}
 					/>
+					<WidthControl
+						value={ width }
+						onChange={ ( value ) =>
+							setAttributes( { width: value } )
+						}
+					/>
+					<BackgroundControl
+						value={ bg }
+						onChange={ ( value ) => setAttributes( { bg: value } ) }
+					/>
 					<SelectControl
 						__next40pxDefaultSize
 						__nextHasNoMarginBottom
@@ -118,6 +137,7 @@ function Edit( { attributes, setAttributes } ) {
 				</PanelBody>
 			</InspectorControls>
 			<section { ...blockProps }>
+				<BackgroundCanvas type={ bg } />
 				<div className="sk-hero__stage">
 					<p className="sk-hero__badge">
 						<span className="sk-hero__badge-mark">

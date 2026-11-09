@@ -291,15 +291,21 @@ const LEAN_Y = 6;
 function buttons( reduce ) {
 	document
 		.querySelectorAll(
-			'.wp-block-button:not(.is-style-outline) > .wp-block-button__link, .sekeco-form__submit, .sekeco-form__next'
+			'.wp-block-button:is(.is-style-fill, :not([class*="is-style-"])) > .wp-block-button__link, .sekeco-form__submit, .sekeco-form__next'
 		)
 		.forEach( ( el ) => {
 			const moveX = reduce
 				? null
-				: gsap.quickTo( el, 'x', { duration: 0.5, ease: 'power3.out' } );
+				: gsap.quickTo( el, 'x', {
+						duration: 0.5,
+						ease: 'power3.out',
+					} );
 			const moveY = reduce
 				? null
-				: gsap.quickTo( el, 'y', { duration: 0.5, ease: 'power3.out' } );
+				: gsap.quickTo( el, 'y', {
+						duration: 0.5,
+						ease: 'power3.out',
+					} );
 
 			el.addEventListener( 'pointermove', ( event ) => {
 				const box = el.getBoundingClientRect();
@@ -308,8 +314,10 @@ function buttons( reduce ) {
 					return;
 				}
 
-				const left = box.left - Number( gsap.getProperty( el, 'x' ) || 0 );
-				const top = box.top - Number( gsap.getProperty( el, 'y' ) || 0 );
+				const left =
+					box.left - Number( gsap.getProperty( el, 'x' ) || 0 );
+				const top =
+					box.top - Number( gsap.getProperty( el, 'y' ) || 0 );
 				const px = event.clientX - left;
 				const py = event.clientY - top;
 

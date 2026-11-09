@@ -1,0 +1,49 @@
+@use "sass:string";
+
+// Content width for blocks that own a column. The block's Content width
+// control puts sk-w--narrow, sk-w--wide or sk-w--full on the block; no class
+// is Default. Changing contentSize or wideSize in theme.json changes them all.
+// - narrow:  the theme's contentSize, as --sk-narrow
+// - default: the block's own column, --sk-max (1240px)
+// - wide:    the theme's wideSize, as --sk-wide
+// - full:    the whole screen, no limit
+
+// A block that owns its inner column: use inside the block's root rule.
+// $pad is extra width kept for the block's own side gutters.
+@mixin sk-width-inner($inner, $pad: "0px") {
+
+	#{$inner} {
+		max-width: calc(var(--sk-max, 1240px) + #{$pad});
+	}
+
+	&.sk-w--narrow #{$inner} {
+		max-width: calc(var(--sk-narrow, 760px) + #{$pad});
+	}
+
+	&.sk-w--wide #{$inner} {
+		max-width: calc(var(--sk-wide, 1320px) + #{$pad});
+	}
+
+	&.sk-w--full #{$inner} {
+		max-width: none;
+	}
+}
+
+// A block inside a column (a section's child): break out to the wide or full
+// width with the editor's native alignment (Wide width, Full width).
+@mixin sk-width-breakout($wide: string.unquote("min(var(--sk-wide, 1320px), 100vw - 2 * var(--sk-gutter, 16px))")) {
+
+	&.alignwide,
+	&[data-align="wide"] {
+		width: #{$wide};
+		max-width: none;
+		margin-inline: calc((100% - #{$wide}) / 2);
+	}
+
+	&.alignfull,
+	&[data-align="full"] {
+		width: 100vw;
+		max-width: none;
+		margin-inline: calc(50% - 50vw);
+	}
+}

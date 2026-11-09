@@ -1,3 +1,5 @@
+@use "../../shared/widths" as *;
+
 .sk-section {
 	position: relative;
 	box-sizing: border-box;
@@ -5,6 +7,9 @@
 	color: var(--sk-fg);
 	padding-block: var(--sk-section-y, clamp(64px, 8.5vw, 128px));
 	padding-inline: var(--sk-gutter, clamp(16px, 4vw, 48px));
+	// Wide and full children may break out of the column but never scroll
+	// the page.
+	overflow-x: clip;
 
 	&.sk-section--space-none {
 		padding-block: 0;
@@ -19,25 +24,25 @@
 	}
 }
 
+// The Content width control sets the column: narrow, default, wide or full.
+// Children can still break out with the native Wide and Full alignment.
+.sk-section {
+
+	@include sk-width-inner(".sk-section__inner");
+}
+
 .sk-section__inner {
 	display: flex;
 	flex-direction: column;
 	gap: var(--sk-stack, clamp(40px, 6vw, 88px));
-	max-width: var(--sk-max, 1320px);
 	margin-inline: auto;
 
 	> * {
 		margin-block: 0;
 		max-width: none;
+
+		@include sk-width-breakout;
 	}
-}
-
-.sk-section__inner--narrow {
-	max-width: 880px;
-}
-
-.sk-section__inner--full {
-	max-width: none;
 }
 
 // Two neutral sections in a row share one gap instead of stacking two.

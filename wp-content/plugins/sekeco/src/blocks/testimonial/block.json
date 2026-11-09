@@ -1,0 +1,23 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "sekeco/testimonial",
+	"version": "1.0.0",
+	"title": "Testimonial",
+	"category": "sekeco-content",
+	"description": "One quote with who said it and where. Add it inside a Testimonials block; it renders nothing until it has a quote.",
+	"keywords": [ "testimonial", "quote", "review", "client" ],
+	"textdomain": "sekeco",
+	"parent": [ "sekeco/testimonials" ],
+	"attributes": {
+		"quote": { "type": "string", "default": "" },
+		"name": { "type": "string", "default": "" },
+		"role": { "type": "string", "default": "" },
+		"source": { "type": "string", "default": "" },
+		"topic": { "type": "string", "default": "" },
+		"imageId": { "type": "number", "default": 0 }
+	},
+	"supports": { "html": false, "reusable": false },
+	"editorScript": "file:./index.js",
+	"render": "file:./render.php"
+}

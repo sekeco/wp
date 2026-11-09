@@ -26,15 +26,20 @@
 			"type": "string",
 			"default": ""
 		},
+		"width": {
+			"type": "string",
+			"default": "default"
+		},
+		"bg": {
+			"type": "string",
+			"default": "none"
+		},
 		"tone": {
 			"type": "string",
 			"default": "accent"
 		}
 	},
 	"supports": {
-		"align": [
-			"full"
-		],
 		"anchor": true,
 		"html": false
 	},

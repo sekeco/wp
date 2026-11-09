@@ -1,3 +1,6 @@
+@use "../../shared/widths" as *;
+@use "../../shared/background";
+
 // A field strip at the content width: the same 1240px column as the sections
 // around it, not the full bleed of the page.
 .sk-cta {
@@ -12,6 +15,37 @@
 	background: var(--sk-bg);
 	color: var(--sk-fg);
 	position: relative;
+}
+
+// Content width: narrow, wide or full (the default is the column above).
+.sk-cta.sk-w--narrow {
+	width: min(calc(100% - 2 * var(--sk-gutter)), var(--sk-narrow, 760px));
+}
+
+.sk-cta.sk-w--wide {
+	width: min(calc(100% - 2 * var(--sk-gutter)), var(--sk-wide, 1320px));
+}
+
+// Full: the background runs edge to edge of the page, square and with no side
+// inset, while the copy keeps the default column (1240px) like the sections.
+.sk-cta.sk-w--full {
+	--sk-cta-radius: 0px;
+	width: 100%;
+	padding-inline: max(var(--sk-gutter), (100% - var(--sk-max, 1240px)) / 2);
+}
+
+.sk-cta.sk-w--full .sk-beam {
+	display: none;
+}
+
+// Background picture behind the copy, clipped to the strip's rounded edge.
+.sk-cta.sk-bg-on {
+	overflow: clip;
+}
+
+.sk-cta.sk-bg-on .sk-cta__inner {
+	position: relative;
+	z-index: 1;
 }
 
 .sk-cta.sk-tone--accent {

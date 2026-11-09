@@ -127,7 +127,7 @@ function Edit( { attributes, setAttributes } ) {
 											),
 											value: 'crew',
 										},
-								  ]
+									]
 								: [] ),
 						] }
 						onChange={ ( value ) =>

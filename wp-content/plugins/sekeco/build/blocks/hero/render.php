@@ -19,7 +19,9 @@ $tone    = in_array( $tone, array( 'auto', 'ink', 'paper', 'accent' ), true ) ? 
 $reel    = isset( $attributes['reel'] ) ? $attributes['reel'] : 'portfolio';
 $count   = isset( $attributes['reelCount'] ) ? max( 3, min( 12, (int) $attributes['reelCount'] ) ) : 5;
 
-$classes = 'sk-hero' . ( 'auto' === $tone ? '' : ' sk-tone--' . $tone );
+list( $bg_class, $bg_canvas ) = sekeco_background( $attributes );
+
+$classes = 'sk-hero' . ( 'auto' === $tone ? '' : ' sk-tone--' . $tone ) . sekeco_width_class( $attributes ) . $bg_class;
 
 $reel_html = '';
 
@@ -42,6 +44,7 @@ if ( in_array( $reel, array( 'portfolio', 'product' ), true ) ) {
 $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => $classes ) );
 ?>
 <section <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+	<?php echo $bg_canvas; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 	<div class="sk-hero__stage">
 		<?php if ( '' !== $kicker ) : ?>
 			<p class="sk-hero__badge">

@@ -1,3 +1,6 @@
+@use "../../shared/widths" as *;
+@use "../../shared/background";
+
 .sk-hero {
 	--sk-gutter: clamp(16px, 4vw, 48px);
 	position: relative;
@@ -27,6 +30,19 @@
 	z-index: 1;
 }
 
+// Background picture: covers the opener, not the mosaic, and fades out.
+.sk-hero > .sk-bg {
+	height: clamp(600px, 94vh, 980px);
+	border-radius: 0;
+	-webkit-mask-image: linear-gradient(#000 45%, transparent 100%);
+	mask-image: linear-gradient(#000 45%, transparent 100%);
+}
+
+// The picture replaces the ambient light once it has painted.
+.sk-hero.sk-bg-on:has(> .sk-bg.is-ready)::before {
+	display: none;
+}
+
 .sk-hero__stage {
 	box-sizing: border-box;
 	display: flex;
@@ -34,13 +50,22 @@
 	align-items: center;
 	gap: 0;
 	width: 100%;
-	max-width: calc(var(--sk-max, 1240px) + var(--sk-gutter) * 2);
 	margin-inline: auto;
 	padding-inline: var(--sk-gutter);
 	text-align: center;
+	// The headline sizes itself from the column it sits in (cqw).
+	container-type: inline-size;
 }
 
-// Badge, then headline, then lead and actions: lead and actions sit close, the badge and headline each get room.
+// Narrow, default, wide or full: the stage and the reel share one width.
+.sk-hero {
+
+	@include sk-width-inner(".sk-hero__stage", "2 * var(--sk-gutter)");
+	@include sk-width-inner(".sk-hero__reel", "2 * var(--sk-gutter)");
+}
+
+// Badge, then headline, then lead and actions. Lead and actions sit close;
+// the badge and the headline each get room.
 .sk-hero__badge {
 	display: inline-flex;
 	align-items: center;
@@ -91,6 +116,23 @@
 	}
 }
 
+// Two lines: the plain half on the first, the dimmed half on the second. The
+// size follows the column, so each half fits on its own line at any width
+// from a tablet up; on a phone the headline just wraps.
+@container (min-width: 600px) {
+
+	.sk-hero__title {
+		max-width: none;
+		font-size: min(6rem, 5.55cqw);
+		line-height: 1.02;
+
+		em,
+		i {
+			display: block;
+		}
+	}
+}
+
 .sk-hero__foot {
 	display: flex;
 	flex-direction: column;
@@ -119,7 +161,6 @@
 
 .sk-hero__reel {
 	box-sizing: border-box;
-	max-width: calc(var(--sk-max, 1240px) + var(--sk-gutter) * 2);
 	margin: clamp(40px, 5.5vw, 72px) auto 0;
 	padding-inline: var(--sk-gutter);
 }

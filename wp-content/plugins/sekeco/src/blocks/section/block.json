@@ -6,17 +6,36 @@
 	"title": "Section",
 	"category": "sekeco-layout",
 	"description": "A full-width page section with a tone (follow site, ink, paper, surface or accent), vertical spacing and an optional rounded stacked edge.",
-	"keywords": [ "section", "band", "container", "wrapper" ],
+	"keywords": [
+		"section",
+		"band",
+		"container",
+		"wrapper"
+	],
 	"textdomain": "sekeco",
 	"attributes": {
-		"tone": { "type": "string", "default": "auto" },
-		"spacing": { "type": "string", "default": "md" },
-		"width": { "type": "string", "default": "default" },
-		"stacked": { "type": "boolean", "default": false },
-		"requires": { "type": "string", "default": "" }
+		"tone": {
+			"type": "string",
+			"default": "auto"
+		},
+		"spacing": {
+			"type": "string",
+			"default": "md"
+		},
+		"width": {
+			"type": "string",
+			"default": "default"
+		},
+		"stacked": {
+			"type": "boolean",
+			"default": false
+		},
+		"requires": {
+			"type": "string",
+			"default": ""
+		}
 	},
 	"supports": {
-		"align": [ "full" ],
 		"anchor": true,
 		"html": false
 	},

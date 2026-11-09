@@ -15,6 +15,12 @@ import './style.scss';
 import metadata from './block.json';
 import { blockIcon } from '../../shared/icon';
 import { saveInner, DISPLAY_FORMATS } from '../../shared/register';
+import { WidthControl, widthClass } from '../../shared/width';
+import {
+	BackgroundCanvas,
+	BackgroundControl,
+	backgroundClass,
+} from '../../shared/backgrounds/control';
 
 const TEMPLATE = [
 	[
@@ -25,9 +31,11 @@ const TEMPLATE = [
 ];
 
 function Edit( { attributes, setAttributes } ) {
-	const { kicker, heading, lead, tone } = attributes;
+	const { kicker, heading, lead, tone, width, bg } = attributes;
 	const blockProps = useBlockProps( {
-		className: `sk-cta${ 'auto' === tone ? '' : ` sk-tone--${ tone }` }`,
+		className: `sk-cta${
+			'auto' === tone ? '' : ` sk-tone--${ tone }`
+		}${ widthClass( width ) }${ backgroundClass( bg ) }`,
 	} );
 	const innerProps = useInnerBlocksProps(
 		{ className: 'sk-cta__actions' },
@@ -65,9 +73,20 @@ function Edit( { attributes, setAttributes } ) {
 							setAttributes( { tone: value } )
 						}
 					/>
+					<WidthControl
+						value={ width }
+						onChange={ ( value ) =>
+							setAttributes( { width: value } )
+						}
+					/>
+					<BackgroundControl
+						value={ bg }
+						onChange={ ( value ) => setAttributes( { bg: value } ) }
+					/>
 				</PanelBody>
 			</InspectorControls>
 			<section { ...blockProps }>
+				<BackgroundCanvas type={ bg } />
 				<div className="sk-cta__inner">
 					<RichText
 						tagName="p"

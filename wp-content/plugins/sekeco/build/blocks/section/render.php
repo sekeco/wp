@@ -16,7 +16,7 @@ $tone    = in_array( $tone, array( 'auto', 'ink', 'paper', 'surface', 'accent' )
 $spacing = isset( $attributes['spacing'] ) ? $attributes['spacing'] : 'md';
 $spacing = in_array( $spacing, array( 'none', 'sm', 'md', 'lg' ), true ) ? $spacing : 'md';
 $width   = isset( $attributes['width'] ) ? $attributes['width'] : 'default';
-$width   = in_array( $width, array( 'narrow', 'default', 'full' ), true ) ? $width : 'default';
+$width   = in_array( $width, array( 'narrow', 'default', 'wide', 'full' ), true ) ? $width : 'default';
 
 $requires = isset( $attributes['requires'] ) ? sanitize_key( $attributes['requires'] ) : '';
 
@@ -29,7 +29,7 @@ if ( '' !== $requires ) {
 	}
 }
 
-$classes = 'sk-section sk-section--space-' . $spacing . ( 'auto' === $tone ? '' : ' sk-tone--' . $tone );
+$classes = 'sk-section sk-section--space-' . $spacing . ( 'auto' === $tone ? '' : ' sk-tone--' . $tone ) . sekeco_width_class( array( 'width' => $width ) );
 
 if ( ! empty( $attributes['stacked'] ) ) {
 	$classes .= ' sk-section--stacked';
@@ -38,8 +38,7 @@ if ( ! empty( $attributes['stacked'] ) ) {
 $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => $classes ) );
 
 printf(
-	'<section %1$s><div class="sk-section__inner sk-section__inner--%2$s">%3$s</div></section>',
+	'<section %1$s><div class="sk-section__inner">%2$s</div></section>',
 	$wrapper_attributes, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-	esc_attr( $width ),
 	$content // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 );

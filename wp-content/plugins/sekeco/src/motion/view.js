@@ -3,6 +3,7 @@
  */
 import './style.scss';
 import './runtime';
+import './backgrounds';
 
 const reduceMotion = () =>
 	window.matchMedia &&

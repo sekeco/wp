@@ -21,11 +21,14 @@ if ( '' === $heading ) {
 	return;
 }
 
-$classes = 'sk-cta' . ( 'auto' === $tone ? '' : ' sk-tone--' . $tone );
+list( $bg_class, $bg_canvas ) = sekeco_background( $attributes );
+
+$classes = 'sk-cta' . ( 'auto' === $tone ? '' : ' sk-tone--' . $tone ) . sekeco_width_class( $attributes ) . $bg_class;
 
 $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => $classes ) );
 ?>
 <section <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+	<?php echo $bg_canvas; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 	<span class="sk-beam" aria-hidden="true"><span class="sk-beam__dot"></span></span>
 	<div class="sk-cta__inner">
 		<div class="sk-cta__copy">

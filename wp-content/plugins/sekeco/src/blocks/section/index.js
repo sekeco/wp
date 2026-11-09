@@ -14,6 +14,7 @@ import './style.scss';
 import metadata from './block.json';
 import { blockIcon } from '../../shared/icon';
 import { saveInner } from '../../shared/register';
+import { WidthControl, widthClass } from '../../shared/width';
 
 const TONES = [
 	{ label: __( 'Follow site (light or dark)', 'sekeco' ), value: 'auto' },
@@ -28,10 +29,10 @@ function Edit( { attributes, setAttributes } ) {
 	const blockProps = useBlockProps( {
 		className: `sk-section sk-section--space-${ spacing }${
 			'auto' === tone ? '' : ` sk-tone--${ tone }`
-		}${ stacked ? ' sk-section--stacked' : '' }`,
+		}${ stacked ? ' sk-section--stacked' : '' }${ widthClass( width ) }`,
 	} );
 	const innerProps = useInnerBlocksProps(
-		{ className: `sk-section__inner sk-section__inner--${ width }` },
+		{ className: 'sk-section__inner' },
 		{ templateLock: false }
 	);
 
@@ -64,22 +65,8 @@ function Edit( { attributes, setAttributes } ) {
 							setAttributes( { spacing: value } )
 						}
 					/>
-					<SelectControl
-						__next40pxDefaultSize
-						__nextHasNoMarginBottom
-						label={ __( 'Content width', 'sekeco' ) }
+					<WidthControl
 						value={ width }
-						options={ [
-							{
-								label: __( 'Narrow', 'sekeco' ),
-								value: 'narrow',
-							},
-							{
-								label: __( 'Default', 'sekeco' ),
-								value: 'default',
-							},
-							{ label: __( 'Full', 'sekeco' ), value: 'full' },
-						] }
 						onChange={ ( value ) =>
 							setAttributes( { width: value } )
 						}
