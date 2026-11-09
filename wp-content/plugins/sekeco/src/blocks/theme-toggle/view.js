@@ -41,7 +41,7 @@ document.querySelectorAll( '[data-sk-theme-toggle]' ).forEach( ( toggle ) => {
 		const run = window.sekeco && window.sekeco.themeSwitch;
 
 		if ( run ) {
-			run( swap, toggle );
+			run( swap, next );
 		} else {
 			swap();
 		}

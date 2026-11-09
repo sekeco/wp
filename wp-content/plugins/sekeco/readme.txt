@@ -20,9 +20,12 @@ Content models, component blocks, forms and motion for the Sekeco block theme.
 
 == Changelog ==
 
+= 0.22.0 =
+* The light/dark switch is now a Sunrise: the new theme rises from the bottom behind a curved horizon with a thin glow (warm going to light, cool going to dark), driven by GSAP over View Transitions. Overlapping switches are ignored.
+
 = 0.21.0 =
 * Section, Hero and CTA support color, spacing, border, shadow and minimum height; content blocks support spacing; Hero, CTA, Capability and Process step have a heading level control; every block has an inserter preview example.
-* Theme toggle can float above the search button on desktop (icon only); the light/dark switch is a GSAP circle reveal from the toggle.
+* Theme toggle can float above the search button on desktop (icon only); the light/dark switch is a GSAP transition.
 * Content type admin menus use core dashicons instead of custom icon CSS; Background draws a single frame when Data Saver is on.
 
 = 0.20.0 =
