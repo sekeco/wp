@@ -154,7 +154,9 @@ wp-content/
   hamburger yang membuka drawer `sekeco-drawer`. Di desktop, part `footer` memuat
   toggle Dark/Light berupa ikon saja (`theme-toggle` dengan `floating`) di atas
   tombol cari kiri bawah, serta *Scroll to top* di kanan bawah. Pergantian tema
-  memakai View Transitions: GSAP menumbuhkan lingkaran dari tombol (`src/motion/theme-switch.js`);
+  memakai View Transitions: *Sunrise*, tema baru naik dari bawah di balik garis cakrawala
+  melengkung dengan glow tipis (hangat ke terang, dingin ke gelap), digerakkan GSAP
+  lewat variabel `--sk-h` (`src/motion/theme-switch.js`);
   tanpa View Transitions atau dengan reduced motion, tema berganti langsung. Di
   layar kecil toggle ada di drawer.
 
