@@ -160,7 +160,7 @@ wp-content/
 | Team | CPT `team`, archive `/team/` |
 | Kategori | core `category` dipakai bersama ketiga CPT |
 | Binding | `sekeco/meta` untuk field kustom di template |
-| Komponen | 17 blok dinamis dalam tiga kategori inserter: *Sekeco: Layout* (`section`, `section-header`, `hero`, `cta`, `marquee`), *Sekeco: Content* (`statement`, `capabilities`, `process`, `faq`, `stats`, `project-grid`), *Sekeco: Utility* (`form`, `theme-toggle`, `search`, `scroll-top`) |
+| Komponen | 19 blok dinamis dalam tiga kategori inserter: *Sekeco: Layout* (`section`, `section-header`, `hero`, `cta`, `marquee`), *Sekeco: Content* (`statement`, `capabilities`, `process`, `faq`, `testimonials`, `stats`, `project-grid`), *Sekeco: Utility* (`form`, `theme-toggle`, `search`, `scroll-top`) |
 | Animasi | runtime GSAP (`src/motion/runtime.js`): hero, statement, parallax, counter, reveal; panel Motion untuk `core/group` & `core/cover` |
 | Ikon | Solar Line Duotone via `bun run icons`; PHP `sekeco_icon()` |
 | Filter | `sekeco/project-grid` dengan opsi *Category filter* |
