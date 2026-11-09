@@ -1,0 +1,306 @@
+/*
+ * Buttons: core/button with sizes and styles.
+ *
+ * Sizes   is-size-sm / (none = medium) / is-size-lg, set from the block's Size
+ *         control (a class on the button, so the saved content stays native).
+ * Styles  Fill (default), Outline, and six gradient styles, picked in the
+ *         block's Styles panel (is-style-*).
+ *
+ * Everything reads the --sk-* tone variables, so it works in both modes and
+ * inside any section tone.
+ */
+
+@property --bp {
+	syntax: "<number>";
+	inherits: true;
+	initial-value: 0;
+}
+
+:root {
+	/* The brand gradient with a slightly deeper red so white text keeps 4.5:1. */
+	--sk-grad-btn: linear-gradient(110deg, #4d68e4 0%, #a33fbd 52%, #e3084f 100%);
+	--sk-btn-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
+	--sk-btn-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 12H20' opacity='.5'/%3E%3Cpath d='M14 6L20 12L14 18'/%3E%3C/svg%3E");
+}
+
+/* ---------- Sizes ---------- */
+
+.wp-block-button {
+	--sk-btn-min: 3.5rem;
+	--sk-btn-py: 0.9rem;
+	--sk-btn-px: 1.6rem;
+	--sk-btn-fs: var(--wp--preset--font-size--medium, 1rem);
+	--sk-btn-dot: 8px;
+}
+
+.wp-block-button.is-size-sm {
+	--sk-btn-min: 3rem;
+	--sk-btn-py: 0.5rem;
+	--sk-btn-px: 1.1rem;
+	--sk-btn-fs: 0.9375rem;
+	--sk-btn-dot: 6px;
+}
+
+.wp-block-button.is-size-lg {
+	--sk-btn-min: 4rem;
+	--sk-btn-py: 1.1rem;
+	--sk-btn-px: 2.1rem;
+	--sk-btn-fs: 1.125rem;
+	--sk-btn-dot: 10px;
+}
+
+.wp-block-button__link {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
+	min-height: var(--sk-btn-min);
+	padding: var(--sk-btn-py) var(--sk-btn-px);
+	font-size: var(--sk-btn-fs);
+	transition: color 0.4s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.wp-block-button__link:focus-visible {
+	outline: 2px solid var(--sk-accent);
+	outline-offset: 3px;
+}
+
+/* ---------- Fill (default): a solid pill with a brand dot and a pointer light ----------
+ * The runtime in interactions.js writes --bx and --by; --bp fades the light in
+ * on hover and focus. The dot stays put. Without JavaScript, or on touch, the
+ * pill is simply solid. */
+
+.wp-block-button:is(.is-style-fill, :not([class*="is-style-"])) > .wp-block-button__link,
+.sekeco-form__submit,
+.sekeco-form__next {
+	--bx: 50%;
+	--by: 50%;
+	position: relative;
+	isolation: isolate;
+	overflow: hidden;
+	padding-left: calc(var(--sk-btn-px, 1.6rem) + 0.6rem);
+	background: radial-gradient(120px circle at var(--bx) var(--by), color-mix(in srgb, var(--sk-bg) calc(var(--bp) * 22%), transparent), transparent 72%), var(--sk-fg);
+	color: var(--sk-bg);
+	transition: --bp 0.4s ease;
+}
+
+.wp-block-button:is(.is-style-fill, :not([class*="is-style-"])) > .wp-block-button__link::before,
+.sekeco-form__submit::before,
+.sekeco-form__next::before {
+	content: "";
+	position: absolute;
+	z-index: -1;
+	top: calc(50% - var(--sk-btn-dot, 8px) / 2);
+	left: calc(var(--sk-btn-px, 1.6rem) - 0.55rem);
+	width: var(--sk-btn-dot, 8px);
+	height: var(--sk-btn-dot, 8px);
+	border-radius: 999px;
+	background: var(--sk-grad);
+}
+
+/* One-pixel edge light near the pointer. */
+.wp-block-button:is(.is-style-fill, :not([class*="is-style-"])) > .wp-block-button__link::after,
+.sekeco-form__submit::after,
+.sekeco-form__next::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	border-radius: inherit;
+	padding: 1px;
+	background: radial-gradient(90px circle at var(--bx) var(--by), color-mix(in srgb, var(--sk-bg) calc(var(--bp) * 75%), transparent), transparent 72%);
+	-webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+	-webkit-mask-composite: xor;
+	mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+	pointer-events: none;
+}
+
+.wp-block-button:is(.is-style-fill, :not([class*="is-style-"])) > .wp-block-button__link:hover,
+.wp-block-button:is(.is-style-fill, :not([class*="is-style-"])) > .wp-block-button__link:focus-visible,
+.sekeco-form__submit:hover:not(:disabled),
+.sekeco-form__submit:focus-visible,
+.sekeco-form__next:hover,
+.sekeco-form__next:focus-visible {
+	--bp: 1;
+}
+
+.sekeco-form__submit,
+.sekeco-form__next {
+	min-height: 3.5rem;
+	padding-block: 0.9rem;
+	padding-right: 1.6rem;
+}
+
+/* ---------- Outline ---------- */
+
+.wp-block-button.is-style-outline > .wp-block-button__link {
+	border: 1px solid color-mix(in srgb, var(--sk-fg) 40%, transparent);
+	background: transparent;
+	color: var(--sk-fg);
+}
+
+.wp-block-button.is-style-outline > .wp-block-button__link:hover,
+.wp-block-button.is-style-outline > .wp-block-button__link:focus-visible {
+	background: var(--sk-fg);
+	color: var(--sk-bg);
+	border-color: var(--sk-fg);
+}
+
+/* ---------- Gradient styles ---------- */
+
+.wp-block-button[class*="is-style-gradient"] > .wp-block-button__link {
+	position: relative;
+	isolation: isolate;
+	overflow: hidden;
+	border: 0;
+	text-decoration: none;
+	translate: 0 0;
+}
+
+/* 1. Gradient: the brand gradient fills the pill and pans across on hover. */
+.wp-block-button.is-style-gradient > .wp-block-button__link {
+	background: var(--sk-grad-btn) 0% 0% / 170% 100%;
+	box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.28);
+	color: #fff;
+	transition: background-position 0.8s var(--sk-ease, ease), translate 0.5s var(--sk-btn-spring);
+}
+
+.wp-block-button.is-style-gradient > .wp-block-button__link:hover,
+.wp-block-button.is-style-gradient > .wp-block-button__link:focus-visible {
+	background-position: 100% 0;
+	translate: 0 -2px;
+}
+
+/* 2. Gradient soft: a faint brand tint with a hairline; the tint deepens on hover. */
+.wp-block-button.is-style-gradient-soft > .wp-block-button__link {
+	background: linear-gradient(110deg, rgb(77 104 228 / 0.16), rgb(163 63 189 / 0.16) 52%, rgb(253 6 90 / 0.16));
+	box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--sk-fg) 14%, transparent);
+	color: var(--sk-fg);
+}
+
+.wp-block-button.is-style-gradient-soft > .wp-block-button__link::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	background: linear-gradient(110deg, rgb(77 104 228 / 0.36), rgb(163 63 189 / 0.36) 52%, rgb(253 6 90 / 0.36));
+	opacity: 0;
+	transition: opacity 0.4s ease;
+}
+
+.wp-block-button.is-style-gradient-soft > .wp-block-button__link:hover::before,
+.wp-block-button.is-style-gradient-soft > .wp-block-button__link:focus-visible::before {
+	opacity: 1;
+}
+
+/* 3. Gradient outline: a gradient ring on a clear pill that fills on hover. */
+.wp-block-button.is-style-gradient-outline > .wp-block-button__link {
+	background: transparent;
+	color: var(--sk-fg);
+}
+
+.wp-block-button.is-style-gradient-outline > .wp-block-button__link::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	border-radius: inherit;
+	padding: 1.5px;
+	background: var(--sk-grad);
+	-webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+	-webkit-mask-composite: xor;
+	mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+	pointer-events: none;
+}
+
+.wp-block-button.is-style-gradient-outline > .wp-block-button__link::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	background: var(--sk-grad-btn);
+	opacity: 0;
+	transition: opacity 0.4s ease;
+}
+
+.wp-block-button.is-style-gradient-outline > .wp-block-button__link:hover,
+.wp-block-button.is-style-gradient-outline > .wp-block-button__link:focus-visible {
+	color: #fff;
+}
+
+.wp-block-button.is-style-gradient-outline > .wp-block-button__link:hover::after,
+.wp-block-button.is-style-gradient-outline > .wp-block-button__link:focus-visible::after {
+	opacity: 1;
+}
+
+/* 4. Gradient aurora: the closing field's mesh on a pill; the light drifts on hover. */
+.wp-block-button.is-style-gradient-aurora > .wp-block-button__link {
+	background:
+		radial-gradient(70% 90% at 12% 0%, rgb(77 104 228 / 0.85), transparent 60%),
+		radial-gradient(60% 80% at 100% 20%, rgb(253 6 90 / 0.6), transparent 62%),
+		radial-gradient(70% 90% at 55% 110%, rgb(163 63 189 / 0.85), transparent 60%),
+		#14102e;
+	background-size: 150% 150%;
+	background-position: 0% 0%;
+	box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.16);
+	color: #fff;
+	transition: background-position 1s var(--sk-ease, ease);
+}
+
+.wp-block-button.is-style-gradient-aurora > .wp-block-button__link:hover,
+.wp-block-button.is-style-gradient-aurora > .wp-block-button__link:focus-visible {
+	background-position: 100% 100%;
+}
+
+/* 5. Gradient arrow: a solid pill ending in a gradient chip whose arrow moves on hover. */
+.wp-block-button.is-style-gradient-arrow > .wp-block-button__link {
+	gap: 0.9rem;
+	padding: 0.4rem 0.4rem 0.4rem var(--sk-btn-px);
+	background: var(--sk-fg);
+	color: var(--sk-bg);
+}
+
+.wp-block-button.is-style-gradient-arrow > .wp-block-button__link::after {
+	content: "";
+	flex: none;
+	width: calc(var(--sk-btn-min) - 0.8rem);
+	height: calc(var(--sk-btn-min) - 0.8rem);
+	border-radius: 50%;
+	background: var(--sk-btn-arrow) 50% 50% / 45% no-repeat, var(--sk-grad);
+	transition: background-position 0.5s var(--sk-ease, ease), scale 0.5s var(--sk-btn-spring);
+}
+
+.wp-block-button.is-style-gradient-arrow > .wp-block-button__link:hover::after,
+.wp-block-button.is-style-gradient-arrow > .wp-block-button__link:focus-visible::after {
+	background-position: calc(50% + 3px) 50%, 0 0;
+	scale: 1.07;
+}
+
+/* 6. Gradient sheen: the gradient with a glare that sweeps across on hover. */
+.wp-block-button.is-style-gradient-sheen > .wp-block-button__link {
+	background: var(--sk-grad-btn);
+	box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.28);
+	color: #fff;
+}
+
+.wp-block-button.is-style-gradient-sheen > .wp-block-button__link::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	background: linear-gradient(105deg, transparent 32%, rgb(255 255 255 / 0.4) 50%, transparent 68%);
+	translate: -110% 0;
+	transition: translate 0.9s var(--sk-ease, ease);
+}
+
+.wp-block-button.is-style-gradient-sheen > .wp-block-button__link:hover::before,
+.wp-block-button.is-style-gradient-sheen > .wp-block-button__link:focus-visible::before {
+	translate: 110% 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+	.wp-block-button__link,
+	.wp-block-button__link::before,
+	.wp-block-button__link::after {
+		transition: none;
+	}
+}

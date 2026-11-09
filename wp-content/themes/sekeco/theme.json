@@ -5,8 +5,8 @@
 		"appearanceTools": true,
 		"useRootPaddingAwareAlignments": true,
 		"layout": {
-			"contentSize": "720px",
-			"wideSize": "1320px"
+			"contentSize": "760px",
+			"wideSize": "1440px"
 		},
 		"color": {
 			"defaultDuotone": false,
@@ -99,14 +99,7 @@
 		},
 		"spacing": {
 			"defaultSpacingSizes": false,
-			"units": [
-				"px",
-				"em",
-				"rem",
-				"vh",
-				"vw",
-				"%"
-			],
+			"units": ["px", "em", "rem", "vh", "vw", "%"],
 			"spacingSizes": [
 				{
 					"name": "Tiny",
@@ -502,37 +495,27 @@
 		{
 			"name": "page-no-title",
 			"title": "Page (no title)",
-			"postTypes": [
-				"page"
-			]
+			"postTypes": ["page"]
 		},
 		{
 			"name": "page-wide",
 			"title": "Page (wide)",
-			"postTypes": [
-				"page"
-			]
+			"postTypes": ["page"]
 		},
 		{
 			"name": "page-landing",
 			"title": "Landing page (sections and closing call to action)",
-			"postTypes": [
-				"page"
-			]
+			"postTypes": ["page"]
 		},
 		{
 			"name": "page-canvas",
 			"title": "Canvas (no header or footer)",
-			"postTypes": [
-				"page"
-			]
+			"postTypes": ["page"]
 		},
 		{
 			"name": "form-canvas",
 			"title": "Form canvas (no header or footer)",
-			"postTypes": [
-				"sekeco_form"
-			]
+			"postTypes": ["sekeco_form"]
 		}
 	]
 }

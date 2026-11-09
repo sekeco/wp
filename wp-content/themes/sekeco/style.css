@@ -7,7 +7,7 @@ Description: A modern, techy block theme for Sekeco, an eclectic digital agency,
 Requires at least: 6.7
 Tested up to: 7.1
 Requires PHP: 7.4
-Version: 2.5.0
+Version: 2.6.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: sekeco
@@ -37,7 +37,10 @@ Tags: one-column, custom-colors, custom-menu, custom-logo, editor-style, feature
 	--sk-radius-xl: 40px;
 	--sk-ease: cubic-bezier(0.16, 1, 0.3, 1);
 	--sk-gutter: clamp(16px, 4vw, 48px);
+	/* Three widths, set in theme.json (settings.layout): contained, wide, full. */
 	--sk-max: 1240px;
+	--sk-narrow: var(--wp--style--global--content-size, 760px);
+	--sk-wide: var(--wp--style--global--wide-size, 1320px);
 
 	--sk-bg: var(--wp--preset--color--base);
 	--sk-fg: var(--wp--preset--color--contrast);
@@ -310,103 +313,20 @@ select {
 	}
 }
 
-/*
- * Primary button: a solid pill in the page's foreground colour with a small
- * brand-gradient dot. A neutral light follows the pointer across the pill and
- * lights its edge, and the pill leans a few pixels toward the pointer (the
- * runtime in interactions.js writes --bx, --by, --bp and the lean). The dot
- * stays put. Without JavaScript, or on touch, the pill is simply solid.
- */
-@property --bp {
-	syntax: "<number>";
-	inherits: true;
-	initial-value: 0;
-}
-
-.wp-block-button:not(.is-style-outline) > .wp-block-button__link,
-.sekeco-form__submit,
-.sekeco-form__next {
-	--bx: 50%;
-	--by: 50%;
-	position: relative;
-	isolation: isolate;
-	overflow: hidden;
-	padding: 0.9rem 1.6rem 0.9rem 2.2rem;
-	background: radial-gradient(120px circle at var(--bx) var(--by), color-mix(in srgb, var(--sk-bg) calc(var(--bp) * 22%), transparent), transparent 72%), var(--sk-fg);
-	color: var(--sk-bg);
-	transition: --bp 0.4s ease;
-}
-
-.wp-block-button:not(.is-style-outline) > .wp-block-button__link::before,
-.sekeco-form__submit::before,
-.sekeco-form__next::before {
-	content: "";
-	position: absolute;
-	z-index: -1;
-	top: calc(50% - 4px);
-	left: 1.05rem;
-	width: 8px;
-	height: 8px;
-	border-radius: 999px;
-	background: var(--sk-grad);
-}
-
-/* One-pixel edge light near the pointer. */
-.wp-block-button:not(.is-style-outline) > .wp-block-button__link::after,
-.sekeco-form__submit::after,
-.sekeco-form__next::after {
-	content: "";
-	position: absolute;
-	inset: 0;
-	border-radius: inherit;
-	padding: 1px;
-	background: radial-gradient(90px circle at var(--bx) var(--by), color-mix(in srgb, var(--sk-bg) calc(var(--bp) * 75%), transparent), transparent 72%);
-	-webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-	-webkit-mask-composite: xor;
-	mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
-	pointer-events: none;
-}
-
-.wp-block-button:not(.is-style-outline) > .wp-block-button__link:hover,
-.wp-block-button:not(.is-style-outline) > .wp-block-button__link:focus-visible,
-.sekeco-form__submit:hover:not(:disabled),
-.sekeco-form__submit:focus-visible,
-.sekeco-form__next:hover,
-.sekeco-form__next:focus-visible {
-	--bp: 1;
-}
-
-.wp-block-button__link {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	box-sizing: border-box;
-	min-height: 3.5rem;
-	transition: color 0.4s ease, background-color 0.3s ease, border-color 0.3s ease;
-}
-
-.wp-block-button.is-style-outline > .wp-block-button__link {
-	border: 1px solid color-mix(in srgb, var(--sk-fg) 40%, transparent);
-	background: transparent;
-	color: var(--sk-fg);
-}
-
-.wp-block-button.is-style-outline > .wp-block-button__link:hover,
-.wp-block-button.is-style-outline > .wp-block-button__link:focus-visible {
-	background: var(--sk-fg);
-	color: var(--sk-bg);
-	border-color: var(--sk-fg);
-}
+/* Buttons (styles, sizes, pointer light) live in assets/css/buttons.css. */
 
 /* ---------- Floating header ---------- */
 
 .sekeco-header {
 	--sk-header-top: 14px;
+	--sk-header-inset: clamp(8px, 1.6vw, 22px);
 	position: fixed;
 	top: var(--sk-header-top);
-	right: clamp(8px, 1.6vw, 22px);
-	left: clamp(8px, 1.6vw, 22px);
+	right: 0;
+	left: 0;
 	z-index: 50;
+	/* Contained by default (the theme's contentSize); Wide width and Full width on the group widen it. No transform: the fixed menu overlay lives inside. */
+	width: min(calc(100% - 2 * var(--sk-header-inset)), var(--sk-max, 1240px));
 	display: grid;
 	grid-template-columns: auto 1fr auto;
 	align-items: center;
@@ -418,6 +338,14 @@ select {
 	border-radius: 999px;
 	isolation: isolate;
 	transition: top 0.6s var(--sk-ease);
+}
+
+.sekeco-header.alignwide {
+	width: min(calc(100% - 2 * var(--sk-header-inset)), var(--sk-wide, 1320px));
+}
+
+.sekeco-header.alignfull {
+	width: calc(100% - 2 * var(--sk-header-inset));
 }
 
 /* Blur lives on a pseudo-element: backdrop-filter on the header itself would
@@ -801,8 +729,8 @@ select {
 
 	/* The side rail sits at the left edge; footer content starts clear of it. */
 	.sekeco-footer.sekeco-footer {
-		padding-right: max(96px, var(--wp--style--root--padding-right, 0px));
-		padding-left: max(96px, var(--wp--style--root--padding-left, 0px));
+		padding-right: max(72px, var(--wp--style--root--padding-right, 0px));
+		padding-left: max(72px, var(--wp--style--root--padding-left, 0px));
 	}
 }
 
@@ -819,6 +747,14 @@ select {
 }
 
 /* A hairline of the brand gradient along the top edge. */
+.sekeco-footer__card.alignwide {
+	max-width: var(--sk-wide, 1320px);
+}
+
+.sekeco-footer__card.alignfull {
+	max-width: none;
+}
+
 .sekeco-footer__card::before {
 	content: "";
 	position: absolute;

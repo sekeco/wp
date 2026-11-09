@@ -7,7 +7,7 @@
  * Viewport Width: 1400
  */
 ?>
-<!-- wp:sekeco/hero {"kicker":"One team, from identity to running system","heading":"Making a well furnished branding <em>solely for what you're hoping</em>","lead":"Engaged in identity design, business development, and IT consultant. Thrive your essential needs by building your foundation with swiftness and ease.","tone":"auto","reel":"portfolio","reelCount":5} -->
+<!-- wp:sekeco/hero {"width":"wide","bg":"nebula","kicker":"One team, from identity to running system","heading":"Making a well furnished branding <em>solely for what you're hoping</em>","lead":"Engaged in identity design, business development, and IT consultant. Thrive your essential needs by building your foundation with swiftness and ease.","tone":"auto","reel":"portfolio","reelCount":5} -->
 <!-- wp:buttons -->
 <div class="wp-block-buttons"><!-- wp:button -->
 <div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="/contact/">Let&#039;s Collaborate</a></div>
