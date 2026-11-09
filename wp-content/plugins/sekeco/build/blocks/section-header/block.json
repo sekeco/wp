@@ -44,7 +44,14 @@
     "align": [
       "wide",
       "full"
-    ]
+    ],
+    "spacing": {
+      "margin": [
+        "top",
+        "bottom"
+      ],
+      "padding": true
+    }
   },
   "editorScript": "file:./index.js",
   "style": "file:./style-index.css",

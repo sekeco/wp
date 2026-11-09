@@ -7,15 +7,46 @@
 	"category": "sekeco-content",
 	"description": "One service: title, description, tags and an optional link.",
 	"textdomain": "sekeco",
-	"parent": [ "sekeco/capabilities" ],
+	"parent": [
+		"sekeco/capabilities"
+	],
 	"attributes": {
-		"icon": { "type": "string", "default": "code-square" },
-		"title": { "type": "string", "default": "" },
-		"description": { "type": "string", "default": "" },
-		"tags": { "type": "string", "default": "" },
-		"linkUrl": { "type": "string", "default": "" }
+		"icon": {
+			"type": "string",
+			"default": "code-square"
+		},
+		"title": {
+			"type": "string",
+			"default": ""
+		},
+		"description": {
+			"type": "string",
+			"default": ""
+		},
+		"tags": {
+			"type": "string",
+			"default": ""
+		},
+		"linkUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"level": {
+			"type": "number",
+			"default": 3
+		}
 	},
-	"supports": { "html": false, "reusable": false },
+	"supports": {
+		"html": false,
+		"reusable": false
+	},
 	"editorScript": "file:./index.js",
-	"render": "file:./render.php"
+	"render": "file:./render.php",
+	"example": {
+		"attributes": {
+			"title": "Web & e-commerce",
+			"description": "Websites, web applications and online stores.",
+			"tags": "Websites, Web apps"
+		}
+	}
 }

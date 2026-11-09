@@ -16,6 +16,7 @@ import metadata from './block.json';
 import { blockIcon } from '../../shared/icon';
 import { saveInner, DISPLAY_FORMATS } from '../../shared/register';
 import { WidthControl, widthClass } from '../../shared/width';
+import { HeadingLevelControl } from '../../shared/heading';
 import {
 	BackgroundCanvas,
 	BackgroundControl,
@@ -31,7 +32,7 @@ const TEMPLATE = [
 ];
 
 function Edit( { attributes, setAttributes } ) {
-	const { kicker, heading, lead, tone, width, bg } = attributes;
+	const { kicker, heading, lead, tone, width, bg, level } = attributes;
 	const blockProps = useBlockProps( {
 		className: `sk-cta${
 			'auto' === tone ? '' : ` sk-tone--${ tone }`
@@ -79,6 +80,14 @@ function Edit( { attributes, setAttributes } ) {
 							setAttributes( { width: value } )
 						}
 					/>
+					<HeadingLevelControl
+						value={ level }
+						min={ 1 }
+						max={ 4 }
+						onChange={ ( value ) =>
+							setAttributes( { level: value } )
+						}
+					/>
 					<BackgroundControl
 						value={ bg }
 						onChange={ ( value ) => setAttributes( { bg: value } ) }
@@ -99,7 +108,7 @@ function Edit( { attributes, setAttributes } ) {
 						}
 					/>
 					<RichText
-						tagName="h2"
+						tagName={ `h${ level }` }
 						className="sk-cta__title"
 						value={ heading }
 						allowedFormats={ DISPLAY_FORMATS }

@@ -21,5 +21,18 @@
     "reusable": false
   },
   "editorScript": "file:./index.js",
-  "render": "file:./render.php"
+  "render": "file:./render.php",
+  "example": {
+    "attributes": {
+      "question": "What can we start with?"
+    },
+    "innerBlocks": [
+      {
+        "name": "core/paragraph",
+        "attributes": {
+          "content": "With a conversation about what you need."
+        }
+      }
+    ]
+  }
 }

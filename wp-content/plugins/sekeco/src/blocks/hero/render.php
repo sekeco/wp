@@ -21,6 +21,7 @@ $count   = isset( $attributes['reelCount'] ) ? max( 3, min( 12, (int) $attribute
 
 list( $bg_class, $bg_canvas ) = sekeco_background( $attributes );
 
+$level   = isset( $attributes['level'] ) ? max( 1, min( 3, (int) $attributes['level'] ) ) : 1;
 $classes = 'sk-hero' . ( 'auto' === $tone ? '' : ' sk-tone--' . $tone ) . sekeco_width_class( $attributes ) . $bg_class;
 
 $reel_html = '';
@@ -53,7 +54,7 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => $classes )
 			</p>
 		<?php endif; ?>
 		<?php if ( '' !== $heading ) : ?>
-			<h1 class="sk-hero__title" data-sk-lines><?php echo $heading; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></h1>
+			<h<?php echo (int) $level; ?> class="sk-hero__title" data-sk-lines><?php echo $heading; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></h<?php echo (int) $level; ?>>
 		<?php endif; ?>
 		<div class="sk-hero__foot">
 			<?php if ( '' !== $lead ) : ?>

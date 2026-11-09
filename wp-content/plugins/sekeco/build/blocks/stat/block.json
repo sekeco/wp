@@ -33,5 +33,12 @@
     "reusable": false
   },
   "editorScript": "file:./index.js",
-  "render": "file:./render.php"
+  "render": "file:./render.php",
+  "example": {
+    "attributes": {
+      "value": "12",
+      "suffix": "+",
+      "label": "Sample number"
+    }
+  }
 }

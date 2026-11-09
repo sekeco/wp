@@ -30,6 +30,10 @@
     "linkUrl": {
       "type": "string",
       "default": ""
+    },
+    "level": {
+      "type": "number",
+      "default": 3
     }
   },
   "supports": {
@@ -37,5 +41,12 @@
     "reusable": false
   },
   "editorScript": "file:./index.js",
-  "render": "file:./render.php"
+  "render": "file:./render.php",
+  "example": {
+    "attributes": {
+      "title": "Web & e-commerce",
+      "description": "Websites, web applications and online stores.",
+      "tags": "Websites, Web apps"
+    }
+  }
 }

@@ -13,9 +13,10 @@ import { __ } from '@wordpress/i18n';
 import metadata from './block.json';
 import { Icon, IconSelect, blockIcon } from '../../shared/icon';
 import { saveNull } from '../../shared/register';
+import { HeadingLevelControl } from '../../shared/heading';
 
 function Edit( { attributes, setAttributes } ) {
-	const { icon, title, description, tags, linkUrl } = attributes;
+	const { icon, title, description, tags, linkUrl, level } = attributes;
 	const blockProps = useBlockProps( { className: 'sk-capability sk-glow' } );
 	const tagList = tags
 		.split( ',' )
@@ -26,6 +27,14 @@ function Edit( { attributes, setAttributes } ) {
 		<>
 			<InspectorControls>
 				<PanelBody title={ __( 'Capability', 'sekeco' ) }>
+					<HeadingLevelControl
+						value={ level }
+						min={ 2 }
+						max={ 4 }
+						onChange={ ( value ) =>
+							setAttributes( { level: value } )
+						}
+					/>
 					<IconSelect
 						value={ icon }
 						onChange={ ( value ) =>
@@ -57,7 +66,7 @@ function Edit( { attributes, setAttributes } ) {
 					<Icon name={ icon } size={ 24 } />
 				</span>
 				<RichText
-					tagName="h3"
+					tagName={ `h${ level }` }
 					className="sk-capability__title"
 					value={ title }
 					allowedFormats={ [] }

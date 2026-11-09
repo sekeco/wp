@@ -16,6 +16,7 @@ import metadata from './block.json';
 import { blockIcon, Icon } from '../../shared/icon';
 import { saveInner, DISPLAY_FORMATS } from '../../shared/register';
 import { WidthControl, widthClass } from '../../shared/width';
+import { HeadingLevelControl } from '../../shared/heading';
 import {
 	BackgroundCanvas,
 	BackgroundControl,
@@ -41,7 +42,7 @@ const TEMPLATE = [
 ];
 
 function Edit( { attributes, setAttributes } ) {
-	const { kicker, heading, lead, tone, width, bg, reel, reelCount } =
+	const { kicker, heading, lead, tone, width, bg, level, reel, reelCount } =
 		attributes;
 	const blockProps = useBlockProps( {
 		className: `sk-hero${
@@ -92,6 +93,14 @@ function Edit( { attributes, setAttributes } ) {
 						value={ width }
 						onChange={ ( value ) =>
 							setAttributes( { width: value } )
+						}
+					/>
+					<HeadingLevelControl
+						value={ level }
+						min={ 1 }
+						max={ 3 }
+						onChange={ ( value ) =>
+							setAttributes( { level: value } )
 						}
 					/>
 					<BackgroundControl
@@ -154,7 +163,7 @@ function Edit( { attributes, setAttributes } ) {
 						/>
 					</p>
 					<RichText
-						tagName="h1"
+						tagName={ `h${ level }` }
 						className="sk-hero__title"
 						value={ heading }
 						allowedFormats={ DISPLAY_FORMATS }

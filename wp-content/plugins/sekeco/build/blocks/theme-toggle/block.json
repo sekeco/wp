@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "title": "Theme toggle",
   "category": "sekeco-utility",
-  "description": "A button that switches the site between light and dark. Icon, labelled pill, or the vertical rail used beside the page. The choice is remembered on this device.",
+  "description": "A button that switches the site between light and dark. Icon, labelled pill, or the vertical rail. Floating pins the icon above the search button on desktop. The choice is remembered on this device.",
   "keywords": [
     "dark mode",
     "light mode",
@@ -17,6 +17,10 @@
     "variant": {
       "type": "string",
       "default": "icon"
+    },
+    "floating": {
+      "type": "boolean",
+      "default": false
     }
   },
   "supports": {
@@ -29,5 +33,10 @@
   "editorScript": "file:./index.js",
   "style": "file:./style-index.css",
   "viewScript": "file:./view.js",
-  "render": "file:./render.php"
+  "render": "file:./render.php",
+  "example": {
+    "attributes": {
+      "variant": "pill"
+    }
+  }
 }

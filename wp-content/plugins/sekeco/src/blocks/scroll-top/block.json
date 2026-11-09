@@ -6,12 +6,21 @@
 	"title": "Scroll to top",
 	"category": "sekeco-utility",
 	"description": "A floating button on the right edge that appears after scrolling, shows how far down the page you are, and returns to the top.",
-	"keywords": [ "scroll", "top", "back to top", "progress" ],
+	"keywords": [
+		"scroll",
+		"top",
+		"back to top",
+		"progress"
+	],
 	"textdomain": "sekeco",
 	"attributes": {},
-	"supports": { "html": false, "anchor": true },
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
 	"editorScript": "file:./index.js",
 	"style": "file:./style-index.css",
 	"viewScript": "file:./view.js",
-	"render": "file:./render.php"
+	"render": "file:./render.php",
+	"example": {}
 }

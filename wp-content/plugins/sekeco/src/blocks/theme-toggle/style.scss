@@ -24,6 +24,30 @@
 	}
 }
 
+// Floating: icon-only button stacked above the search trigger, desktop only.
+.sk-theme-toggle--float {
+	display: none;
+
+	@media (min-width: 782px) {
+		position: fixed;
+		bottom: 86px;
+		left: 22px;
+		z-index: 40;
+		display: grid;
+		width: 56px;
+		height: 56px;
+		background: color-mix(in srgb, var(--wp--preset--color--surface) 78%, transparent);
+		box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--wp--preset--color--contrast) 10%, transparent);
+		-webkit-backdrop-filter: blur(14px) saturate(140%);
+		backdrop-filter: blur(14px) saturate(140%);
+		color: var(--wp--preset--color--contrast);
+
+		&:hover {
+			background: color-mix(in srgb, var(--wp--preset--color--surface) 90%, transparent);
+		}
+	}
+}
+
 // Icon variant: light mode shows the moon (switch to dark); dark mode the sun.
 .sk-theme-toggle__sun {
 	opacity: 0;

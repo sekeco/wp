@@ -37,11 +37,38 @@
 		"tone": {
 			"type": "string",
 			"default": "accent"
+		},
+		"level": {
+			"type": "number",
+			"default": 2
 		}
 	},
 	"supports": {
 		"anchor": true,
-		"html": false
+		"html": false,
+		"color": {
+			"background": true,
+			"gradients": true,
+			"text": true,
+			"link": false
+		},
+		"spacing": {
+			"margin": [
+				"top",
+				"bottom"
+			],
+			"padding": true
+		},
+		"border": {
+			"color": true,
+			"radius": true,
+			"style": true,
+			"width": true
+		},
+		"shadow": true,
+		"dimensions": {
+			"minHeight": true
+		}
 	},
 	"editorScript": "file:./index.js",
 	"style": "file:./style-index.css",

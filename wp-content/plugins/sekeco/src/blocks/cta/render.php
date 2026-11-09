@@ -23,6 +23,7 @@ if ( '' === $heading ) {
 
 list( $bg_class, $bg_canvas ) = sekeco_background( $attributes );
 
+$level   = isset( $attributes['level'] ) ? max( 1, min( 4, (int) $attributes['level'] ) ) : 2;
 $classes = 'sk-cta' . ( 'auto' === $tone ? '' : ' sk-tone--' . $tone ) . sekeco_width_class( $attributes ) . $bg_class;
 
 $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => $classes ) );
@@ -35,7 +36,7 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => $classes )
 			<?php if ( '' !== $kicker ) : ?>
 				<p class="sk-kicker sk-cta__kicker"><?php echo esc_html( $kicker ); ?></p>
 			<?php endif; ?>
-			<h2 class="sk-cta__title"><?php echo $heading; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></h2>
+			<h<?php echo (int) $level; ?> class="sk-cta__title"><?php echo $heading; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></h<?php echo (int) $level; ?>>
 			<?php if ( '' !== $lead ) : ?>
 				<p class="sk-cta__lead"><?php echo esc_html( $lead ); ?></p>
 			<?php endif; ?>

@@ -89,22 +89,3 @@ function sekeco_enqueue_editor_icons() {
 	);
 }
 add_action( 'enqueue_block_editor_assets', 'sekeco_enqueue_editor_icons', 1 );
-
-/**
- * Admin menu icons for the Sekeco content types.
- *
- * @return void
- */
-function sekeco_enqueue_admin_menu_icons() {
-	$file = SEKECO_PATH . 'assets/admin/menu-icons.css';
-
-	if ( file_exists( $file ) ) {
-		wp_enqueue_style(
-			'sekeco-menu-icons',
-			SEKECO_URL . 'assets/admin/menu-icons.css',
-			array(),
-			SEKECO_VERSION
-		);
-	}
-}
-add_action( 'admin_enqueue_scripts', 'sekeco_enqueue_admin_menu_icons' );

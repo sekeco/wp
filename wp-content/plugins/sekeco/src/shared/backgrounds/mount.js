@@ -82,7 +82,10 @@ export function mountBackground( canvas, type ) {
 	const uT = gl.getUniformLocation( program, 'T' );
 	const uD = gl.getUniformLocation( program, 'D' );
 
-	const reduce = win.matchMedia( '(prefers-reduced-motion: reduce)' ).matches;
+	// A still picture (one frame) for reduced motion and for Data Saver.
+	const reduce =
+		win.matchMedia( '(prefers-reduced-motion: reduce)' ).matches ||
+		!! ( win.navigator.connection && win.navigator.connection.saveData );
 	let time = 14 + Math.random() * 60;
 	let dark = isLightText( canvas ) ? 1 : 0;
 	let visible = true;

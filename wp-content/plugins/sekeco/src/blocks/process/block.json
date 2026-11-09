@@ -6,12 +6,51 @@
 	"title": "Process",
 	"category": "sekeco-content",
 	"description": "An ordered row of steps, numbered automatically.",
-	"keywords": [ "process", "steps", "workflow", "timeline" ],
+	"keywords": [
+		"process",
+		"steps",
+		"workflow",
+		"timeline"
+	],
 	"textdomain": "sekeco",
 	"attributes": {},
-	"allowedBlocks": [ "sekeco/process-step" ],
-	"supports": { "align": [ "wide", "full" ], "anchor": true, "html": false },
+	"allowedBlocks": [
+		"sekeco/process-step"
+	],
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"anchor": true,
+		"html": false,
+		"spacing": {
+			"margin": [
+				"top",
+				"bottom"
+			],
+			"padding": true
+		}
+	},
 	"editorScript": "file:./index.js",
 	"style": "file:./style-index.css",
-	"render": "file:./render.php"
+	"render": "file:./render.php",
+	"example": {
+		"innerBlocks": [
+			{
+				"name": "sekeco/process-step",
+				"attributes": {
+					"title": "Discover",
+					"description": "We listen and map the problem."
+				}
+			},
+			{
+				"name": "sekeco/process-step",
+				"attributes": {
+					"title": "Design",
+					"description": "Prototypes you can react to."
+				}
+			}
+		]
+	}
 }

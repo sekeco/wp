@@ -6,18 +6,53 @@
 	"title": "Testimonial",
 	"category": "sekeco-content",
 	"description": "One quote with who said it and where. Add it inside a Testimonials block; it renders nothing until it has a quote.",
-	"keywords": [ "testimonial", "quote", "review", "client" ],
+	"keywords": [
+		"testimonial",
+		"quote",
+		"review",
+		"client"
+	],
 	"textdomain": "sekeco",
-	"parent": [ "sekeco/testimonials" ],
+	"parent": [
+		"sekeco/testimonials"
+	],
 	"attributes": {
-		"quote": { "type": "string", "default": "" },
-		"name": { "type": "string", "default": "" },
-		"role": { "type": "string", "default": "" },
-		"source": { "type": "string", "default": "" },
-		"topic": { "type": "string", "default": "" },
-		"imageId": { "type": "number", "default": 0 }
+		"quote": {
+			"type": "string",
+			"default": ""
+		},
+		"name": {
+			"type": "string",
+			"default": ""
+		},
+		"role": {
+			"type": "string",
+			"default": ""
+		},
+		"source": {
+			"type": "string",
+			"default": ""
+		},
+		"topic": {
+			"type": "string",
+			"default": ""
+		},
+		"imageId": {
+			"type": "number",
+			"default": 0
+		}
 	},
-	"supports": { "html": false, "reusable": false },
+	"supports": {
+		"html": false,
+		"reusable": false
+	},
 	"editorScript": "file:./index.js",
-	"render": "file:./render.php"
+	"render": "file:./render.php",
+	"example": {
+		"attributes": {
+			"quote": "A short quote from a client goes here.",
+			"name": "Client name",
+			"role": "Role, Company"
+		}
+	}
 }

@@ -100,3 +100,35 @@
 		transform: none;
 	}
 }
+
+// Theme switch: the new page is clipped to a circle that GSAP grows from the
+// toggle (see theme-switch.js). The hold animation keeps the transition alive
+// for as long as the tween runs.
+@keyframes sk-theme-hold {
+
+	from {
+		opacity: 1;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+html.sk-theme-switch {
+
+	&::view-transition-old(root),
+	&::view-transition-new(root) {
+		animation: sk-theme-hold calc(var(--sk-reveal-dur, 1s) + 0.15s) linear both;
+		mix-blend-mode: normal;
+	}
+
+	&::view-transition-old(root) {
+		z-index: 1;
+	}
+
+	&::view-transition-new(root) {
+		z-index: 2;
+		clip-path: circle(var(--sk-reveal, 0px) at var(--sk-reveal-x, 50%) var(--sk-reveal-y, 50%));
+	}
+}

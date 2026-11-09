@@ -4,6 +4,7 @@
 import './style.scss';
 import './runtime';
 import './backgrounds';
+import './theme-switch';
 
 const reduceMotion = () =>
 	window.matchMedia &&

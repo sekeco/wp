@@ -29,7 +29,14 @@
 			"full"
 		],
 		"anchor": true,
-		"html": false
+		"html": false,
+		"spacing": {
+			"margin": [
+				"top",
+				"bottom"
+			],
+			"padding": true
+		}
 	},
 	"editorScript": "file:./index.js",
 	"style": "file:./style-index.css",

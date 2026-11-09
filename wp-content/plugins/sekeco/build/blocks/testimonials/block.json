@@ -34,10 +34,40 @@
       "full"
     ],
     "anchor": true,
-    "html": false
+    "html": false,
+    "spacing": {
+      "margin": [
+        "top",
+        "bottom"
+      ],
+      "padding": true
+    }
   },
   "editorScript": "file:./index.js",
   "style": "file:./style-index.css",
   "viewScript": "file:./view.js",
-  "render": "file:./render.php"
+  "render": "file:./render.php",
+  "example": {
+    "attributes": {
+      "layout": "cards"
+    },
+    "innerBlocks": [
+      {
+        "name": "sekeco/testimonial",
+        "attributes": {
+          "quote": "A short quote from a client goes here.",
+          "name": "Client name",
+          "role": "Role, Company"
+        }
+      },
+      {
+        "name": "sekeco/testimonial",
+        "attributes": {
+          "quote": "Another quote, in the same layout.",
+          "name": "Client name",
+          "role": "Role, Company"
+        }
+      }
+    ]
+  }
 }

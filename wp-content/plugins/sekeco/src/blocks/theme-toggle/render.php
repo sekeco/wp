@@ -14,9 +14,11 @@ defined( 'ABSPATH' ) || exit;
 $variant = isset( $attributes['variant'] ) ? $attributes['variant'] : 'icon';
 $variant = in_array( $variant, array( 'icon', 'pill', 'rail' ), true ) ? $variant : 'icon';
 
+$floating = ! empty( $attributes['floating'] ) && 'icon' === $variant;
+
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
-		'class'                => 'sk-theme-toggle sk-theme-toggle--' . $variant,
+		'class'                => 'sk-theme-toggle sk-theme-toggle--' . $variant . ( $floating ? ' sk-theme-toggle--float' : '' ),
 		'type'                 => 'button',
 		'aria-label'           => __( 'Switch between light and dark', 'sekeco' ),
 		'data-sk-theme-toggle' => '',

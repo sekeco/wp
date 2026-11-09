@@ -42,7 +42,7 @@ function sekeco_register_portfolio() {
 			'show_in_admin_bar'  => true,
 			'show_in_rest'       => true,
 			'menu_position'      => 20,
-			'menu_icon'          => 'none',
+			'menu_icon'          => 'dashicons-portfolio',
 			'capability_type'    => 'post',
 			'map_meta_cap'       => true,
 			'hierarchical'       => false,

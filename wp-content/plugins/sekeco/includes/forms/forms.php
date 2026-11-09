@@ -68,7 +68,7 @@ function sekeco_register_form_types() {
 			'show_in_nav_menus'   => false,
 			'show_in_rest'        => true,
 			'menu_position'       => 23,
-			'menu_icon'           => 'none',
+			'menu_icon'           => 'dashicons-feedback',
 			'capability_type'     => 'post',
 			'map_meta_cap'        => true,
 			'supports'            => array( 'title' ),

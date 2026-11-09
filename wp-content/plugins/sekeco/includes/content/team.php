@@ -40,7 +40,7 @@ function sekeco_register_team() {
 			'show_in_admin_bar'  => true,
 			'show_in_rest'       => true,
 			'menu_position'      => 22,
-			'menu_icon'          => 'none',
+			'menu_icon'          => 'dashicons-groups',
 			'capability_type'    => 'post',
 			'map_meta_cap'       => true,
 			'hierarchical'       => false,

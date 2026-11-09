@@ -25,6 +25,13 @@ once for reduced motion. It reads the block's text colour, so it follows the
 site's light and dark mode and the block's tone, and each picture keeps a calm
 zone behind the copy. Without WebGL the block keeps its normal ground.
 
+Block supports: Section, Hero and CTA also support Color (background, gradient,
+text), Spacing, Border, Shadow and Min height, so they can be styled in the
+editor and from Global Styles (`styles.blocks["sekeco/section"]` in
+theme.json). A text colour set on them is followed by their copy. The content
+blocks support Spacing. Hero, CTA, Capability and Process step have a Heading
+level control; every block has an `example` for the inserter preview.
+
 Buttons: the theme registers six gradient styles for `core/button` next to
 Fill and Outline (`assets/css/buttons.css`); the plugin adds a Size control
 (Small, Medium, Large) that sets `is-size-sm` or `is-size-lg` on the button.

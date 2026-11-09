@@ -1,6 +1,10 @@
 @use "../../shared/widths" as *;
+@use "../../shared/supports" as *;
 
 .sk-section {
+
+	@include sk-text-colour;
+
 	position: relative;
 	box-sizing: border-box;
 	background: var(--sk-bg);

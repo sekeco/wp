@@ -7,11 +7,32 @@
 	"category": "sekeco-content",
 	"description": "One question with its answer blocks.",
 	"textdomain": "sekeco",
-	"parent": [ "sekeco/faq" ],
+	"parent": [
+		"sekeco/faq"
+	],
 	"attributes": {
-		"question": { "type": "string", "default": "" }
+		"question": {
+			"type": "string",
+			"default": ""
+		}
 	},
-	"supports": { "html": false, "reusable": false },
+	"supports": {
+		"html": false,
+		"reusable": false
+	},
 	"editorScript": "file:./index.js",
-	"render": "file:./render.php"
+	"render": "file:./render.php",
+	"example": {
+		"attributes": {
+			"question": "What can we start with?"
+		},
+		"innerBlocks": [
+			{
+				"name": "core/paragraph",
+				"attributes": {
+					"content": "With a conversation about what you need."
+				}
+			}
+		]
+	}
 }

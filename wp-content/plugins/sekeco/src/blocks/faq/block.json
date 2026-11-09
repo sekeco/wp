@@ -6,12 +6,56 @@
 	"title": "FAQ",
 	"category": "sekeco-content",
 	"description": "Accessible accordion of questions. Each item holds any blocks as its answer.",
-	"keywords": [ "faq", "accordion", "questions" ],
+	"keywords": [
+		"faq",
+		"accordion",
+		"questions"
+	],
 	"textdomain": "sekeco",
 	"attributes": {},
-	"allowedBlocks": [ "sekeco/faq-item" ],
-	"supports": { "align": [ "wide", "full" ], "anchor": true, "html": false },
+	"allowedBlocks": [
+		"sekeco/faq-item"
+	],
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"anchor": true,
+		"html": false,
+		"spacing": {
+			"margin": [
+				"top",
+				"bottom"
+			],
+			"padding": true
+		}
+	},
 	"editorScript": "file:./index.js",
 	"style": "file:./style-index.css",
-	"render": "file:./render.php"
+	"render": "file:./render.php",
+	"example": {
+		"innerBlocks": [
+			{
+				"name": "sekeco/faq-item",
+				"attributes": {
+					"question": "What can we start with?"
+				},
+				"innerBlocks": [
+					{
+						"name": "core/paragraph",
+						"attributes": {
+							"content": "With a conversation about what you need."
+						}
+					}
+				]
+			},
+			{
+				"name": "sekeco/faq-item",
+				"attributes": {
+					"question": "Who will we work with?"
+				}
+			}
+		]
+	}
 }

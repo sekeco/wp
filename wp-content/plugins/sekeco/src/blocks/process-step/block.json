@@ -7,12 +7,33 @@
 	"category": "sekeco-content",
 	"description": "One numbered step.",
 	"textdomain": "sekeco",
-	"parent": [ "sekeco/process" ],
+	"parent": [
+		"sekeco/process"
+	],
 	"attributes": {
-		"title": { "type": "string", "default": "" },
-		"description": { "type": "string", "default": "" }
+		"title": {
+			"type": "string",
+			"default": ""
+		},
+		"description": {
+			"type": "string",
+			"default": ""
+		},
+		"level": {
+			"type": "number",
+			"default": 3
+		}
 	},
-	"supports": { "html": false, "reusable": false },
+	"supports": {
+		"html": false,
+		"reusable": false
+	},
 	"editorScript": "file:./index.js",
-	"render": "file:./render.php"
+	"render": "file:./render.php",
+	"example": {
+		"attributes": {
+			"title": "Discover",
+			"description": "We listen and agree on what success looks like."
+		}
+	}
 }

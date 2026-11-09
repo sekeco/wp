@@ -6,12 +6,51 @@
 	"title": "Stats",
 	"category": "sekeco-content",
 	"description": "A quiet row of counted facts. Add Stat blocks that count published Works, Portfolio or Team entries.",
-	"keywords": [ "stats", "numbers", "counter" ],
+	"keywords": [
+		"stats",
+		"numbers",
+		"counter"
+	],
 	"textdomain": "sekeco",
 	"attributes": {},
-	"supports": { "align": [ "wide", "full" ], "anchor": true, "html": false },
-	"allowedBlocks": [ "sekeco/stat" ],
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"anchor": true,
+		"html": false,
+		"spacing": {
+			"margin": [
+				"top",
+				"bottom"
+			],
+			"padding": true
+		}
+	},
+	"allowedBlocks": [
+		"sekeco/stat"
+	],
 	"editorScript": "file:./index.js",
 	"style": "file:./style-index.css",
-	"render": "file:./render.php"
+	"render": "file:./render.php",
+	"example": {
+		"innerBlocks": [
+			{
+				"name": "sekeco/stat",
+				"attributes": {
+					"value": "12",
+					"suffix": "+",
+					"label": "Sample number"
+				}
+			},
+			{
+				"name": "sekeco/stat",
+				"attributes": {
+					"value": "8",
+					"label": "Another number"
+				}
+			}
+		]
+	}
 }

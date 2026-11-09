@@ -21,17 +21,19 @@ if ( '' === $title ) {
 	return;
 }
 
+$level = isset( $attributes['level'] ) ? max( 2, min( 4, (int) $attributes['level'] ) ) : 3;
+
 $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'sk-capability sk-glow' ) );
 ?>
 <article <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> role="listitem">
 	<span class="sk-capability__icon"><?php echo sekeco_icon( $icon, array( 'size' => 24 ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
-	<h3 class="sk-capability__title">
+	<h<?php echo (int) $level; ?> class="sk-capability__title">
 		<?php if ( '' !== $url ) : ?>
 			<a href="<?php echo esc_url( $url ); ?>"><?php echo esc_html( $title ); ?></a>
 		<?php else : ?>
 			<?php echo esc_html( $title ); ?>
 		<?php endif; ?>
-	</h3>
+	</h<?php echo (int) $level; ?>>
 	<div class="sk-capability__text">
 		<?php if ( '' !== $desc ) : ?>
 			<p class="sk-capability__desc"><?php echo $desc; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>

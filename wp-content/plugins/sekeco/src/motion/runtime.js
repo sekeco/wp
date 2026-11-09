@@ -221,14 +221,14 @@ function header() {
 }
 
 /**
- * Floating controls (side rail, search, scroll to top) take the dark tone while
+ * Floating controls (theme switch, search, scroll to top) take the dark tone while
  * they sit over a dark ground, so they stay legible over the footer, the hero
  * and the brand field in light mode.
  */
 function floaters() {
 	const items = Array.from(
 		document.querySelectorAll(
-			'.sk-rail, .sk-search__trigger--float, .sk-scrolltop'
+			'.sk-theme-toggle--float, .sk-search__trigger--float, .sk-scrolltop'
 		)
 	);
 

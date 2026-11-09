@@ -47,5 +47,12 @@
     "reusable": false
   },
   "editorScript": "file:./index.js",
-  "render": "file:./render.php"
+  "render": "file:./render.php",
+  "example": {
+    "attributes": {
+      "quote": "A short quote from a client goes here.",
+      "name": "Client name",
+      "role": "Role, Company"
+    }
+  }
 }

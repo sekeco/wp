@@ -18,10 +18,12 @@ if ( '' === $title ) {
 	return;
 }
 
+$level = isset( $attributes['level'] ) ? max( 2, min( 4, (int) $attributes['level'] ) ) : 3;
+
 $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'sk-process-step sk-glow' ) );
 ?>
 <li <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
-	<h3 class="sk-process-step__title"><?php echo esc_html( $title ); ?></h3>
+	<h<?php echo (int) $level; ?> class="sk-process-step__title"><?php echo esc_html( $title ); ?></h<?php echo (int) $level; ?>>
 	<?php if ( '' !== $desc ) : ?>
 		<p class="sk-process-step__desc"><?php echo $desc; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
 	<?php endif; ?>

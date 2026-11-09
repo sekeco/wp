@@ -1,7 +1,11 @@
 @use "../../shared/widths" as *;
 @use "../../shared/background";
+@use "../../shared/supports" as *;
 
 .sk-hero {
+
+	@include sk-text-colour;
+
 	--sk-gutter: clamp(16px, 4vw, 48px);
 	position: relative;
 	box-sizing: border-box;

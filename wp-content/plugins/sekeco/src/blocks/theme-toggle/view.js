@@ -37,8 +37,11 @@ document.querySelectorAll( '[data-sk-theme-toggle]' ).forEach( ( toggle ) => {
 				.forEach( label );
 		};
 
-		if ( document.startViewTransition ) {
-			document.startViewTransition( swap );
+		// The GSAP reveal lives in the motion runtime; without it, switch at once.
+		const run = window.sekeco && window.sekeco.themeSwitch;
+
+		if ( run ) {
+			run( swap, toggle );
 		} else {
 			swap();
 		}

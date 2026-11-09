@@ -1,0 +1,9 @@
+// A block with its own tone reads --sk-fg and --sk-muted for its copy. When the
+// editor sets a text colour on it (Color > Text), the copy follows that colour.
+@mixin sk-text-colour {
+
+	&.has-text-color {
+		--sk-fg: currentcolor;
+		--sk-muted: color-mix(in srgb, currentcolor 72%, transparent);
+	}
+}

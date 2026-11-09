@@ -1,9 +1,13 @@
 @use "../../shared/widths" as *;
 @use "../../shared/background";
+@use "../../shared/supports" as *;
 
 // A field strip at the content width: the same 1240px column as the sections
 // around it, not the full bleed of the page.
 .sk-cta {
+
+	@include sk-text-colour;
+
 	--sk-cta-radius: 28px;
 	--sk-gutter: clamp(16px, 4vw, 48px);
 	box-sizing: border-box;

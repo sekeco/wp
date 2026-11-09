@@ -19,12 +19,38 @@
       "full"
     ],
     "anchor": true,
-    "html": false
+    "html": false,
+    "spacing": {
+      "margin": [
+        "top",
+        "bottom"
+      ],
+      "padding": true
+    }
   },
   "allowedBlocks": [
     "sekeco/stat"
   ],
   "editorScript": "file:./index.js",
   "style": "file:./style-index.css",
-  "render": "file:./render.php"
+  "render": "file:./render.php",
+  "example": {
+    "innerBlocks": [
+      {
+        "name": "sekeco/stat",
+        "attributes": {
+          "value": "12",
+          "suffix": "+",
+          "label": "Sample number"
+        }
+      },
+      {
+        "name": "sekeco/stat",
+        "attributes": {
+          "value": "8",
+          "label": "Another number"
+        }
+      }
+    ]
+  }
 }

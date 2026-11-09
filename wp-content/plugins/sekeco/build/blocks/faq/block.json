@@ -22,9 +22,40 @@
       "full"
     ],
     "anchor": true,
-    "html": false
+    "html": false,
+    "spacing": {
+      "margin": [
+        "top",
+        "bottom"
+      ],
+      "padding": true
+    }
   },
   "editorScript": "file:./index.js",
   "style": "file:./style-index.css",
-  "render": "file:./render.php"
+  "render": "file:./render.php",
+  "example": {
+    "innerBlocks": [
+      {
+        "name": "sekeco/faq-item",
+        "attributes": {
+          "question": "What can we start with?"
+        },
+        "innerBlocks": [
+          {
+            "name": "core/paragraph",
+            "attributes": {
+              "content": "With a conversation about what you need."
+            }
+          }
+        ]
+      },
+      {
+        "name": "sekeco/faq-item",
+        "attributes": {
+          "question": "Who will we work with?"
+        }
+      }
+    ]
+  }
 }

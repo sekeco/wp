@@ -6,16 +6,68 @@
 	"title": "Testimonials",
 	"category": "sekeco-content",
 	"description": "Client words in three layouts: a slider with one large quote at a time, a grid of cards, or an endless marquee of cards. Add Testimonial blocks inside. Hides itself until at least one has a quote.",
-	"keywords": [ "testimonials", "reviews", "quotes", "clients", "slider", "carousel" ],
+	"keywords": [
+		"testimonials",
+		"reviews",
+		"quotes",
+		"clients",
+		"slider",
+		"carousel"
+	],
 	"textdomain": "sekeco",
 	"attributes": {
-		"layout": { "type": "string", "default": "slider" },
-		"duration": { "type": "number", "default": 60 }
+		"layout": {
+			"type": "string",
+			"default": "slider"
+		},
+		"duration": {
+			"type": "number",
+			"default": 60
+		}
 	},
-	"allowedBlocks": [ "sekeco/testimonial" ],
-	"supports": { "align": [ "wide", "full" ], "anchor": true, "html": false },
+	"allowedBlocks": [
+		"sekeco/testimonial"
+	],
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"anchor": true,
+		"html": false,
+		"spacing": {
+			"margin": [
+				"top",
+				"bottom"
+			],
+			"padding": true
+		}
+	},
 	"editorScript": "file:./index.js",
 	"style": "file:./style-index.css",
 	"viewScript": "file:./view.js",
-	"render": "file:./render.php"
+	"render": "file:./render.php",
+	"example": {
+		"attributes": {
+			"layout": "cards"
+		},
+		"innerBlocks": [
+			{
+				"name": "sekeco/testimonial",
+				"attributes": {
+					"quote": "A short quote from a client goes here.",
+					"name": "Client name",
+					"role": "Role, Company"
+				}
+			},
+			{
+				"name": "sekeco/testimonial",
+				"attributes": {
+					"quote": "Another quote, in the same layout.",
+					"name": "Client name",
+					"role": "Role, Company"
+				}
+			}
+		]
+	}
 }

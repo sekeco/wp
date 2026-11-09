@@ -6,15 +6,30 @@
 	"title": "Full-screen search",
 	"category": "sekeco-utility",
 	"description": "A search button that opens a full-screen search with live results, recommendations and a masonry of random Works, Portfolio and Journal entries. Opens with the button, / or Ctrl/Cmd+K.",
-	"keywords": [ "search", "find", "algolia", "overlay" ],
+	"keywords": [
+		"search",
+		"find",
+		"algolia",
+		"overlay"
+	],
 	"textdomain": "sekeco",
 	"attributes": {
-		"floating": { "type": "boolean", "default": true },
-		"placeholder": { "type": "string", "default": "Search the site" }
+		"floating": {
+			"type": "boolean",
+			"default": true
+		},
+		"placeholder": {
+			"type": "string",
+			"default": "Search the site"
+		}
 	},
-	"supports": { "html": false, "anchor": true },
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
 	"editorScript": "file:./index.js",
 	"style": "file:./style-index.css",
 	"viewScript": "file:./view.js",
-	"render": "file:./render.php"
+	"render": "file:./render.php",
+	"example": {}
 }
