@@ -3,6 +3,8 @@
 # Only project code is versioned:
 #   wp-content/themes/sekeco/
 #   wp-content/plugins/sekeco/
+#   wp-content/themes/matholek/
+#   wp-content/plugins/matholek/
 # ---------------------------------------------------------------------------
 
 # WordPress core and local config
@@ -15,7 +17,7 @@
 /license.txt
 /readme.html
 
-# Inside wp-content, only the Sekeco theme and plugin are tracked.
+# Inside wp-content, only the Sekeco and Matholek themes and plugins are tracked.
 # Everything else (uploads, upgrades, third-party plugins and themes,
 # WordPress stubs) stays local.
 /wp-content/*
@@ -23,8 +25,10 @@
 !/wp-content/plugins/
 /wp-content/themes/*
 !/wp-content/themes/sekeco/
+!/wp-content/themes/matholek/
 /wp-content/plugins/*
 !/wp-content/plugins/sekeco/
+!/wp-content/plugins/matholek/
 
 # Local database volume
 .db/
@@ -43,3 +47,6 @@ skills-lock.json
 .DS_Store
 Thumbs.db
 *.log
+
+# Local Matholek sample data (photos and seed script), never committed
+.scratch/matholek-*

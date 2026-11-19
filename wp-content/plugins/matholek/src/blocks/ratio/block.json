@@ -1,0 +1,26 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "matholek/ratio",
+	"version": "1.0.0",
+	"title": "Donat rasio",
+	"category": "matholek",
+	"description": "Lingkaran donat yang terisi sesuai persentase, misalnya 70 untuk 70 : 30.",
+	"keywords": [ "donut", "rasio", "persen", "chart" ],
+	"textdomain": "matholek",
+	"attributes": {
+		"value": {
+			"type": "number",
+			"default": 70
+		},
+		"label": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"html": false
+	},
+	"editorScript": "file:./index.js",
+	"render": "file:./render.php"
+}

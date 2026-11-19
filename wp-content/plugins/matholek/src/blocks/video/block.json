@@ -1,0 +1,26 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "matholek/video",
+	"version": "1.0.0",
+	"title": "Tombol video",
+	"category": "matholek",
+	"description": "Tombol putar bulat di tengah kartu foto. Membuka video (misalnya YouTube) di tab baru; tanpa URL tombol tetap tampil sebagai hiasan.",
+	"keywords": [ "video", "youtube", "play", "putar" ],
+	"textdomain": "matholek",
+	"attributes": {
+		"url": {
+			"type": "string",
+			"default": ""
+		},
+		"label": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"html": false
+	},
+	"editorScript": "file:./index.js",
+	"render": "file:./render.php"
+}

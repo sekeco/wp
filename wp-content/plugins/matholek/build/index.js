@@ -1,0 +1,1 @@
+(()=>{"use strict";(0,window.wp.blocks.registerBlockBindingsSource)({name:"matholek/since",getValues({bindings:e}){const s={};for(const[n,{args:t={}}]of Object.entries(e)){const e=parseInt(t.year,10);s[n]=e?`${(new Date).getFullYear()-e}${t.suffix||""}`:""}return s}})})();

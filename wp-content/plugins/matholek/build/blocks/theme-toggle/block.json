@@ -1,0 +1,22 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "matholek/theme-toggle",
+  "version": "1.0.0",
+  "title": "Tombol terang/gelap",
+  "category": "matholek",
+  "description": "Tombol ikon yang mengganti situs antara mode terang dan gelap. Pilihan disimpan di perangkat ini.",
+  "keywords": [
+    "dark mode",
+    "mode gelap",
+    "tema",
+    "switcher"
+  ],
+  "textdomain": "matholek",
+  "supports": {
+    "html": false
+  },
+  "editorScript": "file:./index.js",
+  "viewScript": "file:./view.js",
+  "render": "file:./render.php"
+}

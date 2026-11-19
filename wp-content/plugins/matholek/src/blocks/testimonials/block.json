@@ -1,0 +1,24 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "matholek/testimonials",
+	"version": "1.0.0",
+	"title": "Slider testimoni",
+	"category": "matholek",
+	"description": "Kartu testimoni yang berganti tiap 6 detik, dengan titik dan tombol panah. Testimoni tanpa kutipan disembunyikan; bila semuanya kosong, kartu tidak tampil.",
+	"keywords": [ "testimoni", "alumni", "slider", "kutipan" ],
+	"textdomain": "matholek",
+	"attributes": {
+		"label": {
+			"type": "string",
+			"default": "TESTIMONI MUTAKHORRIJIN"
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"editorScript": "file:./index.js",
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}

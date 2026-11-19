@@ -1,0 +1,49 @@
+<!-- wp:template-part {"slug":"header","tagName":"header","className":"mk-header"} /-->
+
+<!-- wp:group {"tagName":"main","anchor":"main","className":"mk-page mk-wrap","layout":{"type":"default"}} -->
+<main id="main" class="wp-block-group mk-page mk-wrap"><!-- wp:paragraph {"className":"mk-kicker"} -->
+<p class="mk-kicker">BERITA</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":1,"className":"mk-h2 mk-page__title"} -->
+<h1 class="wp-block-heading mk-h2 mk-page__title">Semua kabar</h1>
+<!-- /wp:heading -->
+
+<!-- wp:query {"queryId":21,"query":{"perPage":10,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":true},"className":"mk-archive"} -->
+<div class="wp-block-query mk-archive"><!-- wp:post-template -->
+<!-- wp:group {"tagName":"article","className":"mk-news__item","layout":{"type":"default"}} -->
+<article class="wp-block-group mk-news__item"><!-- wp:group {"className":"mk-news__thumb mk-media","layout":{"type":"default"}} -->
+<div class="wp-block-group mk-news__thumb mk-media"><!-- wp:post-featured-image {"isLink":true,"className":"mk-media__img"} /--></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"layout":{"type":"default"}} -->
+<div class="wp-block-group"><!-- wp:group {"className":"mk-news__meta","layout":{"type":"default"}} -->
+<div class="wp-block-group mk-news__meta"><!-- wp:post-terms {"term":"category"} /-->
+
+<!-- wp:post-date {"format":"j M Y"} /--></div>
+<!-- /wp:group -->
+
+<!-- wp:post-title {"level":2,"isLink":true,"className":"mk-news__title"} /--></div>
+<!-- /wp:group --></article>
+<!-- /wp:group -->
+<!-- /wp:post-template -->
+
+<!-- wp:query-pagination {"className":"mk-pagination","layout":{"type":"flex"}} -->
+<!-- wp:query-pagination-previous {"label":"Sebelumnya"} /-->
+
+<!-- wp:query-pagination-numbers /-->
+
+<!-- wp:query-pagination-next {"label":"Berikutnya"} /-->
+<!-- /wp:query-pagination -->
+
+<!-- wp:query-no-results -->
+<!-- wp:paragraph -->
+<p>Belum ada berita.</p>
+<!-- /wp:paragraph -->
+<!-- /wp:query-no-results --></div>
+<!-- /wp:query --></main>
+<!-- /wp:group -->
+
+<!-- wp:pattern {"slug":"matholek/daftar"} /-->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->

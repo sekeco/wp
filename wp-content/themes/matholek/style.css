@@ -1,0 +1,1533 @@
+/*
+Theme Name: Matholek
+Author: Sekeco
+Author URI: https://sekeco.github.io
+Description: Landing page satu halaman untuk Perguruan Islam Mathali'ul Falah, Kajen, Pati. Bento teal dan emas, Manrope dengan aksen Arab Amiri, motif geometri, mode terang dan gelap. Pasangkan dengan plugin Matholek.
+Requires at least: 6.7
+Tested up to: 7.1
+Requires PHP: 7.4
+Version: 0.1.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: matholek
+Tags: one-column, custom-colors, editor-style, full-site-editing, block-patterns, block-styles, education
+*/
+
+/*
+ * Tokens live in theme.json. This file reproduces the reference mockup
+ * (reference/variasi-3d-bento-teal.html) with plain CSS: every measure is the
+ * Tailwind value the mockup used. Classes are `mk-*`; section blocks carry
+ * them, so content stays editable while layout stays exact.
+ */
+
+/* ---------------------------------------------------------------- tokens */
+
+:root {
+	--mk-ink: var(--wp--preset--color--ink);
+	--mk-ink-50: color-mix(in srgb, var(--mk-ink) 50%, transparent);
+	--mk-ink-60: color-mix(in srgb, var(--mk-ink) 60%, transparent);
+	--mk-ink-65: color-mix(in srgb, var(--mk-ink) 65%, transparent);
+	--mk-ink-70: color-mix(in srgb, var(--mk-ink) 70%, transparent);
+	--mk-card: var(--wp--preset--color--surface);
+	--mk-tint: var(--wp--preset--color--teal-50);
+	--mk-line: var(--wp--preset--color--teal-100);
+	--mk-accent: var(--wp--preset--color--teal-500);
+	--mk-kicker: var(--wp--preset--color--gold-500);
+	--mk-icon-ink: var(--wp--preset--color--teal-900);
+	--mk-teal-500: #1b7a8c;
+	--mk-teal-700: #0f4c5c;
+	--mk-teal-900: #0a3340;
+	--mk-gold-400: #d4a72c;
+	--mk-radius: 2rem;
+	--mk-geo: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Cg fill='none' stroke='%23D4A72C' stroke-opacity='.25'%3E%3Cpath d='M24 2l6.4 15.6L46 24l-15.6 6.4L24 46l-6.4-15.6L2 24l15.6-6.4z'/%3E%3Crect x='14' y='14' width='20' height='20' transform='rotate(45 24 24)'/%3E%3C/g%3E%3C/svg%3E");
+	--mk-fallback: linear-gradient(135deg, #0f4c5c, #d4a72c);
+	--mk-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+	--mk-ease: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Dark mode: set on <html> before first paint (functions.php). */
+html[data-theme="dark"] {
+	color-scheme: dark;
+	--wp--preset--color--mist: #071c22;
+	--wp--preset--color--surface: #0d2a33;
+	--wp--preset--color--ink: #e4eff0;
+	--wp--preset--color--teal-50: #133a44;
+	--wp--preset--color--teal-100: #1e4955;
+	--wp--preset--color--gold-100: #2a2514;
+	--wp--preset--color--gold-500: #e0b94a;
+	--mk-accent: #5ec0cf;
+	--mk-icon-ink: #9fd6df;
+	--mk-ink-50: color-mix(in srgb, var(--mk-ink) 62%, transparent);
+}
+
+/* ----------------------------------------- base (Tailwind preflight) */
+
+html {
+	-webkit-text-size-adjust: 100%;
+	tab-size: 4;
+	scroll-behavior: smooth;
+	scroll-padding-top: 72px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+	html {
+		scroll-behavior: auto;
+	}
+}
+
+body {
+	margin: 0;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+*,
+::before,
+::after {
+	box-sizing: border-box;
+}
+
+:where(h1, h2, h3, h4, h5, h6, p, figure, blockquote, ul, ol) {
+	margin: 0;
+}
+
+:where(h1, h2, h3, h4, h5, h6) {
+	font-size: inherit;
+	font-weight: inherit;
+}
+
+:where(img, svg, video) {
+	display: block;
+	max-width: 100%;
+}
+
+:where(button) {
+	font: inherit;
+	color: inherit;
+	background: transparent;
+	border: 0;
+	padding: 0;
+	cursor: pointer;
+}
+
+.mk-wrap {
+	max-width: 72rem;
+	margin-inline: auto;
+	padding-inline: 1rem;
+}
+
+.mk-arab {
+	font-family: var(--wp--preset--font-family--amiri);
+}
+
+.mk-geo {
+	background-image: var(--mk-geo);
+}
+
+.mk-kicker {
+	font-size: 0.875rem;
+	line-height: 1.25rem;
+	font-weight: 700;
+	color: var(--mk-kicker);
+}
+
+.mk-h2 {
+	font-weight: 800;
+	font-size: 2.25rem;
+	line-height: 2.5rem;
+	letter-spacing: -0.025em;
+}
+
+@media (min-width: 768px) {
+
+	.mk-h2 {
+		font-size: 3rem;
+		line-height: 1;
+	}
+}
+
+.mk-card {
+	border-radius: var(--mk-radius);
+	background-color: var(--mk-card);
+}
+
+/* Photo card: image fills the box; gradient shows while it is empty. */
+.mk-media {
+	position: relative;
+	overflow: hidden;
+	border-radius: var(--mk-radius);
+	background: var(--mk-fallback);
+}
+
+.mk-media > .mk-media__img,
+.mk-media > .wp-block-post-featured-image.mk-media__img {
+	position: absolute;
+	inset: 0;
+	margin: 0;
+	height: 100%;
+}
+
+.mk-media > .mk-media__img a {
+	display: block;
+	height: 100%;
+}
+
+.mk-media > .mk-media__img img {
+	width: 100% !important;
+	height: 100% !important;
+	object-fit: cover;
+	transition: transform 500ms var(--mk-ease);
+}
+
+.mk-media[class*="mk-shade-"]::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+	pointer-events: none;
+}
+
+.mk-media > :not(.mk-media__img) {
+	position: relative;
+	z-index: 2;
+}
+
+.mk-shade-hero::after {
+	background-image: linear-gradient(to right, rgb(10 51 64 / 0.9), rgb(10 51 64 / 0.5), rgb(10 51 64 / 0));
+}
+
+.mk-shade-dim::after {
+	background-color: rgb(10 51 64 / 0.4);
+}
+
+.mk-shade-news::after {
+	background-image: linear-gradient(to top, rgb(10 51 64 / 0.95), rgb(10 51 64 / 0));
+}
+
+/* --------------------------------------------------------------- buttons */
+
+.wp-block-buttons.mk-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.75rem;
+}
+
+.wp-block-button .wp-block-button__link.wp-element-button {
+	display: inline-block;
+	border-radius: 1rem;
+	padding: 0.875rem 1.5rem;
+	font-size: 1rem;
+	line-height: 1.5rem;
+	font-weight: 700;
+	text-decoration: none;
+}
+
+.wp-block-button.is-style-gold .wp-block-button__link {
+	background-color: var(--mk-gold-400);
+	color: var(--mk-teal-900);
+}
+
+.wp-block-button.is-style-glass .wp-block-button__link {
+	background-color: rgb(255 255 255 / 0.15);
+	color: #fff;
+	-webkit-backdrop-filter: blur(8px);
+	backdrop-filter: blur(8px);
+}
+
+.wp-block-button.is-style-card .wp-block-button__link {
+	background-color: var(--mk-card);
+	color: var(--mk-ink);
+}
+
+.wp-block-button.is-style-small .wp-block-button__link,
+.wp-block-button.mk-btn-sm .wp-block-button__link {
+	padding: 0.625rem 1.25rem;
+	font-size: 0.875rem;
+	line-height: 1.25rem;
+}
+
+/* ---------------------------------------------------------------- header */
+
+.mk-header {
+	position: sticky;
+	top: var(--wp-admin--admin-bar--height, 0);
+	z-index: 50;
+	background-color: color-mix(in srgb, var(--mk-card) 85%, transparent);
+	-webkit-backdrop-filter: blur(8px);
+	backdrop-filter: blur(8px);
+	border-bottom: 1px solid var(--mk-line);
+}
+
+.mk-header__bar {
+	height: 72px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.mk-brand {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	line-height: 1.25;
+}
+
+.mk-brand__mark {
+	width: 2.75rem;
+	height: 2.75rem;
+	flex: none;
+	display: grid;
+	place-items: center;
+	border-radius: 1rem;
+	background-color: var(--mk-teal-700);
+	background-image: var(--mk-geo);
+	font-family: var(--wp--preset--font-family--amiri);
+	font-size: 1.5rem;
+	line-height: 2rem;
+	color: var(--mk-gold-400);
+}
+
+.mk-brand__mark img {
+	width: 100%;
+	height: 100%;
+	border-radius: inherit;
+	object-fit: cover;
+}
+
+.mk-brand__name {
+	display: block;
+	font-weight: 700;
+}
+
+.mk-brand__sub {
+	font-size: 0.75rem;
+	line-height: 1rem;
+	color: var(--mk-ink-50);
+}
+
+/* The mockup sets the subtitle inline inside a 20px line whose strut is the
+   16px brand font. A zero-width 16px item on the same baseline rebuilds it. */
+.mk-brand__text .mk-brand__sub {
+	display: flex;
+	align-items: baseline;
+}
+
+.mk-brand__text .mk-brand__sub::before {
+	content: "\200b";
+	font-size: 1rem;
+	line-height: 1.25rem;
+}
+
+.mk-header .mk-nav {
+	display: none;
+}
+
+@media (min-width: 768px) {
+
+	.mk-header .mk-nav {
+		display: flex;
+	}
+}
+
+.mk-header .mk-nav,
+.mk-header .mk-nav .wp-block-navigation__container {
+	gap: 1.75rem;
+	font-size: 0.875rem;
+	line-height: 1.25rem;
+	font-weight: 600;
+	color: var(--mk-ink-70);
+}
+
+.mk-header .mk-nav .wp-block-navigation-item__content {
+	padding: 0;
+	transition: color 150ms var(--mk-ease);
+}
+
+.mk-header .mk-nav .wp-block-navigation-item__content:hover {
+	color: var(--mk-accent);
+}
+
+.mk-header__actions {
+	position: relative;
+	display: flex;
+	align-items: center;
+}
+
+/* Out of the flex flow, so the menu keeps the mockup's exact position. */
+.mk-header__actions > .mk-toggle {
+	position: absolute;
+	right: calc(100% + 0.75rem);
+}
+
+/* Theme toggle (plugin block). */
+.mk-toggle {
+	width: 2.75rem;
+	height: 2.75rem;
+	display: grid;
+	place-items: center;
+	border-radius: 1rem;
+	background-color: var(--mk-tint);
+	color: var(--mk-icon-ink);
+}
+
+.mk-toggle .mk-icon::before {
+	width: 1.25rem;
+	height: 1.25rem;
+}
+
+.mk-toggle__sun,
+html[data-theme="dark"] .mk-toggle__moon {
+	display: none;
+}
+
+html[data-theme="dark"] .mk-toggle__sun {
+	display: block;
+}
+
+/* Below 1024px the header has no room beside the mockup's brand, menu and
+   button, so the footer's floating toggle (lower-left) takes over. */
+.mk-toggle.mk-toggle--float {
+	display: none;
+	position: fixed;
+	left: 1rem;
+	bottom: 1rem;
+	z-index: 40;
+	border-radius: 9999px;
+	background-color: var(--mk-card);
+	box-shadow: var(--mk-shadow-xl);
+}
+
+@media (max-width: 1023px) {
+
+	.mk-header .mk-toggle {
+		display: none;
+	}
+
+	.mk-toggle.mk-toggle--float {
+		display: grid;
+	}
+}
+
+.mk-toggle:focus-visible,
+.mk-testi button:focus-visible,
+.wp-block-button__link:focus-visible {
+	outline: 2px solid var(--mk-accent);
+	outline-offset: 2px;
+}
+
+/* ------------------------------------------------------------------ hero */
+
+.mk-hero {
+	padding-top: 2rem;
+	padding-bottom: 3rem;
+}
+
+.mk-hero__grid {
+	display: grid;
+	gap: 1rem;
+}
+
+.mk-hero__main {
+	min-height: 460px;
+}
+
+.mk-hero__body {
+	height: 100%;
+	max-width: 36rem;
+	padding: 2rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	color: #fff;
+}
+
+.mk-hero__kicker {
+	font-size: 1.5rem;
+	line-height: 2rem;
+	color: var(--mk-gold-400);
+}
+
+.mk-hero__title {
+	margin-top: 0.75rem !important;
+	font-weight: 800;
+	font-size: 2.25rem;
+	line-height: 1.05;
+	letter-spacing: -0.025em;
+}
+
+.mk-hero__lead {
+	margin-top: 1.25rem !important;
+	color: rgb(255 255 255 / 0.75);
+}
+
+.mk-hero__body .mk-actions {
+	margin-top: 1.75rem !important;
+}
+
+.mk-hero__since {
+	border-radius: var(--mk-radius);
+	background-color: var(--mk-teal-700);
+	background-image: var(--mk-geo);
+	color: #fff;
+	padding: 1.5rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.mk-hero__since-label {
+	font-size: 0.875rem;
+	line-height: 1.25rem;
+	color: rgb(255 255 255 / 0.7);
+}
+
+.mk-hero__since-year {
+	font-weight: 800;
+	font-size: 3rem;
+	line-height: 1;
+	color: var(--mk-gold-400);
+}
+
+.mk-hero__fact {
+	border-radius: var(--mk-radius);
+	background-color: var(--mk-card);
+	padding: 1.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.mk-hero__fact--gold {
+	background-color: var(--wp--preset--color--gold-100);
+}
+
+.mk-hero__fact-label {
+	font-size: 0.875rem;
+	line-height: 1.25rem;
+	color: var(--mk-ink-60);
+}
+
+.mk-hero__fact-value {
+	font-weight: 800;
+	font-size: 1.875rem;
+	line-height: 2.25rem;
+}
+
+@media (min-width: 768px) {
+
+	.mk-hero__grid {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		grid-auto-rows: 130px;
+	}
+
+	.mk-hero__main {
+		grid-column: span 3 / span 3;
+		grid-row: span 4 / span 4;
+	}
+
+	.mk-hero__since {
+		grid-row: span 2 / span 2;
+	}
+
+	.mk-hero__body {
+		padding: 3rem;
+	}
+
+	.mk-hero__title {
+		font-size: 3.75rem;
+		line-height: 1;
+	}
+}
+
+/* --------------------------------------------------------------- riwayat */
+
+.mk-riwayat {
+	padding-top: 3.5rem;
+	padding-bottom: 3.5rem;
+}
+
+.mk-riwayat__grid {
+	display: grid;
+	gap: 1rem;
+}
+
+.mk-riwayat__intro {
+	padding: 2rem;
+}
+
+.mk-riwayat__intro .mk-h2 {
+	margin-top: 0.75rem !important;
+	font-size: 1.875rem;
+	line-height: 2.25rem;
+}
+
+.mk-riwayat__intro-text {
+	margin-top: 1rem !important;
+	font-size: 0.875rem;
+	line-height: 1.25rem;
+	color: var(--mk-ink-65);
+}
+
+.mk-stats {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 1rem;
+}
+
+.mk-stat {
+	border-radius: var(--mk-radius);
+	background-color: var(--mk-card);
+	padding: 1.5rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+}
+
+.mk-stat--teal {
+	background-color: var(--mk-teal-500);
+	color: #fff;
+}
+
+.mk-stat--gold {
+	background-color: var(--mk-gold-400);
+	color: var(--mk-teal-900);
+}
+
+.mk-stat__value {
+	font-weight: 800;
+	font-size: 2.25rem;
+	line-height: 2.5rem;
+}
+
+.mk-stat__label {
+	margin-top: 0.25rem !important;
+	font-size: 0.875rem;
+	line-height: 1.25rem;
+	color: var(--mk-ink-60);
+}
+
+.mk-stat--teal .mk-stat__label {
+	color: rgb(255 255 255 / 0.75);
+}
+
+.mk-stat--gold .mk-stat__label {
+	color: inherit;
+}
+
+.mk-timeline {
+	margin-top: 1rem !important;
+	padding: 1.5rem;
+}
+
+.mk-timeline__grid {
+	position: relative;
+	display: grid;
+	gap: 1.5rem;
+}
+
+.mk-step {
+	position: relative;
+}
+
+.mk-step::before {
+	content: "";
+	display: block;
+	width: 1.5rem;
+	height: 1.5rem;
+	border-radius: 9999px;
+	background-color: var(--mk-gold-400);
+	box-shadow: 0 0 0 4px var(--mk-card);
+}
+
+.mk-step:last-child::before {
+	background-color: var(--mk-teal-700);
+}
+
+.mk-step__year {
+	margin-top: 1rem !important;
+	font-weight: 800;
+}
+
+.mk-step__who {
+	font-size: 0.875rem;
+	line-height: 1.25rem;
+	color: var(--mk-ink-60);
+}
+
+@media (min-width: 768px) {
+
+	.mk-riwayat__grid {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+	.mk-riwayat__intro .mk-h2 {
+		font-size: 2.25rem;
+		line-height: 2.5rem;
+	}
+
+	.mk-stats {
+		grid-column: span 2 / span 2;
+	}
+
+	.mk-stat__value {
+		font-size: 3rem;
+		line-height: 1;
+	}
+
+	.mk-timeline {
+		padding: 2rem;
+	}
+
+	.mk-timeline__grid {
+		grid-template-columns: repeat(5, minmax(0, 1fr));
+	}
+
+	.mk-timeline__grid::before {
+		content: "";
+		position: absolute;
+		top: 0.75rem;
+		left: 0.75rem;
+		right: 0.75rem;
+		height: 0.125rem;
+		background-color: var(--mk-line);
+	}
+}
+
+/* ----------------------------------------------------------------- mitra */
+
+.mk-mitra {
+	padding-top: 2rem;
+	padding-bottom: 2rem;
+}
+
+.mk-mitra__box {
+	border-radius: var(--mk-radius);
+	background-color: var(--mk-teal-900);
+	background-image: var(--mk-geo);
+	padding: 2rem;
+	display: grid;
+	gap: 1.5rem;
+	align-items: center;
+}
+
+.mk-mitra__title {
+	color: #fff;
+	font-weight: 700;
+	font-size: 1.125rem;
+	line-height: 1.75rem;
+}
+
+.mk-mitra__title mark,
+mark.has-inline-color {
+	background-color: transparent;
+}
+
+.mk-mitra__list {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 0.75rem;
+}
+
+.mk-partner {
+	height: 4rem;
+	display: grid;
+	place-items: center;
+	border-radius: 1rem;
+	background-color: rgb(255 255 255 / 0.1);
+	color: rgb(255 255 255 / 0.8);
+	font-weight: 700;
+	overflow: hidden;
+}
+
+.mk-partner:first-child {
+	-webkit-backdrop-filter: blur(8px);
+	backdrop-filter: blur(8px);
+}
+
+.mk-partner img {
+	max-height: 2.5rem;
+	width: auto;
+}
+
+.mk-partner .wp-block-image {
+	margin: 0;
+}
+
+@media (min-width: 640px) {
+
+	.mk-mitra__list {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+}
+
+@media (min-width: 1024px) {
+
+	.mk-mitra__box {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+
+	.mk-mitra__list {
+		grid-column: span 3 / span 3;
+	}
+}
+
+/* ------------------------------------------------------------- kurikulum */
+
+.mk-kurikulum {
+	padding-top: 3.5rem;
+	padding-bottom: 3.5rem;
+}
+
+.mk-kurikulum__head {
+	max-width: 42rem;
+	margin-inline: auto;
+	text-align: center;
+}
+
+.mk-kurikulum__head .mk-h2,
+.mk-riwayat__intro .mk-h2 {
+	margin-top: 0.75rem !important;
+}
+
+.mk-kurikulum__grid {
+	margin-top: 3rem !important;
+	display: grid;
+	gap: 1rem;
+}
+
+.mk-ratio-card {
+	padding: 2rem;
+	display: flex;
+	align-items: center;
+	gap: 2rem;
+}
+
+.mk-ratio {
+	width: 8rem;
+	height: 8rem;
+	flex-shrink: 0;
+	transform: rotate(-90deg);
+}
+
+.mk-ratio__track {
+	stroke: var(--mk-line);
+}
+
+.mk-ratio__bar {
+	stroke: var(--mk-teal-500);
+}
+
+.mk-ratio-card__value {
+	font-weight: 800;
+	font-size: 1.875rem;
+	line-height: 2.25rem;
+}
+
+.mk-ratio-card__text {
+	margin-top: 0.25rem !important;
+	font-size: 0.875rem;
+	line-height: 1.25rem;
+	color: var(--mk-ink-65);
+}
+
+.mk-value {
+	border-radius: var(--mk-radius);
+	padding: 1.75rem;
+}
+
+.mk-value--teal {
+	background-color: var(--mk-teal-700);
+	background-image: var(--mk-geo);
+	color: #fff;
+}
+
+.mk-value--gold {
+	background-color: var(--mk-gold-400);
+	color: var(--mk-teal-900);
+}
+
+.mk-value__arab {
+	font-family: var(--wp--preset--font-family--amiri);
+	font-size: 1.875rem;
+	line-height: 2.25rem;
+	color: var(--mk-gold-400);
+}
+
+.mk-value--gold .mk-value__arab {
+	color: var(--mk-teal-700);
+}
+
+.mk-value__name {
+	margin-top: 0.75rem !important;
+	font-weight: 800;
+	font-size: 1.5rem;
+	line-height: 2rem;
+}
+
+.mk-value__text {
+	margin-top: 0.25rem !important;
+	font-size: 0.875rem;
+	line-height: 1.25rem;
+}
+
+.mk-value--teal .mk-value__text {
+	color: rgb(255 255 255 / 0.7);
+}
+
+/* Feature card: the icon tile is drawn by the card (`mk-icon--<name>`). */
+.mk-feature {
+	position: relative;
+	border-radius: var(--mk-radius);
+	background-color: var(--mk-card);
+	padding: 1.75rem;
+}
+
+.mk-feature::before {
+	content: "";
+	display: block;
+	width: 2.75rem;
+	height: 2.75rem;
+	border-radius: 0.75rem;
+	background-color: var(--mk-tint);
+}
+
+.mk-feature::after {
+	content: "";
+	position: absolute;
+	top: calc(1.75rem + 0.75rem);
+	left: calc(1.75rem + 0.75rem);
+	width: 1.25rem;
+	height: 1.25rem;
+	background-color: var(--mk-icon-ink);
+	-webkit-mask: var(--mk-icon) center / contain no-repeat;
+	mask: var(--mk-icon) center / contain no-repeat;
+}
+
+.mk-feature__title {
+	margin-top: 1rem !important;
+	font-weight: 800;
+	font-size: 1.125rem;
+	line-height: 1.75rem;
+}
+
+.mk-feature__text {
+	margin-top: 0.25rem !important;
+	font-size: 0.875rem;
+	line-height: 1.25rem;
+	color: var(--mk-ink-60);
+}
+
+@media (min-width: 768px) {
+
+	.mk-kurikulum__grid {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+
+	.mk-ratio-card {
+		grid-column: span 2 / span 2;
+	}
+}
+
+/* ------------------------------------------------------------- testimoni */
+
+.mk-testimoni {
+	padding-top: 3.5rem;
+	padding-bottom: 3.5rem;
+}
+
+.mk-testimoni__grid {
+	display: grid;
+	gap: 1rem;
+}
+
+.mk-video-card {
+	min-height: 320px;
+}
+
+.mk-video {
+	position: absolute !important;
+	inset: 0;
+	display: grid;
+	place-items: center;
+}
+
+.mk-video__play {
+	width: 5rem;
+	height: 5rem;
+	display: grid;
+	place-items: center;
+	border-radius: 9999px;
+	background-color: var(--mk-gold-400);
+	color: var(--mk-teal-900);
+	font-size: 1.5rem;
+	line-height: 2rem;
+	box-shadow: var(--mk-shadow-xl);
+}
+
+.mk-video-card__caption {
+	position: absolute !important;
+	bottom: 1.25rem;
+	left: 1.25rem;
+	color: #fff;
+	font-weight: 700;
+}
+
+.mk-testi {
+	border-radius: var(--mk-radius);
+	background-color: var(--mk-card);
+	padding: 2rem;
+	display: flex;
+	flex-direction: column;
+}
+
+.mk-testi__label {
+	font-size: 0.875rem;
+	line-height: 1.25rem;
+	font-weight: 700;
+	color: var(--mk-kicker);
+}
+
+.mk-testi__track {
+	position: relative;
+	margin-top: 1.5rem;
+	flex: 1 1 0%;
+	min-height: 180px;
+}
+
+.mk-slide {
+	position: absolute;
+	inset: 0;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.4s;
+}
+
+.mk-slide.is-active,
+.mk-testi:not(.is-ready) .mk-slide:first-child {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+.mk-slide__quote {
+	font-size: 1.5rem;
+	line-height: 1.375;
+	font-weight: 700;
+}
+
+.mk-slide__by {
+	margin-top: 1.5rem;
+	font-size: 0.875rem;
+	line-height: 1.25rem;
+	color: var(--mk-ink-60);
+}
+
+.mk-slide__by b {
+	color: var(--mk-ink);
+}
+
+.mk-testi__nav {
+	margin-top: 1.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.mk-testi__dots,
+.mk-testi__btns {
+	display: flex;
+	gap: 0.5rem;
+}
+
+.mk-testi__dot {
+	width: 0.5rem;
+	height: 0.5rem;
+	border-radius: 9999px;
+	background-color: var(--mk-line);
+}
+
+.mk-testi__dot.is-active {
+	width: 2rem;
+	background-color: var(--mk-teal-500);
+}
+
+.mk-testi__btns button {
+	width: 2.75rem;
+	height: 2.75rem;
+	border-radius: 0.75rem;
+	font-weight: 700;
+}
+
+.mk-testi__prev {
+	background-color: var(--mk-tint) !important;
+}
+
+.mk-testi__next {
+	background-color: var(--mk-teal-700) !important;
+	color: #fff !important;
+}
+
+/* Editor: list every slide. */
+.mk-testi.is-editing .mk-slide {
+	position: static;
+	opacity: 1;
+	pointer-events: auto;
+	padding-block: 0.75rem;
+	border-bottom: 1px dashed var(--mk-line);
+}
+
+@media (min-width: 768px) {
+
+	.mk-testimoni__grid {
+		grid-template-columns: repeat(5, minmax(0, 1fr));
+	}
+
+	.mk-video-card {
+		grid-column: span 2 / span 2;
+	}
+
+	.mk-testimoni__grid > :not(.mk-video-card) {
+		grid-column: span 3 / span 3;
+	}
+
+	/* No testimonial yet: the video card takes the row. */
+	.mk-testimoni__grid:not(:has(> :not(.mk-video-card))) > .mk-video-card {
+		grid-column: 1 / -1;
+	}
+
+	.mk-testi {
+		padding: 2.5rem;
+	}
+
+	.mk-slide__quote {
+		font-size: 1.875rem;
+		line-height: 2.25rem;
+	}
+}
+
+/* ------------------------------------------------------------- fasilitas */
+
+.mk-fasilitas {
+	padding-top: 3.5rem;
+	padding-bottom: 3.5rem;
+}
+
+.mk-head {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+}
+
+.mk-head .mk-h2 {
+	margin-top: 0.5rem !important;
+}
+
+.mk-tiles {
+	margin-top: 2.5rem !important;
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	grid-auto-rows: 180px;
+
+	/* Dense: on two columns the wide tile drops a row, and the next tall tile
+	   fills the hole beside the first one (the mockup left it empty). */
+	grid-auto-flow: row dense;
+	gap: 1rem;
+}
+
+.mk-tile--tall {
+	grid-row: span 2 / span 2;
+}
+
+.mk-tile--wide {
+	grid-column: span 2 / span 2;
+}
+
+.mk-tile__cap {
+	position: absolute !important;
+	left: 0.75rem;
+	bottom: 0.75rem;
+	border-radius: 0.75rem;
+	background-color: color-mix(in srgb, var(--mk-card) 90%, transparent);
+	padding: 0.375rem 0.75rem;
+	font-size: 0.875rem;
+	line-height: 1.25rem;
+	font-weight: 700;
+}
+
+.mk-tile--wide .mk-tile__cap {
+	border-radius: 1rem;
+	padding: 0.5rem 1rem;
+	font-size: 1rem;
+	line-height: 1.5rem;
+}
+
+.mk-tile--tall .mk-tile__cap {
+	right: 0.75rem;
+	border-radius: 1rem;
+	padding: 0.75rem 1rem;
+	font-size: 1rem;
+	line-height: 1.5rem;
+	font-weight: 400;
+	-webkit-backdrop-filter: blur(8px);
+	backdrop-filter: blur(8px);
+}
+
+.mk-tile__name {
+	font-weight: 700;
+}
+
+.mk-tile__note {
+	font-size: 0.75rem;
+	line-height: 1rem;
+	color: var(--mk-ink-60);
+}
+
+@media (min-width: 768px) {
+
+	.mk-tiles {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+}
+
+/* ---------------------------------------------------------------- berita */
+
+.mk-berita {
+	padding-top: 3.5rem;
+	padding-bottom: 3.5rem;
+}
+
+.mk-news {
+	margin-top: 2.5rem !important;
+	display: grid;
+	gap: 1rem;
+}
+
+.mk-news .wp-block-post-template {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.mk-news__list .wp-block-post-template {
+	display: grid;
+	gap: 1rem;
+}
+
+.mk-news__feature {
+	min-height: 380px;
+	height: 100%;
+}
+
+.mk-news__lead,
+.mk-news__lead .wp-block-post-template,
+.mk-news__lead .wp-block-post {
+	height: 100%;
+}
+
+.mk-news__feature:hover > .mk-media__img img {
+	transform: scale(1.05);
+}
+
+.mk-news__feature-body {
+	position: absolute !important;
+	bottom: 0;
+	padding: 2rem;
+	color: #fff;
+}
+
+.mk-news__feature-body .mk-badge a {
+	border-radius: 9999px;
+	background-color: var(--mk-gold-400);
+	color: var(--mk-teal-900);
+	padding: 0.25rem 0.75rem;
+	font-size: 0.75rem;
+	line-height: 1rem;
+	font-weight: 700;
+}
+
+.mk-news__feature-body .mk-badge .wp-block-post-terms__separator {
+	display: none;
+}
+
+.mk-news__feature-title {
+	margin-top: 0.75rem !important;
+	font-weight: 800;
+	font-size: 1.5rem;
+	line-height: 2rem;
+}
+
+.mk-news__feature-date {
+	margin-top: 0.5rem !important;
+	font-size: 0.875rem;
+	line-height: 1.25rem;
+	color: rgb(255 255 255 / 0.6);
+}
+
+.mk-news__item {
+	border-radius: var(--mk-radius);
+	background-color: var(--mk-card);
+	padding: 1rem;
+	display: flex;
+	gap: 1.25rem;
+	align-items: center;
+}
+
+.mk-news__thumb {
+	width: 8rem;
+	height: 7rem;
+	flex-shrink: 0;
+	border-radius: 1rem;
+}
+
+.mk-news__meta {
+	display: flex;
+	flex-wrap: wrap;
+	font-size: 0.75rem;
+	line-height: 1rem;
+	font-weight: 700;
+	color: var(--mk-accent);
+	text-transform: uppercase;
+}
+
+.mk-news__meta > * + *::before {
+	content: "\00a0·\00a0";
+}
+
+.mk-news__title {
+	margin-top: 0.25rem !important;
+	font-weight: 800;
+	font-size: 1.125rem;
+	line-height: 1.375;
+}
+
+@media (min-width: 768px) {
+
+	.mk-news {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.mk-news__feature-title {
+		font-size: 1.875rem;
+		line-height: 2.25rem;
+	}
+}
+
+/* ---------------------------------------------------------- daftar + footer */
+
+.mk-daftar {
+	padding-top: 1.5rem;
+}
+
+.mk-daftar__box {
+	border-radius: 2.5rem;
+	background-color: var(--mk-teal-700);
+	background-image: var(--mk-geo);
+	color: #fff;
+	padding: 2.5rem;
+	display: grid;
+	gap: 2rem;
+	align-items: center;
+}
+
+.mk-daftar__arab {
+	font-size: 1.5rem;
+	line-height: 2rem;
+	color: var(--mk-gold-400);
+}
+
+.mk-daftar__title {
+	margin-top: 0.5rem !important;
+}
+
+.mk-daftar__actions {
+	display: flex !important;
+	flex-direction: column;
+	gap: 0.75rem;
+}
+
+.mk-daftar__actions .wp-block-button,
+.mk-daftar__actions .wp-block-button__link {
+	width: 100%;
+	text-align: center;
+}
+
+.mk-daftar__actions .wp-block-button__link.wp-element-button {
+	padding: 1rem 1.75rem;
+}
+
+.mk-footer {
+	margin-top: 2rem;
+	padding-bottom: 2.5rem;
+}
+
+.mk-footer__row {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 1rem;
+	font-size: 0.875rem;
+	line-height: 1.25rem;
+	color: var(--mk-ink-50);
+}
+
+@media (min-width: 768px) {
+
+	.mk-daftar__box {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		padding: 3.5rem;
+	}
+
+	.mk-daftar__copy {
+		grid-column: span 2 / span 2;
+	}
+}
+
+/* ----------------------------------------- news pages (home, singular) */
+
+.mk-page {
+	padding-top: 3.5rem;
+	padding-bottom: 3.5rem;
+}
+
+.mk-page__title {
+	margin-top: 0.5rem !important;
+}
+
+.mk-archive {
+	margin-top: 2.5rem !important;
+}
+
+.mk-archive .wp-block-post-template {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	display: grid;
+	gap: 1rem;
+}
+
+@media (min-width: 768px) {
+
+	.mk-archive .wp-block-post-template {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+.mk-pagination {
+	margin-top: 2rem !important;
+	display: flex;
+	gap: 0.5rem;
+	font-weight: 700;
+	font-size: 0.875rem;
+}
+
+.mk-pagination a,
+.mk-pagination .page-numbers {
+	display: inline-grid;
+	place-items: center;
+	min-width: 2.75rem;
+	height: 2.75rem;
+	padding-inline: 0.75rem;
+	border-radius: 0.75rem;
+	background-color: var(--mk-card);
+}
+
+.mk-pagination .current {
+	background-color: var(--mk-teal-700);
+	color: #fff;
+}
+
+.mk-article {
+	max-width: 46rem;
+	margin-inline: auto;
+	padding: 3.5rem 1rem;
+}
+
+.mk-article__title {
+	margin-top: 0.75rem !important;
+	font-weight: 800;
+	font-size: 2.25rem;
+	line-height: 1.1;
+	letter-spacing: -0.025em;
+}
+
+.mk-article__meta {
+	margin-top: 1rem !important;
+	font-size: 0.875rem;
+	color: var(--mk-ink-60);
+}
+
+.mk-article__cover {
+	margin-top: 2rem !important;
+	aspect-ratio: 16 / 9;
+}
+
+.mk-prose {
+	margin-top: 2rem !important;
+	font-size: 1.0625rem;
+	line-height: 1.75;
+}
+
+.mk-prose.mk-prose > * + * {
+	margin-block-start: 1.25em;
+}
+
+.mk-prose :where(h2) {
+	font-weight: 800;
+	font-size: 1.5rem;
+	line-height: 1.3;
+	letter-spacing: -0.02em;
+}
+
+.mk-prose :where(h3) {
+	font-weight: 800;
+	font-size: 1.25rem;
+	line-height: 1.4;
+}
+
+.mk-prose :where(a) {
+	color: var(--mk-accent);
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
+
+.mk-prose :where(ul, ol) {
+	padding-left: 1.25em;
+}
+
+.mk-prose :where(img) {
+	border-radius: 1rem;
+	height: auto;
+}
+
+.mk-prose :where(blockquote) {
+	border-left: 4px solid var(--mk-gold-400);
+	padding-left: 1rem;
+	font-weight: 600;
+}
+
+.mk-lost {
+	padding-block: 6rem;
+	text-align: center;
+}
+
+.mk-lost .mk-actions {
+	justify-content: center;
+	margin-top: 2rem !important;
+}
+
+.mk-lost__text {
+	margin-top: 1rem !important;
+	color: var(--mk-ink-65);
+}
+
+@media (min-width: 768px) {
+
+	.mk-article__title {
+		font-size: 3rem;
+	}
+}
+
+.mk-daftar__actions .is-style-glass .wp-block-button__link {
+	-webkit-backdrop-filter: none;
+	backdrop-filter: none;
+}

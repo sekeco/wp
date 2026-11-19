@@ -14,6 +14,10 @@ Gutenberg — tanpa page builder pihak ketiga.
 
 Kontrak minimum: WordPress **6.7+**, PHP **7.4+**.
 
+Repo ini juga memuat situs kedua, **Matholek** (landing page Perguruan Islam
+Mathali'ul Falah): tema dan plugin `matholek`, terpisah dari Sekeco. Lihat
+[wp-content/themes/matholek/README.md](wp-content/themes/matholek/README.md).
+
 ---
 
 ## 1. Persyaratan

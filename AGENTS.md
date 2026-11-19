@@ -1,13 +1,19 @@
-# Sekeco — Aturan Kerja
+# Sekeco & Matholek — Aturan Kerja
 
 ## Repository
 
-- Satu repositori (monorepo) di root. Tema dan plugin hidup berdampingan karena
-  saling bergantung (pattern tema memakai blok `sekeco/*`).
+- Satu repositori (monorepo) di root, berisi dua situs:
+  - **Sekeco** (situs agensi): tema + plugin `sekeco`. Pattern tema memakai blok
+    `sekeco/*`.
+  - **Matholek** (landing page Perguruan Islam Mathali'ul Falah): tema + plugin
+    `matholek`. Pattern tema memakai blok `matholek/*`. Tidak memakai plugin
+    Sekeco; aktifkan salah satu pasangan saja saat development.
 - Branch utama `main`. Tidak ada tag atau release.
 - Yang dilacak git hanya kode proyek:
   - `wp-content/themes/sekeco/`
   - `wp-content/plugins/sekeco/`
+  - `wp-content/themes/matholek/`
+  - `wp-content/plugins/matholek/`
   - `compose.yml`, `.gitignore`, `.gitattributes`, `AGENTS.md`, `README.md`
 - WordPress core (`wp-admin/`, `wp-includes/`, `wp-*.php`, `license.txt`,
   `readme.html`) berasal dari image Docker — jangan di-commit.
@@ -22,6 +28,8 @@ Scope:
 
 - `theme` — tema Sekeco
 - `plugin` — plugin Sekeco
+- `matholek-theme` — tema Matholek
+- `matholek-plugin` — plugin Matholek
 - `repo` — Docker, gitignore, aturan, tooling
 - `docs` — dokumentasi
 
@@ -38,14 +46,15 @@ chore(repo): ignore local database volume
 Aturan:
 
 - Satu commit = satu concern. Jangan mencampur perubahan tema dan plugin dalam
-  satu commit.
+  satu commit, juga jangan mencampur Sekeco dan Matholek.
 - Pesan dalam bahasa Inggris, ringkas, tanpa emoji.
 - Body opsional, jelaskan **kenapa**, bukan mengulang **apa**.
 - Jangan membuat tag/release.
 
 ## Sebelum commit
 
-- Jika menyentuh `wp-content/plugins/sekeco/src/`:
+- Jika menyentuh `wp-content/plugins/sekeco/src/` atau
+  `wp-content/plugins/matholek/src/` (jalankan di folder plugin itu):
   `bun run lint:js && bun run lint:css && bun run build`, lalu ikutkan `build/`.
 - Jika menyentuh PHP: `php -l` pada file yang berubah.
 - Pastikan tidak ada `wp-content/debug.log` baru dan tidak ada data uji tertinggal.
@@ -64,4 +73,7 @@ Aturan:
 - Tema: `Version:` di `wp-content/themes/sekeco/style.css`.
 - Plugin: header `Version:` dan `SEKECO_VERSION` di
   `wp-content/plugins/sekeco/sekeco.php`.
+- Tema Matholek: `Version:` di `wp-content/themes/matholek/style.css`.
+- Plugin Matholek: header `Version:` dan `MATHOLEK_VERSION` di
+  `wp-content/plugins/matholek/matholek.php`.
 - Naikkan versi setiap perubahan perilaku. Tanpa tag/release.

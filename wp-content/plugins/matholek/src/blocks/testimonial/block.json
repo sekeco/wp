@@ -1,0 +1,31 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "matholek/testimonial",
+	"version": "1.0.0",
+	"title": "Testimoni",
+	"category": "matholek",
+	"description": "Satu kutipan alumni dengan nama dan keterangan. Isi hanya dengan kutipan yang sudah diizinkan; tanpa kutipan, slide ini tidak tampil.",
+	"textdomain": "matholek",
+	"parent": [ "matholek/testimonials" ],
+	"attributes": {
+		"quote": {
+			"type": "string",
+			"default": ""
+		},
+		"name": {
+			"type": "string",
+			"default": ""
+		},
+		"meta": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"html": false,
+		"reusable": false
+	},
+	"editorScript": "file:./index.js",
+	"render": "file:./render.php"
+}

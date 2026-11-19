@@ -1,0 +1,32 @@
+{
+	"name": "matholek",
+	"version": "0.1.0",
+	"description": "Companion blocks for the Matholek theme.",
+	"private": true,
+	"license": "GPL-2.0-or-later",
+	"packageManager": "bun@1.4.4",
+	"trustedDependencies": [
+		"@parcel/watcher",
+		"core-js",
+		"core-js-pure"
+	],
+	"scripts": {
+		"build": "wp-scripts build --config webpack.config.js",
+		"start": "wp-scripts start --config webpack.config.js",
+		"format": "wp-scripts format",
+		"lint:js": "wp-scripts lint-js",
+		"lint:css": "wp-scripts lint-style ../../themes/matholek/style.css",
+		"icons": "node scripts/build-icons.mjs",
+		"fonts": "node scripts/copy-fonts.mjs"
+	},
+	"devDependencies": {
+		"@fontsource-variable/manrope": "^5.2.0",
+		"@fontsource/amiri": "^5.2.0",
+		"@iconify-json/solar": "^1.2.14",
+		"@wordpress/block-editor": "^20.0.0",
+		"@wordpress/blocks": "^17.1.0",
+		"@wordpress/components": "^44.0.0",
+		"@wordpress/i18n": "^7.1.0",
+		"@wordpress/scripts": "^37.1.0"
+	}
+}
